@@ -65,6 +65,11 @@ spec:
         path: /mnt/raid/media/qbittorrent/downloads
         server: ${NFS_HOST}
         type: nfs
+      sabnzbd:
+        enabled: true
+        path: /mnt/raid/media/sabnzbd/downloads
+        server: ${NFS_HOST}
+        type: nfs
     service:
       main:
         ports:
