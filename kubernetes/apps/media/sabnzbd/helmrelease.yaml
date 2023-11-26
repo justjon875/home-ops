@@ -53,11 +53,6 @@ spec:
         path: /mnt/raid/media/sabnzbd/config
         server: ${NFS_HOST}
         type: nfs
-      media:
-        enabled: true
-        path: /mnt/raid/media/sabnzbd/downloads
-        server: ${NFS_HOST}
-        type: nfs
     service:
       main:
         ports:

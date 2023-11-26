@@ -67,7 +67,7 @@ spec:
         type: nfs
       sabnzbd:
         enabled: true
-        path: /mnt/raid/media/sabnzbd/downloads
+        path: /mnt/raid/media/sabnzbd/config/Downloads
         server: ${NFS_HOST}
         type: nfs
     service:
