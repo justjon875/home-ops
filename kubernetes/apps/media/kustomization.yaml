@@ -16,4 +16,5 @@ resources:
   - radarr
   - readarr
   - reiverr
+  - sabnzbd
   - sonarr
