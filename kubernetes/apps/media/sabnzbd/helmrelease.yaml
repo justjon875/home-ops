@@ -34,7 +34,8 @@ spec:
                 sabnzbd.media.svc,
                 sabnzbd.media.svc.cluster,
                 sabnzbd.media.svc.cluster.local,
-                sabnzbd.${ROOT_DOMAIN}
+                sabnzbd.${ROOT_DOMAIN},
+                prowlarr.${ROOT_DOMAIN},
               TZ: ${TIMEZONE}
             image:
               repository: ghcr.io/onedr0p/sabnzbd
