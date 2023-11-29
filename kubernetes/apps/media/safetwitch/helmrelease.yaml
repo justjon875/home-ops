@@ -35,7 +35,7 @@ spec:
         containers:
           main:
             env:
-              SAFETWITCH_BACKEND_DOMAIN: https://safetwitch.${ROOT_DOMAIN}
+              SAFETWITCH_BACKEND_DOMAIN: safetwitch.${ROOT_DOMAIN}
               SAFETWITCH_INSTANCE_DOMAIN: *host
               SAFETWITCH_DEFAULT_LOCALE: en
               SAFETWITCH_FALLBACK_LOCALE: en
