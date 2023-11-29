@@ -35,7 +35,7 @@ spec:
         containers:
           main:
             env:
-              SAFETWITCH_BACKEND_DOMAIN: safetwitch
+              SAFETWITCH_BACKEND_DOMAIN: *host/api
               SAFETWITCH_INSTANCE_DOMAIN: *host
               SAFETWITCH_DEFAULT_LOCALE: en
               SAFETWITCH_FALLBACK_LOCALE: en
@@ -53,6 +53,11 @@ spec:
                 pathType: Prefix
                 service:
                   name: frontend
+                  port: http
+              - path: /api
+                pathType: Prefix
+                service:
+                  name: main
                   port: http
         tls:
           - hosts:
