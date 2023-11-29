@@ -72,7 +72,7 @@ spec:
       main:
         ports:
           http:
-            port: 7000
+            port: 8080
       frontend:
         controller: frontend
         ports:
