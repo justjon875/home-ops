@@ -4,8 +4,9 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - filebrowser
-  - libreddit
+  - handbrake
   - kavita
+  - libreddit
   - matrix-element
   - matrix-synapse
   - memos

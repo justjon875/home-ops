@@ -1,0 +1,63 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: handbrake
+  namespace: selfhosted
+spec:
+  chart:
+    spec:
+      chart: app-template
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+      version: 2.3.0
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  interval: 15m
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    controllers:
+      main:
+        containers:
+          main:
+            env:
+              TZ: ${TZ}
+            image:
+              repository: docker.io/jlesage/handbrake
+              tag: v23.11.4@sha256:4a5a2453bd78aa529f875a71a5f563c538d7e8ed7128908572c8c78ff91a1385
+    ingress:
+      main:
+        className: nginx
+        enabled: true
+        hosts:
+          - host: &host '{{ .Release.Name }}.${ROOT_DOMAIN}'
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  name: main
+                  port: http
+        tls:
+          - hosts:
+              - *host
+    persistence:
+      config:
+        enabled: true
+        existingClaim: handbrake-pvc
+      videos:
+        enabled: true
+        path: ${MEDIA_PATH}/videos/handbrake
+        server: ${NFS_HOST}
+        type: nfs
+    service:
+      main:
+        ports:
+          http:
+            port: 5800
+
+

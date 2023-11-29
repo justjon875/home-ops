@@ -84,11 +84,11 @@ spec:
           - path: /srv/originals
         server: ${NFS_HOST}
         type: nfs
-      qbittorrent:
+      media:
         enabled: true
         globalMounts:
-          - path: /srv/qbittorrent
-        path: /mnt/raid/media/qbittorrent/downloads
+          - path: /srv/media
+        path: ${MEDIA_PATH}
         server: ${NFS_HOST}
         type: nfs
     resources:

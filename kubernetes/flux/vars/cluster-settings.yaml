@@ -7,5 +7,6 @@ metadata:
 data:
   NFS_HOST: 192.168.2.5
   LOCAL_PATH: /mnt/raid/local
+  MEDIA_PATH: /mnt/raid/media
   NFS_PATH: /mnt/raid/nfs
   TIMEZONE: Asia/Singapore
