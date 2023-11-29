@@ -181,10 +181,9 @@ spec:
         cpu: 1000m
         memory: 4Gi
     # this seems to be required for nextcloud initialization which takes a long time
+    livenessProbe:
+      enabled: false
+    readinessProbe:
+      enabled: false
     startupProbe:
       enabled: false
-      failureThreshold: 30
-      initialDelaySeconds: 30
-      periodSeconds: 10
-      successThreshold: 1
-      timeoutSeconds: 5
