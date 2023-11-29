@@ -32,15 +32,16 @@ spec:
               repository: codeberg.org/safetwitch/safetwitch-backend
               tag: v1.5.4@sha256:dfa6e182bc5f32d32a7678b54598ebfed35623f496340580630d6a712186c499
       frontend:
-        main:
-          env:
-            SAFETWITCH_BACKEND_DOMAIN: *host
-            SAFETWITCH_INSTANCE_DOMAIN: *host
-            SAFETWITCH_DEFAULT_LOCALE: en
-            SAFETWITCH_FALLBACK_LOCALE: en
-          image:
-            repository: codeberg.org/safetwitch/safetwitch
-            tag: v2.4.2@sha256:3c35e83d5d7a1235fe0f507a83f64748b64709690f46215c27a9479c43bdb002
+        containers:
+          main:
+            env:
+              SAFETWITCH_BACKEND_DOMAIN: *host
+              SAFETWITCH_INSTANCE_DOMAIN: *host
+              SAFETWITCH_DEFAULT_LOCALE: en
+              SAFETWITCH_FALLBACK_LOCALE: en
+            image:
+              repository: codeberg.org/safetwitch/safetwitch
+              tag: v2.4.2@sha256:3c35e83d5d7a1235fe0f507a83f64748b64709690f46215c27a9479c43bdb002
     ingress:
       main:
         className: nginx
