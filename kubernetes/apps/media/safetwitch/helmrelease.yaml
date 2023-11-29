@@ -35,7 +35,7 @@ spec:
         containers:
           main:
             env:
-              SAFETWITCH_BACKEND_DOMAIN: *host
+              SAFETWITCH_BACKEND_DOMAIN: safetwitch
               SAFETWITCH_INSTANCE_DOMAIN: *host
               SAFETWITCH_DEFAULT_LOCALE: en
               SAFETWITCH_FALLBACK_LOCALE: en
@@ -57,17 +57,6 @@ spec:
         tls:
           - hosts:
               - *host
-    persistence:
-      config:
-        enabled: true
-        path: ${NFS_PATH}/navidrome/config
-        server: ${NFS_HOST}
-        type: nfs
-      music:
-        enabled: true
-        path: ${NFS_PATH}/navidrome/media
-        server: ${NFS_HOST}
-        type: nfs
     service:
       main:
         ports:
