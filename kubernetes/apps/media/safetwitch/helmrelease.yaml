@@ -52,7 +52,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  name: frontend
                   port: http
         tls:
           - hosts:
@@ -70,7 +70,11 @@ spec:
         type: nfs
     service:
       main:
+        ports:
+          http:
+            port: 7000
+      frontend:
         controller: frontend
         ports:
           http:
-            port: 8280
+            port: 80
