@@ -35,7 +35,7 @@ spec:
         containers:
           main:
             env:
-              SAFETWITCH_BACKEND_DOMAIN: safetwitch.${ROOT_DOMAIN}
+              SAFETWITCH_BACKEND_DOMAIN: safetwitch-backend.${ROOT_DOMAIN}
               SAFETWITCH_INSTANCE_DOMAIN: *host
               SAFETWITCH_DEFAULT_LOCALE: en
               SAFETWITCH_FALLBACK_LOCALE: en
@@ -43,7 +43,7 @@ spec:
               repository: codeberg.org/safetwitch/safetwitch
               tag: v2.4.2@sha256:3c35e83d5d7a1235fe0f507a83f64748b64709690f46215c27a9479c43bdb002
     ingress:
-      main:
+      frontend:
         className: nginx
         enabled: true
         hosts:
@@ -54,7 +54,13 @@ spec:
                 service:
                   name: frontend
                   port: http
-              - path: /api
+      main:
+        className: nginx
+        enabled: true
+        hosts:
+          - host: safetwitch-backend.${ROOT_DOMAIN}
+            paths:
+              - path: /
                 pathType: Prefix
                 service:
                   name: main
