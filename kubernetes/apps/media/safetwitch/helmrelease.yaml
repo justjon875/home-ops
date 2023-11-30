@@ -27,7 +27,7 @@ spec:
         containers:
           main:
             env:
-              URL: &host '{{ .Release.Name }}.${ROOT_DOMAIN}'
+              URL: &mainHost safetwitch-backend.${ROOT_DOMAIN}
             image:
               repository: codeberg.org/safetwitch/safetwitch-backend
               tag: v1.5.4@sha256:dfa6e182bc5f32d32a7678b54598ebfed35623f496340580630d6a712186c499
@@ -35,8 +35,8 @@ spec:
         containers:
           main:
             env:
-              SAFETWITCH_BACKEND_DOMAIN: safetwitch-backend.${ROOT_DOMAIN}
-              SAFETWITCH_INSTANCE_DOMAIN: *host
+              SAFETWITCH_BACKEND_DOMAIN: *mainHost
+              SAFETWITCH_INSTANCE_DOMAIN: &host '{{ .Release.Name }}.${ROOT_DOMAIN}'
               SAFETWITCH_DEFAULT_LOCALE: en
               SAFETWITCH_FALLBACK_LOCALE: en
             image:
@@ -54,11 +54,14 @@ spec:
                 service:
                   name: frontend
                   port: http
+        tls:
+          - hosts:
+              - *host
       main:
         className: nginx
         enabled: true
         hosts:
-          - host: safetwitch-backend.${ROOT_DOMAIN}
+          - host: *mainHost
             paths:
               - path: /
                 pathType: Prefix
@@ -67,7 +70,7 @@ spec:
                   port: http
         tls:
           - hosts:
-              - *host
+              - *mainHost
     service:
       main:
         ports:
