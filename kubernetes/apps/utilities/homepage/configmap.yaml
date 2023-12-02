@@ -198,8 +198,7 @@ data:
               widget:
                 type: sabnzbd
                 url: https://sabnzbd.${ROOT_DOMAIN}
-                username: admin
-                password: ${SECRET_SABNZBD_APIKEY}
+                key: ${SECRET_SABNZBD_APIKEY}
           - Sonarr:
               href: https://sonarr.${ROOT_DOMAIN}
               icon: sonarr.png
