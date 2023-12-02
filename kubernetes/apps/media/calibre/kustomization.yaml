@@ -7,5 +7,5 @@ resources:
   - ./helmrelease.yaml
 labels:
   - pairs:
-      app.kubernetes.io/name: navidrome
-      app.kubernetes.io/instance: navidrome
+      app.kubernetes.io/name: calibre
+      app.kubernetes.io/instance: calibre

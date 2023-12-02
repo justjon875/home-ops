@@ -1,7 +1,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: safetwitch
+  name: calibre
   namespace: media
 spec:
   chart:
@@ -27,41 +27,29 @@ spec:
         containers:
           main:
             env:
-              URL: &mainHost safetwitch-backend.${ROOT_DOMAIN}
             image:
-              repository: codeberg.org/safetwitch/safetwitch-backend
-              tag: v1.5.4@sha256:dfa6e182bc5f32d32a7678b54598ebfed35623f496340580630d6a712186c499
-      frontend:
-        containers:
-          main:
-            env:
-              SAFETWITCH_BACKEND_DOMAIN: *mainHost
-              SAFETWITCH_INSTANCE_DOMAIN: &host '{{ .Release.Name }}.${ROOT_DOMAIN}'
-              SAFETWITCH_DEFAULT_LOCALE: en
-              SAFETWITCH_FALLBACK_LOCALE: en
-            image:
-              repository: codeberg.org/safetwitch/safetwitch
-              tag: v2.4.3@sha256:3a7162f143159a12fdfbcb50db8e250ff2c479ab4e8fb391955af1c713321bb4
+              repository: lscr.io/linuxserver/calibre
+              tag: 7.1.0@sha256:f15c4bceb66ab7554726ac50630ce8a6d04a50654cf2c4679db8c08cafe14ef4
     ingress:
-      frontend:
+      content-server:
         className: nginx
         enabled: true
         hosts:
-          - host: *host
+          - host: &host2 calibre-content.${ROOT_DOMAIN}
             paths:
               - path: /
                 pathType: Prefix
                 service:
-                  name: frontend
+                  name: content-server
                   port: http
         tls:
           - hosts:
-              - *host
+              - *host2
       main:
         className: nginx
         enabled: true
         hosts:
-          - host: *mainHost
+          - host: &host calibre.${ROOT_DOMAIN}
             paths:
               - path: /
                 pathType: Prefix
@@ -70,14 +58,24 @@ spec:
                   port: http
         tls:
           - hosts:
-              - *mainHost
+              - *host
+    persistence:
+      config:
+        path: ${NFS_PATH}/calibre/config
+        server: ${NFS_HOST}
+        type: nfs
+      media:
+        globalMounts:
+          - path: /data
+        path: /mnt/raid/media/books
+        server: ${NFS_HOST}
+        type: nfs
     service:
+      content-server:
+        ports:
+          http:
+            port: 8081
       main:
         ports:
           http:
             port: 8080
-      frontend:
-        controller: frontend
-        ports:
-          http:
-            port: 80

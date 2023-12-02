@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - bazarr
+  - calibre
   - flaresolverr
   - invidious
   - jellyfin
@@ -17,5 +18,4 @@ resources:
   - readarr
   - reiverr
   - sabnzbd
-  - safetwitch
   - sonarr
