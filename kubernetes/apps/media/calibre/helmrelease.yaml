@@ -71,6 +71,7 @@ spec:
         type: nfs
     service:
       content-server:
+        controller: main
         ports:
           http:
             port: 8081
