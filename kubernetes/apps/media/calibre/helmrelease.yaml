@@ -26,6 +26,10 @@ spec:
       main:
         containers:
           main:
+            env:
+              PGID: 1000 
+              PUID: 1000 
+              TZ: ${TZ}
             image:
               repository: lscr.io/linuxserver/calibre
               tag: 7.1.0@sha256:f15c4bceb66ab7554726ac50630ce8a6d04a50654cf2c4679db8c08cafe14ef4
