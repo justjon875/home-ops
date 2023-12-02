@@ -60,19 +60,16 @@ spec:
               - *host
     persistence:
       audio:
-        enabled: true
         globalMounts:
           - path: /mnt/audio
         path: ${NFS_PATH}/navidrome/media
         server: ${NFS_HOST}
         type: nfs
       config:
-        enabled: true
         path: ${NFS_PATH}/jellyfin/config
         server: ${NFS_HOST}
         type: nfs
       media:
-        enabled: true
         globalMounts:
           - path: /media
         path: /mnt/raid/media/qbittorrent/downloads
@@ -80,14 +77,14 @@ spec:
         server: ${NFS_HOST}
         type: nfs
       metube:
-        enabled: true
         globalMounts:
           - path: /mnt/metube
         path: /mnt/raid/media/metube
         server: ${NFS_HOST}
         type: nfs
-      transcode:
-        enabled: true
+      transcodes:
+        globalMounts:
+          - path: /config/transcodes
         type: emptyDir
     resources:
       requests:
