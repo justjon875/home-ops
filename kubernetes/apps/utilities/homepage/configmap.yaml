@@ -124,6 +124,10 @@ data:
                   username: ${SECRET_OPNSENSE_USERNAME}
                   password: ${SECRET_OPNSENSE_PASSWORD}
         - Media:
+            - Calibre:
+                href: https://calibre.${ROOT_DOMAIN}
+                icon: calibre.png
+                description: calibre is a powerful and easy to use e-book manager
             - Invidious:
                 href: https://invidious.${ROOT_DOMAIN}
                 icon: invidious.png
@@ -150,6 +154,10 @@ data:
                   user: ${USERNAME}
                   salt: ${SECRET_NAVIDROME_SALT}
                   token: ${SECRET_NAVIDROME_TOKEN}
+            - Piped:
+                href: https://piped.${ROOT_DOMAIN}
+                icon: piped.png
+                description: An alternative front-end to YouTube 
             - Stump:
                 href: https://stump.${ROOT_DOMAIN}
                 icon: /icons/stump.png
@@ -167,15 +175,6 @@ data:
               href: https://metube.${ROOT_DOMAIN}
               icon: metube.png
               description: Web GUI for youtube-dl
-          - qBittorrent:
-              href: https://qbittorrent.${ROOT_DOMAIN}
-              icon: qbittorrent.png
-              description: TODO
-              widget:
-                type: qbittorrent
-                url: https://qbittorrent.${ROOT_DOMAIN}
-                username: admin
-                password: ${SECRET_QBITTORRENT_PASSWORD}
           - Prowlarr:
               href: https://prowlarr.${ROOT_DOMAIN}
               icon: prowlarr.png
@@ -192,6 +191,15 @@ data:
                 type: radarr
                 url: https://radarr.${ROOT_DOMAIN}
                 key: ${SECRET_RADARR_KEY}
+          - SABnzbd:
+              href: https://sabnzbd.${ROOT_DOMAIN}
+              icon: sabnzbd.png
+              description: SABnzbd is an open-source binary newsreader written in Python
+              widget:
+                type: sabnzbd
+                url: https://sabnzbd.${ROOT_DOMAIN}
+                username: admin
+                password: ${SECRET_SABNZBD_APIKEY}
           - Sonarr:
               href: https://sonarr.${ROOT_DOMAIN}
               icon: sonarr.png
@@ -201,6 +209,10 @@ data:
                 url: https://sonarr.${ROOT_DOMAIN}
                 key: ${SECRET_SONARR_KEY}
         - Selfhosted:
+            - FileBrowser:
+                href: https://filebrowser.${ROOT_DOMAIN}
+                icon: filebrowser.png
+                description: File managing interface
             - Libreddit:
                 href: https://libreddit.${ROOT_DOMAIN}
                 icon: libreddit.png
