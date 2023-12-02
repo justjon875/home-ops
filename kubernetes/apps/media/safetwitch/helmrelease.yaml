@@ -41,7 +41,7 @@ spec:
               SAFETWITCH_FALLBACK_LOCALE: en
             image:
               repository: codeberg.org/safetwitch/safetwitch
-              tag: v2.4.2@sha256:3c35e83d5d7a1235fe0f507a83f64748b64709690f46215c27a9479c43bdb002
+              tag: v2.4.3@sha256:3a7162f143159a12fdfbcb50db8e250ff2c479ab4e8fb391955af1c713321bb4
     ingress:
       frontend:
         className: nginx
