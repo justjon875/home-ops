@@ -74,7 +74,12 @@ spec:
         type: nfs
       media:
         enabled: true
-        path: /mnt/raid/media/qbittorrent/downloads
+        path: ${MEDIA_PATH}/qbittorrent/downloads
+        server: ${NFS_HOST}
+        type: nfs
+      sabnzbd:
+        enabled: true
+        path: ${MEDIA_PATH}/sabnzbd/downloads
         server: ${NFS_HOST}
         type: nfs
     service:
