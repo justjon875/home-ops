@@ -35,8 +35,6 @@ spec:
     ingress:
       main:
         annotations:
-          external-dns.alpha.kubernetes.io/target: ${ROOT_DOMAIN}
-          external-dns.home.arpa/enabled: 'true'
           whitelist-source-range.home.arpa/disabled: 'true'
         className: nginx
         enabled: true
