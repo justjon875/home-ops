@@ -50,9 +50,14 @@ spec:
           - hosts:
               - *host
     persistence:
+      config:
+        enabled: true
+        path: ${NFS_PATH}/stump
+        server: ${NFS_HOST}
+        type: nfs
       data:
         enabled: true
-        path: /mnt/raid/media/books
+        path: ${MEDIA_PATH}/books
         server: ${NFS_HOST}
         type: nfs
     service:
