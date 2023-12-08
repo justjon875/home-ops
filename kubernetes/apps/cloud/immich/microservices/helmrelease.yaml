@@ -37,7 +37,7 @@ spec:
                   name: immich-configmap
             image:
               repository: ghcr.io/immich-app/immich-server
-              tag: v1.89.0@sha256:b5aa4023c63b904136e859b4c3f4c1d34272b7c5f7ee65f50f12378d6039e9e7
+              tag: v1.90.1@sha256:71b1e4f64e08aa26df1cb02687c58214ebded1fdc10eef21fedf08138e9771dd
             resources:
               requests:
                 cpu: 100m
