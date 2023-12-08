@@ -35,7 +35,7 @@ spec:
                   name: immich-configmap
             image:
               repository: ghcr.io/immich-app/immich-machine-learning
-              tag: v1.89.0@sha256:e76febac59b0377cb08dbbd683bf147f9720bbf6f7da86f22b7cfbec91237a72
+              tag: v1.90.1@sha256:04d2f5dea4b623c7442f84195927eb81d9c273882fe0cc360c56116f1dd7a948
             resources:
               limits:
                 memory: 5000Mi
