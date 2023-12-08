@@ -49,12 +49,12 @@ spec:
     persistence:
       books:
         enabled: true
-        path: /mnt/raid/media/books
+        path: ${MEDIA_PATH}/books
         server: ${NFS_HOST}
         type: nfs
       config:
         enabled: true
-        path: ${NFS_PATH}/jellyseerr
+        path: ${NFS_PATH}/kavita
         server: ${NFS_HOST}
         type: nfs
     service:
