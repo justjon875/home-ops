@@ -4,6 +4,5 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - authelia
-  - external-dns
   - k8s-gateway
   - lldap

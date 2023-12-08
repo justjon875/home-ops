@@ -33,7 +33,7 @@ spec:
             image:
               pullPolicy: IfNotPresent
               repository: aaronleopold/stump
-              tag: nightly@sha256:6ccabac2155f32bfb87112f88a8a20039931f0f29f1a3f28fe906a8c12f20b07
+              tag: nightly@sha256:6cdb76237d30a5c67e64856569932e0215a82c9004834e92c967763ddd18f851
     ingress:
       main:
         className: nginx
@@ -50,9 +50,14 @@ spec:
           - hosts:
               - *host
     persistence:
+      config:
+        enabled: true
+        path: ${NFS_PATH}/stump
+        server: ${NFS_HOST}
+        type: nfs
       data:
         enabled: true
-        path: /mnt/raid/media/books
+        path: ${MEDIA_PATH}/books
         server: ${NFS_HOST}
         type: nfs
     service:
