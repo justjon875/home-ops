@@ -28,7 +28,7 @@ spec:
           main:
             image:
               repository: ghcr.io/frooodle/s-pdf
-              tag: 0.15.1@sha256:f76df954c8b76ff942bba6c4043530b4280e2b8c256c262cbc0b9f947f53525e
+              tag: 0.16.0@sha256:9bb55769f5f015cde9e363e84ca1f7f0a5f9bb138af532b0dc5578a85628df8a
     ingress:
       main:
         className: nginx
