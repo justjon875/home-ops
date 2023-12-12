@@ -32,7 +32,7 @@ spec:
             image:
               imagePullPolicy: Always
               repository: ghcr.io/alexta69/metube
-              tag: latest@sha256:b7c4eb0ab380559e47e6ced0eb8a18c6e35a7fdc65502b16b22c53669f111c45
+              tag: latest@sha256:b60a106ea749dafc4d79554c410721ce2c7b8a59e2521efb88c70a3bc965aa55
     defaultPodOptions:
       securityContext:
         fsGroup: 568
