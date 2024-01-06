@@ -28,7 +28,7 @@ spec:
         auth:
           postgresPassword: ${POSTGRESQL_PASSWORD}
     image:
-      registry: gitea.carbon.habanerojam.xyz
+      registry: gitea.carbon.habanerojam.xyz/gitea_admin
       repository: postgresql-vector
       tag: 16.1.0
       debug: true
