@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 2.3.0
+      version: 2.4.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -37,7 +37,7 @@ spec:
             #   runAsGroup: "${SECURITY_CONTEXT_RUN_AS_GROUP}"
             image:
               repository: docker.io/louislam/uptime-kuma
-              tag: 1.23.8@sha256:686a06e3ef74c74cfe6082266ff357f0627eb63152c602733976df6d6c7d6a24
+              tag: 1.23.11@sha256:04c327971da4d20a6f83619f2a2c0a2545e92f1930349c04dea59e247da493ff
     ingress:
       main:
         enabled: true

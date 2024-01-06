@@ -11,7 +11,7 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 2.3.0
+      version: 2.4.0
   dependsOn:
     - name: postgresql
       namespace: default
@@ -44,7 +44,7 @@ spec:
                   name: lldap-secret
             image:
               repository: ghcr.io/lldap/lldap
-              tag: latest-alpine@sha256:14ce00733b18bd10a05d3fca5b6d00653b8b2375347b96177835861baf00d236
+              tag: latest-alpine@sha256:67fbff0e485810547bf8f305186c68037b2491d740d3c00cdcc3763bd1a32f2c
     ingress:
       main:
         className: nginx

@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 2.3.0
+      version: 2.4.0
   install:
     createNamespace: true
     remediation:
@@ -33,7 +33,7 @@ spec:
             image:
               pullPolicy: IfNotPresent
               repository: aaronleopold/stump
-              tag: nightly@sha256:679d86367a24a3db3528bf9c3ec33f0a1eece05f15ca9a1746cfaa6c9fb63566
+              tag: nightly@sha256:038f7bc45836b682dd6e55727b5b093d926e43128599a92d03670546a4c1d6eb
     ingress:
       main:
         className: nginx

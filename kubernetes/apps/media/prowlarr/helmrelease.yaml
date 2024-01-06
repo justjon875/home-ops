@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 2.3.0
+      version: 2.4.0
   install:
     createNamespace: true
     remediation:
@@ -32,7 +32,7 @@ spec:
               TZ: Asia/Singapore
             image:
               repository: ghcr.io/onedr0p/prowlarr-nightly
-              tag: 1.11.1.4142@sha256:147ec41681bf5a8e0b5a4a5782d2012a4b25313899a4828f2e3c8d60bd6cd42a
+              tag: 1.11.2.4152@sha256:5f619cac3e5e81c19bb2c3471f0746535fbf2607791efe4e4f386afbcb19e049
     defaultPodOptions:
       securityContext:
         fsGroup: 568

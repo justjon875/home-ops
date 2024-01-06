@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 2.3.0
+      version: 2.4.0
   install:
     createNamespace: true
     remediation:
@@ -30,7 +30,7 @@ spec:
               TZ: ${TIMEZONE}
             image:
               repository: ghcr.io/kareadita/kavita
-              tag: 0.7.11@sha256:2ea45fa042b5df2cb0a64f3d8586c8ce530a7aa9aa4ef332b141b5781bee4f78
+              tag: 0.7.11@sha256:158729b538d888d3a5915260ad7a22496269d9e4051ea0e81f3d4ab2286c67b9
     ingress:
       main:
         className: nginx

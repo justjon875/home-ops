@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 2.3.0
+      version: 2.4.0
   install:
     createNamespace: true
     remediation:
@@ -32,7 +32,7 @@ spec:
             image:
               imagePullPolicy: Always
               repository: ghcr.io/alexta69/metube
-              tag: latest@sha256:7aefec2acd76459e07e9c8ef10a1e5d0a3fe0318fff4456e6c18f536070b4b6b
+              tag: latest@sha256:a9410ec7912dc0fe5b6a2b1b8c5528f573a407bf3a749f41463e9350d0674424
     defaultPodOptions:
       securityContext:
         fsGroup: 568
