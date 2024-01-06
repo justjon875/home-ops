@@ -31,7 +31,7 @@ spec:
                   name: planka
             image:
               repository: ghcr.io/plankanban/planka
-              tag: 1.15.2@sha256:7d4facab07e97ab49d6d9b08ef9178de3d375737d3882210f3dca1df055b6544
+              tag: 1.15.3@sha256:b943e3c3b20c23d6e7da299f067f172138586fe216b9e6a954e6634fb39d2fed
     ingress:
       main:
         className: nginx
