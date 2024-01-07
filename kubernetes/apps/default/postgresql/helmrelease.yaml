@@ -37,6 +37,24 @@ spec:
       persistence:
         enabled: true
         existingClaim: postgresql-pvc
+      extendedConfiguration: |-
+        huge_pages = off
+      extraVolumeMounts:
+        - name: pg-sample-config
+          mountPath: /opt/bitnami/postgresql/share/postgresql.conf.sample
+          subPath: postgresql.conf.sample
+      extraVolumes:
+        - configMap:
+            name: pg-sample-config
+          name:  pg-sample-config
+    extraDeploy:
+      - apiVersion: v1
+        kind: ConfigMap
+        metadata:
+          name: pg-sample-config
+        data:
+          postgresql.conf.sample: |-
+            huge_pages = off
     volumePermissions:
       securityContext:
         runAsUser: 1000
