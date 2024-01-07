@@ -30,7 +30,7 @@ spec:
     image:
       registry: gitea.carbon.${ROOT_DOMAIN}/gitea_admin
       repository: postgresql
-      tag: 15.5.0-debian-pgvector
+      tag: 14.10.0-debian-pgvector
     primary:
       initdb:
         scriptsSecret: postgresql-init
