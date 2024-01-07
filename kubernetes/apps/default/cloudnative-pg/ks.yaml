@@ -5,11 +5,11 @@ metadata:
   name: &app cloudnative-pg
   namespace: flux-system
 spec:
-  targetNamespace: database
+  targetNamespace: default
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/apps/database/postgres/app
+  path: ./kubernetes/apps/default/cloudnative-pg/app
   prune: true
   sourceRef:
     kind: GitRepository
@@ -22,16 +22,16 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app postgres-cluster
+  name: &app cloudnative-pg-cluster
   namespace: flux-system
 spec:
   dependsOn:
     - name: cloudnative-pg
-  targetNamespace: database
+  targetNamespace: default
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/apps/database/postgres/cluster
+  path: ./kubernetes/apps/default/cloudnative-pg/cluster
   prune: true
   sourceRef:
     kind: GitRepository
