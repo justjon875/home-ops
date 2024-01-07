@@ -14,7 +14,7 @@ spec:
         spec:
           containers:
             - name: postgresql
-              image: gitea.carbon.${ROOT_DOMAIN}/gitea_admin/postgresql:16.1.0-debian-pgvector
+              image: gitea.carbon.${ROOT_DOMAIN}/gitea_admin/postgresql:15.5.0-debian-pgvector
               imagePullPolicy: IfNotPresent
               # command: [ "/bin/bash", "-c", "-" ]
               # args: ["while true; do sleep 30; done;"]
