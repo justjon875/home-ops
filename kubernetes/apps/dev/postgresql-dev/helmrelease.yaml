@@ -29,8 +29,8 @@ spec:
           postgresPassword: ${POSTGRESQL_PASSWORD}
     image:
       registry: gitea.carbon.habanerojam.xyz/gitea_admin
-      repository: postgresql-vector
-      tag: 16.1.0
+      repository: postgresql
+      tag: 16.1.0-debian-pgvector
       debug: true
     primary:
       initdb:
