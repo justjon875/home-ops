@@ -28,7 +28,9 @@ spec:
         auth:
           postgresPassword: ${POSTGRESQL_PASSWORD}
     image:
-      tag: 14.10.0
+      registry: gitea.carbon.${ROOT_DOMAIN}/gitea_admin
+      repository: postgresql
+      tag: 14.10.0-debian-pgvector
     primary:
       initdb:
         scriptsSecret: postgresql-init
