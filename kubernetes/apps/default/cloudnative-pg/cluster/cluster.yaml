@@ -16,6 +16,7 @@ spec:
           - authelia
           - gitea
           - grafana
+          - immich
           - invidious
           - lldap
           - nextcloud
