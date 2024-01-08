@@ -13,9 +13,35 @@ spec:
       import:
         type: monolith
         databases:
-          - "*"
+          - authelia
+          - gitea
+          - grafana
+          - immich
+          - invidious
+          - lldap
+          - nextcloud
+          - paperless-ngx
+          - piped
+          - planka
+          - rxresume
+          - sharry
+          - synapse
+          - vaultwarden
         roles:
-          - "*"
+          - authelia
+          - gitea
+          - grafana
+          - immich
+          - invidious
+          - lldap
+          - nextcloud
+          - paperless-ngx
+          - piped
+          - planka
+          - rxresume
+          - sharry
+          - synapse
+          - vaultwarden
         source:
           externalCluster: postgresql
   externalClusters:
