@@ -6,7 +6,6 @@ resources:
   - filebrowser
   - handbrake
   - kavita
-  - libreddit
   - matrix-element
   - matrix-synapse
   - memos
@@ -14,6 +13,7 @@ resources:
   - paperless-ngx
   - pairdrop
   - planka
+  - redlib
   - rxresume
   - stirling-pdf
   - stump
