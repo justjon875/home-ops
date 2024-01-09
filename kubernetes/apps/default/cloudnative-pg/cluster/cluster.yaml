@@ -43,7 +43,7 @@ spec:
         name: postgresql-superuser
         key: postgres-password
   instances: 1
-  imageName: ghcr.io/bo0tzz/cnpgvecto.rs:16.1-v0.1.13
+  imageName: ghcr.io/bo0tzz/cnpgvecto.rs:16.1-v0.1.11
   primaryUpdateStrategy: unsupervised
   storage:
     size: 10Gi
