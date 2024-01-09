@@ -52,7 +52,14 @@ spec:
   primaryUpdateStrategy: unsupervised
   storage:
     size: 10Gi
-    storageClass: local-hostpath
+    pvcTemplate:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 10Gi
+      storageClassName: nfs-csi
+      volumeMode: Filesystem
   superuserSecret:
     name: cloudnative-pg-superuser
   enableSuperuserAccess: true
