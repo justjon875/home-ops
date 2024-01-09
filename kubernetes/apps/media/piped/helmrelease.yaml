@@ -35,7 +35,7 @@ spec:
         NUM_WORKERS: 2
         PROXY_PART: https://ytproxy.${ROOT_DOMAIN}
         database:
-          connection_url: jdbc:postgresql://${POSTGRESQL_HOST}:5432/piped
+          connection_url: jdbc:postgresql://${CLOUDNATIVE_PG_HOST}:5432/piped
           driver_class: org.postgresql.Driver
           dialect: org.hibernate.dialect.PostgreSQLDialect
 

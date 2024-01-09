@@ -38,7 +38,7 @@ spec:
         passwordKey: DB_PASS
         secretName: nextcloud-secret
         usernameKey: DB_USER
-      host: ${POSTGRESQL_HOST}
+      host: ${CLOUDNATIVE_PG_HOST}
       type: postgresql
     image:
       repository: nextcloud
