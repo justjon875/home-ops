@@ -21,7 +21,6 @@ spec:
           - lldap
           - nextcloud
           - paperless-ngx
-          - vaultwarden
         roles:
           - authelia
           - gitea
@@ -31,7 +30,6 @@ spec:
           - lldap
           - nextcloud
           - paperless-ngx
-          - vaultwarden
         source:
           externalCluster: postgresql
   externalClusters:
