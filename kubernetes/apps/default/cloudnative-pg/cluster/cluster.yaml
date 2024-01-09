@@ -21,7 +21,6 @@ spec:
           - lldap
           - nextcloud
           - paperless-ngx
-          - planka
           - rxresume
           - sharry
           - synapse
@@ -35,7 +34,6 @@ spec:
           - lldap
           - nextcloud
           - paperless-ngx
-          - planka
           - rxresume
           - sharry
           - synapse
