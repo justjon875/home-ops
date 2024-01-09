@@ -8,6 +8,38 @@ metadata:
   annotations:
     kyverno.io/ignore: "true"
 spec:
+  bootstrap:
+    initdb:
+      import:
+        type: monolith
+        databases:
+          - authelia
+          - gitea
+          - grafana
+          - invidious
+          - lldap
+          - nextcloud
+          - paperless-ngx
+        roles:
+          - authelia
+          - gitea
+          - grafana
+          - invidious
+          - lldap
+          - nextcloud
+          - paperless-ngx
+        source:
+          externalCluster: postgresql
+  externalClusters:
+    - name: postgresql
+      connectionParameters:
+        # Use the correct IP or host name for the source database
+        host: postgresql
+        user: postgres
+        dbname: postgres
+      password:
+        name: postgresql-superuser
+        key: postgres-password
   instances: 1
   imageName: ghcr.io/bo0tzz/cnpgvecto.rs:16.1-v0.1.11
   primaryUpdateStrategy: unsupervised
