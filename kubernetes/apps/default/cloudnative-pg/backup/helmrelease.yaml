@@ -50,7 +50,7 @@ spec:
               - name: POSTGRES_HOST
                 value: cloudnative-pg-r.default
               - name: POSTGRES_DB
-                value: "authelia,gitea,grafana,immich,invidious,lldap,nextcloud,paperless-ngx,piped,planka,rxresume,sharry,synapse,vaultwarden"
+                value: "immich"
               - name: BACKUP_KEEP_DAYS
                 value: "7"
               - name: BACKUP_KEEP_WEEKS
