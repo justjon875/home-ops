@@ -1,7 +1,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: memos
+  name: redlib
   namespace: selfhosted
 spec:
   chart:
@@ -27,12 +27,9 @@ spec:
         containers:
           main:
             env:
-              MEMOS_METRIC: false
             image:
-              repository: ghcr.io/usememos/memos
-              tag: 0.18.2@sha256:b24505f8834f6d6195bf196b8cf492b841021952531f97d80d45b88bcfc52158
-    defaultPodOptions:
-      enableServiceLinks: false
+              repository: quay.io/redlib/redlib
+              tag: latest@sha256:d531023d32b66701b23f949a0d744320ebe7867fea72eddeebcc09f2853e68d1
     ingress:
       main:
         className: nginx
@@ -48,16 +45,8 @@ spec:
         tls:
           - hosts:
               - *host
-    persistence:
-      memos:
-        enabled: true
-        globalMounts:
-          - path: /var/opt/memos
-        path: ${NFS_PATH}/memos
-        server: ${NFS_HOST}
-        type: nfs
     service:
       main:
         ports:
           http:
-            port: 5230
+            port: 8080
