@@ -35,7 +35,7 @@ spec:
       host: ${REDIS_HOST}
       password: ${REDIS_PASSWORD}
     externalPostgresql:
-      host: ${POSTGRESQL_HOST}
+      host: ${CLOUDNATIVE_PG_HOST}
       port: 5432
       username: synapse
       database: synapse
