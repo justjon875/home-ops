@@ -6,4 +6,3 @@ resources:
   - ./cluster.yaml
   - ./service.yaml
   - ./scheduledbackup.yaml
-  - ./volumes.yaml
