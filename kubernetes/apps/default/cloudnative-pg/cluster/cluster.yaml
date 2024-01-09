@@ -21,8 +21,6 @@ spec:
           - lldap
           - nextcloud
           - paperless-ngx
-          - rxresume
-          - sharry
           - synapse
           - vaultwarden
         roles:
@@ -34,8 +32,6 @@ spec:
           - lldap
           - nextcloud
           - paperless-ngx
-          - rxresume
-          - sharry
           - synapse
           - vaultwarden
         source:
