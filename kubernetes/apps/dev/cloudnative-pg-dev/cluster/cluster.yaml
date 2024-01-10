@@ -4,10 +4,13 @@ apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
   name: cloudnative-pg
-  namespace: default
+  namespace: dev
   annotations:
     kyverno.io/ignore: "true"
 spec:
+  bootstrap:
+    recovery:
+      source: clusterBackup
   instances: 1
   imageName: ghcr.io/bo0tzz/cnpgvecto.rs:16.1-v0.1.11
   primaryUpdateStrategy: unsupervised
@@ -31,19 +34,18 @@ spec:
       hugepages-2Mi: "512Mi"
   monitoring:
     enablePodMonitor: true
-  backup:
-    retentionPolicy: 30d
-    barmanObjectStore:
-      wal:
-        compression: bzip2
-        maxParallel: 8
-      destinationPath: s3://postgres/
-      endpointURL: https://${S3_ENDPOINT}/${S3_POSTGRESQL_BUCKET}
-      serverName: cloudative-pg-v1
-      s3Credentials:
-        accessKeyId:
-          name: cloudnative-pg-superuser
-          key: aws-access-key-id
-        secretAccessKey:
-          name: cloudnative-pg-superuser
-          key: aws-secret-access-key
+  externalClusters:
+    - name: clusterBackup
+      barmanObjectStore:
+        wal:
+          compression: bzip2
+          maxParallel: 8
+        destinationPath: s3://postgres/
+        endpointURL: https://${S3_ENDPOINT}/${S3_POSTGRESQL_BUCKET}
+        s3Credentials:
+          accessKeyId:
+            name: cloudnative-pg-superuser
+            key: aws-access-key-id
+          secretAccessKey:
+            name: cloudnative-pg-superuser
+            key: aws-secret-access-key

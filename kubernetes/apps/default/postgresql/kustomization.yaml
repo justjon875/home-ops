@@ -6,7 +6,7 @@ namespace: default
 resources:
   - ./helmrelease.yaml
   - ./backup-configmap.yaml
-  - ./backup-cronjob.yaml
+  # - ./backup-cronjob.yaml
   - ./secret.sops.yaml
   - ./volumes.yaml
 labels:
