@@ -162,12 +162,17 @@ spec:
         - name: REDIS_HOST_PASSWORD
           value: ${REDIS_PASSWORD}
       extraVolumeMounts:
+        - name: hugepages
+          mountPath: /dev/hugepages
         - mountPath: "/var/www/html/data/appdata_oc16gnntk93o/preview"
           name: previews
       extraVolumes:
         - name: previews
           persistentVolumeClaim:
             claimName: nextcloud-previews-pvc
+        - name: hugepages
+          emptyDir:
+            medium: HugePages-2Mi
       host: nextcloud.${ROOT_DOMAIN}
     persistence:
       enabled: true
@@ -176,9 +181,11 @@ spec:
     resources:
       limits:
         cpu: 4000m
+        hugepages-2Mi: 500Mi
         memory: 16Gi
       requests:
         cpu: 1000m
+        hugepages-2Mi: 500Mi
         memory: 4Gi
     # this seems to be required for nextcloud initialization which takes a long time
     livenessProbe:
