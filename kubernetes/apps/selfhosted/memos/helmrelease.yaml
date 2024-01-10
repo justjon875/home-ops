@@ -30,7 +30,7 @@ spec:
               MEMOS_METRIC: false
             image:
               repository: ghcr.io/usememos/memos
-              tag: 0.18.2@sha256:b24505f8834f6d6195bf196b8cf492b841021952531f97d80d45b88bcfc52158
+              tag: 0.18.2@sha256:524bc2ddbe9bac5649397dd771ae9f0a2c41816db1474246f758a44990eacd19
     defaultPodOptions:
       enableServiceLinks: false
     ingress:
