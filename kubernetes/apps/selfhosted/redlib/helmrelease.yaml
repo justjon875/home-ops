@@ -29,7 +29,7 @@ spec:
             env:
             image:
               repository: quay.io/redlib/redlib
-              tag: latest@sha256:d531023d32b66701b23f949a0d744320ebe7867fea72eddeebcc09f2853e68d1
+              tag: latest@sha256:5637b7b9be05ba47416ff3c9b07c6ef7e69555156516f08f06b04f960f63cb41
     ingress:
       main:
         className: nginx
