@@ -112,5 +112,6 @@ spec:
       trt-models:
         enabled: true
         path: ${LOCAL_PATH}/frigate/trt-models
+        readonly: false
         server: ${NFS_HOST}
         type: nfs
