@@ -111,9 +111,3 @@ spec:
       media:
         enabled: true
         existingClaim: frigate-media-pvc
-      trt-models:
-        enabled: true
-        path: ${LOCAL_PATH}/frigate/trt-models
-        readonly: false
-        server: ${NFS_HOST}
-        type: nfs

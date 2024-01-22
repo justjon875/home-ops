@@ -9,18 +9,6 @@ ffmpeg:
   global_args: ["-hide_banner", "-loglevel", "info"]
   hwaccel_args: preset-nvidia-h264
 
-detectors:
-  tensorrt:
-    type: tensorrt
-    device: 0 #This is the default, select the first GPU
-
-model:
-  path: /trt-models/yolov4-tiny-416.trt
-  input_tensor: nchw
-  input_pixel_format: rgb
-  width: 416
-  height: 416
-
 logger:
   default: debug
 
