@@ -71,7 +71,7 @@ spec:
     ingress:
       main:
         enabled: true
-        className: internal
+        className: nginx
         hosts:
           - host: &host "{{ .Release.Name }}.${ROOT_DOMAIN}"
             paths:
