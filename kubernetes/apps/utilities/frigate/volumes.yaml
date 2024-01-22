@@ -61,7 +61,7 @@ spec:
     volumeHandle: "${NFS_HOST}${LOCAL_PATH}#frigate-media#"
     volumeAttributes:
       server: "${NFS_HOST}"
-      share: "$LOCAL_PATH}/frigate/media"
+      share: "${LOCAL_PATH}/frigate/media"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
