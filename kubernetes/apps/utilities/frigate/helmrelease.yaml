@@ -38,6 +38,7 @@ spec:
               tag: 0.13.0-rc1-tensorrt@sha256:e56ebf949a21d36f458e9b8bf31d93251130f5e9d0d4ceaa61316f3fde1f332b 
             env:
               TZ: ${TIMEZONE}
+              USE_FP16: "False"
             envFrom:
               - secretRef:
                   name: frigate-secret
