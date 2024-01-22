@@ -12,6 +12,7 @@ resources:
   - kubernetes-dashboard
   - kyverno
   - media
+  - mosquitto
   - networking
   - selfhosted
   - utilities
