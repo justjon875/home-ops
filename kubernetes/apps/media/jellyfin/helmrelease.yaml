@@ -51,6 +51,21 @@ spec:
               limits:
                 nvidia.com/gpu: 1
                 memory: 6000Mi
+        initContainers:
+          init-permission:
+            image:
+              repository: ghcr.io/cbc02009/busybox
+              tag: 1.36.1
+            imagePullPolicy: IfNotPresent
+            command:
+              - sh
+              - -c
+              - chown -R 568:568 /transcodes
+            securityContext:
+              runAsUser: 0
+            volumeMounts:
+              - name: transcode
+                mountPath: /transcodes
     ingress:
       main:
         className: nginx
