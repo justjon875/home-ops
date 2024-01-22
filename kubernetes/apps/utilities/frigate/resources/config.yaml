@@ -15,7 +15,7 @@ detectors:
     device: 0 #This is the default, select the first GPU
 
 model:
-  path: /trt-models/yolov7-tiny-416.trt
+  path: /trt-models/yolov4-tiny-416.trt
   input_tensor: nchw
   input_pixel_format: rgb
   width: 416
