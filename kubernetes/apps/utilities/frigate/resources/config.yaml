@@ -22,7 +22,7 @@ model:
   height: 416
 
 logger:
-  default: info
+  default: debug
 
 database:
   path: /data/frigate.db

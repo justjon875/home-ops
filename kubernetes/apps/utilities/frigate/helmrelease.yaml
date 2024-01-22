@@ -39,6 +39,7 @@ spec:
             env:
               TZ: ${TIMEZONE}
               USE_FP16: "False"
+              YOLO_MODELS: yolov4-tiny-416
             envFrom:
               - secretRef:
                   name: frigate-secret
