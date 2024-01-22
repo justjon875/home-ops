@@ -35,7 +35,7 @@ spec:
           main:
             image:
               repository: ghcr.io/blakeblackshear/frigate
-              tag: 0.13.0-rc1@sha256:24dce42044a0f9631813beea9d49afb266e9bef77ed6972cd1486e14463d7dc6
+              tag: 0.13.0-rc1-tensorrt@sha256:e56ebf949a21d36f458e9b8bf31d93251130f5e9d0d4ceaa61316f3fde1f332b 
             env:
               TZ: ${TIMEZONE}
             envFrom:
@@ -109,3 +109,8 @@ spec:
       media:
         enabled: true
         existingClaim: frigate-media-pvc
+      trt-models:
+        enabled: true
+        path: ${LOCAL_PATH}/frigate/trt-models
+        server: ${NFS_HOST}
+        type: nfs

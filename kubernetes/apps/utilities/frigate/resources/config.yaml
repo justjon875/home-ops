@@ -9,6 +9,11 @@ ffmpeg:
   global_args: ["-hide_banner", "-loglevel", "info"]
   hwaccel_args: preset-nvidia-h264
 
+detectors:
+  tensorrt:
+    type: tensorrt
+    device: 0 #This is the default, select the first GPU
+
 logger:
   default: info
 
