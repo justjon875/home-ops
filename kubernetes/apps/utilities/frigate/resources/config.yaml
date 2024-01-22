@@ -7,6 +7,7 @@ mqtt:
 
 ffmpeg:
   global_args: ["-hide_banner", "-loglevel", "info"]
+  hwaccel_args: preset-nvidia-h264
 
 logger:
   default: info
@@ -42,7 +43,7 @@ go2rtc:
       - rtsp://${FRIGATE_RTSP_USERNAME}:${FRIGATE_RTSP_PASSWORD}@lounge.cams.${ROOT_DOMAIN}:554/stream2
 
 cameras:
-  amcrest-frontyard:
+  lounge:
     ffmpeg:
       output_args:
         record: preset-record-generic-audio-copy
