@@ -61,8 +61,10 @@ spec:
             resources:
               requests:
                 cpu: 100m
+                nvidia.com/gpu: 1
               limits:
                 memory: 8Gi
+                nvidia.com/gpu: 1
     service:
       main:
         ports:
@@ -107,8 +109,3 @@ spec:
       media:
         enabled: true
         existingClaim: frigate-media-pvc
-    resources:
-      requests:
-        nvidia.com/gpu: 1
-      limits:
-        nvidia.com/gpu: 1
