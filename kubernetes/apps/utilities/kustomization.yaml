@@ -8,6 +8,7 @@ resources:
   - goldilocks
   - grafana
   - homepage
+  - home-assistant
   - kube-prometheus-stack
   - loki
   - mosquitto
