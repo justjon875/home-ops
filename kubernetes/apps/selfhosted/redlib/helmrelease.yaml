@@ -27,6 +27,7 @@ spec:
         containers:
           main:
             env:
+              REDLIB_DEFAULT_SHOW_NSFW: on
             image:
               repository: quay.io/redlib/redlib
               tag: latest@sha256:62b7854fa6fd87fa2bc27a3db8f8697b53ceefbd18967e5f036f3605637cb747
