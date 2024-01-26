@@ -15,6 +15,11 @@ logger:
 database:
   path: /data/frigate.db
 
+detectors:
+  coral:
+    type: edgetpu
+    device: pci:0
+
 objects:
   track:
     - person
