@@ -7,7 +7,6 @@ mqtt:
 
 ffmpeg:
   global_args: ["-hide_banner", "-loglevel", "info"]
-  hwaccel_args: preset-nvidia-h264
 
 logger:
   default: debug
@@ -18,7 +17,7 @@ database:
 detectors:
   coral:
     type: edgetpu
-    device: pci:0
+    device: pci
 
 objects:
   track:

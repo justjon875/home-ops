@@ -63,10 +63,8 @@ spec:
             resources:
               requests:
                 cpu: 100m
-                nvidia.com/gpu: 1
               limits:
                 memory: 8Gi
-                nvidia.com/gpu: 1
     service:
       main:
         ports:
@@ -111,10 +109,3 @@ spec:
       media:
         enabled: true
         existingClaim: frigate-media-pvc
-      apex:
-        enabled: true
-        type: hostPath
-        hostPath: /dev/apex_0
-        hostPathType: Directory
-        globalMounts:
-          - path: /dev/apex_0
