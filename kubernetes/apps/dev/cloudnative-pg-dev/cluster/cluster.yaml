@@ -41,7 +41,7 @@ spec:
           compression: bzip2
           maxParallel: 8
         destinationPath: s3://postgres/
-        endpointURL: https://${S3_ENDPOINT}/${S3_POSTGRESQL_BUCKET}
+        endpointURL: https://${S3_ENDPOINT}
         s3Credentials:
           accessKeyId:
             name: cloudnative-pg-superuser
