@@ -3,7 +3,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: cloudnative-pg
+  name: cloudnative-pg-dev
   namespace: dev
   annotations:
     kyverno.io/ignore: "true"
