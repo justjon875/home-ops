@@ -35,7 +35,7 @@ spec:
   monitoring:
     enablePodMonitor: true
   externalClusters:
-    - name: clusterBackup
+    - name: cloudnative-pg
       barmanObjectStore:
         wal:
           compression: bzip2
