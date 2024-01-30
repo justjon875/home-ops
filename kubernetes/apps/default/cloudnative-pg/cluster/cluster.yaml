@@ -8,6 +8,9 @@ metadata:
   annotations:
     kyverno.io/ignore: "true"
 spec:
+  env:
+    - name: TZ
+      value: ${TIMEZONE}
   instances: 1
   imageName: ghcr.io/bo0tzz/cnpgvecto.rs:16.1-v0.1.11
   primaryUpdateStrategy: unsupervised
