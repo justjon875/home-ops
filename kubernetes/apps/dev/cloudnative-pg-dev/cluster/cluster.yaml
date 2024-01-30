@@ -42,6 +42,7 @@ spec:
           maxParallel: 8
         destinationPath: s3://${S3_POSTGRESQL_BUCKET}/postgres/
         endpointURL: https://${S3_ENDPOINT}
+        serverName: cloudnative-pg-v1
         s3Credentials:
           accessKeyId:
             name: cloudnative-pg-superuser
