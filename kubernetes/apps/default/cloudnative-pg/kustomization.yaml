@@ -5,4 +5,4 @@ namespace: default
 resources:
   - app
   # - backup
-  - cluster
+  # - cluster
