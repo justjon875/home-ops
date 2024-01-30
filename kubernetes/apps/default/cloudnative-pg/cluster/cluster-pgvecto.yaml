@@ -3,7 +3,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: cloudnative-pg
+  name: cloudnative-pgvecto
   namespace: default
   annotations:
     kyverno.io/ignore: "true"
@@ -42,7 +42,7 @@ spec:
         maxParallel: 8
       destinationPath: s3://${S3_POSTGRESQL_BUCKET}/
       endpointURL: https://${S3_ENDPOINT}
-      serverName: cloudative-pg-v1
+      serverName: cloudnative-pgvecto
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-superuser
