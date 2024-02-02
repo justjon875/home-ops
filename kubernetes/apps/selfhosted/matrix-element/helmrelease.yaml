@@ -54,9 +54,11 @@ spec:
               - *host
     persistence:
       config:
-        globalMounts:
-          - path: /app/config.json
-            subPath: config.json
+        advancedMounts:
+          main:
+            main:
+              - path: /app/config.json
+                subPath: config.json
         name: *app
         readOnly: true
         type: configMap
