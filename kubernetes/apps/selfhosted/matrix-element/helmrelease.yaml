@@ -53,7 +53,7 @@ spec:
           - hosts:
               - *host
     persistence:
-      config:
+      config-file:
         globalMounts:
           - path: /app/config.json
             subPath: config.json
