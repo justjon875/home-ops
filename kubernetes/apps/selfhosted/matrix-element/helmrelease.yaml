@@ -56,11 +56,10 @@ spec:
       config:
         advancedMounts:
           main:
-            main:
-              - path: /app/config.json
-                subPath: config.json
+            - path: /app/config.json
+              subPath: config.json
+              readOnly: true
         name: *app
-        readOnly: true
         type: configMap
     podAnnotations:
       configmap.reloader.stakater.com/reload: *app
