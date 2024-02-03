@@ -28,7 +28,7 @@ spec:
           main:
             image:
               repository: vectorim/element-web
-              tag: v1.11.57
+              tag: v1.11.55
     global:
       nameOverride: *app
     ingress:
@@ -54,11 +54,10 @@ spec:
               - *host
     persistence:
       config:
-        advancedMounts:
-          main:
-            - path: /app/config.json
-              subPath: config.json
-              readOnly: true
+        globalMounts:
+          - path: /app/config.json
+            subPath: config.json
+            readOnly: true
         name: *app
         type: configMap
     podAnnotations:
