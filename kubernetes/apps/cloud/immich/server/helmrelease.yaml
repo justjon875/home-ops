@@ -25,7 +25,7 @@ spec:
     controllers:
       main:
         annotations:
-          reloader.stakater.com/auto: 'true'
+          reloader.stakater.com/auto: "true"
         containers:
           main:
             args:
@@ -37,7 +37,7 @@ spec:
                   name: immich-configmap
             image:
               repository: ghcr.io/immich-app/immich-server
-              tag: v1.93.3@sha256:7872201746abe019620e7b5cb64c9a969aca94b1357db2016edfe55c028c66b2
+              tag: v1.93.3@sha256:c7b80752d48464dea1c4495ff810365a0809d89c2ac219547d3c1aed81c6411f
             resources:
               requests:
                 cpu: 10m
@@ -45,9 +45,9 @@ spec:
     ingress:
       main:
         annotations:
-          nginx.ingress.kubernetes.io/proxy-body-size: '0'
-          nignx.ingress.kubernetes.io/force-ssl-redirect: 'true'
-          whitelist-source-range.home.arpa/disabled: 'true'
+          nginx.ingress.kubernetes.io/proxy-body-size: "0"
+          nignx.ingress.kubernetes.io/force-ssl-redirect: "true"
+          whitelist-source-range.home.arpa/disabled: "true"
         className: nginx
         enabled: true
         hosts:
