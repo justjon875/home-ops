@@ -30,7 +30,7 @@ spec:
               REDLIB_DEFAULT_SHOW_NSFW: on
             image:
               repository: quay.io/redlib/redlib
-              tag: latest@sha256:d6419d6d33e19b63ee49cd07fe970c6c53d0ada6e81430da44bad18a3c1e4144
+              tag: latest@sha256:535aefe1909b9d0ab4f3c2706d75dbace622abe7fe02572109f4acaf8f4227e0
     ingress:
       main:
         className: nginx
