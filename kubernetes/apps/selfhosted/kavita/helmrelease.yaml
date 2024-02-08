@@ -30,7 +30,7 @@ spec:
               TZ: ${TIMEZONE}
             image:
               repository: ghcr.io/kareadita/kavita
-              tag: 0.7.13@sha256:1ba9c6378b35a284a67d7e37362dcac9704f285d737fbb953d6aa2228e27511b
+              tag: 0.7.14@sha256:bcc5350c5f1ec4c6bcc6c35d7ce2523b6af74704e2fa0691ce98e478a4d76aba
     ingress:
       main:
         className: nginx
