@@ -26,8 +26,10 @@ spec:
       main:
         containers:
           main:
+            args:
+              - --metric=false
             env:
-              MEMOS_METRIC: false
+              ME--metric=false MOS_METRIC: false
             image:
               repository: ghcr.io/usememos/memos
               tag: 0.19.1@sha256:fd39f636b4bd521bf9c23bac54f232e5bc053e43999a16abeacd4d03ba68c036
@@ -38,7 +40,7 @@ spec:
         className: nginx
         enabled: true
         hosts:
-          - host: &host '{{ .Release.Name }}.${ROOT_DOMAIN}'
+          - host: &host "{{ .Release.Name }}.${ROOT_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
