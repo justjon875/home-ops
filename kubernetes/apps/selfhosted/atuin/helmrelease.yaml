@@ -25,25 +25,25 @@ spec:
   values:
     controllers:
       main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        initContainers:
+          init-db:
+            image:
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 16
+            env:
+              - name: INIT_POSTGRES_SUPER_PASS
+                valueFrom:
+                  secretKeyRef:
+                    name: postgresql-superuser
+                    key: postgres-password
+            envFrom: &envFrom
+              - secretRef:
+                  name: atuin-secret
         containers:
           main:
-            annotations:
-              reloader.stakater.com/auto: "true"
             args: ["server", "start"]
-            initContainers:
-              init-db:
-                image:
-                  repository: ghcr.io/onedr0p/postgres-init
-                  tag: 16
-                env:
-                  - name: INIT_POSTGRES_SUPER_PASS
-                    valueFrom:
-                      secretKeyRef:
-                        name: postgresql-superuser
-                        key: postgres-password
-                envFrom: &envFrom
-                  - secretRef:
-                      name: atuin-secret
             env:
               ATUIN_HOST: 0.0.0.0
               ATUIN_PORT: &port 80
