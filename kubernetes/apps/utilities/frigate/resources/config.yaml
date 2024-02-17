@@ -43,15 +43,15 @@ go2rtc:
   streams:
     lounge_hq:
       - rtsp://${FRIGATE_RTSP_USERNAME}:${FRIGATE_RTSP_PASSWORD}@lounge.cams.${ROOT_DOMAIN}:554/stream1
+      - "ffmpeg:loung_hq#audio=aac"
     lounge_lq:
       - rtsp://${FRIGATE_RTSP_USERNAME}:${FRIGATE_RTSP_PASSWORD}@lounge.cams.${ROOT_DOMAIN}:554/stream2
-      - "ffmpeg:loung_hq#audio=aac"
 
 cameras:
   lounge:
     ffmpeg:
       output_args:
-        record: preset-record-generic-audio-aac
+        record: preset-record-generic-audio-copy
       inputs:
         - path: rtsp://127.0.0.1:8554/lounge_hq
           input_args: preset-rtsp-restream
