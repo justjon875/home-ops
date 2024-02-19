@@ -32,7 +32,7 @@ spec:
               TZ: Asia/Singapore
             image:
               repository: ghcr.io/onedr0p/prowlarr-nightly
-              tag: 1.14.0.4277@sha256:2c67eda033b989319d38d58ffa18db56da3313b3ebf0e3c6f0cb7e8b9c56ea19
+              tag: 1.14.0.4286@sha256:5ea3fe495ba7c68df6294b85a351232b95b4871c23d7ef363ccf7cbfd702177b
     defaultPodOptions:
       securityContext:
         fsGroup: 568
