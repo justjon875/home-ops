@@ -58,7 +58,6 @@ cameras:
           input_args: preset-rtsp-restream
           roles:
             - record
-            - audio
         - path: rtsp://127.0.0.1:8554/lounge_lq
           input_args: preset-rtsp-restream
           roles:
