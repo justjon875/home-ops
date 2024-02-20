@@ -43,7 +43,7 @@ go2rtc:
   streams:
     lounge_hq:
       - rtsp://${FRIGATE_RTSP_USERNAME}:${FRIGATE_RTSP_PASSWORD}@lounge.cams.${ROOT_DOMAIN}:554/stream1
-      - "ffmpeg:loung_hq#audio=aac"
+      - "ffmpeg:lounge_hq#audio=aac"
     lounge_lq:
       - rtsp://${FRIGATE_RTSP_USERNAME}:${FRIGATE_RTSP_PASSWORD}@lounge.cams.${ROOT_DOMAIN}:554/stream2
 
