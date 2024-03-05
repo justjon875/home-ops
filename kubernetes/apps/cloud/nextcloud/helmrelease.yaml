@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: nextcloud
         namespace: flux-system
-      version: 4.6.3
+      version: 4.6.4
   install:
     createNamespace: true
     remediation:
