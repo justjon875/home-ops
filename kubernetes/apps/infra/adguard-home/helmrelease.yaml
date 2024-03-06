@@ -28,7 +28,7 @@ spec:
           main:
             image:
               repository: adguard/adguardhome
-              tag: v0.107.44
+              tag: v0.107.45
         initContainers:
           copy-configmap:
             command:
