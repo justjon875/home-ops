@@ -30,7 +30,7 @@ spec:
               extra_params: --o:ssl.termination=true --o:ssl.enable=false
             image:
               repository: collabora/code
-              tag: 23.05.9.3.1@sha256:43bdc67671d196129e334ebb69b973346e5239ed81434ceef336c722168f8fad
+              tag: 23.05.9.4.1@sha256:18768e665a817a06d17a608bcb0744dd0275e72d805644cad5ad1923f7d623b5
     ingress:
       main:
         className: nginx
