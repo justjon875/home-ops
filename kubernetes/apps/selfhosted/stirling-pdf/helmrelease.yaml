@@ -28,7 +28,7 @@ spec:
           main:
             image:
               repository: ghcr.io/stirling-tools/s-pdf
-              tag: 0.22.1@sha256:5260fc5ce8434347920dc2a1a874690f47719fee428e728113107c9107db0282
+              tag: 0.22.2@sha256:38e8c1dca7f272e445c1dde54313d2bcf3f9a4b1e17dc9ee03fb5158df5e4663
     ingress:
       main:
         className: nginx
