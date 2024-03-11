@@ -33,7 +33,7 @@ spec:
               - /opt/sharry.conf
             image:
               repository: eikek0/sharry
-              tag: v1.13.1@sha256:954f1971dbc36563d13136f15d3dd2bc4c563a490759a529b3e28b9b8440c7ef
+              tag: v1.13.2@sha256:1e957d0d7afd3c43ce7e6dab196bb70bfc1b8f9da5f18d4a5f622b27268f4d42
             resources:
               limits:
                 memory: 1Gi
