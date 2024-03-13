@@ -32,7 +32,7 @@ spec:
       - --enable-insecure-login
     ingress:
       enabled: true
-      ingressClassName: nginx
+      className: nginx
       hosts:
         - &host k8s.${ROOT_DOMAIN}
       tls:
