@@ -32,7 +32,6 @@ spec:
         ingressClassName: nginx
         hosts:
           - &host k8s.${ROOT_DOMAIN}
-        secretName: null
         tls:
           - hosts:
               - *host
@@ -42,7 +41,6 @@ spec:
           - --enable-skip-login
           - --disable-settings-authorizer
           - --enable-insecure-login
-          - --token-ttl=43200
     metricsScraper:
       enabled: true
     serviceMonitor:
