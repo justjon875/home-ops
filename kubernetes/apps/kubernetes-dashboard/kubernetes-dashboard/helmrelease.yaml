@@ -34,10 +34,10 @@ spec:
         ingressClassName: nginx
         hosts:
           - &host k8s.${ROOT_DOMAIN}
-        secretName: kubernetes-dashboard-tls
+        secretName: null
         tls:
-          - hosts:
-              - *host
+        - hosts:
+            - *host
     api:
       containers:
       # https://github.com/kubernetes/dashboard/blob/master/docs/common/arguments.md
