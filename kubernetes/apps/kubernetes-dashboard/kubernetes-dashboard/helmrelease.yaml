@@ -34,7 +34,7 @@ spec:
         ingressClassName: nginx
         hosts:
           - &host k8s.${ROOT_DOMAIN}
-        secretName: null
+        secretName: kubernetes-dashboard-tls
         tls:
           - hosts:
               - *host
