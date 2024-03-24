@@ -56,5 +56,3 @@ spec:
       enabled: false
     metrics-server:
       enabled: false
-    metricsScraper:
-      enabled: true
