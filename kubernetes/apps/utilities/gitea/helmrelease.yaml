@@ -34,7 +34,7 @@ spec:
           DB_TYPE: postgres
           HOST: ${POSTGRESQL_HOST}
         migrations:
-          ALLOWED_DOMAINS: gitea.carbon.${ROOT_DOMAIN}
+          ALLOWED_DOMAINS: gitea.lithium.${ROOT_DOMAIN}
         queue:
           CONN_STR: "redis://:${REDIS_PASSWORD}@${REDIS_HOST}:6379"
         server:

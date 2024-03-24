@@ -48,7 +48,7 @@ spec:
         parameters: 30
       - name: reload
     - zones:
-      - zone: carbon.${ROOT_DOMAIN}
+      - zone: lithium.${ROOT_DOMAIN}
       port: 53
       plugins:
       - name: errors
