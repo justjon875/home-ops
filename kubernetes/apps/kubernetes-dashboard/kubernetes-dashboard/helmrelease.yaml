@@ -26,21 +26,21 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    api:
-      containers:
-        args:
-          - --enable-skip-login
-          - --disable-settings-authorizer
-          - --enable-insecure-login
     app:
+      image:
+        pullPolicy: IfNotPresent
       ingress:
         enabled: true
         ingressClassName: nginx
         hosts:
           - &host k8s.${ROOT_DOMAIN}
-        secretName: null
-        tls:
-          - hosts:
-              - *host
+        issuer:
+          scope: disabled
     metricsScraper:
       enabled: true
+    nginx:
+      enabled: false
+    cert-manager:
+      enabled: false
+    metrics-server:
+      enabled: false

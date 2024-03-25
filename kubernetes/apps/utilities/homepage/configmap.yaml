@@ -35,7 +35,7 @@ data:
             memory: true
             label: "hydrogen"
         - unifi_console:
-            url: https://unifi.carbon.${ROOT_DOMAIN}
+            url: https://unifi.lithium.${ROOT_DOMAIN}
             username: ${USERNAME}
             password: ${SECRET_UNIFI_PASSWORD}
         - search:
@@ -50,39 +50,39 @@ data:
             cache: 5 # Time in minutes to cache API responses, to stay within limits
     services.yaml: |
         ---
-        - Carbon:
-            - AdguardHome Carbon:
-                href: https://adguard.carbon.${ROOT_DOMAIN}
+        - Lithium:
+            - AdguardHome lithium:
+                href: https://adguard.lithium.${ROOT_DOMAIN}
                 icon: adguard-home.png
                 description: Pi Ad-Blocking
                 widget:
                   type: adguard
-                  url: https://adguard.carbon.${ROOT_DOMAIN}
+                  url: https://adguard.lithium.${ROOT_DOMAIN}
                   username: admin
                   password: ${SECRET_ADGUARD_PASSWORD}
-            - Gitea Carbon:
-                href: https://gitea.carbon.${ROOT_DOMAIN}
+            - Gitea lithium:
+                href: https://gitea.lithium.${ROOT_DOMAIN}
                 icon: gitea.png
                 description: Git with a cup of tea
             - Portainer:
-                href: https://portainer.carbon.${ROOT_DOMAIN}
+                href: https://portainer.lithium.${ROOT_DOMAIN}
                 icon: portainer.png
                 description: Deploy, configure, troubleshoot and secure containers
                 widget:
                   type: portainer
-                  url: https://portainer.carbon.${ROOT_DOMAIN}
+                  url: https://portainer.lithium.${ROOT_DOMAIN}
                   env: 2
                   key: ${SECRET_PORTAINER_KEY}
             - Unifi:
-                href: https://unifi.carbon.${ROOT_DOMAIN}
+                href: https://unifi.lithium.${ROOT_DOMAIN}
                 icon: unifi.png
                 description: Unifi console
             - wg-access-server:
-                href: https://vpn.carbon.${ROOT_DOMAIN}
+                href: https://vpn.lithium.${ROOT_DOMAIN}
                 icon: wireguard.png
                 description: WireGuard VPN server and a web user interface
-            - Whoogle Carbon:
-                href: https://whoogle.carbon.${ROOT_DOMAIN}
+            - Whoogle lithium:
+                href: https://whoogle.lithium.${ROOT_DOMAIN}
                 icon: whooglesearch.png
                 description: Ad-free, privacy-respecting metasearch engine
         - Cloud:

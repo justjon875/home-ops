@@ -35,14 +35,14 @@ identity_providers:
         redirect_uris:
           ["https://gitea.${ROOT_DOMAIN}/user/oauth2/authelia/callback"]
         userinfo_signing_algorithm: none
-      - id: gitea-carbon
-        secret: "${SECRET_GITEA_CARBON_OAUTH_CLIENT_SECRET}"
+      - id: gitea-lithium
+        secret: "${SECRET_GITEA_LITHIUM_OAUTH_CLIENT_SECRET}"
         public: false
         authorization_policy: two_factor
         pre_configured_consent_duration: 1y
         scopes: ["openid", "profile", "groups", "email"]
         redirect_uris:
-          ["https://gitea.carbon.${ROOT_DOMAIN}/user/oauth2/authelia/callback"]
+          ["https://gitea.lithium.${ROOT_DOMAIN}/user/oauth2/authelia/callback"]
         userinfo_signing_algorithm: none
       - id: immich
         description: Immich

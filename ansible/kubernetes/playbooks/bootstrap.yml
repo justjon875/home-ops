@@ -39,7 +39,7 @@
     - name: "Bootstrap :: Ensure repo is checked out"
       ansible.builtin.git:
         accept_newhostkey: true
-        repo: "ssh://git@gitea.carbon.{{ root_domain }}:2222/gitea_admin/home-ops.git"
+        repo: "ssh://git@gitea.lithium.{{ root_domain }}:2222/gitea_admin/home-ops.git"
 
         dest: "{{ base_dir }}/{{ repo_local_dir }}"
         key_file: "{{ base_dir }}/{{ key_dir }}/gitkey_ed25519"

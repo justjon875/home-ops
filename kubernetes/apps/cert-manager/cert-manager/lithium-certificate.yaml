@@ -1,0 +1,15 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: lithium-tls
+  namespace: cert-manager
+spec:
+  secretName: lithium-tls
+  issuerRef:
+    name: letsencrypt-prod-clusterissuer
+    kind: ClusterIssuer
+  commonName: lithium.${ROOT_DOMAIN}
+  dnsNames:
+    - lithium.${ROOT_DOMAIN}
+    - "*.lithium.${ROOT_DOMAIN}"

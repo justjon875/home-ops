@@ -5,6 +5,7 @@ kind: Kustomization
 namespace: kubernetes-dashboard
 resources:
   - ./helmrelease.yaml
+  - ./admin-user-secret.yaml
   - ./rbac.yaml
 labels:
   - pairs:
