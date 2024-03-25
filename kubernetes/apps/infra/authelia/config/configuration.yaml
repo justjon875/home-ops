@@ -60,8 +60,9 @@ identity_providers:
         client_secret: "${SECRET_MEMOS_OAUTH_CLIENT_SECRET}"
         public: false
         pre_configured_consent_duration: 1y
-        scopes: ["openid", "profile", "groups", "email"]
         redirect_uris: ["https://memos.${ROOT_DOMAIN}/auth/callback"]
+        scopes: ["openid", "profile", "groups", "email"]
+        token_endpoint_auth_method: 'client_secret_basic'
         userinfo_signed_response_alg: none
       - client_id: nextcloud
         authorization_policy: two_factor
