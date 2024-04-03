@@ -28,7 +28,7 @@ spec:
           main:
             image:
               repository: ghcr.io/usememos/memos
-              tag: 0.21.0@sha256:275846ba62526337811f84553d44f84a4844fd8a189b5ebf5afbe992f0c9a344
+              tag: 0.21.0@sha256:f7732c6fb328c5332d03b3106ee98724207510bf9bedf25fa78dbf459396c49a
     defaultPodOptions:
       enableServiceLinks: false
     ingress:
