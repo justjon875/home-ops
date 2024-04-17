@@ -28,7 +28,7 @@ spec:
           main:
             image:
               repository: fallenbagel/jellyseerr
-              tag: 1.7.0@sha256:d6aec40a75672dca505ddfd9ea8ad20627e79cd0cada92c6e629ae2a0181a6d5
+              tag: 1.8.0@sha256:618ca118e2839f7c3b634e7f2423cd771b113c80b24dfaba00593f28eec53fe3
     ingress:
       main:
         className: nginx
