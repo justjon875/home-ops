@@ -33,7 +33,7 @@ spec:
             image:
               pullPolicy: IfNotPresent
               repository: aaronleopold/stump
-              tag: nightly@sha256:b86032308453db40f32b8c757a6e457b08f07e2725b41d16a018bd92cc9c60c5
+              tag: nightly@sha256:fecfd830946ec2f95afb4723398cfc25bdf5c14c053bfdba2c4a209bbd8b2f34
     ingress:
       main:
         className: nginx
