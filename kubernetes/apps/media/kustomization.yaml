@@ -15,6 +15,5 @@ resources:
   - prowlarr
   - qbittorrent
   - radarr
-  - readarr
   - sabnzbd
   - sonarr
