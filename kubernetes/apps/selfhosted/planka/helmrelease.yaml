@@ -51,7 +51,7 @@ spec:
       data:
         accessMode: ReadWriteOnce
         existingClaim: planka-pvc
-        globalMouns:
+        advancedMounta:
           planka:
             app:
             - path: /app/public/user-avatars
