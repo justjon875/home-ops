@@ -59,7 +59,6 @@ spec:
               subPath: attachments
             - path: /app/public/project-background-images
               subPath: project-background-images
-        size: 10Gi
     service:
       app:
         controller: *app
