@@ -30,7 +30,6 @@ spec:
               AUDIO_DOWNLOAD_DIR: /audio
               TZ: ${TIMEZONE}
             image:
-              imagePullPolicy: Always
               repository: ghcr.io/alexta69/metube
               tag: latest@sha256:bd8687b4c7e9e2b30551f3f78b47cbe6522a43b642875d16e8ec9af6e0d8c46f
     defaultPodOptions:
@@ -60,13 +59,11 @@ spec:
       audio:
         enabled: true
         path: ${NFS_PATH}/navidrome/media/ytdl
-        readOnly: false
         server: ${NFS_HOST}
         type: nfs
       downloads:
         enabled: true
         path: /mnt/raid/media/metube
-        readOnly: false
         server: ${NFS_HOST}
         type: nfs
     service:
