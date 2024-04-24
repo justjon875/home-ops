@@ -53,9 +53,6 @@ spec:
               tag: 1.36.1
             securityContext:
               runAsUser: 0
-            volumeMounts:
-              - mountPath: /transcodes
-                name: transcode
         pod:
           runtimeClassName: nvidia
           securityContext:
@@ -110,6 +107,8 @@ spec:
       transcodes:
         enabled: true
         type: emptyDir
+        globalMounts:
+           - path: /transcodes
     service:
       app:
         controller: jellyfin
