@@ -49,7 +49,6 @@ spec:
               - *host
     persistence:
       data:
-        accessMode: ReadWriteOnce
         existingClaim: planka-pvc
         advancedMounts:
           planka:
