@@ -75,8 +75,7 @@ spec:
           http:
             port: 8080
       bittorrent:
-        controller: main
-        enabled: true
+        controller: qbittorrent
         ports:
           bittorrent:
             enabled: true
