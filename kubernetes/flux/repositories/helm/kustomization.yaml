@@ -31,4 +31,3 @@ resources:
   - ./runix.yaml
   - ./stakater.yaml
   - ./teampiped.yaml
-  - ./weave-gitops.yaml
