@@ -31,12 +31,17 @@ spec:
             image:
               repository: ghcr.io/onedr0p/sabnzbd
               tag: 4.2.3@sha256:da0b03dabd606e8328d772cd53bbdeaac5e787ad19e3cc0533525d1be27f5261
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
     defaultPodOptions:
       securityContext:
         fsGroup: 568
         fsGroupChangePolicy: OnRootMismatch
         runAsGroup: 568
         runAsUser: 568
+        runAsNonRoot: true
     hostname: qbittorrent
     ingress:
       app:
@@ -55,12 +60,10 @@ spec:
               - sabnzbd.${ROOT_DOMAIN}
     persistence:
       config:
-        enabled: true
         path: /mnt/raid/media/sabnzbd/config
         server: ${NFS_HOST}
         type: nfs
       sabnzbd:
-        enabled: true
         path: /mnt/raid/media/sabnzbd/downloads
         server: ${NFS_HOST}
         type: nfs
