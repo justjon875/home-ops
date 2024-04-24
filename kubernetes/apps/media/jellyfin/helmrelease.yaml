@@ -86,7 +86,7 @@ spec:
         globalMounts:
           jellyfin:
             app:
-            - path: /mnt/audio
+              path: /mnt/audio
         path: ${NFS_PATH}/navidrome/media
         server: ${NFS_HOST}
         type: nfs
@@ -100,7 +100,7 @@ spec:
         globalMounts:
           jellyfin:
             app:
-            - path: /media
+              path: /media
         path: /mnt/raid/media/qbittorrent/downloads
         readOnly: true
         server: ${NFS_HOST}
@@ -110,7 +110,7 @@ spec:
         globalMounts:
           jellyfin:
             app:
-            - path: /mnt/metube
+              path: /mnt/metube
         path: /mnt/raid/media/metube
         server: ${NFS_HOST}
         type: nfs
