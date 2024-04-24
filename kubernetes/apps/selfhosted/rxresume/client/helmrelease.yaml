@@ -1,7 +1,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: rxresume-client
+  name: &app rxresume-client
   namespace: selfhosted
 spec:
   chart:
@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 2.6.0
+      version: 3.1.0
   install:
     createNamespace: true
     remediation:
@@ -23,18 +23,18 @@ spec:
       retries: 5
   values:
     controllers:
-      main:
-        replicas: 0
+      rxresume-client:
         containers:
-          main:
+          app:
             image:
               repository: amruthpillai/reactive-resume
               tag: client-3.7.2@sha256:04b561446fb40852e72ce62fd15340424c73cde86a0df4b6e0b7888bf5e53102
+        replicas: 0
     envFrom:
       - secretRef:
           name: rxresume
     ingress:
-      main:
+      app:
         annotations:
           nginx.ingress.kubernetes.io/configuration-snippet: |
             rewrite /api/(.*) /$1 break;
@@ -46,7 +46,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: app
                   port: http
               - path: /api
                 pathType: Prefix
@@ -57,7 +57,8 @@ spec:
           - hosts:
               - *host
     service:
-      main:
+      app:
+        controller: *app
         ports:
           http:
             port: 3000

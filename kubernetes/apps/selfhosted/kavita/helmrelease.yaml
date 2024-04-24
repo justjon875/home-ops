@@ -1,7 +1,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: kavita
+  name: &app kavita
   namespace: selfhosted
 spec:
   chart:
@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 2.6.0
+      version: 3.1.0
   install:
     createNamespace: true
     remediation:
@@ -23,16 +23,16 @@ spec:
       retries: 5
   values:
     controllers:
-      main:
+      kavita:
         containers:
-          main:
+          app:
             env:
               TZ: ${TIMEZONE}
             image:
               repository: ghcr.io/kareadita/kavita
-              tag: 0.8.1@sha256:afb2904c41006332f6bf9c5bca52990b6b76039ddace73c2fda4413c39972f28
+              tag: 0.8.0@sha256:bd163e1051da7d2d64b52485bca1f35860340766bde7a19d2adf226ab2e680c0
     ingress:
-      main:
+      app:
         className: nginx
         enabled: true
         hosts:
@@ -41,7 +41,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: app
                   port: http
         tls:
           - hosts:
@@ -58,7 +58,8 @@ spec:
         server: ${NFS_HOST}
         type: nfs
     service:
-      main:
+      app:
+        controller: *app
         ports:
           http:
             port: 5000

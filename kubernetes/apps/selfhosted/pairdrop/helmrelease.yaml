@@ -1,7 +1,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: pairdrop
+  name: &app pairdrop
   namespace: selfhosted
 spec:
   chart:
@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 2.6.0
+      version: 3.1.0
   install:
     createNamespace: true
     remediation:
@@ -23,16 +23,16 @@ spec:
       retries: 5
   values:
     controllers:
-      main:
+      pairdrop:
         containers:
-          main:
+          app:
             env:
               TZ: ${TIMEZONE}
             image:
               repository: lscr.io/linuxserver/pairdrop
               tag: 1.10.8@sha256:fd4e596ae12a6512fab1de1d675fc6481266b70e5373d04d8e60edaa5d41c0f5
     ingress:
-      main:
+      app:
         className: nginx
         enabled: true
         hosts:
@@ -41,13 +41,14 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: app
                   port: http
         tls:
           - hosts:
               - *host
     service:
-      main:
+      app:
+        controller: *app
         ports:
           http:
             port: 3000

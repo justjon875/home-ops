@@ -1,7 +1,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: redlib
+  name: &app redlib
   namespace: selfhosted
 spec:
   chart:
@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 2.6.0
+      version: 3.1.0
   install:
     createNamespace: true
     remediation:
@@ -23,16 +23,16 @@ spec:
       retries: 5
   values:
     controllers:
-      main:
+      redlib:
         containers:
-          main:
+          app:
             env:
               REDLIB_SFW_ONLY: on
             image:
               repository: quay.io/redlib/redlib
               tag: latest@sha256:7fa92bb9b5a281123ee86a0b77a443939c2ccdabba1c12595dcd671a84cd5a64
     ingress:
-      main:
+      app:
         className: nginx
         enabled: true
         hosts:
@@ -41,13 +41,14 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: app
                   port: http
         tls:
           - hosts:
               - *host
     service:
-      main:
+      app:
+        controller: *app
         ports:
           http:
             port: 8080

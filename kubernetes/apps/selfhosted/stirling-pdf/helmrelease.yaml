@@ -1,7 +1,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: stirling-pdf
+  name: &app stirling-pdf
   namespace: selfhosted
 spec:
   chart:
@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 2.6.0
+      version: 3.1.0
   install:
     createNamespace: true
     remediation:
@@ -23,14 +23,14 @@ spec:
       retries: 5
   values:
     controllers:
-      main:
+      stirling-pdf:
         containers:
-          main:
+          app:
             image:
               repository: ghcr.io/stirling-tools/s-pdf
-              tag: 0.23.0@sha256:579bcfdf5878ffac20b5c38938130ce9e1a4437a37b4f4974d43a8cbec7648c1
+              tag: 0.22.8@sha256:c284dd4b40eac29fe0c518bfd684706b1831d4609dc7eed98e1c412dbcc404f5
     ingress:
-      main:
+      app:
         className: nginx
         enabled: true
         hosts:
@@ -39,13 +39,14 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: app
                   port: http
         tls:
           - hosts:
               - *host
     service:
-      main:
+      app:
+        controller: *host
         ports:
           http:
             port: 8080

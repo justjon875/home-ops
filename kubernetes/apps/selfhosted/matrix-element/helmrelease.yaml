@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 2.6.0
+      version: 3.1.0
   install:
     createNamespace: true
     remediation:
@@ -23,16 +23,16 @@ spec:
       retries: 5
   values:
     controllers:
-      main:
+      matrix-element:
         containers:
-          main:
+          app:
             image:
               repository: vectorim/element-web
               tag: v1.11.65
     global:
       nameOverride: *app
     ingress:
-      main:
+      app:
         annotations:
           nginx.ingress.kubernetes.io/configuration-snippet: |
             add_header X-Frame-Options SAMEORIGIN;
@@ -47,7 +47,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: app
                   port: http
         tls:
           - hosts:
@@ -56,14 +56,15 @@ spec:
       config-file:
         globalMounts:
           - path: /app/config.json
-            subPath: config.json
             readOnly: true
-        name: *app
+            subPath: config.json
+        name: matrix-element
         type: configMap
     podAnnotations:
       configmap.reloader.stakater.com/reload: *app
     service:
-      main:
+      app:
+        controller: *app
         ports:
           http:
             port: 80

@@ -1,7 +1,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: planka
+  name: &app planka
   namespace: selfhosted
 spec:
   chart:
@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 2.6.0
+      version: 3.1.0
   install:
     createNamespace: true
     remediation:
@@ -23,17 +23,17 @@ spec:
       retries: 5
   values:
     controllers:
-      main:
+      planka:
         containers:
-          main:
+          app:
             envFrom:
               - secretRef:
                   name: planka
             image:
               repository: ghcr.io/plankanban/planka
-              tag: 1.17.1@sha256:95cd7c787e2cf024243462db5d29bc9d6bd9c053a3aa3aa3ff38a4951c506bc7
+              tag: 1.16.4@sha256:22113c0c0899175738b6275011f224f190f586986ac36273c80c44326adabf00
     ingress:
-      main:
+      app:
         className: nginx
         enabled: true
         hosts:
@@ -42,7 +42,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: app
                   port: http
         tls:
           - hosts:
@@ -61,7 +61,8 @@ spec:
           - mountPath: /app/public/project-background-images
             path: project-background-images
     service:
-      main:
+      app:
+        controller: *app
         ports:
           http:
             port: 1337

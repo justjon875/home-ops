@@ -1,7 +1,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: handbrake
+  name: &app handbrake
   namespace: selfhosted
 spec:
   chart:
@@ -11,7 +11,7 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 2.6.0
+      version: 3.1.0
   install:
     createNamespace: true
     remediation:
@@ -22,16 +22,16 @@ spec:
       retries: 5
   values:
     controllers:
-      main:
+      handbrake:
         containers:
-          main:
+          app:
             env:
               TZ: ${TZ}
             image:
               repository: docker.io/jlesage/handbrake
               tag: v23.12.2@sha256:7c43c9d281a2e9a9796304d578bcc9312407e1953b046b84912f55e3e49101bf
     ingress:
-      main:
+      app:
         className: nginx
         enabled: true
         hosts:
@@ -40,7 +40,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: app
                   port: http
         tls:
           - hosts:
@@ -55,9 +55,8 @@ spec:
         server: ${NFS_HOST}
         type: nfs
     service:
-      main:
+      app:
+        controller: *app
         ports:
           http:
             port: 5800
-
-

@@ -1,11 +1,9 @@
----
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: &app atuin
   namespace: selfhosted
 spec:
-  interval: 15m
   chart:
     spec:
       chart: app-template
@@ -14,77 +12,84 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 2.6.0
+      version: 3.1.0
   install:
     createNamespace: true
     remediation:
       retries: 5
+  interval: 15m
   upgrade:
     remediation:
       retries: 5
   values:
     controllers:
-      main:
+      atuin:
         annotations:
-          reloader.stakater.com/auto: "true"
+          reloader.stakater.com/auto: 'true'
+        containers:
+          app:
+            args:
+              - server
+              - start
+            env:
+              ATUIN_HOST: 0.0.0.0
+              ATUIN_METRICS__ENABLE: 'true'
+              ATUIN_METRICS__HOST: 0.0.0.0
+              ATUIN_METRICS__PORT: 8080
+              ATUIN_OPEN_REGISTRATION: 'true'
+              ATUIN_PORT: 80
+              ATUIN_TLS__ENABLE: 'false'
+            envFrom:
+              - secretRef:
+                  name: atuin-secret
+            image:
+              repository: ghcr.io/atuinsh/atuin
+              tag: v18.2.0@sha256:b3fe3891ca5d08d0846aaba98b2bc0683cbc1e6f08d4952326d123b7da481b68
+            resources:
+              limits:
+                memory: 256Mi
+              requests:
+                cpu: 10m
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop:
+                  - ALL
+              readOnlyRootFilesystem: true
         initContainers:
           init-db:
-            image:
-              repository: ghcr.io/onedr0p/postgres-init
-              tag: 16
             env:
               - name: INIT_POSTGRES_SUPER_PASS
                 valueFrom:
                   secretKeyRef:
-                    name: postgresql-superuser
                     key: postgres-password
-            envFrom: &envFrom
+                    name: postgresql-superuser
+            envFrom:
               - secretRef:
                   name: atuin-secret
-        containers:
-          main:
-            args: ["server", "start"]
-            env:
-              ATUIN_HOST: 0.0.0.0
-              ATUIN_PORT: &port 80
-              ATUIN_OPEN_REGISTRATION: "true"
-              ATUIN_METRICS__ENABLE: "true"
-              ATUIN_METRICS__HOST: 0.0.0.0
-              ATUIN_METRICS__PORT: &metricsPort 8080
-              ATUIN_TLS__ENABLE: "false"
-            envFrom: *envFrom
             image:
-              repository: ghcr.io/atuinsh/atuin
-              tag: v18.2.0@sha256:b3fe3891ca5d08d0846aaba98b2bc0683cbc1e6f08d4952326d123b7da481b68
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
-            resources:
-              requests:
-                cpu: 10m
-              limits:
-                memory: 256Mi
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 16
         pod:
           securityContext:
-            runAsUser: 568
-            runAsGroup: 568
-            runAsNonRoot: true
             fsGroup: 568
             fsGroupChangePolicy: OnRootMismatch
+            runAsGroup: 568
+            runAsNonRoot: true
+            runAsUser: 568
     ingress:
-      main:
+      app:
         annotations:
-          nginx.ingress.kubernetes.io/proxy-body-size: "0"
+          nginx.ingress.kubernetes.io/proxy-body-size: '0'
         className: nginx
         enabled: true
         hosts:
-          - host: &host "{{ .Release.Name }}.${ROOT_DOMAIN}"
+          - host: &host '{{ .Release.Name }}.${ROOT_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: app
                   port: http
         tls:
           - hosts:
@@ -94,18 +99,19 @@ spec:
         enabled: true
         type: emptyDir
     service:
-      main:
+      app:
+        controller: *app
         ports:
           http:
-            port: *port
+            port: 80
           metrics:
-            port: *metricsPort
+            port: 8080
     serviceMonitor:
       main:
         enabled: true
         endpoints:
-          - port: metrics
-            scheme: http
+          - interval: 1m
             path: /metrics
-            interval: 1m
+            port: metrics
+            scheme: http
             scrapeTimeout: 10s
