@@ -50,7 +50,8 @@ spec:
     persistence:
       data:
         accessMode: ReadWriteOnce
-        advancedMounts:
+        existingClaim: planka-pvc
+        globalMouns:
           planka:
             app:
             - path: /app/public/user-avatars
@@ -59,7 +60,6 @@ spec:
               subPath: attachments
             - path: /app/public/project-background-images
               subPath: project-background-images
-        existingClaim: planka-pvc
         size: 10Gi
     service:
       app:
