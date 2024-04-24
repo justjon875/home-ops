@@ -46,7 +46,7 @@ spec:
               - *host
     service:
       app:
-        controller: *host
+        controller: *app
         ports:
           http:
             port: 8080

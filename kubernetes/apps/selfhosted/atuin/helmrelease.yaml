@@ -107,7 +107,7 @@ spec:
           metrics:
             port: 8080
     serviceMonitor:
-      main:
+      app:
         enabled: true
         endpoints:
           - interval: 1m
@@ -115,3 +115,4 @@ spec:
             port: metrics
             scheme: http
             scrapeTimeout: 10s
+        serviceName: *app

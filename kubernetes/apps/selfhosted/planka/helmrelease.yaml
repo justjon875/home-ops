@@ -50,16 +50,17 @@ spec:
     persistence:
       data:
         accessMode: ReadWriteOnce
-        enabled: true
+        advancedMounts:
+          planka:
+            app:
+            - path: /app/public/user-avatars
+              subPath: user-avatars
+            - path: /app/private/attachments
+              subPpath: attachments
+            - path: /app/public/project-background-images
+              subPath: project-background-images
         existingClaim: planka-pvc
         size: 10Gi
-        subPath:
-          - mountPath: /app/public/user-avatars
-            path: user-avatars
-          - mountPath: /app/private/attachments
-            path: attachments
-          - mountPath: /app/public/project-background-images
-            path: project-background-images
     service:
       app:
         controller: *app
