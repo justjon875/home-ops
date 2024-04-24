@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 2.6.0
+      version: 3.1.0
   install:
     createNamespace: true
     remediation:
@@ -23,19 +23,19 @@ spec:
       retries: 5
   values:
     controllers:
-      main:
-        replicas: 0
+      qbittorrent:
         containers:
-          main:
+          app:
             env:
               QBITTORRENT__BT_PORT: 56304
               TZ: ${TIMEZONE}
             image:
               repository: ghcr.io/onedr0p/qbittorrent
               tag: 4.6.4@sha256:b9af0f2173572a69d2c02eab8f701ef7b04f61689efe1c5338b96445d528dec4
+        replicas: 0
     hostname: qbittorrent
     ingress:
-      main:
+      app:
         annotations:
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_hide_header "x-webkit-csp";
@@ -47,16 +47,16 @@ spec:
         className: nginx
         enabled: true
         hosts:
-          - host: &host qbittorrent.${ROOT_DOMAIN}
+          - host: qbittorrent.${ROOT_DOMAIN}
             paths:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: app
                   port: http
         tls:
           - hosts:
-              - *host
+              - qbittorrent.${ROOT_DOMAIN}
     persistence:
       config:
         enabled: true
@@ -69,6 +69,11 @@ spec:
         server: ${NFS_HOST}
         type: nfs
     service:
+      app:
+        controller: qbittorrent
+        ports:
+          http:
+            port: 8080
       bittorrent:
         controller: main
         enabled: true
@@ -78,7 +83,3 @@ spec:
             port: 56304
             protocol: TCP
             targetPort: 56304
-      main:
-        ports:
-          http:
-            port: 8080

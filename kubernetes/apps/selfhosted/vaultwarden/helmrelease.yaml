@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 2.6.0
+      version: 3.1.0
   install:
     createNamespace: true
     remediation:
@@ -23,9 +23,9 @@ spec:
       retries: 5
   values:
     controllers:
-      main:
+      vaultwarden:
         containers:
-          main:
+          app:
             env:
               DATA_FOLDER: /data
               DOMAIN: https://vaultwarden.${ROOT_DOMAIN}
@@ -43,7 +43,7 @@ spec:
               repository: ghcr.io/dani-garcia/vaultwarden
               tag: 1.30.5@sha256:edb8e2bab9cbca22e555638294db9b3657ffbb6e5d149a29d7ccdb243e3c71e0
     ingress:
-      main:
+      app:
         className: nginx
         enabled: true
         hosts:
@@ -52,7 +52,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: app
                   port: http
         tls:
           - hosts:
@@ -66,7 +66,8 @@ spec:
         server: ${NFS_HOST}
         type: nfs
     service:
-      main:
+      app:
+        controller: *app
         ports:
           http:
             port: 80
