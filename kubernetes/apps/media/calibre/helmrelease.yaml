@@ -57,7 +57,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: content-server
+                  identifier: content-server
                   port: http
         tls:
           - hosts:
