@@ -80,7 +80,7 @@ spec:
           http:
             port: 8080
       content-server:
-        controller: main
+        controller: calibre
         ports:
           http:
             port: 8081
