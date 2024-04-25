@@ -70,8 +70,8 @@ spec:
           - path: /data
       config-file:
         advancedMounts:
-          main:
-            main:
+          mosquitto:
+            app:
               - path: /mosquitto/config/mosquitto.conf
                 subPath: mosquitto.conf
         name: mosquitto-configmap

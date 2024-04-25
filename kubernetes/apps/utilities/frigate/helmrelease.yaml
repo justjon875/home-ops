@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 2.6.0
+      version: 3.1.0
   install:
     createNamespace: true
     remediation:
@@ -26,23 +26,21 @@ spec:
       retries: 3
   values:
     controllers:
-      main:
-        pod:
-          runtimeClassName: nvidia
+      frigate:
         annotations:
-          reloader.stakater.com/auto: "true"
+          reloader.stakater.com/auto: 'true'
         containers:
-          main:
-            image:
-              repository: ghcr.io/blakeblackshear/frigate
-              tag: 0.13.0-rc1@sha256:24dce42044a0f9631813beea9d49afb266e9bef77ed6972cd1486e14463d7dc6
+          app:
             env:
               TZ: ${TIMEZONE}
-              USE_FP16: "False"
+              USE_FP16: 'False'
               YOLO_MODELS: yolov4-tiny-416
             envFrom:
               - secretRef:
                   name: frigate-secret
+            image:
+              repository: ghcr.io/blakeblackshear/frigate
+              tag: 0.13.0-rc1@sha256:24dce42044a0f9631813beea9d49afb266e9bef77ed6972cd1486e14463d7dc6
             probes:
               liveness: &probes
                 enabled: false
@@ -58,54 +56,57 @@ spec:
               readiness: *probes
               startup:
                 enabled: false
-            securityContext:
-              privileged: true
             resources:
-              requests:
-                cpu: 100m
               limits:
                 memory: 8Gi
-    service:
-      main:
-        ports:
-          http:
-            port: *port
-          rtsp:
-            port: 8554
+              requests:
+                cpu: 100m
+            securityContext:
+              privileged: true
+        pod:
+          runtimeClassName: nvidia
     ingress:
-      main:
-        enabled: true
+      app:
         className: nginx
+        enabled: true
         hosts:
           - host: &host "{{ .Release.Name }}.${ROOT_DOMAIN}"
             paths:
               - path: /
                 service:
-                  name: main
+                  identifier: app
                   port: http
         tls:
           - hosts:
               - *host
     persistence:
+      cache:
+        enabled: true
+        globalMounts:
+          - path: /dev/shm
+        medium: Memory
+        sizeLimit: 4Gi
+        type: emptyDir
       config:
         enabled: true
         existingClaim: frigate-data-pvc
         globalMounts:
           - path: /data
       config-file:
-        type: configMap
-        name: frigate-configmap
         globalMounts:
           - path: /config/config.yml
-            subPath: config.yml
             readOnly: true
-      cache:
-        enabled: true
-        type: emptyDir
-        medium: Memory
-        sizeLimit: 4Gi
-        globalMounts:
-          - path: /dev/shm
+            subPath: config.yml
+        name: frigate-configmap
+        type: configMap
       media:
         enabled: true
         existingClaim: frigate-media-pvc
+    service:
+      app:
+        controller: frigate
+        ports:
+          http:
+            port: *port
+          rtsp:
+            port: 8554

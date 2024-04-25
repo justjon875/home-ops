@@ -49,16 +49,15 @@ spec:
               - photoview.${ROOT_DOMAIN}
     persistence:
       cache:
-        enabled: true
         globalMounts:
           - path: /app/cache
         path: ${LOCAL_PATH}/photoview-cache-pvc
         server: ${NFS_HOST}
         type: nfs
       photos:
-        enabled: true
-        path: ${NFS_PATH}/nextcloud/data
-        readOnly: true
+        globalMounts:
+          - path: ${NFS_PATH}/nextcloud/data
+            readOnly: true
         server: ${NFS_HOST}
         type: nfs
     resources:
