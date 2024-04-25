@@ -32,6 +32,7 @@ spec:
             image:
               repository: viktorstrate/photoview
               tag: 2.3.13
+        replicas: 0
     ingress:
       app:
         className: nginx
