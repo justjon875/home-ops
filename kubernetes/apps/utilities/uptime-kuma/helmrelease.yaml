@@ -30,7 +30,7 @@ spec:
               TZ: ${TIMEZONE}
             image:
               repository: docker.io/louislam/uptime-kuma
-              tag: 1.23.12@sha256:faae8f885a81ff54ab0fecae02e8de73bf7b371bc0a928f9a1e9af3b246d58bd
+              tag: 1.23.13@sha256:5ed40a58b56b689ec2af50230e8d28804503351fed5eb54b1aefe530a8ea1fdc
     ingress:
       app:
         className: nginx
