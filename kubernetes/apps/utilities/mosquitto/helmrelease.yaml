@@ -82,7 +82,7 @@ spec:
         type: emptyDir
       secret-file:
         advancedMounts:
-          main:
+          mosquitto:
             init-config:
               - path: /tmp/secret
         name: mosquitto-secret

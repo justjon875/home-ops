@@ -55,9 +55,7 @@ spec:
         server: ${NFS_HOST}
         type: nfs
       photos:
-        globalMounts:
-          - path: ${NFS_PATH}/nextcloud/data
-            readOnly: true
+        path: ${NFS_PATH}/nextcloud/data
         server: ${NFS_HOST}
         type: nfs
     resources:
