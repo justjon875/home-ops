@@ -11,7 +11,7 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 2.6.0
+      version: 3.1.0
   dependsOn:
     - name: postgresql
       namespace: default
@@ -29,11 +29,11 @@ spec:
       retries: 3
   values:
     controllers:
-      main:
+      lldap:
         annotations:
           reloader.stakater.com/auto: 'true'
         containers:
-          main:
+          app:
             env:
               LLDAP_HTTP_PORT: 80
               LLDAP_HTTP_URL: https://lldap.${ROOT_DOMAIN}
@@ -46,7 +46,7 @@ spec:
               repository: ghcr.io/lldap/lldap
               tag: latest-alpine@sha256:91e05fb5d176545ff93ea1c5dca7b76be058da4fb8580e050670db97e42a42e1
     ingress:
-      main:
+      app:
         className: nginx
         enabled: true
         hosts:
@@ -55,7 +55,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: app
                   port: http
         tls:
           - hosts:
@@ -73,7 +73,8 @@ spec:
         cpu: 100m
         memory: 100Mi
     service:
-      main:
+      app:
+        controller: lldap
         ports:
           http:
             port: 80
