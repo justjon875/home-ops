@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 2.6.0
+      version: 3.1.0
   install:
     createNamespace: true
     remediation:
@@ -26,59 +26,60 @@ spec:
       retries: 3
   values:
     controllers:
-      main:
+      home-assistant-code:
         annotations:
-          reloader.stakater.com/auto: "true"
+          reloader.stakater.com/auto: 'true'
         containers:
-          main:
+          app:
+            args:
+              - --auth
+              - none
+              - --user-data-dir
+              - /config/.vscode
+              - --extensions-dir
+              - /config/.vscode
+              - --port
+              - '80'
+              - /config
+            env:
+              TZ: ${TIMEZONE}
             image:
               repository: ghcr.io/coder/code-server
               tag: 4.23.1
-            env:
-              TZ: ${TIMEZONE}
-            args:
-              - --auth
-              - "none"
-              - --user-data-dir
-              - "/config/.vscode"
-              - --extensions-dir
-              - "/config/.vscode"
-              - "--port"
-              - "80"
-              - /config
             resources:
-              requests:
-                cpu: 10m
               limits:
                 memory: 512Mi
+              requests:
+                cpu: 10m
         pod:
           securityContext:
-            runAsUser: 568
-            runAsGroup: 568
             fsGroup: 568
             fsGroupChangePolicy: OnRootMismatch
-    service:
-      main:
-        ports:
-          http:
-            port: 80
+            runAsGroup: 568
+            runAsUser: 568
     ingress:
-      main:
-        enabled: true
+      app:
         className: nginx
+        enabled: true
         hosts:
-          - host: &host hass-code.${ROOT_DOMAIN}
+          - host: hass-code.${ROOT_DOMAIN}
             paths:
               - path: /
                 service:
-                  name: main
+                  identifier: app
                   port: http
         tls:
           - hosts:
-              - *host
+              - hass-code.${ROOT_DOMAIN}
     persistence:
       config:
         enabled: true
         path: ${NFS_PATH}/home-assistant
         server: ${NFS_HOST}
         type: nfs
+    service:
+      app:
+        controller: home-assistant-code
+        ports:
+          http:
+            port: 80

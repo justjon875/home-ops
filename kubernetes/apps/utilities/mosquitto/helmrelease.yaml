@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 2.6.0
+      version: 3.1.0
   install:
     createNamespace: true
     remediation:
@@ -26,42 +26,42 @@ spec:
       retries: 3
   values:
     controllers:
-      main:
+      mosquitto:
         annotations:
-          reloader.stakater.com/auto: "true"
-        initContainers:
-          init-config:
-            image:
-              repository: docker.io/library/eclipse-mosquitto
-              tag: 2.0.18@sha256:761147236a85bd0c33208ac55bb8e1026f7d74b6eeec7f95b25aebae49e01555
-            command: ["/bin/sh", "-c"]
-            args: ["cp /tmp/secret/* /mosquitto/external_config/ && mosquitto_passwd -U /mosquitto/external_config/mosquitto_pwd"]
+          reloader.stakater.com/auto: 'true'
         containers:
-          main:
+          app:
             image:
               repository: docker.io/library/eclipse-mosquitto
               tag: 2.0.18@sha256:761147236a85bd0c33208ac55bb8e1026f7d74b6eeec7f95b25aebae49e01555
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
             resources:
-              requests:
-                cpu: 10m
               limits:
                 memory: 16Mi
+              requests:
+                cpu: 10m
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop:
+                  - ALL
+              readOnlyRootFilesystem: true
+        initContainers:
+          init-config:
+            args:
+              - cp /tmp/secret/* /mosquitto/external_config/ && mosquitto_passwd -U /mosquitto/external_config/mosquitto_pwd
+            command:
+              - /bin/sh
+              - -c
+            image:
+              repository: docker.io/library/eclipse-mosquitto
+              tag: 2.0.18@sha256:761147236a85bd0c33208ac55bb8e1026f7d74b6eeec7f95b25aebae49e01555
         pod:
           securityContext:
-            runAsUser: 568
-            runAsGroup: 568
-            runAsNonRoot: true
             fsGroup: 568
             fsGroupChangePolicy: OnRootMismatch
-    service:
-      main:
-        ports:
-          http:
-            port: 1883
+            runAsGroup: 568
+            runAsNonRoot: true
+            runAsUser: 568
     persistence:
       config:
         enabled: true
@@ -69,21 +69,27 @@ spec:
         globalMounts:
           - path: /data
       config-file:
-        type: configMap
-        name: mosquitto-configmap
         advancedMounts:
           main:
             main:
               - path: /mosquitto/config/mosquitto.conf
                 subPath: mosquitto.conf
+        name: mosquitto-configmap
+        type: configMap
+      external-config:
+        globalMounts:
+          - path: /mosquitto/external_config
+        type: emptyDir
       secret-file:
-        type: secret
-        name: mosquitto-secret
         advancedMounts:
           main:
             init-config:
               - path: /tmp/secret
-      external-config:
-        type: emptyDir
-        globalMounts:
-          - path: /mosquitto/external_config
+        name: mosquitto-secret
+        type: secret
+    service:
+      app:
+        controller: mosquitto
+        ports:
+          http:
+            port: 1883

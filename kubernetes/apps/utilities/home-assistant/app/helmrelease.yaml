@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 2.6.0
+      version: 3.1.0
   install:
     createNamespace: true
     remediation:
@@ -26,19 +26,19 @@ spec:
       retries: 3
   values:
     controllers:
-      main:
+      home-assistant:
         annotations:
-          reloader.stakater.com/auto: "true"
+          reloader.stakater.com/auto: 'true'
         containers:
-          main:
-            image:
-              repository: ghcr.io/onedr0p/home-assistant
-              tag: 2024.4.4@sha256:f2cb8e343ff32450b881a0c579e0805ef0bf4135b367bb3032bd9d0ec1618fd4
+          app:
             env:
               TZ: ${TIMEZONE}
             envFrom:
               - secretRef:
                   name: home-assistant-secret
+            image:
+              repository: ghcr.io/onedr0p/home-assistant
+              tag: 2024.4.3@sha256:71e02388dcd720e2f49538046f81bb1932e64e7680c73230fae1b2ace7400805
             probes:
               liveness:
                 enabled: false
@@ -46,41 +46,38 @@ spec:
                 enabled: false
               startup:
                 enabled: false
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
             resources:
-              requests:
-                cpu: 10m
               limits:
                 memory: 1Gi
+              requests:
+                cpu: 10m
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop:
+                  - ALL
+              readOnlyRootFilesystem: true
         pod:
           securityContext:
-            runAsUser: 568
-            runAsGroup: 568
-            runAsNonRoot: true
             fsGroup: 568
             fsGroupChangePolicy: OnRootMismatch
-    service:
-      main:
-        ports:
-          http:
-            port: 8123
+            runAsGroup: 568
+            runAsNonRoot: true
+            runAsUser: 568
     ingress:
-      main:
-        enabled: true
+      app:
         className: nginx
+        enabled: true
         hosts:
-          - host: &host hass.${ROOT_DOMAIN}
+          - host: hass.${ROOT_DOMAIN}
             paths:
               - path: /
                 service:
-                  name: main
+                  identifier: app
                   port: http
         tls:
           - hosts:
-              - *host
+              - hass.${ROOT_DOMAIN}
     persistence:
       config:
         enabled: true
@@ -89,3 +86,9 @@ spec:
         type: nfs
       tmp:
         type: emptyDir
+    service:
+      app:
+        controller: home-assistant
+        ports:
+          http:
+            port: 8123
