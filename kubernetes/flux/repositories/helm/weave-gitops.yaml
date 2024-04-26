@@ -1,6 +1,6 @@
 ---
 apiVersion: source.toolkit.fluxcd.io/v1beta2
-kind: OCIRepository
+kind: HelmRepository
 metadata:
   name: weave-gitops
   namespace: flux-system
@@ -8,3 +8,4 @@ spec:
   interval: 30m
   url: oci://ghcr.io/weaveworks/charts
   timeout: 2m
+  type: oci
