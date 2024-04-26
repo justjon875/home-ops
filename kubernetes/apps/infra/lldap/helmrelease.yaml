@@ -47,7 +47,7 @@ spec:
               tag: latest-alpine@sha256:91e05fb5d176545ff93ea1c5dca7b76be058da4fb8580e050670db97e42a42e1
     ingress:
       app:
-        className: nginx-internal
+        className: internal
         enabled: true
         hosts:
           - host: '{{ .Release.Name }}.${ROOT_DOMAIN}'

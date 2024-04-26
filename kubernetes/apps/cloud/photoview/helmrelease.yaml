@@ -35,7 +35,7 @@ spec:
         replicas: 0
     ingress:
       app:
-        className: nginx-internal
+        className: internal
         enabled: true
         hosts:
           - host: photoview.${ROOT_DOMAIN}

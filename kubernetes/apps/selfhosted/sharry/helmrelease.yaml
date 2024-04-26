@@ -42,7 +42,7 @@ spec:
                 memory: 250Mi
     ingress:
       main:
-        className: nginx-internal
+        className: internal
         enabled: true
         hosts:
           - host: &host '{{ .Release.Name }}.${ROOT_DOMAIN}'

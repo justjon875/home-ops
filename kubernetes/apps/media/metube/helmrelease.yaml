@@ -42,7 +42,7 @@ spec:
           - 100
     ingress:
       app:
-        className: nginx-internal
+        className: internal
         enabled: true
         hosts:
           - host: metube.${ROOT_DOMAIN}

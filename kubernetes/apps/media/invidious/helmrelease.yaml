@@ -36,7 +36,7 @@ spec:
       enableServiceLinks: false
     ingress:
       app:
-        className: nginx-internal
+        className: internal
         enabled: true
         hosts:
           - host: invidious.${ROOT_DOMAIN}

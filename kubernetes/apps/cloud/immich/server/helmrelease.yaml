@@ -48,7 +48,7 @@ spec:
           nginx.ingress.kubernetes.io/proxy-body-size: '0'
           nignx.ingress.kubernetes.io/force-ssl-redirect: 'true'
           whitelist-source-range.home.arpa/disabled: 'true'
-        className: nginx-internal
+        className: internal
         enabled: true
         hosts:
           - host: immich.${ROOT_DOMAIN}

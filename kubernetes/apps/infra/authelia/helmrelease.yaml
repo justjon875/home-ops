@@ -47,7 +47,7 @@ spec:
           enableServiceLinks: false
     ingress:
       app:
-        className: nginx-internal
+        className: internal
         enabled: true
         hosts:
           - host: auth.${ROOT_DOMAIN}

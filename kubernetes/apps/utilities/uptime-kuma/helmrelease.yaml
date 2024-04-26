@@ -33,7 +33,7 @@ spec:
               tag: 1.23.13@sha256:5ed40a58b56b689ec2af50230e8d28804503351fed5eb54b1aefe530a8ea1fdc
     ingress:
       app:
-        className: nginx-internal
+        className: internal
         enabled: true
         hosts:
           - host: &host "uptime.${ROOT_DOMAIN}"

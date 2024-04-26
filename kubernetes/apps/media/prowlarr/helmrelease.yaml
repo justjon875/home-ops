@@ -41,7 +41,7 @@ spec:
         runAsUser: 568
     ingress:
       app:
-        className: nginx-internal
+        className: internal
         enabled: true
         hosts:
           - host: prowlarr.${ROOT_DOMAIN}
