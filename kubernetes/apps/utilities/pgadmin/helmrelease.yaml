@@ -28,7 +28,7 @@ spec:
     existingSecret: pgadmin-secrets
     ingress:
       enabled: true
-      ingressClassName: nginx
+      ingressClassName: internal
       hosts:
         - host: &host "pgadmin.${ROOT_DOMAIN}"
           paths:

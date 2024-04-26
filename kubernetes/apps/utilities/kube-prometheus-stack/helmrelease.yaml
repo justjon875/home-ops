@@ -30,7 +30,7 @@ spec:
     prometheus:
       ingress:
         enabled: true
-        ingressClassName: nginx
+        ingressClassName: internal
         hosts:
           - prometheus.${ROOT_DOMAIN}
         tls:
@@ -69,7 +69,7 @@ spec:
       enabled: false
       ingress:
         enabled: true
-        ingressClassName: nginx
+        ingressClassName: internal
         hosts:
           - alertmanager.${ROOT_DOMAIN}
         tls:
