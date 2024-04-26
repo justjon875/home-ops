@@ -34,7 +34,7 @@ spec:
               tag: 1.16.4@sha256:22113c0c0899175738b6275011f224f190f586986ac36273c80c44326adabf00
     ingress:
       app:
-        className: nginx
+        className: nginx-internal
         enabled: true
         hosts:
           - host: &host '{{ .Release.Name }}.${ROOT_DOMAIN}'

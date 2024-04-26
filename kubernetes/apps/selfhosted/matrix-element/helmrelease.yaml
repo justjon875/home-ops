@@ -39,7 +39,7 @@ spec:
             add_header X-Content-Type-Options nosniff;
             add_header X-XSS-Protection "1; mode=block";
             add_header Content-Security-Policy "frame-ancestors 'none'";
-        className: nginx
+        className: nginx-internal
         enabled: true
         hosts:
           - host: &host element.${ROOT_DOMAIN}

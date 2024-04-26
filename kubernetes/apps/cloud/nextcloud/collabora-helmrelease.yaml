@@ -33,7 +33,7 @@ spec:
               tag: 23.05.10.1.1@sha256:1b9e3f43fecaa7d41e761a992d5a854de5b54404532498daea3c4bb17b557d90
     ingress:
       app:
-        className: nginx
+        className: nginx-internal
         enabled: true
         hosts:
           - host: collabora.${ROOT_DOMAIN}

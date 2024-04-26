@@ -41,7 +41,7 @@ spec:
         runAsUser: 568
     ingress:
       app:
-        className: nginx
+        className: nginx-internal
         enabled: true
         hosts:
           - host: radarr.${ROOT_DOMAIN}

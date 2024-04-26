@@ -45,7 +45,7 @@ spec:
       repository: ghcr.io/matrix-org/synapse
       tag: v1.98.0@sha256:0c7ad2c45c6ccfa2c9c72a4524e9cb13d26a5749d0fa3a838e3529ba51ccaa0d
     ingress:
-      className: nginx
+      className: nginx-internal
       hosts:
         - &host "matrix.${ROOT_DOMAIN}"
       paths:

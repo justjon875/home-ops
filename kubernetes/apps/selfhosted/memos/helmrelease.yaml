@@ -33,7 +33,7 @@ spec:
       enableServiceLinks: false
     ingress:
       app:
-        className: nginx
+        className: nginx-internal
         enabled: true
         hosts:
           - host: &host '{{ .Release.Name }}.${ROOT_DOMAIN}'

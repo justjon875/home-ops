@@ -35,7 +35,7 @@ spec:
               tag: 7.9.0@sha256:b9396864085793c57ae2ece29246839ad4eb29e8f007a8d8969c6eb98ff8e850
     ingress:
       app:
-        className: nginx
+        className: nginx-internal
         enabled: true
         hosts:
           - host: calibre.${ROOT_DOMAIN}
@@ -49,7 +49,7 @@ spec:
           - hosts:
               - calibre.${ROOT_DOMAIN}
       content-server:
-        className: nginx
+        className: nginx-internal
         enabled: true
         hosts:
           - host: calibre-content.${ROOT_DOMAIN}

@@ -71,7 +71,7 @@ spec:
           location ~ ^/(?:autotest|occ|issue|indie|db_|console) {
             deny all;
           }
-      className: nginx
+      className: nginx-internal
       enabled: true
       path: /
       pathType: Prefix

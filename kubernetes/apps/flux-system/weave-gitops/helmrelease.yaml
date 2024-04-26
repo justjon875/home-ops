@@ -39,7 +39,7 @@ spec:
       redirectURL: https://weave.${ROOT_DOMAIN}/oauth2/callback
     ingress:
       enabled: true
-      className: nginx
+      className: nginx-internal
       annotations:
         nginx.ingress.kubernetes.io/proxy-buffer-size: 24k
         nginx.ingress.kubernetes.io/proxy-buffers-number: "32"

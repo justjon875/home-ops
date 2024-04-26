@@ -64,7 +64,7 @@ spec:
               - 65539
     ingress:
       app:
-        className: nginx
+        className: nginx-internal
         enabled: true
         hosts:
           - host: jellyfin.${ROOT_DOMAIN}
