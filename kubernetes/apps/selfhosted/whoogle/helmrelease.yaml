@@ -49,7 +49,6 @@ spec:
         className: external
         annotations:
           external-dns.alpha.kubernetes.io/target: external.${ROOT_DOMAIN}
-          whitelist-source-range.home.arpa/disabled: "true"
         enabled: true
         hosts:
           - host: &host whoogle.${ROOT_DOMAIN}
