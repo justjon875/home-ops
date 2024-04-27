@@ -28,7 +28,6 @@ spec:
     interval: 2m
     logLevel: debug
     extraArgs:
-      - --ingress-class=internal
       - --webhook-provider-url=http://localhost:8888
     policy: sync
     sources:
