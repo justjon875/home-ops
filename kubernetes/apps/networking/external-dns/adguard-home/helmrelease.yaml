@@ -37,13 +37,12 @@ spec:
         value: 0.0.0.0
     extraArgs:
       - --ingress-class=ingress
+      - --webhook-provider-url=http://localhost:8888
     policy: sync
     sources:
       - ingress
     domainFilters:
       - "${ROOT_DOMAIN}"
-    serviceMonitor:
-      enabled: true
     resources:
       requests:
         memory: 100Mi
