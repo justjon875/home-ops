@@ -52,7 +52,6 @@ spec:
             securityContext:
               runAsUser: 0
         pod:
-          runtimeClassName: nvidia
           securityContext:
             fsGroup: 568
             fsGroupChangePolicy: OnRootMismatch
