@@ -44,7 +44,7 @@ spec:
             proxy_set_header Accept-Encoding "";
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${ROOT_DOMAIN}/css/base/qbittorrent/nord.css"></head>';
             sub_filter_once on;
-        className: nginx
+        className: internal
         enabled: true
         hosts:
           - host: qbittorrent.${ROOT_DOMAIN}

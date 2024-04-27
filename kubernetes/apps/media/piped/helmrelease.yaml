@@ -42,7 +42,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: nginx
+        ingressClassName: internal
         annotations:
         hosts:
           - host: &host piped.${ROOT_DOMAIN}
@@ -54,7 +54,7 @@ spec:
 
       backend:
         enabled: true
-        ingressClassName: nginx
+        ingressClassName: internal
         hosts:
           - host: *pipedapi
             paths:
@@ -65,7 +65,7 @@ spec:
 
       ytproxy:
         enabled: true
-        ingressClassName: nginx
+        ingressClassName: internal
         hosts:
           - host: &proxy ytproxy.${ROOT_DOMAIN}
             paths:

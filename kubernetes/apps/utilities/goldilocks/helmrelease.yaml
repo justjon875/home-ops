@@ -30,7 +30,7 @@ spec:
         annotations:
           kyverno.home.arpa/disabled: "true"
         enabled: true
-        ingressClassName: nginx
+        ingressClassName: internal
         hosts:
           - host: &host goldilocks.${ROOT_DOMAIN}
             paths:

@@ -47,7 +47,7 @@ spec:
                 enabled: false
     ingress:
       app:
-        className: nginx
+        className: internal
         enabled: true
         hosts:
           - host: &host '{{ .Release.Name }}.${ROOT_DOMAIN}'

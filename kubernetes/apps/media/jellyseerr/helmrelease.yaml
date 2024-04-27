@@ -31,7 +31,7 @@ spec:
               tag: 1.8.1@sha256:d80b523624973671c1cbcee4e202b0f7adba8ddf916090a39a14aa3812069a9d
     ingress:
       app:
-        className: nginx
+        className: internal
         enabled: true
         hosts:
           - host: jellyseerr.${ROOT_DOMAIN}

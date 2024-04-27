@@ -35,7 +35,7 @@ spec:
               tag: 0.51.1@sha256:ea426987cc4a148eb6a9fcea60ab44cc0dca4d7f0f1e12a4b48f5937454da4d9
     ingress:
       app:
-        className: nginx
+        className: internal
         enabled: true
         hosts:
           - host: &host navidrome.${ROOT_DOMAIN}
