@@ -25,9 +25,6 @@ spec:
           - resources:
               annotations:
                 whitelist-source-range.home.arpa/disabled: "true"
-          - resources:
-              annotations:
-                external-dns.alpha.kubernetes.io/target: "*"
       mutate:
         targets:
           - apiVersion: networking.k8s.io/v1
