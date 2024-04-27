@@ -27,14 +27,6 @@ spec:
   values:
     interval: 2m
     logLevel: debug
-    envFrom:
-      - secretRef:
-          name: adguard-secret
-    env:
-      - name: ADGUARD_URL
-        value: https://adguard.lithium.${ROOT_DOMAIN}
-      - name: SERVER_HOST
-        value: 0.0.0.0
     extraArgs:
       - --ingress-class=internal
       - --webhook-provider-url=http://localhost:8888
@@ -50,8 +42,17 @@ spec:
       limits:
         memory: 250Mi
     provider:
+      envFrom:
+        - secretRef:
+            name: adguard-secret
+      env:
+        - name: ADGUARD_URL
+          value: https://adguard.lithium.${ROOT_DOMAIN}
+        - name: SERVER_HOST
+          value: 0.0.0.0
       name: webhook
       webhook:
         image:
           repository: ghcr.io/muhlba91/external-dns-provider-adguard
           tag: v5.0.1@sha256:d9539a976405f1faa4d27c5c11da2154cd3a65b3cdb7c174668ea4e8845e2755
+
