@@ -32,7 +32,7 @@ spec:
           name: adguard-secret
     env:
       - name: ADGUARD_URL
-        value: http://adguard.lithium.${ROOT_DOMAIN}
+        value: https://adguard.lithium.${ROOT_DOMAIN}
       - name: SERVER_HOST
         value: 0.0.0.0
     extraArgs:
