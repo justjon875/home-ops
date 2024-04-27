@@ -2,11 +2,12 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: ScheduledBackup
 metadata:
-  name: cloudnative-pg
+  name: cloudnative-pgvecto
   namespace: default
 spec:
   schedule: "@daily"
   immediate: true
   backupOwnerReference: self
   cluster:
-    name: cloudnative-pg
+    name: cloudnative-pgvecto
+
