@@ -36,7 +36,7 @@ spec:
       - name: SERVER_HOST
         value: 0.0.0.0
     extraArgs:
-      - --ingress-class=ingress
+      - --ingress-class=internal
       - --webhook-provider-url=http://localhost:8888
     policy: sync
     sources:
