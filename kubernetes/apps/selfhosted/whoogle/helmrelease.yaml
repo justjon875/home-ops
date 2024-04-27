@@ -46,7 +46,9 @@ spec:
               tag: 0.8.4@sha256:93977c3aec8a039df94745a6e960d1b590a897e451b874c90ce484fbdbc3630f
     ingress:
       app:
-        className: internal
+        className: external
+        annotations:
+          external-dns.alpha.kubernetes.io/target: external.${ROOT_DOMAIN}
         enabled: true
         hosts:
           - host: &host whoogle.${ROOT_DOMAIN}
