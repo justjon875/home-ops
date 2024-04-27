@@ -20,11 +20,10 @@ spec:
         any:
           - resources:
               kinds: ["Ingress"]
-      exclude:
-        any:
-          - resources:
-              annotations:
-                external-dns.alpha.kubernetes.io/target: external.${ROOT_DOMAIN}
+        preconditions:
+          - key: "{{ request.object.spec.ingressClassName }}"
+            operator: Equals
+            value: "internal"
       mutate:
         targets:
           - apiVersion: networking.k8s.io/v1
