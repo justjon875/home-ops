@@ -37,11 +37,9 @@ spec:
             resources:
               limits:
                 memory: 6000Mi
-                nvidia.com/gpu: 1
               requests:
                 cpu: 100m
                 memory: 1000Mi
-                nvidia.com/gpu: 1
         initContainers:
           init-permission:
             command:
