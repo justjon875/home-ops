@@ -30,7 +30,7 @@ spec:
               - /backup.sh
             env:
               - name: POSTGRES_HOST
-                value: cloudnative-pgvecto-r .default
+                value: cloudnative-pgvecto-r.default
               - name: POSTGRES_DB
                 value: immich
               - name: BACKUP_KEEP_DAYS
