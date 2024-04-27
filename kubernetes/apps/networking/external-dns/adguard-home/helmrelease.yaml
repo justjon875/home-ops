@@ -50,6 +50,7 @@ spec:
       limits:
         memory: 250Mi
     provider:
+      name: webhook
       webhook:
         image:
           repository: ghcr.io/muhlba91/external-dns-provider-adguard
