@@ -94,7 +94,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  identifier: app
+                  identifier: server
                   port: http
         tls:
           - hosts:
