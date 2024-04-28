@@ -21,12 +21,10 @@ spec:
           - resources:
               kinds: ["Ingress"]
 
-      validate:
-        message: "Ingress must only be the externa ingressClassName"
+      mutate:
         pattern:
           (spec):
             ingressClassName: "external"
-      mutate:
         targets:
           - apiVersion: networking.k8s.io/v1
             kind: Ingress
