@@ -20,10 +20,12 @@ spec:
         any:
           - resources:
               kinds: ["Ingress"]
-      preconditions:
-        - key: "{{ request.object.spec.ingressClassName }}"
-          operator: Equals
-          value: "internal"
+
+      validate:
+        message: "Ingress must only be the externa ingressClassName"
+        pattern:
+          (spec):
+            ingressClassName: "external"
       mutate:
         targets:
           - apiVersion: networking.k8s.io/v1
