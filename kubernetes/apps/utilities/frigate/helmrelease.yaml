@@ -63,8 +63,8 @@ spec:
                 cpu: 100m
             securityContext:
               privileged: true
-        pod:
-          runtimeClassName: nvidia
+                # pod:
+                # runtimeClassName: nvidia
     ingress:
       app:
         className: internal
