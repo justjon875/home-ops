@@ -21,6 +21,7 @@ spec:
           - resources:
               kinds: ["Ingress"]
       preconditions:
+        any:
         - key: "{{ request.object.spec.ingressClassName }}"
           operator: Equals
           value: "internal"
