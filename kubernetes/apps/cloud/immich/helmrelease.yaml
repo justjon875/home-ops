@@ -100,23 +100,11 @@ spec:
           - hosts:
               - immich.${ROOT_DOMAIN}
     persistence:
-      encoded-video:
-        globalMounts:
-          - path: /usr/src/app/upload/encoded-video
-        path: ${LOCAL_PATH}/immich/encoded-video
-        server: ${NFS_HOST}
-        type: nfs
       library:
         enabled: true
         existingClaim: immich-pvc
         globalMounts:
-          - path: /usr/src/app/upload/library
-      thumbs:
-        globalMounts:
-          - path: /usr/src/app/upload/thumbs
-        path: ${LOCAL_PATH}/immich/thumbs
-        server: ${NFS_HOST}
-        type: nfs
+          - path: /usr/src/app/upload
     service:
       machine-learning:
         controller: machine-learning
