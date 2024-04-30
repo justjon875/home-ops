@@ -21,10 +21,10 @@ spec:
           - resources:
               kinds: ["Ingress"]
       preconditions:
-        any:
+        all:
         - key: "{{ request.object.spec.ingressClassName }}"
           operator: Equals
-          value: "internal"
+          value: internal
       mutate:
         targets:
           - apiVersion: networking.k8s.io/v1
