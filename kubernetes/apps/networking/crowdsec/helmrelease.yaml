@@ -90,15 +90,11 @@ spec:
         # -- Persistent volume for data folder. Stores e.g. registered bouncer api keys
         data:
           enabled: true
-          path: ${NFS_PATH}/crowdsec/data
-          server: ${NFS_HOST}
-          type: nfs
+          existingClaim: crowdsec-data-pvc
         # -- Persistent volume for config folder. Stores e.g. online api credentials
         config:
           enabled: true
-          path: ${NFS_PATH}/crowdsec/config
-          server: ${NFS_HOST}
-          type: nfs
+          existingClaim: crowdsec-data-pvc
 
       # -- Enable service monitoring (exposes "metrics" port "6060" for Prometheus)
       metrics:
@@ -127,9 +123,7 @@ spec:
         # -- Persistent volume for config folder. Stores local config (parsers, scenarios etc.)
         config:
           enabled: true
-          path: ${NFS_PATH}/crowdsec/config
-          server: ${NFS_HOST}
-          type: nfs
+          existingClaim: crowdsec-config-pvc
       # -- environment variables from crowdsecurity/crowdsec docker image
       env:
         - name: TZ
