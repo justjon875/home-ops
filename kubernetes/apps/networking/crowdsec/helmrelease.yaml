@@ -123,7 +123,7 @@ spec:
         # -- Persistent volume for config folder. Stores local config (parsers, scenarios etc.)
         config:
           enabled: true
-          existingClaim: crowdsec-config-pvc
+          existingClaim: crowdsec-config-agent-pvc
       # -- environment variables from crowdsecurity/crowdsec docker image
       env:
         - name: TZ
