@@ -89,11 +89,15 @@ spec:
       persistentVolume:
         # -- Persistent volume for data folder. Stores e.g. registered bouncer api keys
         data:
-          enabled: false
+          accessModes:
+            - ReadWriteMany
+          enabled: true
           existingClaim: crowdsec-data-pvc
         # -- Persistent volume for config folder. Stores e.g. online api credentials
         config:
-          enabled: false
+          accessModes:
+            - ReadWriteMany
+          enabled: true
           existingClaim: crowdsec-data-pvc
 
       # -- Enable service monitoring (exposes "metrics" port "6060" for Prometheus)
