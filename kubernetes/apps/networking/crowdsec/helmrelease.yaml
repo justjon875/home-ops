@@ -89,11 +89,11 @@ spec:
       persistentVolume:
         # -- Persistent volume for data folder. Stores e.g. registered bouncer api keys
         data:
-          enabled: true
+          enabled: false
           existingClaim: crowdsec-data-pvc
         # -- Persistent volume for config folder. Stores e.g. online api credentials
         config:
-          enabled: true
+          enabled: false
           existingClaim: crowdsec-data-pvc
 
       # -- Enable service monitoring (exposes "metrics" port "6060" for Prometheus)
@@ -122,7 +122,7 @@ spec:
       persistentVolume:
         # -- Persistent volume for config folder. Stores local config (parsers, scenarios etc.)
         config:
-          enabled: true
+          enabled: false
           existingClaim: crowdsec-config-agent-pvc
       # -- environment variables from crowdsecurity/crowdsec docker image
       env:
