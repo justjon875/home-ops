@@ -98,7 +98,7 @@ spec:
           accessModes:
             - ReadWriteMany
           enabled: true
-          existingClaim: crowdsec-data-pvc
+          existingClaim: crowdsec-config-pvc
 
       # -- Enable service monitoring (exposes "metrics" port "6060" for Prometheus)
       metrics:
