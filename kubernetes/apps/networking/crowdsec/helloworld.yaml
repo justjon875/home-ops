@@ -24,6 +24,8 @@ spec:
       retries: 3
   values:
     ingress:
+      annotations:
+        kubernetes.io/ingress.class: external
       enabled: true
       hosts:
         - host: &host helloworld.habanerojam.xyz
