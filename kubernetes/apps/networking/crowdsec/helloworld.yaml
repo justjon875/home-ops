@@ -25,3 +25,10 @@ spec:
   values:
     ingress:
       enabled: true
+      hosts:
+        - host: &host helloworld.habanerojam.xyz
+          paths:
+            - path: /
+      tls:
+        - hosts:
+            - *host
