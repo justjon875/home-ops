@@ -7,11 +7,11 @@ metadata:
 spec:
   chart:
     spec:
-      chart: crowdsec
+      chart: *app
       version: 0.10.0
       sourceRef:
         kind: HelmRepository
-        name: crowdsec
+        name: *app
         namespace: flux-system
   interval: 15m
   install:
@@ -136,23 +136,23 @@ spec:
         - name: DISABLE_ONLINE_API
           value: "true"
 
-        ### "Parsers and Scenarios must be present on the agents. It's not useful to deploy them on LAPI"
-        # COLLECTIONS are bundles of PARSERS and SCENARIOS
-        - name: COLLECTIONS
-          value: >-
-            crowdsecurity/linux
-            crowdsecurity/sshd
-            crowdsecurity/nginx
-            crowdsecurity/base-http-scenarios
-            crowdsecurity/http-cve
-            crowdsecurity/pgsql
-
-        - name: PARSERS
-          # https://hub.crowdsec.net/author/crowdsecurity/configurations/cri-logs
-          # https://hub.crowdsec.net/author/crowdsecurity/configurations/docker-logs
-          value: >-
-            crowdsecurity/cri-logs
-            crowdsecurity/docker-logs
+        # ### "Parsers and Scenarios must be present on the agents. It's not useful to deploy them on LAPI"
+        # # COLLECTIONS are bundles of PARSERS and SCENARIOS
+        # - name: COLLECTIONS
+        #   value: >-
+        #     crowdsecurity/linux
+        #     crowdsecurity/sshd
+        #     crowdsecurity/nginx
+        #     crowdsecurity/base-http-scenarios
+        #     crowdsecurity/http-cve
+        #     crowdsecurity/pgsql
+        #
+        # - name: PARSERS
+        #   # https://hub.crowdsec.net/author/crowdsecurity/configurations/cri-logs
+        #   # https://hub.crowdsec.net/author/crowdsecurity/configurations/docker-logs
+        #   value: >-
+        #     crowdsecurity/cri-logs
+        #     crowdsecurity/docker-logs
 
         # - name: SCENARIOS
         #   value: |
