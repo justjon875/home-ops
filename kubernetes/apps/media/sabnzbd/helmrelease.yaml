@@ -71,6 +71,8 @@ spec:
         path: /mnt/raid/media/sabnzbd/downloads
         server: ${NFS_HOST}
         type: nfs
+      tmp:
+        type: emptyDir
     service:
       app:
         controller: sabnzbd
