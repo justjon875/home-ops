@@ -45,6 +45,7 @@ spec:
             command:
               - sh
               - -c
+              - chown -R 568:568 /media
               - chown -R 568:568 /transcodes
             image:
               repository: ghcr.io/cbc02009/busybox
