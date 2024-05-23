@@ -47,9 +47,7 @@ spec:
                 enabled: false
     ingress:
       app:
-        annotations:
-          external-dns.alpha.kubernetes.io/target: external.${ROOT_DOMAIN}
-        className: external
+        className: internal
         enabled: true
         hosts:
           - host: &host '{{ .Release.Name }}.${ROOT_DOMAIN}'
