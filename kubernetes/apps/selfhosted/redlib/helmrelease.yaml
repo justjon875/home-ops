@@ -26,8 +26,6 @@ spec:
       redlib:
         containers:
           app:
-            env:
-              REDLIB_SFW_ONLY: on
             image:
               repository: quay.io/redlib/redlib
               tag: latest@sha256:7fa92bb9b5a281123ee86a0b77a443939c2ccdabba1c12595dcd671a84cd5a64
