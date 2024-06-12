@@ -28,7 +28,7 @@ spec:
           app:
             image:
               repository: fallenbagel/jellyseerr
-              tag: 1.9.0@sha256:0cab9bfe8d49cd1d3e0928eadfe8bfc9a73748e93af371edbd8ee0d6283b56db
+              tag: 1.9.1@sha256:aa98855e5e7d93ceb8a6c4c451a5009c6713b63e0b9429bd20f0c52536721b51
     ingress:
       app:
         className: internal
