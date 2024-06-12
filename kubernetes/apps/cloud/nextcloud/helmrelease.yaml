@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: nextcloud
         namespace: flux-system
-      version: 4.6.10
+      version: 4.6.11
   install:
     createNamespace: true
     remediation:
@@ -42,7 +42,7 @@ spec:
       type: postgresql
     image:
       repository: nextcloud
-      tag: 28.0.6@sha256:5994e8f9ce71dabc536a86e641702e8db992744c426ccbe5c7aaebbff3f34a41
+      tag: 28.0.6@sha256:438f028e92f05018387caeec0631ad53a00b50cfbc19b73b4fd3b738c77fb759
     ingress:
       annotations:
         nginx.ingress.kubernetes.io/proxy-body-size: "10G"
