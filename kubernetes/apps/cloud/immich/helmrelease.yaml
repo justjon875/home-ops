@@ -42,32 +42,11 @@ spec:
               requests:
                 cpu: 100m
                 memory: 800Mi
-      microservices:
-        annotations:
-          reloader.stakater.com/auto: 'true'
-        containers:
-          app:
-            args:
-              - start-microservices.sh
-            envFrom:
-              - secretRef:
-                  name: immich-secret
-              - configMapRef:
-                  name: immich-configmap
-            image:
-              repository: ghcr.io/immich-app/immich-server
-              tag: v1.106.2@sha256:7c853eee0f9a6f742dafe71db64486a34067f24d253cba3ddc7b7eaa7420f00c
-            resources:
-              requests:
-                cpu: 100m
-                memory: 250Mi
       server:
         annotations:
           reloader.stakater.com/auto: 'true'
         containers:
           app:
-            args:
-              - start-server.sh
             envFrom:
               - secretRef:
                   name: immich-secret
