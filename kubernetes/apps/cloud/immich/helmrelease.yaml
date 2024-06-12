@@ -84,6 +84,12 @@ spec:
         existingClaim: immich-pvc
         globalMounts:
           - path: /usr/src/app/upload
+      model-cache:
+        type: emptyDir
+        advancedMounts:
+          machine-learning:
+            main:
+              - path: /cache
     service:
       machine-learning:
         controller: machine-learning
