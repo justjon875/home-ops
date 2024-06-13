@@ -95,9 +95,7 @@ data:
                 podSelector: >-
                   app.kubernetes.io/instance in (
                       immich-machine-learning,
-                      immich-microservices,
-                      immich-server,
-                      immich-web
+                      immich-server
                   )
                 widget:
                   type: immich
@@ -131,7 +129,7 @@ data:
             - Invidious:
                 href: https://invidious.${ROOT_DOMAIN}
                 icon: invidious.png
-                description: An alternative front-end to YouTube 
+                description: An alternative front-end to YouTube
             - Jellyfin:
                 href: https://jellyfin.${ROOT_DOMAIN}
                 icon: jellyfin.png
@@ -157,7 +155,7 @@ data:
             - Piped:
                 href: https://piped.${ROOT_DOMAIN}
                 icon: piped.png
-                description: An alternative front-end to YouTube 
+                description: An alternative front-end to YouTube
             - Stump:
                 href: https://stump.${ROOT_DOMAIN}
                 icon: /icons/stump.png
@@ -284,7 +282,7 @@ data:
             - Uptime Kuma:
                 href: https://uptime.${ROOT_DOMAIN}
                 icon: uptime-kuma.png
-                description: A fancy self-hosted monitoring tool 
+                description: A fancy self-hosted monitoring tool
                 widget:
                   type: uptimekuma
                   url: https://uptime.${ROOT_DOMAIN}
