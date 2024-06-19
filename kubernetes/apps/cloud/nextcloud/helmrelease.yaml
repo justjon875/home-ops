@@ -42,7 +42,7 @@ spec:
       type: postgresql
     image:
       repository: nextcloud
-      tag: 28.0.6@sha256:8a2ad3ef072544aaddcedfdec6c195f695acbd35c7f1a381380ea395dae07fb5
+      tag: 28.0.6@sha256:034bbd62b180433b801beeb62fae96e2aea43336854d8e8fa81be6a9a834b925
     ingress:
       annotations:
         nginx.ingress.kubernetes.io/proxy-body-size: "10G"
