@@ -31,7 +31,7 @@ spec:
                   name: photoview
             image:
               repository: viktorstrate/photoview
-              tag: 2.3.13
+              tag: 2.4.0
         replicas: 0
     ingress:
       app:
