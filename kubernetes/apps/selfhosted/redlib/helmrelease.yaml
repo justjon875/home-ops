@@ -28,7 +28,7 @@ spec:
           app:
             image:
               repository: quay.io/redlib/redlib
-              tag: latest@sha256:0f3deb99dce115dcf2655d0aeaf90f6ee41845d3c09650bb8edeb4bf6cf23b13
+              tag: latest@sha256:7a35cbddd44404f900ef5d886ffb97801d2d734004f48716f12d6ddd4b969fa3
     ingress:
       app:
         annotations:
