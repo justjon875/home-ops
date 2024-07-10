@@ -26,6 +26,7 @@ identity_providers:
         scopes: ["openid", "profile", "groups", "email"]
         redirect_uris: ["https://grafana.${ROOT_DOMAIN}/login/generic_oauth"]
         userinfo_signed_response_alg: none
+        token_endpoint_auth_method: 'client_secret_basic'
       - client_id: gitea
         authorization_policy: two_factor
         client_name: Gitea Lithium
