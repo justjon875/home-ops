@@ -28,6 +28,7 @@ spec:
           app:
             env:
               TZ: ${TIMEZONE}
+              WS_FALLBACK: true
             image:
               repository: lscr.io/linuxserver/pairdrop
               tag: 1.10.9@sha256:2c27a4fd5e70c0a13e16ac89ba94d319b7abb037676aba98051f0e2f944345a8
