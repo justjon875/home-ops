@@ -27,6 +27,7 @@ spec:
         containers:
           app:
             env:
+              DEBUG_MODE: true
               TZ: ${TIMEZONE}
               WS_FALLBACK: true
             image:
