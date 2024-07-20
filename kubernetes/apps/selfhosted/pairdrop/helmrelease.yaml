@@ -32,7 +32,7 @@ spec:
               WS_FALLBACK: true
             image:
               repository: lscr.io/linuxserver/pairdrop
-              tag: 1.10.9@sha256:2c27a4fd5e70c0a13e16ac89ba94d319b7abb037676aba98051f0e2f944345a8
+              tag: 1.10.9@sha256:702a8a3e36d2c6fc666de925f071e78e6bee3912568b1b666cc8b94253633886
     ingress:
       app:
         className: internal
