@@ -10,7 +10,9 @@ spec:
       sonarr:
         initContainers:
           init-db:
-            image: ghcr.io/onedr0p/postgres-init:14.10
+            image:
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 14
             envFrom:
               - secretRef:
                   name: sonarr-secret
