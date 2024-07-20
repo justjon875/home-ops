@@ -30,6 +30,9 @@ spec:
               PGID: '568'
               PUID: '568'
               TZ: Asia/Singapore
+            envFrom:
+              - secretRef:
+                  name: sonarr-secret
             image:
               repository: ghcr.io/onedr0p/sonarr
               tag: 3.0.10.1567@sha256:90200b6c31047426aaa175b05715f42edba6bfad34f7845a3ca1b8d8f41b9cd2
