@@ -29,6 +29,8 @@ spec:
             env:
               PGID: '568'
               PUID: '568'
+              SONARR__LOG__DBENABLED: "False"
+              SONARR__LOG__LEVEL: info
               TZ: Asia/Singapore
             envFrom:
               - secretRef:
