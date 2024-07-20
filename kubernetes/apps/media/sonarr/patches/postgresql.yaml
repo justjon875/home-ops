@@ -7,15 +7,16 @@ metadata:
 spec:
   values:
     controllers:
-      initContainers:
-        init-db:
-          image: ghcr.io/onedr0p/postgres-init:14.10
-          envFrom:
-            - secretRef:
-                name: sonarr-secret
-          env:
-            - name: INIT_POSTGRES_SUPER_PASS
-              valueFrom:
-                secretKeyRef:
-                  name: postgresql-superuser
-                  key: postgres-password
+      sonarr:
+        initContainers:
+          init-db:
+            image: ghcr.io/onedr0p/postgres-init:14.10
+            envFrom:
+              - secretRef:
+                  name: sonarr-secret
+            env:
+              - name: INIT_POSTGRES_SUPER_PASS
+                valueFrom:
+                  secretKeyRef:
+                    name: postgresql-superuser
+                    key: postgres-password
