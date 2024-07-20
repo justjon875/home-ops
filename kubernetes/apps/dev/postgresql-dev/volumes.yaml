@@ -22,13 +22,13 @@ spec:
     volumeHandle: "${NFS_HOST}${NFS_PATH}#postgresql-dev#"
     volumeAttributes:
       server: "${NFS_HOST}"
-      share: "${NFS_PATH}/postgresql-dev"
+      share: "${LOCAL_PATH}/postgresql-dev"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: postgresql-dev-pvc
-  namespace: default
+  namespace: dev
 spec:
   accessModes:
     - ReadWriteMany

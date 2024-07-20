@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: postgresql-dev
-  namespace: default
+  namespace: dev
 spec:
   interval: 15m
   chart:
@@ -28,13 +28,8 @@ spec:
         auth:
           postgresPassword: ${POSTGRESQL_PASSWORD}
     image:
-      registry: gitea.carbon.habanerojam.xyz/gitea_admin
-      repository: postgresql
-      tag: 16.1.0-debian-pgvector
-      debug: true
+      tag: 16.3
     primary:
-      initdb:
-        scriptsSecret: postgresql-dev-init
       persistence:
         enabled: true
         existingClaim: postgresql-dev-pvc
