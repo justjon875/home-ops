@@ -32,6 +32,12 @@ spec:
               repository: ghcr.io/onedr0p/postgres-init
               tag: 14
               pullPolicy: IfNotPresent
+            env:
+              - name: INIT_POSTGRES_SUPER_PASS
+                valueFrom:
+                  secretKeyRef:
+                    key: postgres-password
+                    name: postgresql-superuser
             envFrom: &envFrom
               - secretRef:
                   name: linkwarden-secret
