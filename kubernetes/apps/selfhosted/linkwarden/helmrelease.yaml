@@ -86,4 +86,4 @@ spec:
         controller: *app
         ports:
           http:
-            port: 5230
+            port: 3000
