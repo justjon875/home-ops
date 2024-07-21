@@ -3,5 +3,3 @@ kind: Kustomization
 namespace: dev
 resources:
   - ./namespace.yaml
-  - ./postgresql-dev
-
