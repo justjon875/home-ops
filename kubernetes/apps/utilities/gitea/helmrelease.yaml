@@ -44,9 +44,7 @@ spec:
           PROVIDER: redis
           PROVIDER_CONFIG: "redis://:${REDIS_PASSWORD}@${REDIS_HOST}:6379"
     image:
-      repository: gitea/gitea
-      # Overrides the image tag whose default is the chart appVersion.
-      tag: ""
+      rootless: true
     ingress:
       enabled: true
       className: internal
