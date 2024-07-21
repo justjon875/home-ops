@@ -46,8 +46,8 @@ spec:
     image:
       repository: gitea/gitea
       # Overrides the image tag whose default is the chart appVersion.
-      tag: "1.22.1"
-      digest: "sha256:4468d6f4a314bed5ab273aae32d1214a344ca79ac641277cd35a9056d805e4ca"
+      tag: "1.21.11-rootless"
+      digest: "sha256:ff14c3531ed8615261e6e1db617efa1eb9a9c23d5b8fe7f2742c02b190837aea"
     ingress:
       enabled: true
       className: internal
