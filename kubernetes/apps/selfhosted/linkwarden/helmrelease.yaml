@@ -65,7 +65,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: linkwarden
+        existingClaim: linkwarden-pvc
         globalMounts:
           - path: /data/config
       next-cache:
