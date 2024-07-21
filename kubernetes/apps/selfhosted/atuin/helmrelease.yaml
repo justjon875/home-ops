@@ -103,9 +103,7 @@ spec:
         controller: *app
         ports:
           http:
-            port: 80
-          metrics:
-            port: 8080
+            port: 3000
     serviceMonitor:
       app:
         enabled: true
