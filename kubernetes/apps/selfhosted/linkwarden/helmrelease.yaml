@@ -40,13 +40,13 @@ spec:
             image:
               repository: ghcr.io/linkwarden/linkwarden
               tag: v2.6.0
-          env:
-            STORAGE_FOLDER: "config" # Will always end up as /data/STOREAGE_FOLDER so eg /data/config
-            HOME: /data/config
-          envFrom: *envFrom
-          securityContext:
-            allowPrivilegeEscalation: false
-            capabilities: {drop: ["ALL"]}
+            env:
+              STORAGE_FOLDER: "config" # Will always end up as /data/STOREAGE_FOLDER so eg /data/config
+              HOME: /data/config
+            envFrom: *envFrom
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities: {drop: ["ALL"]}
     ingress:
       app:
         className: internal
