@@ -1,0 +1,88 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app forgejo
+  namespace: utilities
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: *app
+      version: 7.0.2
+      sourceRef:
+        kind: HelmRepository
+        name: *app
+        namespace: flux-system
+      interval: 15m
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    forgejo:
+      admin:
+        existingSecret: forgejo-admin-secrets
+      config:
+        cache:
+          ADAPTER: redis
+          HOST: "redis://:${REDIS_PASSWORD}@${REDIS_HOST}:6379"
+        database:
+          DB_TYPE: postgres
+          HOST: ${POSTGRESQL_HOST}
+        migrations:
+          ALLOWED_DOMAINS: gitea.lithium.${ROOT_DOMAIN}
+        queue:
+          CONN_STR: "redis://:${REDIS_PASSWORD}@${REDIS_HOST}:6379"
+        server:
+          LANDING_PAGE: login
+          ROOT_URL: https://forgejo.${ROOT_DOMAIN}
+          SSH_DOMAIN: &host forgejo.${ROOT_DOMAIN}
+        session:
+          PROVIDER: redis
+          PROVIDER_CONFIG: "redis://:${REDIS_PASSWORD}@${REDIS_HOST}:6379"
+    image:
+      rootless: true
+    ingress:
+      enabled: true
+      className: internal
+      annotations:
+        nginx.ingress.kubernetes.io/proxy-body-size: "0"
+      hosts:
+        - host: *host
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - *host
+    memcached:
+      enabled: false
+    redis-cluster:
+      enabled: false
+    postgresql:
+      enabled: false
+    postgresql-ha:
+      enabled: false
+    persistence:
+      create: false
+      enabled: true
+      claimName: forgejo-pvc
+    service:
+      ssh:
+        port: 2222
+  valuesFrom:
+    - kind: Secret
+      name: forgejo-config-database-secret
+      targetPath: forgejo.config.database.NAME
+      valuesKey: NAME
+    - kind: Secret
+      name: forgejo-config-database-secret
+      targetPath: forgejo.config.database.PASSWD
+      valuesKey: PASSWD
+    - kind: Secret
+      name: forgejo-config-database-secret
+      targetPath: forgejo.config.database.USER
+      valuesKey: USER
