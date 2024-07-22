@@ -22,7 +22,7 @@ spec:
     remediation:
       retries: 5
   values:
-    forgejo:
+    gitea:
       admin:
         existingSecret: forgejo-admin-secrets
       config:
