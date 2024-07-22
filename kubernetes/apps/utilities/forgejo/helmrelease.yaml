@@ -76,13 +76,13 @@ spec:
   valuesFrom:
     - kind: Secret
       name: forgejo-config-database-secret
-      targetPath: forgejo.config.database.NAME
+      targetPath: gitea.config.database.NAME
       valuesKey: NAME
     - kind: Secret
       name: forgejo-config-database-secret
-      targetPath: forgejo.config.database.PASSWD
+      targetPath: gitea.config.database.PASSWD
       valuesKey: PASSWD
     - kind: Secret
       name: forgejo-config-database-secret
-      targetPath: forgejo.config.database.USER
+      targetPath: gitea.config.database.USER
       valuesKey: USER
