@@ -32,6 +32,9 @@ spec:
               SONARR__LOG__DBENABLED: "False"
               SONARR__LOG__LEVEL: info
               TZ: Asia/Singapore
+            envFrom:
+              - secretRef:
+                  name: sonarr-secret
             image:
               repository: ghcr.io/onedr0p/sonarr-develop
               tag: 4.0.8.1902@sha256:717e5ad40303f4f8eba15d9476a86a7c7c9fe3003ec6d6b4c5fab37d19f6fff0
