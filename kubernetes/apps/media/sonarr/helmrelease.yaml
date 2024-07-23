@@ -31,6 +31,7 @@ spec:
               PUID: '568'
               SONARR__LOG__DBENABLED: "False"
               SONARR__LOG__LEVEL: info
+              SONARR__SERVER__PORT: &port 80
               TZ: Asia/Singapore
             envFrom:
               - secretRef:
@@ -54,7 +55,7 @@ spec:
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
+              capabilities: {drop: ["ALL"]}
     defaultPodOptions:
       securityContext:
         fsGroup: 568
@@ -103,4 +104,4 @@ spec:
         controller: sonarr
         ports:
           http:
-            port: 8989
+            port: *port
