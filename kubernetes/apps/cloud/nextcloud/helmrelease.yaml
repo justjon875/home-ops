@@ -41,8 +41,7 @@ spec:
       type: postgresql
     image:
       repository: nextcloud
-      tag: 29.0.4-fpm-alpine
-      flavor: fpm-alpine
+      tag: 29.0.4
     ingress:
       annotations:
         nginx.ingress.kubernetes.io/proxy-body-size: "10G"
