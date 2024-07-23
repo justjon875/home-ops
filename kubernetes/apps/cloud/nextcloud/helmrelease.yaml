@@ -1,4 +1,3 @@
----
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -42,7 +41,8 @@ spec:
       type: postgresql
     image:
       repository: nextcloud
-      tag: 28.0.8@sha256:affe15e18129609d4ba48904938421fe326926e9b0f30da84c4fc5df7d838977
+      tag: 29.0.4-fpm-alpine
+      flavor: fpm-alpine
     ingress:
       annotations:
         nginx.ingress.kubernetes.io/proxy-body-size: "10G"
