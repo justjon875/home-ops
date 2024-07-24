@@ -32,10 +32,6 @@ spec:
             image:
               repository: lscr.io/linuxserver/pairdrop
               tag: 1.10.9@sha256:702a8a3e36d2c6fc666de925f071e78e6bee3912568b1b666cc8b94253633886
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: {drop: ["ALL"]}
     defaultPodOptions:
       securityContext:
         runAsGroup: 65534
