@@ -76,10 +76,6 @@ data:
             href: https://unifi.lithium.${ROOT_DOMAIN}
             icon: unifi.png
             description: Unifi console
-        - wg-access-server:
-            href: https://vpn.lithium.${ROOT_DOMAIN}
-            icon: wireguard.png
-            description: WireGuard VPN server and a web user interface
         - Whoogle lithium:
             href: https://whoogle.lithium.${ROOT_DOMAIN}
             icon: whooglesearch.png
@@ -262,10 +258,10 @@ data:
             href: https://k8s.${ROOT_DOMAIN}
             icon: kubernetes-dashboard.png
             description: Kubernetes Dashboard
-        - Gitea:
-            href: https://gitea.${ROOT_DOMAIN}
-            icon: gitea.png
-            description: Git with a cup of tea
+        - Forgejo:
+            href: https://forgejo.${ROOT_DOMAIN}
+            icon: forgejo.png
+            description: self-hosted lightweight software forge
         - Goldilocks:
             href: https://goldilocks.${ROOT_DOMAIN}
             icon: https://raw.githubusercontent.com/FairwindsOps/goldilocks/master/img/goldilocks.svg
