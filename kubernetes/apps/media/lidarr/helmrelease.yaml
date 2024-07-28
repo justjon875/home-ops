@@ -27,10 +27,14 @@ spec:
         containers:
           app:
             env:
-              PGID: '568'
-              PUID: '568'
+              LIDARR__AUTH__METHOD: External
+              LIDARR__AUTH__REQUIRED: DisabledForLocalAddresses
+              LIDARR__APP__THEME: dark
               LIDARR__LOG__DBENABLED: "False"
               LIDARR__LOG__LEVEL: info
+              LIDARR__UPDATE__BRANCH: develop
+              PGID: '568'
+              PUID: '568'
               TZ: Asia/Singapore
             envFrom:
               - secretRef:
