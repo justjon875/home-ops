@@ -96,4 +96,4 @@ spec:
         controller: lidarr
         ports:
           http:
-            port: 8989
+            port: 8686
