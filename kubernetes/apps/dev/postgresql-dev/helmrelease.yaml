@@ -1,15 +1,14 @@
----
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: postgresql-dev
-  namespace: default
+  namespace: dev
 spec:
   interval: 15m
   chart:
     spec:
       chart: postgresql
-      version: 12.12.10
+      version: 15.5.17
       sourceRef:
         kind: HelmRepository
         name: bitnami
@@ -28,34 +27,11 @@ spec:
         auth:
           postgresPassword: ${POSTGRESQL_PASSWORD}
     image:
-      registry: gitea.carbon.habanerojam.xyz/gitea_admin
-      repository: postgresql
-      tag: 16.1.0-debian-pgvector
-      debug: true
+      tag: 15
     primary:
-      initdb:
-        scriptsSecret: postgresql-dev-init
       persistence:
         enabled: true
         existingClaim: postgresql-dev-pvc
-      extendedConfiguration: |-
-        huge_pages = off
-      extraVolumeMounts:
-        - name: pg-sample-config
-          mountPath: /opt/bitnami/postgresql/share/postgresql.conf.sample
-          subPath: postgresql.conf.sample
-      extraVolumes:
-        - configMap:
-            name: pg-sample-config
-          name:  pg-sample-config
-    extraDeploy:
-      - apiVersion: v1
-        kind: ConfigMap
-        metadata:
-          name: pg-sample-config
-        data:
-          postgresql.conf.sample: |-
-            huge_pages = off
     volumePermissions:
       securityContext:
         runAsUser: 1000
