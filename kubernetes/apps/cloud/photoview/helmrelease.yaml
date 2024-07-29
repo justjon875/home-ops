@@ -32,6 +32,13 @@ spec:
             image:
               repository: viktorstrate/photoview
               tag: 2.4.0
+        pod:
+          securityContext:
+            fsGroup: 33
+            fsGroupChangePolicy: OnRootMismatch
+            runAsGroup: 33
+            runAsNonRoot: true
+            runAsUser: 33
         replicas: 0
     ingress:
       app:

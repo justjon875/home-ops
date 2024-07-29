@@ -1,4 +1,3 @@
----
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -36,6 +35,9 @@ spec:
           - &host k8s.${ROOT_DOMAIN}
         issuer:
           scope: disabled
+        tls:
+          - hosts:
+              - *host
     metricsScraper:
       enabled: true
     nginx:
