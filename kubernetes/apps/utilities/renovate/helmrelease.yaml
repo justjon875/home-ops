@@ -41,11 +41,11 @@ spec:
           "repositories": [
               "gitea_admin/home-ops"
           ],
-          hostRules: [
+          "hostRules": [
             {
-              hostType: 'docker',
-              username: '${DOCKER_HUB_USERNAME}',
-              password: ${DOCKER_HUB_PASSWORD},
+              "hostType": "docker",
+              "username": "${DOCKER_HUB_USERNAME}",
+              "password": "${DOCKER_HUB_PASSWORD}",
             },
           ],
         }
