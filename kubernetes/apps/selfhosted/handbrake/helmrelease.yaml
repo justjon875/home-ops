@@ -29,7 +29,7 @@ spec:
               TZ: ${TZ}
             image:
               repository: docker.io/jlesage/handbrake
-              tag: v23.12.2@sha256:7c43c9d281a2e9a9796304d578bcc9312407e1953b046b84912f55e3e49101bf
+              tag: v24.06.1@sha256:90bf16ad0c7744340f1f46bc106ad3bc601c875a0614ad74b746739555e83d83
     ingress:
       app:
         className: internal
