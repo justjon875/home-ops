@@ -30,7 +30,7 @@ spec:
               extra_params: --o:ssl.termination=true --o:ssl.enable=false
             image:
               repository: collabora/code
-              tag: 23.05.10.1.1@sha256:05299b452f7f177bcad7654ac665ef7fe8cd69f151061e252575464ecfb5d4b3
+              tag: 24.04.5.2.1@sha256:1582d87ab06f586e7b0b3cee4ca970393b8f3d5597eb2a9d0a4f5861b1b138c1
     ingress:
       app:
         className: internal
