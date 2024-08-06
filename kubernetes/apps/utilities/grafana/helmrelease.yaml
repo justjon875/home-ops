@@ -1,4 +1,3 @@
----
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
@@ -51,7 +50,6 @@ spec:
         enabled: true
         name: Authelia
         client_id: grafana
-        client_secret: ${SECRET_GRAFANA_OAUTH_CLIENT}
         scopes: openid profile email groups
         empty_scopes: false
         auth_url: https://auth.${ROOT_DOMAIN}/api/oidc/authorization
@@ -122,6 +120,8 @@ spec:
           gnetId: 1860
           revision: 29
           datasource: Prometheus
+    envFromSecrets:
+      - name: grafana-oauth
     sidecar:
       dashboards:
         enabled: true
