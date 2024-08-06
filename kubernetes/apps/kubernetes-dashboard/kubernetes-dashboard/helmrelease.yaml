@@ -33,11 +33,9 @@ spec:
         ingressClassName: internal
         hosts:
           - &host k8s.${ROOT_DOMAIN}
-        issuer:
-          scope: disabled
         tls:
-          - hosts:
-              - *host
+          hosts:
+            - *host
     metricsScraper:
       enabled: true
     nginx:
