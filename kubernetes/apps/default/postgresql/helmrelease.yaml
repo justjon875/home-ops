@@ -44,6 +44,13 @@ spec:
         - configMap:
             name: pg-sample-config
           name: pg-sample-config
+      resources:
+        requests:
+          cpu: 15m
+          memory: 349M
+        limits:
+          cpu: 396m
+          memory: 2250M
     extraDeploy:
       - apiVersion: v1
         kind: ConfigMap
