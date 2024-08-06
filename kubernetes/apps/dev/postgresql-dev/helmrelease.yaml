@@ -32,6 +32,13 @@ spec:
       persistence:
         enabled: true
         existingClaim: postgresql-dev-pvc
+      resources:
+        requests:
+          cpu: 15m
+          memory: 345M
+        limits:
+          cpu: 1438m
+          memory: 3532M
     volumePermissions:
       securityContext:
         runAsUser: 1000
