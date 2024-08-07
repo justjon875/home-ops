@@ -30,7 +30,7 @@ spec:
           init-db:
             image:
               repository: ghcr.io/onedr0p/postgres-init
-              tag: 14
+              tag: 16
               pullPolicy: IfNotPresent
             env:
               - name: INIT_POSTGRES_SUPER_PASS
