@@ -38,6 +38,9 @@ spec:
     ingress:
       main:
         enabled: true
+        image:
+          repository: 1337kavin/piped-frontend
+          tag: latest@sha256:fa1f56517b50c5f0092169672486fea8b7223961eef69d5b9c24aa798264a15f
         annotations:
           nginx.ingress.kubernetes.io/enable-cors: "true"
           nginx.ingress.kubernetes.io/cors-allow-origin: "https://piped.${ROOT_DOMAIN}, https://ytproxy.${ROOT_DOMAIN}, https://pipedapi.${ROOT_DOMAIN}"
@@ -51,6 +54,9 @@ spec:
               - *host
       backend:
         enabled: true
+        image:
+          repository: docker.io/1337kavin/piped
+          tag: latest@sha256:e9938cdda0745c4986d4add0f255777d3989849b851f290d94a4ab2b21c25384
         annotations:
           nginx.ingress.kubernetes.io/enable-cors: "true"
           nginx.ingress.kubernetes.io/cors-allow-origin: "https://piped.${ROOT_DOMAIN}, https://ytproxy.${ROOT_DOMAIN}, https://pipedapi.${ROOT_DOMAIN}"
@@ -64,6 +70,10 @@ spec:
               - *pipedapi
       ytproxy:
         enabled: true
+        image:
+          repository: 1337kavin/piped-proxy
+          tag: latest@sha256:1822ff4d93be0119d5fe6526f74b034a0ff35db1a9c8b652e095e17d2f8edab5
+          pullPolicy: always
         annotations:
           nginx.ingress.kubernetes.io/enable-cors: "true"
           nginx.ingress.kubernetes.io/cors-allow-origin: "https://piped.${ROOT_DOMAIN}, https://ytproxy.${ROOT_DOMAIN}, https://pipedapi.${ROOT_DOMAIN}"
