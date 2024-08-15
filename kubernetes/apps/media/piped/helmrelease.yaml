@@ -1,4 +1,3 @@
----
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
@@ -24,11 +23,9 @@ spec:
   values:
     postgresql:
       enabled: false
-
     frontend:
       env:
         BACKEND_HOSTNAME: &pipedapi pipedapi.${ROOT_DOMAIN}
-
     backend:
       config:
         PORT: 8080
@@ -38,12 +35,13 @@ spec:
           connection_url: jdbc:postgresql://${POSTGRESQL_HOST}:5432/piped
           driver_class: org.postgresql.Driver
           dialect: org.hibernate.dialect.PostgreSQLDialect
-
     ingress:
       main:
         enabled: true
-        ingressClassName: internal
         annotations:
+          nginx.ingress.kubernetes.io/enable-cors: "true"
+          nginx.ingress.kubernetes.io/cors-allow-origin: "https://piped.${ROOT_DOMAIN}, https://ytproxy.${ROOT_DOMAIN}, https://pipedapi.${ROOT_DOMAIN}"
+        ingressClassName: internal
         hosts:
           - host: &host piped.${ROOT_DOMAIN}
             paths:
@@ -51,9 +49,11 @@ spec:
         tls:
           - hosts:
               - *host
-
       backend:
         enabled: true
+        annotations:
+          nginx.ingress.kubernetes.io/enable-cors: "true"
+          nginx.ingress.kubernetes.io/cors-allow-origin: "https://piped.${ROOT_DOMAIN}, https://ytproxy.${ROOT_DOMAIN}, https://pipedapi.${ROOT_DOMAIN}"
         ingressClassName: internal
         hosts:
           - host: *pipedapi
@@ -62,9 +62,11 @@ spec:
         tls:
           - hosts:
               - *pipedapi
-
       ytproxy:
         enabled: true
+        annotations:
+          nginx.ingress.kubernetes.io/enable-cors: "true"
+          nginx.ingress.kubernetes.io/cors-allow-origin: "https://piped.${ROOT_DOMAIN}, https://ytproxy.${ROOT_DOMAIN}, https://pipedapi.${ROOT_DOMAIN}"
         ingressClassName: internal
         hosts:
           - host: &proxy ytproxy.${ROOT_DOMAIN}
@@ -73,7 +75,6 @@ spec:
         tls:
           - hosts:
               - *proxy
-
   valuesFrom:
     - kind: Secret
       name: *app
