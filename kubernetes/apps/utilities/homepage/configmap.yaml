@@ -209,6 +209,10 @@ data:
             href: https://linkwarden.${ROOT_DOMAIN}
             icon: /icons/linkwarden.png
             description: ️Self-hosted collaborative bookmark manager to collect, organize, and preserve webpages and articles
+            widget:
+              type: linkwarden
+              url: https://linkwarden.${ROOT_DOMAIN}
+              key: ${SECRET_LINKWARDEN}
         - Memos:
             href: https://memos.${ROOT_DOMAIN}
             icon: memos.png
@@ -254,10 +258,10 @@ data:
             href: https://element.${ROOT_DOMAIN}
             icon: element.png
             description: Element is a Matrix-based end-to-end encrypted messenger and secure collaboration app
-        - Kubernetes:
-            href: https://k8s.${ROOT_DOMAIN}
-            icon: kubernetes-dashboard.png
-            description: Kubernetes Dashboard
+        - Frigate:
+            href: https://frigate.${ROOT_DOMAIN}
+            icon: frigate.png
+            description: Frigate is an open source NVR built around real-time AI object detection
         - Forgejo:
             href: https://forgejo.${ROOT_DOMAIN}
             icon: forgejo.png
@@ -270,6 +274,10 @@ data:
             href: https://grafana.${ROOT_DOMAIN}
             icon: grafana.png
             description: Metric Monitoring
+        - Kubernetes:
+            href: https://k8s.${ROOT_DOMAIN}
+            icon: kubernetes-dashboard.png
+            description: Kubernetes Dashboard
         - Weave:
             href: https://weave.${ROOT_DOMAIN}
             icon: /icons/weave.svg
@@ -292,8 +300,10 @@ data:
           - icon: mullvad.png
             href: https://mullvad.net/en/check
 
-
       - Social:
+        - Lemmy:
+          - icon: lemmy.png
+            href: https://p.lemmy.world
         - Twitch:
           - icon: twitch.png
             href: https://twitch.tv
