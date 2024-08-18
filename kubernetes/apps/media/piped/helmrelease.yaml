@@ -26,6 +26,9 @@ spec:
     frontend:
       env:
         BACKEND_HOSTNAME: &pipedapi pipedapi.${ROOT_DOMAIN}
+      image:
+        repository: docker.io/1337kavin/piped-frontend
+        pullPolicy: "Always"
     backend:
       config:
         PORT: 8080
@@ -35,12 +38,16 @@ spec:
           connection_url: jdbc:postgresql://${POSTGRESQL_HOST}:5432/piped
           driver_class: org.postgresql.Driver
           dialect: org.hibernate.dialect.PostgreSQLDialect
+      image:
+        repository: docker.io/1337kavin/piped
+        tag: latest@sha256:e9938cdda0745c4986d4add0f255777d3989849b851f290d94a4ab2b21c25384
+    ytproxy:
+      image:
+        repository: "docker.io/1337kavin/piped-proxy"
+        pullPolicy: "Always"
     ingress:
       main:
         enabled: true
-        image:
-          repository: 1337kavin/piped-frontend
-          tag: latest@sha256:fa1f56517b50c5f0092169672486fea8b7223961eef69d5b9c24aa798264a15f
         annotations:
           nginx.ingress.kubernetes.io/enable-cors: "true"
           nginx.ingress.kubernetes.io/cors-allow-origin: "https://piped.${ROOT_DOMAIN}, https://ytproxy.${ROOT_DOMAIN}, https://pipedapi.${ROOT_DOMAIN}"
@@ -54,9 +61,6 @@ spec:
               - *host
       backend:
         enabled: true
-        image:
-          repository: docker.io/1337kavin/piped
-          tag: latest@sha256:e9938cdda0745c4986d4add0f255777d3989849b851f290d94a4ab2b21c25384
         annotations:
           nginx.ingress.kubernetes.io/enable-cors: "true"
           nginx.ingress.kubernetes.io/cors-allow-origin: "https://piped.${ROOT_DOMAIN}, https://ytproxy.${ROOT_DOMAIN}, https://pipedapi.${ROOT_DOMAIN}"
@@ -70,10 +74,6 @@ spec:
               - *pipedapi
       ytproxy:
         enabled: true
-        image:
-          repository: 1337kavin/piped-proxy
-          tag: latest@sha256:7220664c6bacae90d7aae0dd4912fa2dbb0afc350fa0a225caa513067e043f46
-          pullPolicy: always
         annotations:
           nginx.ingress.kubernetes.io/enable-cors: "true"
           nginx.ingress.kubernetes.io/cors-allow-origin: "https://piped.${ROOT_DOMAIN}, https://ytproxy.${ROOT_DOMAIN}, https://pipedapi.${ROOT_DOMAIN}"
