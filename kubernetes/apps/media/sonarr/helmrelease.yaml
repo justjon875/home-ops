@@ -27,8 +27,8 @@ spec:
         containers:
           app:
             env:
-              PGID: '568'
-              PUID: '568'
+              PGID: "568"
+              PUID: "568"
               SONARR__LOG__DBENABLED: "False"
               SONARR__LOG__LEVEL: info
               TZ: Asia/Singapore
@@ -41,7 +41,7 @@ spec:
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
-              capabilities: {drop: ["ALL"]}
+              capabilities: { drop: ["ALL"] }
     defaultPodOptions:
       securityContext:
         fsGroup: 568

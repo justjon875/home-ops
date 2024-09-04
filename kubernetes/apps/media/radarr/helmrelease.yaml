@@ -27,12 +27,19 @@ spec:
         containers:
           app:
             env:
-              PGID: '568'
-              PUID: '568'
+              PGID: "568"
+              PUID: "568"
               TZ: ${TIMEZONE}
+            envFrom:
+              - secretRef:
+                  name: radarr-secret
             image:
-              repository: ghcr.io/onedr0p/radarr
-              tag: 5.9.1.9070@sha256:e76564ac8bc01e859a5b14ce62e6c9153da52a610f4cfcd6626a89b7a89ca22b
+              repository: ghcr.io/onedr0p/radarr-develop
+              tag: 5.10.1@sha256:cc4aa3bbcf90671ebc85c086a1139868f613e750eb757b103ed7bdf13481c37c
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
     defaultPodOptions:
       securityContext:
         fsGroup: 568
