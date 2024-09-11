@@ -31,7 +31,7 @@ spec:
               TZ: ${TIMEZONE}
             image:
               repository: ghcr.io/alexta69/metube
-              tag: latest@sha256:cea4b8628563a7497a88c9970418ff335722c6b53820911bccc6105b8a0a5a28
+              tag: latest@sha256:bb4ee664244b6240f2e68ae54ad7f45ac74a39506e9fb4e99fafafaf602fa32e
     defaultPodOptions:
       securityContext:
         fsGroup: 568
