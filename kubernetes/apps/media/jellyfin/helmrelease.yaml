@@ -37,10 +37,10 @@ spec:
             resources:
               requests:
                 cpu: 78m
-                memory: 10000M
+                memory: 3667M
               limits:
                 cpu: 78m
-                memory: 3667M
+                memory: 10000M
         initContainers:
           init-permission:
             command:
