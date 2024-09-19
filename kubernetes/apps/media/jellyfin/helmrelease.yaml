@@ -35,11 +35,12 @@ spec:
               repository: ghcr.io/jellyfin/jellyfin
               tag: 10.9.11@sha256:fc1b51f4be3fba725e42dae2022d9c6a5b069acce01bef04d32fdee025dc511e
             resources:
-              limits:
-                memory: 6000Mi
               requests:
-                cpu: 100m
-                memory: 1000Mi
+                cpu: 78m
+                memory: 3667M
+              limits:
+                cpu: 78m
+                memory: 3667M
         initContainers:
           init-permission:
             command:
@@ -106,7 +107,7 @@ spec:
         enabled: true
         type: emptyDir
         globalMounts:
-           - path: /transcodes
+          - path: /transcodes
     service:
       app:
         controller: jellyfin
