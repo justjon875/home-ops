@@ -39,7 +39,7 @@ spec:
                 cpu: 78m
                 memory: 3667M
               limits:
-                cpu: 78m
+                cpu: 120m
                 memory: 10000M
         initContainers:
           init-permission:
