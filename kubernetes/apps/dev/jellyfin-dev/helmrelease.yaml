@@ -1,0 +1,102 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: jellyfin-dev
+  namespace: dev
+spec:
+  chart:
+    spec:
+      chart: app-template
+      interval: 15m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+      version: 3.4.0
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  interval: 15m
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    controllers:
+      jellyfin:
+        containers:
+          app:
+            env:
+              - name: NVIDIA_VISIBLE_DEVICES
+                value: all
+              - name: NVIDIA_DRIVER_CAPABILITIES
+                value: all
+            image:
+              repository: ghcr.io/jellyfin/jellyfin
+              tag: 10.9.11@sha256:fc1b51f4be3fba725e42dae2022d9c6a5b069acce01bef04d32fdee025dc511e
+            resources:
+              requests:
+                cpu: 78m
+                memory: 10000M
+              limits:
+                cpu: 78m
+                memory: 3667M
+        initContainers:
+          init-permission:
+            command:
+              - sh
+              - -c
+              - chown -R 568:568 /media
+              - chown -R 568:568 /transcodes
+            image:
+              repository: ghcr.io/cbc02009/busybox
+              tag: 1.36.1
+            securityContext:
+              runAsUser: 0
+        pod:
+          securityContext:
+            fsGroup: 568
+            fsGroupChangePolicy: OnRootMismatch
+            runAsGroup: 568
+            runAsUser: 568
+            supplementalGroups:
+              - 65539
+    ingress:
+      app:
+        className: internal
+        enabled: true
+        hosts:
+          - host: &host jellyfin-dev.${ROOT_DOMAIN}
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: app
+                  port: http
+        tls:
+          - hosts:
+              - *host
+    persistence:
+      config:
+        enabled: true
+        path: /mnt/ssd/jellyfin/config
+        server: ${NFS_HOST}
+        type: nfs
+      media:
+        enabled: true
+        globalMounts:
+          - path: /media
+        path: /mnt/ssd/jellyfin/media
+        server: ${NFS_HOST}
+        type: nfs
+      transcodes:
+        enabled: true
+        type: emptyDir
+        globalMounts:
+          - path: /transcodes
+    service:
+      app:
+        controller: jellyfin
+        ports:
+          http:
+            port: 8096
