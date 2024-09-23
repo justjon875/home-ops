@@ -28,7 +28,7 @@ spec:
           app:
             image:
               repository: ghcr.io/jellyfin/jellyfin
-              tag: 10.9.8
+              tag: 10.9.11
     ingress:
       app:
         className: internal
