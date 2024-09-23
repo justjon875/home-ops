@@ -26,41 +26,9 @@ spec:
       jellyfin:
         containers:
           app:
-            env:
-              - name: NVIDIA_VISIBLE_DEVICES
-                value: all
-              - name: NVIDIA_DRIVER_CAPABILITIES
-                value: all
             image:
               repository: ghcr.io/jellyfin/jellyfin
-              tag: 10.9.11@sha256:fc1b51f4be3fba725e42dae2022d9c6a5b069acce01bef04d32fdee025dc511e
-            resources:
-              requests:
-                cpu: 78m
-                memory: 3667M
-              limits:
-                cpu: 78m
-                memory: 10000M
-        initContainers:
-          init-permission:
-            command:
-              - sh
-              - -c
-              - chown -R 568:568 /media
-              - chown -R 568:568 /transcodes
-            image:
-              repository: ghcr.io/cbc02009/busybox
-              tag: 1.36.1
-            securityContext:
-              runAsUser: 0
-        pod:
-          securityContext:
-            fsGroup: 568
-            fsGroupChangePolicy: OnRootMismatch
-            runAsGroup: 568
-            runAsUser: 568
-            supplementalGroups:
-              - 65539
+              tag: 10.9.8
     ingress:
       app:
         className: internal
@@ -89,11 +57,6 @@ spec:
         path: /mnt/ssd/jellyfin/media
         server: ${NFS_HOST}
         type: nfs
-      transcodes:
-        enabled: true
-        type: emptyDir
-        globalMounts:
-          - path: /transcodes
     service:
       app:
         controller: jellyfin
