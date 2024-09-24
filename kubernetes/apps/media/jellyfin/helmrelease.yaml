@@ -34,13 +34,6 @@ spec:
             image:
               repository: ghcr.io/jellyfin/jellyfin
               tag: 10.9.11@sha256:fc1b51f4be3fba725e42dae2022d9c6a5b069acce01bef04d32fdee025dc511e
-            resources:
-              requests:
-                cpu: 78m
-                memory: 3667M
-              limits:
-                cpu: 120m
-                memory: 10000M
         initContainers:
           init-permission:
             command:
