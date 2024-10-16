@@ -4,8 +4,7 @@ data:
   LOG_LEVEL: "verbose"
   NODE_ENV: "production"
   REDIS_HOSTNAME: redis-master.default.svc.cluster.local
-  IMMICH_SERVER_URL: http://immich-server.cloud.svc.cluster.local:3001
-  IMMICH_WEB_URL: http://immich-web.cloud.svc.cluster.local:3000
+  IMMICH_SERVER_URL: http://immich-server.cloud.svc.cluster.local:2283
   IMMICH_MACHINE_LEARNING_URL: http://immich-machine-learning.cloud.svc.cluster.local:3003
   TYPESENSE_HOST: immich-typesense.cloud.svc.cluster.local
   TYPESENSE_PORT: "8108"
