@@ -100,4 +100,4 @@ spec:
         controller: server
         ports:
           http:
-            port: 3001
+            port: 2283
