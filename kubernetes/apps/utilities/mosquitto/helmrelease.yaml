@@ -33,7 +33,7 @@ spec:
           app:
             image:
               repository: docker.io/library/eclipse-mosquitto
-              tag: 2.0.20@sha256:eb37f58646a901dc7727cf448cae36daaefaba79de33b5058dab79aa4c04aefb
+              tag: 2.0.20@sha256:090d745b6435d10a31acb82eee999ec36a2d7f416cc4f578c0a298c42af2ea14
             resources:
               limits:
                 memory: 16Mi
@@ -54,7 +54,7 @@ spec:
               - -c
             image:
               repository: docker.io/library/eclipse-mosquitto
-              tag: 2.0.20@sha256:eb37f58646a901dc7727cf448cae36daaefaba79de33b5058dab79aa4c04aefb
+              tag: 2.0.20@sha256:090d745b6435d10a31acb82eee999ec36a2d7f416cc4f578c0a298c42af2ea14
         pod:
           securityContext:
             fsGroup: 568
