@@ -32,6 +32,13 @@ spec:
               PGID: "568"
               PUID: "568"
               TZ: ${TIMEZONE}
+              RADARR__APP__INSTANCENAME: Radarr
+              RADARR__APP__THEME: dark
+              RADARR__AUTH__METHOD: External
+              RADARR__AUTH__REQUIRED: DisabledForLocalAddresses
+              RADARR__LOG__DBENABLED: "False"
+              RADARR__LOG__LEVEL: info
+              RADARR__UPDATE__BRANCH: develop
             envFrom:
               - secretRef:
                   name: radarr-secret
