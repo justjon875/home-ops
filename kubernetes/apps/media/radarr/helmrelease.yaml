@@ -44,10 +44,12 @@ spec:
               capabilities: { drop: ["ALL"] }
     defaultPodOptions:
       securityContext:
+        runAsNonRoot: true
+        runAsUser: 568
+        runAsGroup: 568
         fsGroup: 568
         fsGroupChangePolicy: OnRootMismatch
-        runAsGroup: 568
-        runAsUser: 568
+        seccompProfile: { type: RuntimeDefault }
     ingress:
       app:
         className: internal
