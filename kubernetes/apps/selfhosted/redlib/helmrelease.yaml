@@ -26,6 +26,9 @@ spec:
       redlib:
         containers:
           app:
+            env:
+              REDLIB_DEFAULT_SHOW_NSFW: on
+              REDLIB_DEFAULT_THEME: dark
             image:
               repository: quay.io/redlib/redlib
               tag: latest@sha256:a3f1eca3ebfc043eea4bc8274b1e9fe86ec15d0efa13536bd519f36eb18f763d
@@ -36,7 +39,7 @@ spec:
         className: external
         enabled: true
         hosts:
-          - host: &host '{{ .Release.Name }}.${ROOT_DOMAIN}'
+          - host: &host "{{ .Release.Name }}.${ROOT_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
