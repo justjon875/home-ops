@@ -87,7 +87,6 @@ data:
             description: High performance self-hosted photo and video backup solution
             namespace: cloud
             app: immich
-            version: 2
             podSelector: >-
               app.kubernetes.io/instance in (
                   immich-machine-learning,
@@ -97,6 +96,7 @@ data:
               type: immich
               url: https://immich.${ROOT_DOMAIN}
               key: ${SECRET_IMMICH_KEY}
+              version: 2
         - Nextcloud:
             href: https://nextcloud.${ROOT_DOMAIN}
             icon: nextcloud.png
