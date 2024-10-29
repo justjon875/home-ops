@@ -13,7 +13,6 @@ metadata:
       that are not not exposed to the internet.
 spec:
   mutateExistingOnPolicyUpdate: true
-  generateExistingOnPolicyUpdate: true
   rules:
     - name: whitelist-source-range
       match:
