@@ -25,6 +25,48 @@ spec:
     remediation:
       retries: 3
   values:
+    admissionController:
+      clusterRole:
+        extraResources:
+          - apiGroups:
+              - "*"
+            resources:
+              - "*"
+            verbs:
+              - get
+              - list
+              - watch
+      serviceMonitor:
+        enabled: true
+    backgroundController:
+      clusterRole:
+        extraResources:
+          - apiGroups:
+              - "*"
+            resources:
+              - "*"
+            verbs:
+              - get
+              - list
+              - watch
+      resources:
+        requests:
+          cpu: 100m
+        limits:
+          memory: 1Gi
+      serviceMonitor:
+        enabled: true
+    reportsController:
+      clusterRole:
+        extraResources:
+          - apiGroups:
+              - "*"
+            resources:
+              - "*"
+            verbs:
+              - get
+              - list
+              - watch
     crds:
       install: true
     serviceMonitor:
