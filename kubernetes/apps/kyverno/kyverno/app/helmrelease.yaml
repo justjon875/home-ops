@@ -29,9 +29,8 @@ spec:
       clusterRole:
         extraResources:
           - apiGroups:
-              - "*"
+              - ""
             resources:
-              - "*"
               - secrets
             verbs:
               - get
