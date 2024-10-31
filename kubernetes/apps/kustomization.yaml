@@ -10,7 +10,6 @@ resources:
   - infra
   - kube-system
   - kubernetes-dashboard
-  - kyverno
   - media
   - networking
   - selfhosted
