@@ -13,6 +13,9 @@ spec:
         name: bjw-s
         namespace: flux-system
       version: 3.5.1
+  dependsOn:
+    - name: postgresql
+      namespace: default
   install:
     createNamespace: true
     remediation:
