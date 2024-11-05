@@ -7,7 +7,6 @@ resources:
   - invidious
   - jellyfin
   - jellyseerr
-  - lidarr
   - metube
   - navidrome
   - piped
