@@ -29,6 +29,14 @@ spec:
             image:
               repository: ghcr.io/jellyfin/jellyfin
               tag: 10.10.1
+              resources:
+          requests:
+            cpu: 15m
+            memory: 204M
+          limits:
+            cpu: 49m
+            memory: 1399M
+            gpu.intel.com/i915: 1
     ingress:
       app:
         className: internal
