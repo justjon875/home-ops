@@ -29,18 +29,6 @@ spec:
             image:
               repository: ghcr.io/jellyfin/jellyfin
               tag: 10.10.1@sha256:12b7aa2c8086e5566badc35370fab41b8cc8774dc3a80b07a1d6eb14f282b816
-        initContainers:
-          init-permission:
-            command:
-              - sh
-              - -c
-              - chown -R 568:568 /media
-              - chown -R 568:568 /transcodes
-            image:
-              repository: ghcr.io/cbc02009/busybox
-              tag: 1.37.0
-            securityContext:
-              runAsUser: 0
         pod:
           securityContext:
             fsGroup: 568
@@ -49,6 +37,8 @@ spec:
             runAsUser: 568
             supplementalGroups:
               - 65539
+              - 44 # video
+              - 109 # render
     ingress:
       app:
         className: internal
