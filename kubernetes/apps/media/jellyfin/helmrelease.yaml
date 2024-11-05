@@ -38,7 +38,7 @@ spec:
             supplementalGroups:
               - 65539
               - 44 # video
-              - 109 # render
+              - 105 # render
     ingress:
       app:
         className: internal
