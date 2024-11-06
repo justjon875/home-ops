@@ -28,7 +28,7 @@ spec:
           app:
             image:
               repository: vectorim/element-web
-              tag: v1.11.83
+              tag: v1.11.84
     global:
       nameOverride: *app
     ingress:
