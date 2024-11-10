@@ -3,7 +3,7 @@
 apiVersion: v1
 kind: Secret
 metadata:
-    name: gitea-deploy-key
+    name: git-deploy-key
     namespace: flux-system
 data:
     identity: ENC[AES256_GCM,data:nEu28Df8TbfIDkX1BPA04xIQ+Wo0uzKvmgbiYLwO45AuFZruJ5X3aEybqLwkLgBf25/rgcYbW+4o0FfvaiIQYm61uukBUqdR7wkkLaMLDg+t1pyKfwylcjLsmZ30EAPcQ+U7AzQvyC+rErTLg8YM3KDMqEoKQvv3/A7MU5ayu3091KKyet9HASm+9Qe9lpnZ9uVURlfYmf8Nc9E0o2fXGEEh4pVIgNcwWK+9Uh/VEISglsJdcEMt5a0SCV/ZOyIhLcj069KwqvmV7X/J20S0DS7aUTcBNl3tnMPQRmQuu5hmBE2LlXOFTOiGPyfKgKBL1GOvh8TThNr0l3qOc1x+HOxTGd1wgDNwvrleQtTvm1p2oy7YD/nHisGxup4JqPxTryl0TAjLkHrn9nignvXH0ZhwiJfpK27BAKuie2AxjThnjaD9mSHKZH8B1EKoiMxZSZz+BRsQtIvFUk3JqYIQ5CjbOjJA1mWjxIbjuTzt73Kphb3SSzsm4PZoufTzlKt80aON1MPolENGdb4qETG+s0yqo/nHh66HUwYub63LnRGouiTWLDRKRp2AS7KhX1evsy2eWAcFh7zafd4u28u37QMxBdI7OawR1jeQ9PWkuk9AKeUw5PRfOy4XBVj7nVqZSC2mHjnCKIXI/Bx0TRLgLVILQ83cJ2u0vm0+ld44pdDgk2A2irvzGqf/fs4FMKbAA0UvxgTruqqQneN6111mIrX+HBc0GgeSVlD3R0CuTBbD7TO++dzk0TCyFm1SWWT3AutxvVsK+KfWOk79gFu5nOhh5Bn1CnwGiY+a1bANJLcjExGxs16VlevlBEy0gPw8my5V957F9thf8f3TVYB+dCMKmuIJlf613AGTe81nNBhF4j7tTeeI2mYDbKRsaYnVAgtTeeHczAFdGFwzyuBiRImb+iw1ExH7RoszO6J01Z0UV4Dk9rbPp25a8V9ICj5Io8BDO6b/t1f3Vp5PzhytUlGDbYoO3GEqiq+u1qx8F4fhEwCpkfMrQOtW9QPwr8lTSxU8UPKIAdM3djFRcB+YnHvxoGz/OVEfHGghS0uvOZ4A0D7eGPpNO1neLWwuF55kSl+JXionfeTLrfoAJa7m5dPcNF280Uo6xMxGjAMVMY4G9IDc8TRjlyxKBNJDgj1hUbP0oT9WwZhlc81iMVyUGXl1ycEoZvAePIhBEkw9Ak1tGifRbzIBMYWXY6UDVcceKfRsdOLErPV9kAEUj/SaD7L3jEDuz5JjZ0Dg60PFclWnglG4o90PDBRGeXanfBt3NAkRJ5Db3YkLxXoXRK0mmExFfs2DoqLl,iv:iTIeYdTAKHFFspaAVT3NaMEMgTbRcsNO88fGRNQjBPY=,tag:FL3ea0HP928+T1YXDkT0nA==,type:str]
@@ -33,8 +33,8 @@ sops:
             Vm5jK2VPWmFaL1JKMFE1MXN3S3QyMDQK64ukhLT0Iaofm1Z/OrmON3iA+spPJ4nZ
             ujTVpbphIVo+vo95RyPV4rWQaFwyuyAdD68t4mBLS3Li93IAvQBJYw==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-03-24T11:28:19Z"
-    mac: ENC[AES256_GCM,data:9GgNqOiyzff4WiL4tVeJ1mbGxaAKrpvPHVjJtgLLSib2ETggojEAl2OMHB/3aPT350eDLDKRJb1BeiY53ai7HtmFzsqyNF7kd9cxqp6vw8WoBl5CYA3nu0KqI1foJTenHwd6EFGGps2Am6Wx3iEfR2oBSwWiYc4zNg99FUvuJkE=,iv:kPZ76EO+eohuHF3RtRu2B317kTTKVK4OnYbjTLSYvbU=,tag:g/UXeW3WlbHp19KqDL5M6A==,type:str]
+    lastmodified: "2024-11-09T13:14:44Z"
+    mac: ENC[AES256_GCM,data:94eYj5YNeEIebc4vx/jRdPRDIyJmCCxqCXDX0RmFPSLOvym32gJU4kidpDzHpBZyqYxkbM7r6HGu0J5ibY2l4QGVIUvnh7kR1gUKb8hGOicWh1fZV6YhHvrZnYkPVKxkkFNAdM7tTyCmHbBoff4nqr4DS/1gCfCim2HGHbHnMF8=,iv:Qj1SGBbkbZ3uKE9+Lk8MOAsVNz8zwGC6PHtBp4Xl5Tk=,tag:X6R9rRt/eN9R9eeAAYqwuQ==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
-    version: 3.8.1
+    version: 3.9.1

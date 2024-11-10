@@ -7,11 +7,11 @@ metadata:
   namespace: flux-system
 spec:
   interval: 30m
-  url: ${GITEA_REPO_URL}
+  url: ${GIT_REPO_URL}
   ref:
     branch: main
   secretRef:
-    name: gitea-deploy-key
+    name: git-deploy-key
   ignore: |
     # exclude all
     /*
