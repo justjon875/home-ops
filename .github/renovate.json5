@@ -8,10 +8,10 @@
         ":disableRateLimiting",
         ":automergeDigest",
         ":automergeBranch",
-        "local>gitea_admin/home-ops//.github/renovate/autoMerge.json5",
-        "local>gitea_admin/home-ops//.github/renovate/commitMessage.json5",
-        "local>gitea_admin/home-ops//.github/renovate/labels.json5",
-        "local>gitea_admin/home-ops//.github/renovate/semanticCommits.json5",
+        "local>forgejo_admin/home-ops//.github/renovate/autoMerge.json5",
+        "local>forgejo_admin/home-ops//.github/renovate/commitMessage.json5",
+        "local>forgejo_admin/home-ops//.github/renovate/labels.json5",
+        "local>forgejo_admin/home-ops//.github/renovate/semanticCommits.json5",
     ],
     "platform": "gitea",
     "dependencyDashboardTitle": "Renovate Dashboard 🤖",
@@ -21,7 +21,7 @@
         "dependencyDashboardApproval": true
     },
     "repositories": [
-        "gitea_admin/home-ops"
+        "forgejo_admin/home-ops"
     ],
     "flux": {
         "fileMatch": [

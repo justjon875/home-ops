@@ -37,6 +37,6 @@ spec:
           "dependencyDashboard": true,
           "printConfig": true,
           "repositories": [
-              "gitea_admin/home-ops"
+              "forgejo_admin/home-ops"
           ],
         }
