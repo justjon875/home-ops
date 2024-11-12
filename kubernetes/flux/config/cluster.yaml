@@ -26,7 +26,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 30m
-  url: ${GIT_REPO_URL}
+  url: ${GITEA_REPO_URL}
   ref:
     branch: main
   secretRef:
