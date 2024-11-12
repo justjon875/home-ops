@@ -7,11 +7,11 @@ metadata:
   namespace: flux-system
 spec:
   interval: 30m
-  url: ${GIT_REPO_URL}
+  url: ${GITEA_REPO_URL}
   ref:
     branch: main
   secretRef:
-    name: git-deploy-key
+    name: gitea-deploy-key
   ignore: |
     # exclude all
     /*
@@ -50,7 +50,7 @@ spec:
   wait: false
   sourceRef:
     kind: GitRepository
-    name: home-ops-kubernetes-gitea
+    name: home-ops-kubernetes
   decryption:
     provider: sops
     secretRef:
