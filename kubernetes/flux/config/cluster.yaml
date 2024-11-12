@@ -3,7 +3,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
-  name: home-ops-kubernetes-gitea
+  name: home-ops-kubernetes
   namespace: flux-system
 spec:
   interval: 30m
@@ -22,7 +22,7 @@ spec:
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
-  name: home-ops-kubernetes
+  name: home-ops-kubernetes-new
   namespace: flux-system
 spec:
   interval: 30m
