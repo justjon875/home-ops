@@ -3,25 +3,6 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
-  name: home-ops-kubernetes-gitea
-  namespace: flux-system
-spec:
-  interval: 30m
-  url: ${GITEA_REPO_URL}
-  ref:
-    branch: main
-  secretRef:
-    name: gitea-deploy-key
-  ignore: |
-    # exclude all
-    /*
-    # include kubernetes directory
-    !/kubernetes
----
-# yamllint disable
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: GitRepository
-metadata:
   name: home-ops-kubernetes
   namespace: flux-system
 spec:
