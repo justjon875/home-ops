@@ -50,7 +50,7 @@ spec:
   wait: false
   sourceRef:
     kind: GitRepository
-    name: home-ops-kubernetes
+    name: home-ops-kubernetes-gitea
   decryption:
     provider: sops
     secretRef:
