@@ -59,10 +59,10 @@ data:
               url: https://adguard.lithium.${ROOT_DOMAIN}
               username: admin
               password: ${SECRET_ADGUARD_PASSWORD}
-        - Gitea lithium:
-            href: https://gitea.lithium.${ROOT_DOMAIN}
-            icon: gitea.png
-            description: Git with a cup of tea
+        - Forgejo lithium:
+            href: https://forgejo.lithium.${ROOT_DOMAIN}
+            icon: forgejo.png
+            description: Beyond coding. We forge.
         - Portainer:
             href: https://portainer.lithium.${ROOT_DOMAIN}
             icon: portainer.png

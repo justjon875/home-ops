@@ -28,7 +28,7 @@
     - name: Copy ssh key
       copy:
         dest: "{{ base_dir }}/{{ key_dir }}/gitkey_ed25519"
-        src: "/home/{{ ansible_user }}/.ssh/gitkey_ed25519"
+        src: "/home/beans/.ssh/gitkey_ed25519"
         mode: 0400
         owner: "{{ ansible_user }}"
     - name: Copy age key
@@ -39,7 +39,7 @@
     - name: "Bootstrap :: Ensure repo is checked out"
       ansible.builtin.git:
         accept_newhostkey: true
-        repo: "ssh://git@gitea.lithium.{{ root_domain }}:2222/gitea_admin/home-ops.git"
+        repo: "ssh://git@forgejo.lithium.{{ root_domain }}:2223/forgejo_admin/home-ops.git"
 
         dest: "{{ base_dir }}/{{ repo_local_dir }}"
         key_file: "{{ base_dir }}/{{ key_dir }}/gitkey_ed25519"
@@ -56,10 +56,10 @@
         cmd: "sops --decrypt {{ item }} | kubectl apply -f -"
         chdir: "{{ base_dir }}/{{ repo_local_dir }}"
       environment:
-        SOPS_AGE_KEY_FILE: "{{ base_dir }}/{{ key_dir }}/{{ agekey }}"
+        SOPS_AGE_KEY_FILE: "{{ base_dir }}/{{ key_dir }}/keys.txt"
       loop:
         - "kubernetes/bootstrap/flux/age-key.sops.yaml"
-        - "kubernetes/bootstrap/flux/gitea-deploy-key.sops.yaml"
+        - "kubernetes/bootstrap/flux/git-deploy-key.sops.yaml"
         - "kubernetes/flux/vars/cluster-secrets.sops.yaml"
     - name: "Bootstrap :: Apply cluster settings"
       ansible.builtin.shell:
