@@ -31,7 +31,7 @@ spec:
               TZ: ${TIMEZONE}
             image:
               repository: lscr.io/linuxserver/pairdrop
-              tag: 1.10.10@sha256:b7067a9c6363b1160a9e0fcf4c3bce6eb142de4912c3d0bda3829941ddeaea7b
+              tag: 1.10.10@sha256:377aba57d434feaafe372af807d232a7269bfcfb6a7597518f797a820021610a
     ingress:
       app:
         className: internal
