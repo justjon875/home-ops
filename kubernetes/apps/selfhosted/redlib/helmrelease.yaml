@@ -31,7 +31,7 @@ spec:
               REDLIB_DEFAULT_THEME: dark
             image:
               repository: quay.io/redlib/redlib
-              tag: latest@sha256:645a98c118cd65e9910fb0268d7d7a4db2d01af4abfaa271b60eb278de7706d5
+              tag: latest@sha256:d04e722091fe17424425499882a548507a70654f37aaf8cbc71081ef29b7b341
     ingress:
       app:
         annotations:
