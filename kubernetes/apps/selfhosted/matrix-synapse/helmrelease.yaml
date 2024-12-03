@@ -43,7 +43,7 @@ spec:
       existingSecretPasswordKey: postgresql-password
     image:
       repository: ghcr.io/element-hq/synapse
-      tag: v1.120.1@sha256:80ecd74615fd5f1a7f17b988f3c7d3ec86dab48893f197fbe48957d586dce429
+      tag: v1.120.2@sha256:4643acbfbca970c4b9ff20023c8c5d8ceeb2594f2117e823698bb610c7d0dbda
     ingress:
       className: internal
       hosts:
