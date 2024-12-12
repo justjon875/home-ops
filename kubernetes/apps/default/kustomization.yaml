@@ -4,5 +4,6 @@ kind: Kustomization
 resources:
   - cloudnative-pg
   - mariadb
+  - mongodb
   - redis
   - postgresql
