@@ -31,7 +31,7 @@ spec:
               PORT: 8000
               NODE_ENV: production
               SECRET_KEY: hdwoDnPWslAtK3079kWYjPnSfCwcfiFz
-              MONGODB_URI: mongodb://mongodb:27017/astroluma
+              MONGODB_URI: mongodb://mongodb.default:27017/astroluma
             image:
               repository: sanjeet990/astroluma
               tag: latest@sha256:ba9568c5d0ee83bd2b1ba71babf3137edee3df15afb270225fc0ed4941827a6d
