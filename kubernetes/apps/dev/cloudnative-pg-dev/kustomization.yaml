@@ -4,4 +4,4 @@ kind: Kustomization
 namespace: default
 resources:
   - app
-  # - cluster
+  - cluster
