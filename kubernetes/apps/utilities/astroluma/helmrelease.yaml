@@ -24,7 +24,7 @@ spec:
       retries: 5
   values:
     controllers:
-      navidrome:
+      astroluma:
         containers:
           app:
             env:
