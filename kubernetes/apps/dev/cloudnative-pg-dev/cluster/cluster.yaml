@@ -7,8 +7,15 @@ metadata:
   namespace: dev
 spec:
   bootstrap:
-    recovery:
-      source: &previousCluster cloudnative-pgvecto
+    initdb:
+      import:
+        type: monolith
+        databases:
+          - "*"
+        roles:
+          - "*"
+        source:
+          externalCluster: postgresql-16
   env:
     - name: TZ
       value: ${TIMEZONE}
@@ -31,18 +38,12 @@ spec:
     limits:
       hugepages-2Mi: "512Mi"
   externalClusters:
-    - name: *previousCluster
-      barmanObjectStore:
-        wal:
-          compression: bzip2
-          maxParallel: 8
-        destinationPath: s3://$BACKBLAZE_BUCKET}/
-        endpointURL: https://${BACKBLAZE_ENDPOINT}
-        serverName: cloudnative-pgvecto
-        s3Credentials:
-          accessKeyId:
-            name: cloudnative-pg-superuser
-            key: aws-access-key-id
-          secretAccessKey:
-            name: cloudnative-pg-superuser
-            key: aws-secret-access-key
+    - name: postgresql-16
+      connectionParameters:
+        # Use the correct IP or host name for the source database
+        host: postgresql.default
+        user: postgres
+        dbname: postgres
+      password:
+        name: cloudnative-pg-superuser
+        key: password
