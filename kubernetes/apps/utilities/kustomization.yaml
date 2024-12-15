@@ -15,6 +15,7 @@ resources:
   - reloader
   - renovate
   - pgadmin
+  - pgbackweb
   - theme-park
   - uptime-kuma
   - vpa
