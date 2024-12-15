@@ -10,3 +10,5 @@ labels:
   - pairs:
       app.kubernetes.io/name: pgbackweb
       app.kubernetes.io/instance: pgbackweb
+patchesStrategicMerge:
+  - patches/postgresql.yaml
