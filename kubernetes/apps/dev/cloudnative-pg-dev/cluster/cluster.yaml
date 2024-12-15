@@ -55,7 +55,7 @@ spec:
         compression: bzip2
         maxParallel: 8
       destinationPath: s3://${BACKBLAZE_BUCKET}/postgresql-16
-      endpointURL: https://s3.${BACKBLAZE_ENDPOINT}.backblazeb2.com
+      endpointURL: https://${BACKBLAZE_ENDPOINT}
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-superuser
