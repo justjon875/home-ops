@@ -6,7 +6,7 @@ metadata:
 spec:
   values:
     controllers:
-      lidarr:
+      pgbackweb:
         initContainers:
           init-db:
             image:
