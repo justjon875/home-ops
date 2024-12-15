@@ -62,13 +62,18 @@ spec:
     ingress:
       app:
         className: internal
+        enabled: true
         hosts:
-          - host: "{{ .Release.Name }}.${SECRET_DOMAIN}"
+          - host: &host pgbackweb.${ROOT_DOMAIN}
             paths:
               - path: /
+                pathType: Prefix
                 service:
                   identifier: app
                   port: http
+        tls:
+          - hosts:
+              - *host
     service:
       app:
         controller: *app
