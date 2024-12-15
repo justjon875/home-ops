@@ -7,15 +7,8 @@ metadata:
   namespace: dev
 spec:
   bootstrap:
-    initdb:
-      import:
-        type: monolith
-        databases:
-          - "*"
-        roles:
-          - "*"
-        source:
-          externalCluster: postgresql-16
+    recovery:
+      source: &previousCluster postgresql-16
   env:
     - name: TZ
       value: ${TIMEZONE}
@@ -37,18 +30,8 @@ spec:
       memory: "512Mi"
     limits:
       hugepages-2Mi: "512Mi"
-  externalClusters:
-    - name: postgresql-16
-      connectionParameters:
-        # Use the correct IP or host name for the source database
-        host: postgresql.default
-        user: postgres
-        dbname: postgres
-      password:
-        name: cloudnative-pg-superuser
-        key: password
   backup:
-    barmanObjectStore:
+    barmanObjectStore: &barmanObjectStore
       data:
         compression: bzip2
       wal:
@@ -63,3 +46,8 @@ spec:
         secretAccessKey:
           name: cloudnative-pg-superuser
           key: aws-secret-access-key
+  externalClusters:
+    - name: *previousCluster
+      barmanObjectStore:
+        <<: *barmanObjectStore
+        serverName: *previousCluster
