@@ -25,7 +25,7 @@ spec:
     controllers:
       machine-learning:
         annotations:
-          reloader.stakater.com/auto: 'true'
+          reloader.stakater.com/auto: "true"
         containers:
           app:
             envFrom:
@@ -44,7 +44,7 @@ spec:
                 memory: 800Mi
       server:
         annotations:
-          reloader.stakater.com/auto: 'true'
+          reloader.stakater.com/auto: "true"
         containers:
           app:
             envFrom:
@@ -62,8 +62,8 @@ spec:
     ingress:
       app:
         annotations:
-          nginx.ingress.kubernetes.io/proxy-body-size: '0'
-          nginx.ingress.kubernetes.io/force-ssl-redirect: 'true'
+          nginx.ingress.kubernetes.io/proxy-body-size: "0"
+          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
           external-dns.alpha.kubernetes.io/target: external.${ROOT_DOMAIN}
         className: external
         enabled: true
