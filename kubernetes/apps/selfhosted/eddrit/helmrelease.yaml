@@ -27,7 +27,7 @@ spec:
         containers:
           app:
             env:
-              VALKEY_URL: valkey.default.svc.cluster.local
+              VALKEY_URL: valkey://valkey.default.svc.cluster.local
             image:
               repository: ghcr.io/corenting/eddrit
               tag: 0.9.0@sha256:d0f3c3ca8e765b64aaf6b3b345d89de2e514164b03e3560f165db20ffad25d2a
