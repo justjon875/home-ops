@@ -7,3 +7,4 @@ resources:
   - mongodb
   - redis
   - postgresql
+  - valkey
