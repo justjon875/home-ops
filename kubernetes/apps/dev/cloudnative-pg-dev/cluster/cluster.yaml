@@ -48,9 +48,6 @@ spec:
       source: &previousCluster postgres16
   externalClusters:
     - name: *previousCluster
-      barmanObjectStore:
-        <<: *barmanObjectStore
-        serverName: *previousCluster
       connectionParameters:
         # Use the correct IP or host name for the source database
         host: postgresql.default
