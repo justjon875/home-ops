@@ -28,7 +28,7 @@ spec:
     limits:
       hugepages-2Mi: "512Mi"
   backup:
-    barmanObjectStore: &barmanObjectStore
+    barmanObjectStore:
       data:
         compression: bzip2
       wal:
@@ -43,16 +43,3 @@ spec:
         secretAccessKey:
           name: cloudnative-pg-superuser
           key: aws-secret-access-key
-  bootstrap:
-    recovery:
-      source: &previousCluster postgres16
-  externalClusters:
-    - name: *previousCluster
-      connectionParameters:
-        # Use the correct IP or host name for the source database
-        host: postgresql.default
-        user: postgres
-        dbname: postgres
-      password:
-        name: cloudnative-pg-superuser
-        key: password
