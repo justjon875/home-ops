@@ -8,4 +8,4 @@ metadata:
 spec:
   interval: 2h
   type: oci
-  url: oci://ghcr.io/kubewall/charts/kubewall
+  url: oci://ghcr.io/kubewall/charts
