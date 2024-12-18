@@ -24,3 +24,9 @@ spec:
     cleanupOnFail: true
     remediation:
       retries: 3
+  values:
+    pvc:
+      name: kubewall-data # Name of the PVC
+      storage: 20Mi # Storage size requested for the PVC
+      accessModes: ReadWriteOnce # Access mode for the PVC
+      storageClass: local-hostpath # Storage class for the PVC (leave empty for default)
