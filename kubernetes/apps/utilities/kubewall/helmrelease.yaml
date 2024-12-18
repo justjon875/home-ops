@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: kubewall
         namespace: flux-system
-      version: 3.5.1
+      version: 0.0.10
   install:
     createNamespace: true
     remediation:
