@@ -9,7 +9,6 @@ resources:
   - homepage
   - home-assistant
   - kube-prometheus-stack
-  - kubewall
   - loki
   - mosquitto
   - reloader
