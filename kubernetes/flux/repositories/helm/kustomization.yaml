@@ -21,6 +21,7 @@ resources:
   - ./ingress-nginx.yaml
   - ./jetstack.yaml
   - ./k8s-gateway.yaml
+  - ./kubewall.yaml
   - ./kubernetes-dashboard.yaml
   - ./kyverno.yaml
   - ./metrics-server.yaml
