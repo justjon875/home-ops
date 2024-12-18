@@ -7,4 +7,4 @@ metadata:
   namespace: flux-system
 spec:
   interval: 2h
-  url: oci://ghcr.io/kubewall/charts/kubewall
+  url: https://ghcr.io/kubewall/charts
