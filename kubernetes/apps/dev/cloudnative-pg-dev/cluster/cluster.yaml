@@ -34,7 +34,7 @@ spec:
       wal:
         compression: bzip2
         maxParallel: 8
-      destinationPath: s3://${BACKBLAZE_BUCKET}/postgresql-16/
+      destinationPath: s3://${BACKBLAZE_BUCKET}/cloudnative-pg
       endpointURL: https://${BACKBLAZE_ENDPOINT}
       s3Credentials:
         accessKeyId:
