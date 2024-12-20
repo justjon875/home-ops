@@ -4,7 +4,6 @@ apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
   name: postgresql16
-  namespace: dev
 spec:
   env:
     - name: TZ
@@ -40,18 +39,18 @@ spec:
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-superuser
-          key: aws-access-key-id
+          key: backblaze-access-key-id
         secretAccessKey:
           name: cloudnative-pg-superuser
-          key: aws-secret-access-key
+          key: backblaze-secret-access-key
   # Note: previousCluster needs to be set to the name of the previous
   # cluster when recovering from an existing cnpg cluster
-  bootstrap:
-    recovery:
-      source: &previousCluster postgresql16
+  # bootstrap:
+  #   recovery:
+  #     source: &previousCluster postgresql16
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
-  externalClusters:
-    - name: *previousCluster
-      barmanObjectStore:
-        <<: *barmanObjectStore
-        serverName: *previousCluster
+  # externalClusters:
+  #   - name: *previousCluster
+  #     barmanObjectStore:
+  #       <<: *barmanObjectStore
+  #       serverName: *previousCluster
