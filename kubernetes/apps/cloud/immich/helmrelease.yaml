@@ -39,6 +39,7 @@ spec:
             resources:
               limits:
                 memory: 5000Mi
+                gpu.intel.com/i915: 1
               requests:
                 cpu: 100m
                 memory: 800Mi
@@ -59,6 +60,9 @@ spec:
               requests:
                 cpu: 10m
                 memory: 100Mi
+              limits:
+                gpu.intel.com/i915: 1
+                memory: 500Mi
     ingress:
       app:
         annotations:
