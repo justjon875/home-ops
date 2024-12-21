@@ -85,6 +85,13 @@ spec:
         path: /mnt/raid/media/metube
         server: ${NFS_HOST}
         type: nfs
+      youtube:
+        enabled: true
+        globalMounts:
+          - path: /mnt/youtube
+        path: /mnt/raid/media/youtube
+        server: ${NFS_HOST}
+        type: nfs
       transcodes:
         enabled: true
         type: emptyDir
