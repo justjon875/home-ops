@@ -32,9 +32,7 @@ spec:
             resources:
               requests:
                 cpu: 100m
-                memory: 1556M
               limits:
-                memory: 1556M
                 gpu.intel.com/i915: 1
         pod:
           securityContext:
