@@ -51,9 +51,6 @@ spec:
       requests:
         cpu: 15m
         memory: 273M
-      limits:
-        cpu: 100m
-        memory: 350M
     # The service account is necessary to allow discovery of other services
     serviceAccount:
       create: true
