@@ -14,6 +14,7 @@ resources:
   - paperless-ngx
   - pairdrop
   - planka
+  - pinchflat
   - redlib
   - rxresume
   - searxng
