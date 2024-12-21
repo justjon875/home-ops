@@ -57,10 +57,8 @@ spec:
             resources:
               requests:
                 cpu: 35m
-                memory: 63M
               limits:
-                cpu: 100m
-                memory: 2163M
+                memory: 8Gi
                 gpu.intel.com/i915: 1
     defaultPodOptions:
       securityContext:
