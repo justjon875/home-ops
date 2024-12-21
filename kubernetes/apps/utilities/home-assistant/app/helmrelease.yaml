@@ -28,7 +28,7 @@ spec:
     controllers:
       home-assistant:
         annotations:
-          reloader.stakater.com/auto: 'true'
+          reloader.stakater.com/auto: "true"
         containers:
           app:
             env:
@@ -47,10 +47,12 @@ spec:
               startup:
                 enabled: false
             resources:
-              limits:
-                memory: 1Gi
               requests:
-                cpu: 10m
+                cpu: 15m
+                memory: 512M
+              limits:
+                cpu: 15m
+                memory: 515M
             securityContext:
               allowPrivilegeEscalation: false
               capabilities:

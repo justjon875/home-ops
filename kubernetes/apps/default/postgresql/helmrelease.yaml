@@ -50,7 +50,7 @@ spec:
           memory: 349M
         limits:
           cpu: 396m
-          memory: 2250M
+          memory: 400M
     extraDeploy:
       - apiVersion: v1
         kind: ConfigMap

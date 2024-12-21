@@ -25,7 +25,7 @@ spec:
     controllers:
       atuin:
         annotations:
-          reloader.stakater.com/auto: 'true'
+          reloader.stakater.com/auto: "true"
         containers:
           app:
             args:
@@ -33,12 +33,12 @@ spec:
               - start
             env:
               ATUIN_HOST: 0.0.0.0
-              ATUIN_METRICS__ENABLE: 'true'
+              ATUIN_METRICS__ENABLE: "true"
               ATUIN_METRICS__HOST: 0.0.0.0
               ATUIN_METRICS__PORT: 8080
-              ATUIN_OPEN_REGISTRATION: 'true'
+              ATUIN_OPEN_REGISTRATION: "true"
               ATUIN_PORT: 80
-              ATUIN_TLS__ENABLE: 'false'
+              ATUIN_TLS__ENABLE: "false"
             envFrom:
               - secretRef:
                   name: atuin-secret
@@ -46,10 +46,12 @@ spec:
               repository: ghcr.io/atuinsh/atuin
               tag: 18.3.0@sha256:678def8e9d59652a502759ca431f9c5b54ebdd5e9361507c7fcf24705c9862e0
             resources:
-              limits:
-                memory: 256Mi
               requests:
-                cpu: 10m
+                cpu: 15m
+                memory: 42M
+              limits:
+                cpu: 15m
+                memory: 42M
             securityContext:
               allowPrivilegeEscalation: false
               capabilities:
@@ -80,11 +82,11 @@ spec:
     ingress:
       app:
         annotations:
-          nginx.ingress.kubernetes.io/proxy-body-size: '0'
+          nginx.ingress.kubernetes.io/proxy-body-size: "0"
         className: internal
         enabled: true
         hosts:
-          - host: &host '{{ .Release.Name }}.${ROOT_DOMAIN}'
+          - host: &host "{{ .Release.Name }}.${ROOT_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
