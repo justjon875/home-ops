@@ -33,16 +33,16 @@ spec:
             limits:
               gpu.intel.com/i915: 1
               memory: 16Gi
-      pod:
-        securityContext:
-          fsGroup: 568
-          fsGroupChangePolicy: OnRootMismatch
-          runAsGroup: 568
-          runAsUser: 568
-          supplementalGroups:
-            - 65539
-            - 44 # video
-            - 105 # render
+        pod:
+          securityContext:
+            fsGroup: 568
+            fsGroupChangePolicy: OnRootMismatch
+            runAsGroup: 568
+            runAsUser: 568
+            supplementalGroups:
+              - 65539
+              - 44 # video
+              - 105 # render
     ingress:
       app:
         className: internal
