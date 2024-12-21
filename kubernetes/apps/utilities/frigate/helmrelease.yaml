@@ -57,12 +57,10 @@ spec:
               startup:
                 enabled: false
             resources:
-              requests:
-                cpu: 715m
-                memory: 1313M
               limits:
-                cpu: 1560m
-                memory: 1949M
+                memory: 8Gi
+              requests:
+                cpu: 100m
             securityContext:
               privileged:
                 true

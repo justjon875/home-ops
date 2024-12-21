@@ -47,6 +47,13 @@ spec:
               - *host
     podAnnotations:
       configmap.reloader.stakater.com/reload: "homepage-config"
+    resources:
+      requests:
+        cpu: 15m
+        memory: 273M
+      limits:
+        cpu: 15m
+        memory: 274M
     # The service account is necessary to allow discovery of other services
     serviceAccount:
       create: true
