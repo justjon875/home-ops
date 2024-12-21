@@ -11,7 +11,6 @@ resources:
   - metube
   - navidrome
   - piped
-  - pinchflat
   - prowlarr
   - qbittorrent
   - radarr
