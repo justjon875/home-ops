@@ -12,9 +12,6 @@ spec:
         name: bjw-s
         namespace: flux-system
       version: 3.5.1
-  dependsOn:
-    - name: postgresql
-      namespace: default
   install:
     createNamespace: true
     remediation:
@@ -31,7 +28,7 @@ spec:
     controllers:
       lldap:
         annotations:
-          reloader.stakater.com/auto: 'true'
+          reloader.stakater.com/auto: "true"
         containers:
           app:
             env:
@@ -50,7 +47,7 @@ spec:
         className: internal
         enabled: true
         hosts:
-          - host: '{{ .Release.Name }}.${ROOT_DOMAIN}'
+          - host: "{{ .Release.Name }}.${ROOT_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -59,7 +56,7 @@ spec:
                   port: http
         tls:
           - hosts:
-              - '{{ .Release.Name }}.${ROOT_DOMAIN}'
+              - "{{ .Release.Name }}.${ROOT_DOMAIN}"
     persistence:
       data:
         enabled: true
