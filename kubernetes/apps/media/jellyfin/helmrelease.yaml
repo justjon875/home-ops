@@ -29,16 +29,20 @@ spec:
             image:
               repository: ghcr.io/jellyfin/jellyfin
               tag: 10.10.3@sha256:17c3a8d9dddb97789b5f37112840ebf96566442c14d4754193a6c2eb154bc221
-        pod:
-          securityContext:
-            fsGroup: 568
-            fsGroupChangePolicy: OnRootMismatch
-            runAsGroup: 568
-            runAsUser: 568
-            supplementalGroups:
-              - 65539
-              - 44 # video
-              - 105 # render
+          resources:
+            limits:
+              gpu.intel.com/i915: 1
+              memory: 16Gi
+      pod:
+        securityContext:
+          fsGroup: 568
+          fsGroupChangePolicy: OnRootMismatch
+          runAsGroup: 568
+          runAsUser: 568
+          supplementalGroups:
+            - 65539
+            - 44 # video
+            - 105 # render
     ingress:
       app:
         className: internal
