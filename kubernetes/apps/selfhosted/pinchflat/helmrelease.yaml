@@ -87,7 +87,9 @@ spec:
                   port: http
     persistence:
       config:
-        existingClaim: pinchflat
+        path: ${NFS_PATH}/pinchflat
+        server: ${NFS_HOST}
+        type: nfs
       tmp:
         type: emptyDir
       yt-dlp:
