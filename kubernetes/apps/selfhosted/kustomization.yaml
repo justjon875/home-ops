@@ -15,6 +15,7 @@ resources:
   - planka
   - redlib
   - rxresume
+  - searxng
   - stirling-pdf
   - stump
   - vaultwarden
