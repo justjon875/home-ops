@@ -3,9 +3,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - cloudnative-pg
-  - crunchy-postgres
   - mariadb
   - mongodb
   - redis
-  - postgresql
   - valkey

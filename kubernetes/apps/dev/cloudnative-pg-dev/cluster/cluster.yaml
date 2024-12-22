@@ -28,14 +28,15 @@ spec:
     limits:
       hugepages-2Mi: "512Mi"
   backup:
-    barmanObjectStore:
+    barmanObjectStore: &barmanObjectStore
       data:
         compression: bzip2
       wal:
         compression: bzip2
         maxParallel: 8
-      destinationPath: s3://${BACKBLAZE_BUCKET}/postgresql-16/
+      destinationPath: s3://${BACKBLAZE_BUCKET}/cloudnative-pg
       endpointURL: https://${BACKBLAZE_ENDPOINT}
+      serverName: &currentCluster postgresql16-1
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-superuser
@@ -43,3 +44,14 @@ spec:
         secretAccessKey:
           name: cloudnative-pg-superuser
           key: aws-secret-access-key
+  # Note: previousCluster needs to be set to the name of the previous
+  # cluster when recovering from an existing cnpg cluster
+  bootstrap:
+    recovery:
+      source: &previousCluster postgresql16
+  # Note: externalClusters is needed when recovering from an existing cnpg cluster
+  externalClusters:
+    - name: *previousCluster
+      barmanObjectStore:
+        <<: *barmanObjectStore
+        serverName: *previousCluster

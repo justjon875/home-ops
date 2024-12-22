@@ -28,12 +28,12 @@ spec:
     controllers:
       frigate:
         annotations:
-          reloader.stakater.com/auto: 'true'
+          reloader.stakater.com/auto: "true"
         containers:
           app:
             env:
               TZ: ${TIMEZONE}
-              USE_FP16: 'False'
+              USE_FP16: "False"
               YOLO_MODELS: yolov4-tiny-416
             envFrom:
               - secretRef:
@@ -58,11 +58,12 @@ spec:
                 enabled: false
             resources:
               limits:
-                memory: 8Gi
+                memory: 2Gi
               requests:
                 cpu: 100m
             securityContext:
-              privileged: true
+              privileged:
+                true
                 # pod:
                 # runtimeClassName: nvidia
     ingress:

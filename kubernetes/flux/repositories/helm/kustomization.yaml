@@ -19,6 +19,7 @@ resources:
   - ./grafana.yaml
   - ./homepage.yaml
   - ./ingress-nginx.yaml
+  - ./intel.yaml
   - ./jetstack.yaml
   - ./k8s-gateway.yaml
   - ./kubewall.yaml
@@ -26,6 +27,7 @@ resources:
   - ./kyverno.yaml
   - ./metrics-server.yaml
   - ./nextcloud.yaml
+  - ./node-feature-autodiscovery.yaml
   - ./nvidia.yaml
   - ./olivetin.yaml
   - ./pod-gateway.yaml
