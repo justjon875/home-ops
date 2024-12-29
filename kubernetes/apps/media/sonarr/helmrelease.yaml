@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 3.5.1
+      version: 3.6.0
   install:
     createNamespace: true
     remediation:
@@ -37,7 +37,7 @@ spec:
                   name: sonarr-secret
             image:
               repository: ghcr.io/onedr0p/sonarr-develop
-              tag: 4.0.11.2793@sha256:c721cb9fa9347a2ebaedd83d09927382cb0d8b4ae9f6fb007d3f462a96e11886
+              tag: 4.0.11.2804@sha256:cb7d3b0cd6f465868df6b88bfa78d52899b9955ced2bf03720eccc3fba402635
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true

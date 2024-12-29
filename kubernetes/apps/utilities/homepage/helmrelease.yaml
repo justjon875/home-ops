@@ -32,7 +32,7 @@ spec:
       LOG_LEVEL: debug
     image:
       repository: ghcr.io/gethomepage/homepage
-      tag: v0.10.3@sha256:c587203500b8d1c1bdd338e05eb610ddccd3e0a2f08f64525a7b656818805770
+      tag: v0.10.6@sha256:426d75031d40a47d58b962766a4d11277490973c137ff5a98e051c9d204f5268
     ingress:
       main:
         enabled: true
