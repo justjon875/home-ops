@@ -32,7 +32,7 @@ spec:
           app:
             image:
               repository: quay.io/minio/minio
-              tag: RELEASE.2024-12-18T13-15-44Z
+              tag: RELEASE.2024-12-18T13-15-44Z@sha256:1dce27c494a16bae114774f1cec295493f3613142713130c2d22dd5696be6ad3
             env:
               TZ: "${TIMEZONE}"
               MINIO_UPDATE: "off"
@@ -40,7 +40,7 @@ spec:
               MINIO_PROMETHEUS_JOB_ID: minio
               MINIO_BROWSER_REDIRECT_URL: https://minio.${ROOT_DOMAIN}
               MINIO_SERVER_URL: https://s3.${ROOT_DOMAIN}
-              MINIO_API_CORS_ALLOW_ORIGIN: https://minio.${ROOT_DOMAIN},https://s3.${CLUSTER_DOMAIN}
+              MINIO_API_CORS_ALLOW_ORIGIN: https://minio.${ROOT_DOMAIN},https://s3.${ROOT_DOMAIN}
               # MINIO_IDENTITY_OPENID_CONFIG_URL: "https://auth.${CLUSTER_DOMAIN}/.well-known/openid-configuration"
               # MINIO_IDENTITY_OPENID_CLIENT_ID: minio
               # MINIO_IDENTITY_OPENID_CLIENT_SECRET: "${SECRET_MINIO_OAUTH_CLIENT_SECRET}"
