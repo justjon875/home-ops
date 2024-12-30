@@ -71,9 +71,9 @@ spec:
                 memory: 750Mi
         pod:
           securityContext:
-            runAsUser: 103
-            runAsGroup: 103
-            fsGroup: 103
+            runAsUser: 568
+            runAsGroup: 568
+            fsGroup: 568
             fsGroupChangePolicy: OnRootMismatch
     service:
       app:
