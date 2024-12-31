@@ -3,4 +3,3 @@ kind: Kustomization
 namespace: dev
 resources:
   - ./namespace.yaml
-  - cloudnative-pg-dev
