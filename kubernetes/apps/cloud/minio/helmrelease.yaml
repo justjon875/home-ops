@@ -98,13 +98,6 @@ spec:
               key: token
     ingress:
       app:
-        annotations:
-          gethomepage.dev/enabled: "true"
-          gethomepage.dev/description: Minio
-          gethomepage.dev/group: Cloud
-          gethomepage.dev/icon: minio.png
-          gethomepage.dev/name: Minio
-          gethomepage.dev/weight: "10" # optional
         className: internal
         hosts:
           - host: "{{ .Release.Name }}.${ROOT_DOMAIN}"
