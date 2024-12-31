@@ -97,7 +97,7 @@ data:
               url: https://immich.${ROOT_DOMAIN}
               key: ${SECRET_IMMICH_KEY}
               version: 2
-        - Minio
+        - Minio:
             href: https://minio.${ROOT_DOMAIN}
             icon: minio.png
             description: S3 object storage
