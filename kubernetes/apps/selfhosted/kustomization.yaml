@@ -3,7 +3,6 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - atuin
-  - eddrit
   - filebrowser
   - linkwarden
   - matrix-element
@@ -13,7 +12,6 @@ resources:
   - paperless-ngx
   - pairdrop
   - planka
-  - redlib
   - rxresume
   - searxng
   - stirling-pdf
