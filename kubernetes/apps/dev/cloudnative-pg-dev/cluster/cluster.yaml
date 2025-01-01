@@ -29,31 +29,24 @@ spec:
       hugepages-2Mi: "512Mi"
   # Note: previousCluster needs to be set to the name of the previous
   # cluster when recovering from an existing cnpg cluster
-  bootstrap:
-    pg_basebackup:
-      source: &previousCluster postgresql16-1
+  # bootstrap:
+  #   recovery:
+  #     source: &previousCluster postgresql16-1
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
-  externalClusters:
-    - name: *previousCluster
-      connectionParameters:
-        host: postgresql16-rw.default
-        user: postgres
-      password:
-        name: cloudnative-pg-superuser
-        key: password
-      barmanObjectStore:
-        data:
-          compression: bzip2
-        wal:
-          compression: bzip2
-          maxParallel: 8
-        destinationPath: s3://${BACKBLAZE_BUCKET}/cloudnative-pg
-        endpointURL: https://s3.${ROOT_DOMAIN}
-        serverName: &currentCluster postgresql16-1
-        s3Credentials:
-          accessKeyId:
-            name: cloudnative-pg-superuser
-            key: minio-access-key-id
-          secretAccessKey:
-            name: cloudnative-pg-superuser
-            key: minio-secret-access-key
+  backup:
+    barmanObjectStore:
+      data:
+        compression: bzip2
+      wal:
+        compression: bzip2
+        maxParallel: 8
+      destinationPath: s3://${BACKBLAZE_BUCKET}/cloudnative-pg
+      endpointURL: https://s3.${ROOT_DOMAIN}
+      serverName: &currentCluster postgresql16-1
+      s3Credentials:
+        accessKeyId:
+          name: cloudnative-pg-superuser
+          key: minio-access-key-id
+        secretAccessKey:
+          name: cloudnative-pg-superuser
+          key: minio-secret-access-key
