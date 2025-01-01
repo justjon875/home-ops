@@ -4,3 +4,4 @@ namespace: dev
 resources:
   - ./namespace.yaml
   - cloudnative-pg-dev
+  - postgresql-dev

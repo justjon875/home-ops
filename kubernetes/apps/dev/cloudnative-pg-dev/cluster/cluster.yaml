@@ -27,9 +27,20 @@ spec:
       memory: "512Mi"
     limits:
       hugepages-2Mi: "512Mi"
+  # Note: previousCluster needs to be set to the name of the previous
+  # cluster when recovering from an existing cnpg cluster
+  bootstrap:
+    recovery:
+      source: &previousCluster postgresql16-1
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
   externalClusters:
     - name: *previousCluster
+      connectionParameters:
+        host: postgresql16-r.default.svc.cluster.local
+        user: postgres
+      password:
+        name: cloudnative-pg-superuser
+        key: password
       barmanObjectStore:
         data:
           compression: bzip2
@@ -46,8 +57,3 @@ spec:
           secretAccessKey:
             name: cloudnative-pg-superuser
             key: minio-secret-access-key
-  # Note: previousCluster needs to be set to the name of the previous
-  # cluster when recovering from an existing cnpg cluster
-  bootstrap:
-    recovery:
-      source: &previousCluster postgresql16-1
