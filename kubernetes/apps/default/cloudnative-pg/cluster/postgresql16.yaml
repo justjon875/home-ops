@@ -22,7 +22,8 @@ spec:
       max_connections: "250"
       shared_buffers: 128MB
     pg_hba:
-      - host all all 0.0.0.0/0 md5
+      - host    all             all             0.0.0.0/0               md5
+      - host    all             replication      0.0.0.0/0               md5
   resources:
     requests:
       memory: "512Mi"
