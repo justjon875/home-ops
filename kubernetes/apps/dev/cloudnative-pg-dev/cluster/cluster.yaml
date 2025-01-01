@@ -41,19 +41,3 @@ spec:
       password:
         name: cloudnative-pg-superuser
         key: password
-      barmanObjectStore:
-        data:
-          compression: bzip2
-        wal:
-          compression: bzip2
-          maxParallel: 8
-        destinationPath: s3://${BACKBLAZE_BUCKET}/cloudnative-pg
-        endpointURL: https://s3.${ROOT_DOMAIN}
-        serverName: &currentCluster postgresql16-1
-        s3Credentials:
-          accessKeyId:
-            name: cloudnative-pg-superuser
-            key: minio-access-key-id
-          secretAccessKey:
-            name: cloudnative-pg-superuser
-            key: minio-secret-access-key
