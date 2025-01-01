@@ -21,6 +21,8 @@ spec:
     parameters:
       max_connections: "250"
       shared_buffers: 128MB
+    pg_hba:
+      - host replication streaming_replica all md5
   resources:
     requests:
       memory: "512Mi"
