@@ -34,7 +34,7 @@ spec:
   #     source: &previousCluster postgresql16-1
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
   backup:
-    barmanObjectStore:
+    barmanObjectStore: &barmanObjectStore
       data:
         compression: bzip2
       wal:
@@ -50,3 +50,12 @@ spec:
         secretAccessKey:
           name: cloudnative-pg-superuser
           key: minio-secret-access-key
+  bootstrap:
+    recovery:
+      source: &previousCluster postgresql16
+  # Note: externalClusters is needed when recovering from an existing cnpg cluster
+  externalClusters:
+    - name: *previousCluster
+      barmanObjectStore:
+        <<: *barmanObjectStore
+        serverName: *previousCluster
