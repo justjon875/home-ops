@@ -56,3 +56,4 @@ spec:
       barmanObjectStore:
         <<: *barmanObjectStore
         serverName: *previousCluster
+        destinationPath: s3://${BACKBLAZE_BUCKET}/cloudnative-pg
