@@ -29,31 +29,31 @@ spec:
       hugepages-2Mi: "512Mi"
   # Note: previousCluster needs to be set to the name of the previous
   # cluster when recovering from an existing cnpg cluster
+  # Note: externalClusters is needed when recovering from an existing cnpg cluster
+  backup:
+    barmanObjectStore: &barmanObjectStore
+      data:
+        compression: bzip2
+      wal:
+        compression: bzip2
+        maxParallel: 8
+      destinationPath: s3://${BACKBLAZE_BUCKET}/cloudnative-pg-dev
+      endpointURL: https://s3.${ROOT_DOMAIN}
+      serverName: &currentCluster postgresql16-dev
+      s3Credentials:
+        accessKeyId:
+          name: cloudnative-pg-superuser
+          key: minio-access-key-id
+        secretAccessKey:
+          name: cloudnative-pg-superuser
+          key: minio-secret-access-key
   bootstrap:
     recovery:
-      source: &previousCluster postgresql16-1
+      source: &previousCluster postgresql16-2
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
   externalClusters:
     - name: *previousCluster
-      connectionParameters:
-        host: postgresql16-r.default.svc.cluster.local
-        user: postgres
-      password:
-        name: cloudnative-pg-superuser
-        key: password
       barmanObjectStore:
-        data:
-          compression: bzip2
-        wal:
-          compression: bzip2
-          maxParallel: 8
+        <<: *barmanObjectStore
+        serverName: *previousCluster
         destinationPath: s3://${BACKBLAZE_BUCKET}/cloudnative-pg
-        endpointURL: https://minio.${ROOT_DOMAIN}
-        serverName: &currentCluster postgresql16-1
-        s3Credentials:
-          accessKeyId:
-            name: cloudnative-pg-superuser
-            key: minio-access-key-id
-          secretAccessKey:
-            name: cloudnative-pg-superuser
-            key: minio-secret-access-key

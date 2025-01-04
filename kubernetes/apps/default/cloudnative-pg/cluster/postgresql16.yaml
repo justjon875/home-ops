@@ -36,15 +36,15 @@ spec:
         compression: bzip2
         maxParallel: 8
       destinationPath: s3://${BACKBLAZE_BUCKET}/cloudnative-pg
-      endpointURL: https://${BACKBLAZE_ENDPOINT}
-      serverName: &currentCluster postgresql16-1
+      endpointURL: https://s3.${ROOT_DOMAIN}
+      serverName: &currentCluster postgresql16-2
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-superuser
-          key: backblaze-access-key-id
+          key: minio-access-key-id
         secretAccessKey:
           name: cloudnative-pg-superuser
-          key: backblaze-secret-access-key
+          key: minio-secret-access-key
   # Note: previousCluster needs to be set to the name of the previous
   # cluster when recovering from an existing cnpg cluster
   # bootstrap:
