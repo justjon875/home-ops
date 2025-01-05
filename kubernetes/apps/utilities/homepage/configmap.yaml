@@ -87,11 +87,6 @@ data:
             description: High performance self-hosted photo and video backup solution
             namespace: cloud
             app: immich
-            podSelector: >-
-              app.kubernetes.io/instance in (
-                  immich-machine-learning,
-                  immich-server
-              )
             widget:
               type: immich
               url: https://immich.${ROOT_DOMAIN}
