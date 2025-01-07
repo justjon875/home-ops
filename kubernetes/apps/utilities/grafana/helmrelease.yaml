@@ -66,14 +66,54 @@ spec:
       dashboardproviders.yaml:
         apiVersion: 1
         providers:
-          - name: "default"
-            orgId: 1
+          - name: default
+            disableDeletion: false
+            editable: true
             folder: ""
+            options:
+              path: /var/lib/grafana/dashboards/default
+            orgId: 1
+            type: file
+          - name: "cilium"
+            orgId: 1
+            folder: "Cilium"
             type: file
             disableDeletion: false
             editable: true
             options:
-              path: /var/lib/grafana/dashboards/default
+              path: /var/lib/grafana/dashboards/cilium
+          - name: flux
+            orgId: 1
+            folder: Flux
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/flux
+          - name: kubernetes
+            orgId: 1
+            folder: Kubernetes
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/kubernetes
+          - name: nginx
+            orgId: 1
+            folder: Nginx
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/nginx
+          - name: postgres
+            orgId: 1
+            folder: Postgres
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/postgres
     datasources:
       datasources.yaml:
         apiVersion: 1
@@ -93,32 +133,113 @@ spec:
             access: proxy
             url: http://loki-headless.utilities:3100
     dashboards:
-      default:
-        # Ref: https://grafana.com/grafana/dashboards/1860-node-exporter-full/
+      cilium:
+        cilium-dashboard:
+          url: https://raw.githubusercontent.com/cilium/cilium/v1.16.5/install/kubernetes/cilium/files/cilium-agent/dashboards/cilium-dashboard.json
+          datasource: Prometheus
+        cilium-operator-dashboard:
+          url: https://raw.githubusercontent.com/cilium/cilium/v1.16.5/install/kubernetes/cilium/files/cilium-operator/dashboards/cilium-operator-dashboard.json
+          datasource: Prometheus
+        hubble-dashboard:
+          url: https://raw.githubusercontent.com/cilium/cilium/v1.16.5/install/kubernetes/cilium/files/hubble/dashboards/hubble-dashboard.json
+          datasource: Prometheus
+      data:
+        cloudnative-pg:
+          url: https://raw.githubusercontent.com/cloudnative-pg/grafana-dashboards/main/charts/cluster/grafana-dashboard.json
+          datasource: Prometheus
+
+        minio:
+          # renovate: dashboardName="MinIO Dashboard"
+          gnetId: 13502
+          revision: 26
+          datasource:
+            - name: "DS_PROMETHEUS"
+              value: Prometheus
+      flux:
+        flux-cluster:
+          url: https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/cluster.json
+          datasource: Prometheus
+        flux-control-plane:
+          url: https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/control-plane.json
+          datasource: Prometheus
+        flux-logs:
+          url: https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/logs.json
+          datasource: Prometheus
+      kubernetes:
+        api-server:
+          # renovate: dashboardName="Kubernetes / System / API Server"
+          gnetId: 15761
+          revision: 18
+          datasource: Prometheus
+        coredns:
+          # renovate: dashboardName="Kubernetes / System / CoreDNS"
+          gnetId: 15762
+          revision: 19
+          datasource: Prometheus
+        global:
+          # renovate: dashboardName="Kubernetes / Views / Global"
+          gnetId: 15757
+          revision: 42
+          datasource: Prometheus
+        namespaces:
+          # renovate: dashboardName="Kubernetes / Views / Namespaces"
+          gnetId: 15758
+          revision: 41
+          datasource: Prometheus
+        nodes:
+          # renovate: dashboardName="Kubernetes / Views / Nodes"
+          gnetId: 15759
+          revision: 32
+          datasource: Prometheus
+        pods:
+          # renovate: dashboardName="Kubernetes / Views / Pods"
+          gnetId: 15760
+          revision: 34
+          datasource: Prometheus
+        volumes:
+          # renovate: dashboardName="K8s / Storage / Volumes / Cluster"
+          gnetId: 11454
+          revision: 14
+          datasource: Prometheus
+      loki:
+        loki-metrics:
+          # renovate: dashboardName="Loki2.0 Global Metrics"
+          gnetId: 13407
+          revision: 1
+          datasource: Prometheus
+      system:
+        1-node-exporter:
+          url: https://grafana.com/api/dashboards/11074/revisions/9/download
+          datasource: Prometheus
         cert-manager:
-          url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/cert-manager/dashboards/cert-manager.json
+          # renovate: depName="Cert-manager-Kubernetes"
+          gnetId: 20842
+          revision: 3
+        cloudflared:
+          # renovate: dashboardName="Cloudflare Tunnels (cloudflared)"
+          gnetId: 17457
+          revision: 6
+          datasource:
+            - name: DS_PROMETHEUS
+              value: Prometheus
+        external-dns:
+          # renovate: dashboardName="External-dns"
+          gnetId: 15038
+          revision: 3
           datasource: Prometheus
-        kubernetes-api-server:
-          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-system-api-server.json
-          datasource: Prometheus
-        kubernetes-coredns:
-          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-system-coredns.json
-          datasource: Prometheus
-        kubernetes-global:
-          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-global.json
-          datasource: Prometheus
-        kubernetes-namespaces:
-          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-namespaces.json
-          datasource: Prometheus
-        kubernetes-nodes:
-          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-nodes.json
-          datasource: Prometheus
-        kubernetes-pods:
-          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-pods.json
-          datasource: Prometheus
-        node-exporter:
+        node-exporter-full:
+          # renovate: dashboardName="Node Exporter Full"
           gnetId: 1860
-          revision: 29
+          revision: 37
+          datasource: Prometheus
+        node-feature-discovery:
+          url: https://raw.githubusercontent.com/kubernetes-sigs/node-feature-discovery/master/examples/grafana-dashboard.json
+          datasource: Prometheus
+        ingress-nginx:
+          url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/grafana/dashboards/nginx.json
+          datasource: Prometheus
+        ingress-nginx-request-handling-performance:
+          url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/grafana/dashboards/request-handling-performance.json
           datasource: Prometheus
     envFromSecrets:
       - name: grafana-oauth
