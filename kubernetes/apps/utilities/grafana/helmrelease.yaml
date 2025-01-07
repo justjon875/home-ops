@@ -139,6 +139,7 @@ spec:
             allowUiUpdates: true
             options:
               path: /var/lib/grafana/dashboards/system
+    datasources:
       datasources.yaml:
         apiVersion: 1
         deleteDatasources:
