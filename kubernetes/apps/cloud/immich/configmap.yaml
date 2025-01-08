@@ -5,7 +5,7 @@ data:
   REDIS_HOSTNAME: valkey.default.svc.cluster.local
   IMMICH_SERVER_URL: http://immich-server.cloud.svc.cluster.local:2283
   IMMICH_MACHINE_LEARNING_URL: http://immich-machine-learning.cloud.svc.cluster.local:3003
-  IMMICH_LOG_LEVEL: "verbose"
+  IMMICH_LOG_LEVEL: "debug"
   TYPESENSE_HOST: immich-typesense.cloud.svc.cluster.local
   TYPESENSE_PORT: "8108"
   TYPESENSE_PROTOCOL: http
