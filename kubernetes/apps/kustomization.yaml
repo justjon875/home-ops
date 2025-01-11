@@ -12,5 +12,6 @@ resources:
   - kubernetes-dashboard
   - media
   - networking
+  - observability
   - selfhosted
   - utilities
