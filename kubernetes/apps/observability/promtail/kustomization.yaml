@@ -1,12 +1,11 @@
-
 ---
 # yaml-language-server: $schema=https://json.schemastore.org/kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: utilities
+namespace: observability
 resources:
   - ./helmrelease.yaml
 labels:
   - pairs:
-      app.kubernetes.io/name: loki
-      app.kubernetes.io/instance: loki
+      app.kubernetes.io/name: promtail
+      app.kubernetes.io/instance: promtail

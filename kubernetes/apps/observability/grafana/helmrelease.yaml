@@ -2,7 +2,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: grafana
-  namespace: utilities
+  namespace: observability
 spec:
   interval: 15m
   chart:
@@ -151,12 +151,15 @@ spec:
           - name: Prometheus
             type: prometheus
             access: proxy
-            url: http://kube-prometheus-stack-prometheus.utilities:9090
+            url: http://kube-prometheus-stack-prometheus.observability:9090
             isDefault: true
           - name: Loki
             type: loki
+            uid: loki
             access: proxy
-            url: http://loki-headless.utilities:3100
+            url: http://loki-headless.observability.svc.cluster.local:3100
+            jsonData:
+              maxLines: 250
     dashboards:
       cilium:
         cilium-dashboard:
