@@ -58,6 +58,7 @@ spec:
                 ls -la /mosquitto/external_config/;
                 mosquitto_passwd -U /mosquitto/external_config/mosquitto_pwd;
                 chmod 0600 /mosquitto/external_config/mosquitto_pwd;
+                ls -la /mosquitto/external_config/;
         pod:
           securityContext:
             fsGroup: 568
