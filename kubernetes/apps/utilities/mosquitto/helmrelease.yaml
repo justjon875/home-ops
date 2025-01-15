@@ -55,6 +55,7 @@ spec:
               - "-c"
             args:
               - cp /tmp/secret/* /mosquitto/external_config/;
+                ls -la /mosquitto/external_config/;
                 mosquitto_passwd -U /mosquitto/external_config/mosquitto_pwd;
                 chmod 0600 /mosquitto/external_config/mosquitto_pwd;
         pod:
