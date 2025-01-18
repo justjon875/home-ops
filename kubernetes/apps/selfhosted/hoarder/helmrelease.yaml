@@ -148,7 +148,7 @@ spec:
 
     persistence:
       data:
-        existingClaim: hoarder-data
+        existingClaim: hoarder-pvc
         advancedMounts:
           hoarder:
             app:
