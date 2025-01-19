@@ -5,6 +5,7 @@ resources:
   - atuin
   - eddrit
   - filebrowser
+  - hoarder
   - linkwarden
   - matrix-element
   - matrix-synapse
