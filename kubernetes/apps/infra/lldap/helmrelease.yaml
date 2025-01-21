@@ -41,7 +41,7 @@ spec:
                   name: lldap-secret
             image:
               repository: ghcr.io/lldap/lldap
-              tag: latest-alpine@sha256:691c36821682ad91edfcb8304aa261dd9848ae39ec554503fe42c573bfe8386c
+              tag: latest-alpine@sha256:c5297becec550ee48262904542b55ca9537cbf786903495e937a0e116e87a51e
     ingress:
       app:
         className: internal
