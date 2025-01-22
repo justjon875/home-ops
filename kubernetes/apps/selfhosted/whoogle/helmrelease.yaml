@@ -43,7 +43,7 @@ spec:
               WHOOGLE_DOTENV: 1
             image:
               repository: ghcr.io/benbusby/whoogle-search
-              tag: latest@sha256:567c797f9df8e49618c6a83a1e09a388c4f061566b6521d4ef0191345575741c
+              tag: latest@sha256:cbed07c43b99eee1e30187dc347aa2fdff464d06c402670a0b93dd76bce067cb
     ingress:
       app:
         className: external
