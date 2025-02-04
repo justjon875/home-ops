@@ -41,7 +41,7 @@ spec:
                   name: *app
             image:
               repository: ghcr.io/dani-garcia/vaultwarden
-              tag: 1.32.7@sha256:7a0aa23c0947be3582898deb5170ea4359493ed9a76af2badf60a7eb45ac36af
+              tag: 1.33.1@sha256:24aa90c2424f2f6b10862ba84dc9141d09c1df2b7025f111c9b2bbc4c078894b
     ingress:
       app:
         className: internal
