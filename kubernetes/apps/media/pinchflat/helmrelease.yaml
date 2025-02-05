@@ -32,7 +32,7 @@ spec:
           app:
             image:
               repository: ghcr.io/kieraneglin/pinchflat
-              tag: v2024.12.31@sha256:8c502e52a164c33300065884aeee76182845d5b0c32b35f720835a41f77d4de0
+              tag: v2025.1.27@sha256:01e52e1f1025aea789acd83dd05735d6875d61539f8283a7b4f83e8f470a0627
             env:
               TZ: ${TIMEZONE}
               TZ_DATA_DIR: /tmp/elixir_tz_data
