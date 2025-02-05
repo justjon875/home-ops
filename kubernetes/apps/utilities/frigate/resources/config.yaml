@@ -28,9 +28,13 @@ record:
   retain:
     days: 5
     mode: all
-  events:
+  alerts:
     retain:
-      default: 14
+      days: 3
+      mode: active_objects
+  detections:
+    retain:
+      days: 14
       mode: active_objects
 
 snapshots:
