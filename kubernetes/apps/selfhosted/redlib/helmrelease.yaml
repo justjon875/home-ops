@@ -27,7 +27,7 @@ spec:
         containers:
           app:
             env:
-              REDLIB_DEFAULT_SHOW_NSFW: on
+              SFW_ONLY: on
               REDLIB_DEFAULT_THEME: dark
             image:
               repository: quay.io/redlib/redlib
