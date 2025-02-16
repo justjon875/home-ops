@@ -36,7 +36,7 @@ spec:
                   name: authelia-secret
             image:
               repository: ghcr.io/authelia/authelia
-              tag: 4.38.18
+              tag: 4.38.19
             resources:
               limits:
                 memory: 100Mi
