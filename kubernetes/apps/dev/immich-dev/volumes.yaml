@@ -37,3 +37,42 @@ spec:
       storage: 1Ti
   storageClassName: nfs-csi
   volumeName: immich-pv-nfs-dev
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  annotations:
+    pv.kubernetes.io/provisioned-by: nfs.csi.k8s.io
+  name: immich-nextcloud-pv-nfs-dev
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadOnlyMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: nfs-csi
+  mountOptions:
+    - nfsvers=4.2
+  csi:
+    driver: nfs.csi.k8s.io
+    readOnly: false
+    # volumeHandle format: {nfs-server-address}#{sub-dir-name}#{share-name}
+    # make sure this value is unique for every share in the cluster
+    volumeHandle: "${NFS_HOST}${NFS_PATH}#immich-dev#nextcloud#"
+    volumeAttributes:
+      server: "${NFS_HOST}"
+      share: "${NFS_PATH}/nextcloud/data"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: immich-nextcloud-pvc-dev
+  namespace: dev
+spec:
+  accessModes:
+    - ReadOnlyMany
+  resources:
+    requests:
+      storage: 1Ti
+  storageClassName: nfs-csi
+  volumeName: immich-nextcloud-pv-nfs-dev

@@ -87,10 +87,7 @@ spec:
             main:
               - path: /cache
       nextcloud:
-        path: ${NFS_PATH}/nextcloud/data
-        server: ${NFS_HOST}
-        accessMode: ReadOnlyMany
-        type: nfs
+        existingClaim: immich-dev-pvc
     service:
       machine-learning:
         controller: machine-learning
