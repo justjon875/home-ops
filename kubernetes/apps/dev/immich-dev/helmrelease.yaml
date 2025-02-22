@@ -89,7 +89,7 @@ spec:
       nextcloud:
         path: ${NFS_PATH}/nextcloud/data
         server: ${NFS_HOST}
-        readOnly: true
+        accessMode: ReadOnlyMany
         type: nfs
     service:
       machine-learning:
