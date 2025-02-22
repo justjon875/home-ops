@@ -1,0 +1,36 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/postgresql.cnpg.io/cluster_v1.json
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cloudnative-pgvecto-dev
+  namespace: dev
+  annotations:
+    kyverno.io/ignore: "true"
+spec:
+  env:
+    - name: TZ
+      value: ${TIMEZONE}
+  instances: 1
+  imageName: ghcr.io/tensorchord/cloudnative-pgvecto.rs:16.2-v0.2.0
+  primaryUpdateStrategy: unsupervised
+  storage:
+    size: 10Gi
+    storageClass: local-hostpath
+  superuserSecret:
+    name: cloudnative-pg-superuser
+  enableSuperuserAccess: true
+  postgresql:
+    shared_preload_libraries:
+      - "vectors.so"
+    parameters:
+      max_connections: "600"
+      max_slot_wal_keep_size: 10GB
+      shared_buffers: 512MB
+  resources:
+    requests:
+      memory: "512Mi"
+    limits:
+      hugepages-2Mi: "512Mi"
+  monitoring:
+    enablePodMonitor: true
