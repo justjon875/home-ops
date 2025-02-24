@@ -38,8 +38,6 @@ spec:
 
     controller:
       enabled: true
-      driver:
-        image: ghcr.io/democratic-csi/democratic-csi:latest
       strategy: node
       externalAttacher:
         enabled: false
@@ -61,6 +59,7 @@ spec:
 
     node:
       driver:
+        image: ghcr.io/democratic-csi/democratic-csi:latest
         extraVolumeMounts:
           - name: local-storage
             mountPath: /var/lib/csi-local-hostpath
