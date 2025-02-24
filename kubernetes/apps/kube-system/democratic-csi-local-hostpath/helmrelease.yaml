@@ -71,6 +71,8 @@ spec:
             type: DirectoryOrCreate
 
     driver:
+      enabled: true
+      image: ghcr.io/democratic-csi/democratic-csi:latest
       config:
         driver: local-hostpath
         instance_id: hydrogen
