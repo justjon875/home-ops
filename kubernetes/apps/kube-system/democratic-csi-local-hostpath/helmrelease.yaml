@@ -38,6 +38,8 @@ spec:
 
     controller:
       enabled: true
+      driver:
+        image: ghcr.io/democratic-csi/democratic-csi:latest
       strategy: node
       externalAttacher:
         enabled: false
