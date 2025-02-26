@@ -48,7 +48,7 @@ spec:
   capacity:
     storage: 1Ti
   accessModes:
-    - ReadOnlyMany
+    - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   storageClassName: nfs-csi
   mountOptions:
@@ -61,7 +61,7 @@ spec:
     volumeHandle: "${NFS_HOST}${NFS_PATH}#immich-dev#nextcloud#"
     volumeAttributes:
       server: "${NFS_HOST}"
-      share: "${NFS_PATH}/nextcloud/data"
+      share: "${LOCAL_PATH}/nextcloud_temp"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -70,7 +70,7 @@ metadata:
   namespace: dev
 spec:
   accessModes:
-    - ReadOnlyMany
+    - ReadWriteMany
   resources:
     requests:
       storage: 1Ti
