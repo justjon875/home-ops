@@ -28,14 +28,14 @@ spec:
       config:
         cache:
           ADAPTER: redis
-          HOST: "redis://:${REDIS_PASSWORD}@${REDIS_HOST}:6379"
+          HOST: "redis://valkey.default.svc.cluster.local:6379"
         database:
           DB_TYPE: postgres
           HOST: ${POSTGRESQL_HOST}
         migrations:
           ALLOWED_DOMAINS: gitea.lithium.${ROOT_DOMAIN}
         queue:
-          CONN_STR: "redis://:${REDIS_PASSWORD}@${REDIS_HOST}:6379/0"
+          CONN_STR: "redis://valkey.default.svc.cluster.local:6379/0"
           TYPE: redis
         server:
           LANDING_PAGE: login
