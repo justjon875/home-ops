@@ -35,11 +35,11 @@ spec:
               PAPERLESS_CONSUMPTION_DIR: /paperless/consume
               PAPERLESS_DATA_DIR: /paperless/data
               PAPERLESS_DBHOST: ${POSTGRESQL_HOST}
-              PAPERLESS_FILENAME_FORMAT: '{created_year}/{correspondent}/{title}'
+              PAPERLESS_FILENAME_FORMAT: "{created_year}/{correspondent}/{title}"
               PAPERLESS_FILENAME_FORMAT_REMOVE_NONE: true
               PAPERLESS_MEDIA_ROOT: /paperless/media
               PAPERLESS_OCR_LANGUAGE: eng
-              PAPERLESS_REDIS: redis://:${REDIS_PASSWORD}@${REDIS_HOST}
+              PAPERLESS_REDIS: redis://valkey.default.svc.cluster.local
               PAPERLESS_TIME_ZONE: ${TIMEZONE}
               PAPERLESS_URL: https://paperless-ngx.${ROOT_DOMAIN}
             envFrom:
@@ -51,11 +51,11 @@ spec:
     ingress:
       app:
         annotations:
-          nginx.ingress.kubernetes.io/proxy-body-size: '0'
+          nginx.ingress.kubernetes.io/proxy-body-size: "0"
         className: internal
         enabled: true
         hosts:
-          - host: &host '{{ .Release.Name }}.${ROOT_DOMAIN}'
+          - host: &host "{{ .Release.Name }}.${ROOT_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix

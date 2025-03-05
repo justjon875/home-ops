@@ -44,7 +44,7 @@ colorscheme = "catppuccin-mocha"
 theme = "simple"
 
 -- ### Caching ###
-redis_url = "redis://:${REDIS_PASSWORD}@${REDIS_HOST}"
+redis_url = "redis://valkey.default.svc.cluster.local"
 
 -- ### Search Engines ###
 upstream_search_engines = {

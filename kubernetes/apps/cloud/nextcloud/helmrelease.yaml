@@ -81,7 +81,8 @@ spec:
     internalDatabase:
       enabled: false
     lifecycle:
-      postStartCommand: ["/bin/bash", "-c", "apt update -y && apt install ffmpeg -y"]
+      postStartCommand:
+        ["/bin/bash", "-c", "apt update -y && apt install ffmpeg -y"]
     nextcloud:
       configs:
         auth.config.php: |
@@ -156,11 +157,9 @@ spec:
         - name: PHP_MEMORY_LIMIT
           value: 10G
         - name: REDIS_HOST
-          value: ${REDIS_HOST}
+          value: valkey.default.svc.cluster.local
         - name: REDIS_HOST_PORT
           value: "6379"
-        - name: REDIS_HOST_PASSWORD
-          value: ${REDIS_PASSWORD}
       extraVolumeMounts:
         - name: hugepages
           mountPath: /dev/hugepages
