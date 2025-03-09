@@ -44,3 +44,7 @@ spec:
       enabled: false
     metrics-server:
       enabled: false
+    kong:
+      image:
+        # 3.9 and not 3.8 to solve this issue https://github.com/Kong/kong/issues/13730
+        tag: "3.9"
