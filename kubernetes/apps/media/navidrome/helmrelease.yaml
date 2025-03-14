@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 3.7.2
+      version: 3.7.3
   install:
     createNamespace: true
     remediation:
@@ -33,6 +33,13 @@ spec:
             image:
               repository: ghcr.io/navidrome/navidrome
               tag: 0.55.0@sha256:2a1d37af7901d8dec5a7c7147600469f39b6e6137f857ead61124b3b709f0953
+        pod:
+          securityContext:
+            runAsUser: 568
+            runAsGroup: 568
+            runAsNonRoot: true
+            fsGroup: 568
+            fsGroupChangePolicy: OnRootMismatch
     ingress:
       app:
         className: internal
