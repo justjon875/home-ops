@@ -76,8 +76,9 @@ spec:
               - immich-dev.${ROOT_DOMAIN}
     persistence:
       library:
-        enabled: true
-        existingClaim: immich-pvc-dev
+        path: "${LOCAL_PATH}/immich-dev/server"
+        server: ${NFS_HOST}
+        type: nfs
         globalMounts:
           - path: /usr/src/app/upload
       model-cache:
