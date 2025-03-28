@@ -3,8 +3,8 @@ data:
   DISABLE_REVERSE_GEOCODING: "true"
   NODE_ENV: "production"
   REDIS_HOSTNAME: valkey.default.svc.cluster.local
-  IMMICH_SERVER_URL: http://immich-server-dev.dev.svc.cluster.local:2283
-  IMMICH_MACHINE_LEARNING_URL: http://immich-machine-learning-dev.dev.svc.cluster.local:3003
+  IMMICH_SERVER_URL: http://immich-dev-server.dev.svc.cluster.local:2283
+  IMMICH_MACHINE_LEARNING_URL: http://immich-dev-machine-learning.dev.svc.cluster.local:3003
   IMMICH_LOG_LEVEL: "debug"
 kind: ConfigMap
 metadata:
