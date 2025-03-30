@@ -25,7 +25,7 @@ spec:
     controllers:
       inv-sig-helper:
         containers:
-          inv-sig-helper:
+          app:
             args: ["--tcp", "0.0.0.0:12999"]
             env:
               RUST_LOG: info
@@ -38,7 +38,7 @@ spec:
               capabilities: { drop: ["ALL"] }
       invidious:
         containers:
-          invidious:
+          app:
             envFrom:
               - secretRef:
                   name: invidious
@@ -48,7 +48,7 @@ spec:
     defaultPodOptions:
       enableServiceLinks: false
     ingress:
-      invidious:
+      app:
         className: internal
         enabled: true
         hosts:
@@ -57,7 +57,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  identifier: app
+                  identifier: invidious
                   port: http
         tls:
           - hosts:
