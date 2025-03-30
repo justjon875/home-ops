@@ -63,7 +63,12 @@ spec:
           - hosts:
               - invidious.${ROOT_DOMAIN}
     service:
-      app:
+      inv-sig-helper:
+        controller: inv-sig-helper
+        ports:
+          http:
+            port: 12999
+      invidious:
         controller: invidious
         ports:
           http:
