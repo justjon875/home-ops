@@ -25,7 +25,7 @@ spec:
     controllers:
       inv-sig-helper:
         containers:
-          app:
+          inv-sig-helper:
             args: ["--tcp", "0.0.0.0:12999"]
             env:
               RUST_LOG: info
@@ -38,7 +38,7 @@ spec:
               capabilities: { drop: ["ALL"] }
       invidious:
         containers:
-          app:
+          invidious:
             envFrom:
               - secretRef:
                   name: invidious
