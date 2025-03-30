@@ -48,7 +48,7 @@ spec:
     defaultPodOptions:
       enableServiceLinks: false
     ingress:
-      app:
+      invidious:
         className: internal
         enabled: true
         hosts:
