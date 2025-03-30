@@ -23,7 +23,7 @@ spec:
       retries: 5
   values:
     controllers:
-      inv_sig_helper:
+      inv-sig-helper:
         containers:
           app:
             args: ["--tcp", "0.0.0.0:12999"]
