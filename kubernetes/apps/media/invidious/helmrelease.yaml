@@ -23,6 +23,19 @@ spec:
       retries: 5
   values:
     controllers:
+      inv-sig-helper:
+        containers:
+          app:
+            args: ["--tcp", "0.0.0.0:12999"]
+            env:
+              RUST_LOG: info
+            image:
+              repository: quay.io/invidious/inv-sig-helper
+              tag: latest@sha256:1cfd80c42482f6524a3f7a11fdc0f623b761f8cd6686a4c027aaff05fb853fe5
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
       invidious:
         containers:
           app:
@@ -44,13 +57,18 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  identifier: app
+                  identifier: invidious
                   port: http
         tls:
           - hosts:
               - invidious.${ROOT_DOMAIN}
     service:
-      app:
+      inv-sig-helper:
+        controller: inv-sig-helper
+        ports:
+          http:
+            port: 12999
+      invidious:
         controller: invidious
         ports:
           http:
