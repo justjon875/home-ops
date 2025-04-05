@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: democratic-csi
-      version: 0.14.7
+      version: 0.15.0
       sourceRef:
         kind: HelmRepository
         name: democratic-csi
@@ -39,7 +39,9 @@ spec:
     controller:
       enabled: true
       driver:
-        image: ghcr.io/democratic-csi/democratic-csi:latest
+        image:
+          registry: ghcr.io/democratic-csi/democratic-csi
+          tag: latest
       strategy: node
       externalAttacher:
         enabled: false
@@ -61,7 +63,9 @@ spec:
 
     node:
       driver:
-        image: ghcr.io/democratic-csi/democratic-csi:latest
+        image:
+          registry: ghcr.io/democratic-csi/democratic-csi
+          tag: latest
         extraVolumeMounts:
           - name: local-storage
             mountPath: /var/lib/csi-local-hostpath
