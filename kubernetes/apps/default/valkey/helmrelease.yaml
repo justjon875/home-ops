@@ -32,7 +32,7 @@ spec:
           app:
             image:
               repository: valkey/valkey
-              tag: 8-alpine@sha256:d781a69ff6cc8175ac48c530175b95ef0bc53d4249fc5414f42e394bce3b60e0
+              tag: 8-alpine@sha256:7c1426974c5f80e5aa510eb6dc6d699f103a302e095afcf3babe9fe6b7076ee6
     service:
       app:
         controller: valkey
