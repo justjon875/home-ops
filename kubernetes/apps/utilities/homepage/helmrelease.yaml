@@ -6,15 +6,9 @@ metadata:
   namespace: utilities
 spec:
   interval: 15m
-  chart:
-    spec:
-      chart: homepage
-      version: 2.0.2
-      sourceRef:
-        kind: HelmRepository
-        name: homepage
-        namespace: flux-system
-      interval: 15m
+  chartRef:
+    kind: OCIRepository
+    name: app-template
   install:
     createNamespace: true
     remediation:
