@@ -19,22 +19,39 @@ spec:
     remediation:
       retries: 5
   values:
-    config:
-      useExistingConfigMap: homepage-config
-    # This enables the service account to access the necessary resources
-    enableRbac: true
-    env:
-      TZ: ${TIMEZONE}
-      LOG_LEVEL: debug
-    image:
-      repository: ghcr.io/gethomepage/homepage
-      tag: v1.1.1@sha256:be49a60307fcce7909acdaf2f3b2f3d168a0468d62869bf72d380625dde91fb9
+    controllers:
+      homepage:
+        replicas: 1
+        strategy: RollingUpdate
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: ghcr.io/gethomepage/homepage
+              tag: v1.1.1@sha256:be49a60307fcce7909acdaf2f3b2f3d168a0468d62869bf72d380625dde91fb9
+            env:
+              TZ: ${TIMEZONE}
+            envFrom:
+              - configMapRef:
+                  name: homepage-config
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+            resources:
+              requests:
+                cpu: 15m
+                memory: 200M
+              limits:
+                memory: 2G
     ingress:
-      main:
+      app:
         enabled: true
         className: internal
         hosts:
-          - host: &host home.${ROOT_DOMAIN}
+          - host: &host "{{ .Release.Name }}.${ROOT_DOMAIN}"
             paths:
               - path: /
                 service:
@@ -43,16 +60,6 @@ spec:
         tls:
           - hosts:
               - *host
-    podAnnotations:
-      configmap.reloader.stakater.com/reload: "homepage-config"
-    resources:
-      requests:
-        cpu: 15m
-        memory: 273M
-    # The service account is necessary to allow discovery of other services
-    serviceAccount:
-      create: true
-      name: homepage
     persistence:
       images:
         enabled: true
@@ -68,3 +75,12 @@ spec:
         path: ${NFS_PATH}/homepage/icons
         server: ${NFS_HOST}
         type: nfs
+    service:
+      app:
+        controller: *app
+        ports:
+          http:
+            port: 3000
+    serviceAccount:
+      create: true
+      name: *app
