@@ -51,7 +51,7 @@ spec:
         enabled: true
         className: internal
         hosts:
-          - host: &host "{{ .Release.Name }}.${ROOT_DOMAIN}"
+          - host: &host "home.${ROOT_DOMAIN}"
             paths:
               - path: /
                 service:
