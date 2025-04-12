@@ -6,6 +6,7 @@ namespace: utilities
 resources:
   - ./helmrelease.yaml
   - ./configmap.yaml
+  - ./rbac.yaml
 labels:
   - pairs:
       app.kubernetes.io/name: homepage
