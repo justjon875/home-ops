@@ -30,7 +30,7 @@ spec:
               VALKEY_URL: valkey://valkey.default.svc.cluster.local
             image:
               repository: ghcr.io/corenting/eddrit
-              tag: 0.11.0@sha256:9e0c60769f1f5d4a033e30fb176663b20ac3508eb342d0eb8101d05d0dbb76e3
+              tag: 0.11.1@sha256:7f91121a5b27c4c5e49598fe28337082920c1e68bb6043839f5b339fd0d2d40e
     ingress:
       app:
         annotations:
