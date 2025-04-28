@@ -31,7 +31,7 @@ spec:
                   name: rxresume
             image:
               repository: amruthpillai/reactive-resume
-              tag: server-3.7.2@sha256:5794bfe8729a6660f321b5c3525c7bcd354cc0e80b2bfbc23b566a7aacf055be
+              tag: server-3.7.2@sha256:ec5f719a9c57ca218d014665d3fff0c9c46d835543bdc43ccc0d25faf8bdb891
         replicas: 0
     service:
       app:
