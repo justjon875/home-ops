@@ -30,14 +30,14 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/onedr0p/theme-park
-              tag: 1.18.0@sha256:6d6ad5a1c3b55b83f7441ba0346cbd60939c776a5038d34c7fb4ac1136bfa271
+              repository: ghcr.io/home-operations/theme-park
+              tag: 1.20.1@sha256:f43330ee6727a1551de331c5d993ecf2c23beec921379ab136e61a9528f35c2c
     ingress:
       app:
         className: internal
         enabled: true
         hosts:
-          - host: '{{ .Release.Name }}.${ROOT_DOMAIN}'
+          - host: "{{ .Release.Name }}.${ROOT_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -46,7 +46,7 @@ spec:
                   port: http
         tls:
           - hosts:
-              - '{{ .Release.Name }}.${ROOT_DOMAIN}'
+              - "{{ .Release.Name }}.${ROOT_DOMAIN}"
     service:
       app:
         controller: theme-park

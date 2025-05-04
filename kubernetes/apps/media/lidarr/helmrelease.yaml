@@ -35,19 +35,19 @@ spec:
               LIDARR__LOG__DBENABLED: "False"
               LIDARR__LOG__LEVEL: info
               LIDARR__UPDATE__BRANCH: develop
-              PGID: '568'
-              PUID: '568'
+              PGID: "568"
+              PUID: "568"
               TZ: Asia/Singapore
             envFrom:
               - secretRef:
                   name: lidarr-secret
             image:
-              repository: ghcr.io/onedr0p/lidarr-develop
-              tag: 2.5.2.4316@sha256:6b1b51ca85dad4f0376b6f86df4cb24d1d6c621ba9d47c1bde26cdb940f2aeb6
+              repository: ghcr.io/home-operations/lidarr
+              tag: 2.11.2.4629@sha256:14624fe610fe2f428c8665c82e2bdfc71911807eeba52e94c8bbb6ceea1396a6
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
-              capabilities: {drop: ["ALL"]}
+              capabilities: { drop: ["ALL"] }
     defaultPodOptions:
       securityContext:
         fsGroup: 568
