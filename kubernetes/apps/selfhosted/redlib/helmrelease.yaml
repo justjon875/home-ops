@@ -26,7 +26,7 @@ spec:
             env:
               REDLIB_DEFAULT_THEME: dark
               SFW_ONLY: on
-              SUBSCRIPTIONS: "ergomech+keyboards+hosted+sffpc+olkb+unixporn"
+              SUBSCRIPTIONS: "(ergomech+keyboards+hosted+sffpc+olkb+unixporn)"
             image:
               repository: quay.io/redlib/redlib
               tag: latest@sha256:8c6c56472380188edc8dcd15b1a8e6741281635446b95c6ef1222f9940a96d93
