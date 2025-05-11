@@ -4,14 +4,10 @@ metadata:
   name: &app filebrowser
   namespace: selfhosted
 spec:
-  chart:
-    spec:
-      chart: app-template
-      sourceRef:
-        kind: HelmRepository
-        name: bjw-s
-        namespace: flux-system
-      version: 3.7.3
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+    namespace: flux-system
   install:
     createNamespace: true
     remediation:
@@ -50,7 +46,7 @@ spec:
         className: internal
         enabled: true
         hosts:
-          - host: &host '{{ .Release.Name }}.${ROOT_DOMAIN}'
+          - host: &host "{{ .Release.Name }}.${ROOT_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
