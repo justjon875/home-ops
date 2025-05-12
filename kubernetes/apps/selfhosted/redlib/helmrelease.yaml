@@ -25,8 +25,8 @@ spec:
           app:
             env:
               REDLIB_DEFAULT_THEME: dark
-              SFW_ONLY: on
-              SUBSCRIPTIONS: "ergomechkeyboards+linux+patientgamers+privacy+Piracy+selfhosted+sffpc+olkb+unixporn"
+              REDLIB_DEFAULT_SUBSCRIPTIONS: "ergomechkeyboards+linux+patientgamers+privacy+Piracy+selfhosted+sffpc+olkb+unixporn"
+              REDLIB_SFW_ONLY: on
             image:
               repository: quay.io/redlib/redlib
               tag: latest@sha256:8c6c56472380188edc8dcd15b1a8e6741281635446b95c6ef1222f9940a96d93
