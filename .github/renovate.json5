@@ -24,18 +24,18 @@
         'forgejo_admin/home-ops',
     ],
     flux: {
-        fileMatch: [
-            '(^|/)kubernetes/.+\\.ya?ml(\\.j2)?$',
+        managerFilePatterns: [
+            '/(^|/)kubernetes/.+\\.ya?ml(\\.j2)?$/',
         ],
     },
     'helm-values': {
-        fileMatch: [
-            '(^|/)kubernetes/.+\\.ya?ml(\\.j2)?$',
+        managerFilePatterns: [
+            '/(^|/)kubernetes/.+\\.ya?ml(\\.j2)?$/',
         ],
     },
     kubernetes: {
-        fileMatch: [
-            '(^|/)kubernetes/.+\\.ya?ml(\\.j2)?$',
+        managerFilePatterns: [
+            '/(^|/)kubernetes/.+\\.ya?ml(\\.j2)?$/',
         ],
     },
     customManagers: [
@@ -44,8 +44,8 @@
             description: [
                 'Process CRD dependencies - Chart and Github Release are the same version',
             ],
-            fileMatch: [
-                'kubernetes/.+\\.ya?ml$',
+            managerFilePatterns: [
+                '/kubernetes/.+\\.ya?ml$/',
             ],
             matchStrings: [
                 '# renovate: registryUrl=(?<registryUrl>\\S+) chart=(?<depName>\\S+)\n.*?(?<currentValue>[^-\\s]*)\n',
@@ -57,9 +57,9 @@
             description: [
                 'Generic Docker image Regex manager',
             ],
-            fileMatch: [
-                'infrastructure/.+\\.ya?ml$',
-                'infrastructure/.+\\.tf$',
+            managerFilePatterns: [
+                '/infrastructure/.+\\.ya?ml$/',
+                '/infrastructure/.+\\.tf$/',
             ],
             matchStrings: [
                 '# renovate: docker-image( versioning=(?<versioning>.*=?))?\n .*[:|=] "?(?<depName>.*?):(?<currentValue>[^"\n]*=?)"?',
@@ -72,9 +72,9 @@
             description: [
                 'Raw GitHub URL Regex manager',
             ],
-            fileMatch: [
-                'infrastructure/.+\\.ya?ml$',
-                'kubernetes/.+\\.ya?ml$',
+            managerFilePatterns: [
+                '/infrastructure/.+\\.ya?ml$/',
+                '/kubernetes/.+\\.ya?ml$/',
             ],
             matchStrings: [
                 'https:\\/\\/raw.githubusercontent.com\\/(?<depName>[\\w\\d\\-_]+\\/[\\w\\d\\-_]+)\\/(?<currentValue>[\\w\\d\\.\\-_]+)\\/.*',
