@@ -40,7 +40,7 @@ spec:
               TZ: ${TIMEZONE}
             image:
               repository: ghcr.io/coder/code-server
-              tag: 4.100.1
+              tag: 4.100.2
             resources:
               limits:
                 memory: 512Mi
