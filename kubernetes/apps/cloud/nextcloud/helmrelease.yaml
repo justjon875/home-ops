@@ -41,7 +41,7 @@ spec:
       type: postgresql
     image:
       repository: nextcloud
-      tag: 31.0.4
+      tag: 31.0.5
     ingress:
       annotations:
         nginx.ingress.kubernetes.io/proxy-body-size: "10G"
@@ -120,6 +120,11 @@ spec:
               'oidc_login_well_known_caching_time' => 86400,
               'oidc_login_update_avatar' => false,
           );
+        local.config.php: |-
+          <?php
+            $CONFIG = array (
+              'allow_local_remote_servers' => true,
+            );
         previews.config.php: |
           <?php
             $CONFIG = array (
