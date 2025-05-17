@@ -120,6 +120,11 @@ spec:
               'oidc_login_well_known_caching_time' => 86400,
               'oidc_login_update_avatar' => false,
           );
+        local.config.php: |-
+          <?php
+            $CONFIG = array (
+              'allow_local_remote_servers' => true,
+            );
         previews.config.php: |
           <?php
             $CONFIG = array (
