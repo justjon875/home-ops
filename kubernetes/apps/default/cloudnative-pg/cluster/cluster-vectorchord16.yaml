@@ -1,0 +1,63 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/postgresql.cnpg.io/cluster_v1.json
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-vectorchord16
+  namespace: default
+  annotations:
+    kyverno.io/ignore: "true"
+spec:
+  env:
+    - name: TZ
+      value: ${TIMEZONE}
+  instances: 1
+  imageName: ghcr.io/tensorchord/cloudnative-pgvecto.rs:16.2-v0.2.0
+  primaryUpdateStrategy: unsupervised
+  storage:
+    size: 10Gi
+    storageClass: local-hostpath
+  superuserSecret:
+    name: cloudnative-pg-superuser
+  enableSuperuserAccess: true
+  postgresql:
+    shared_preload_libraries:
+      - "vectors.so"
+    parameters:
+      max_connections: "600"
+  resources:
+    requests:
+      cpu: 500m
+    limits:
+      memory: 1Gi
+  monitoring:
+    enablePodMonitor: true
+  backup:
+    retentionPolicy: 7d
+    barmanObjectStore: &barmanObjectStore
+      data:
+        compression: bzip2
+      wal:
+        compression: bzip2
+        maxParallel: 8
+      destinationPath: s3://${BACKBLAZE_BUCKET}/cloudnative-pg
+      endpointURL: https://s3.${ROOT_DOMAIN}
+      serverName: cluster-vectorchord17
+      s3Credentials:
+        accessKeyId:
+          name: cloudnative-pg-superuser
+          key: minio-access-key-id
+        secretAccessKey:
+          name: cloudnative-pg-superuser
+          key: minio-secret-access-key
+  # Note: previousCluster needs to be set to the name of the previous
+  # cluster when recovering from an existing cnpg cluster
+  bootstrap:
+    recovery:
+      source: &previousCluster cloudnative-pgvecto
+  # Note: externalClusters is needed when recovering from an existing cnpg cluster
+  externalClusters:
+    - name: *previousCluster
+      barmanObjectStore:
+        <<: *barmanObjectStore
+        serverName: *previousCluster
