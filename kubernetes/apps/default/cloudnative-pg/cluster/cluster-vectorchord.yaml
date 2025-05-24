@@ -22,7 +22,6 @@ spec:
   enableSuperuserAccess: true
   postgresql:
     shared_preload_libraries:
-      - "vectors.so"
       - "vchord.so"
     parameters:
       max_connections: "400"
