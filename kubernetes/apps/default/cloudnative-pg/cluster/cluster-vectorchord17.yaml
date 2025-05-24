@@ -53,6 +53,9 @@ spec:
   # Note: previousCluster needs to be set to the name of the previous
   # cluster when recovering from an existing cnpg cluster
   bootstrap:
+    initdb:
+      postInitSQL:
+        - CREATE EXTENSION IF NOT EXISTS vchord CASCADE;
     recovery:
       source: &previousCluster cloudnative-pgvecto
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
