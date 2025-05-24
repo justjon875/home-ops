@@ -3,7 +3,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: postgres17-immich
+  name: cluster-vectorchord
   namespace: default
   annotations:
     kyverno.io/ignore: "true"
@@ -12,44 +12,44 @@ spec:
     - name: TZ
       value: ${TIMEZONE}
   instances: 1
-  imageName: ghcr.io/tensorchord/cloudnative-vectorchord:17.5-0.3.0
+  imageName: ghcr.io/tensorchord/cloudnative-vectorchord:16.9-0.3.0
   primaryUpdateStrategy: unsupervised
   storage:
-    size: 10Gi
+    size: 5Gi
     storageClass: local-hostpath
   superuserSecret:
     name: cloudnative-pg-superuser
   enableSuperuserAccess: true
   postgresql:
     shared_preload_libraries:
-      - "vectors.so"
+      - "vchord.so"
     parameters:
-      max_connections: "600"
-      max_slot_wal_keep_size: 10GB
-      shared_buffers: 512MB
+      max_connections: "400"
   resources:
     requests:
-      memory: "512Mi"
+      cpu: 500m
     limits:
-      hugepages-2Mi: "512Mi"
+      memory: 1Gi
   monitoring:
     enablePodMonitor: true
   backup:
     retentionPolicy: 7d
     barmanObjectStore: &barmanObjectStore
+      data:
+        compression: bzip2
       wal:
         compression: bzip2
         maxParallel: 8
-      destinationPath: s3://${S3_POSTGRESQL_BUCKET}/
-      endpointURL: https://${S3_ENDPOINT}
-      serverName: postgres17-immich-v1
+      destinationPath: s3://${BACKBLAZE_BUCKET}/cloudnative-pg
+      endpointURL: https://s3.${ROOT_DOMAIN}
+      serverName: cluster-vectorchord
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-superuser
-          key: aws-access-key-id
+          key: minio-access-key-id
         secretAccessKey:
           name: cloudnative-pg-superuser
-          key: aws-secret-access-key
+          key: minio-secret-access-key
   # Note: previousCluster needs to be set to the name of the previous
   # cluster when recovering from an existing cnpg cluster
   bootstrap:
