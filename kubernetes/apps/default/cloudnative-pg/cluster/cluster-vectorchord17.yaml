@@ -40,9 +40,9 @@ spec:
       wal:
         compression: bzip2
         maxParallel: 8
-      destinationPath: s3://${BACKBLAZE_BUCKET}/cloudnative-pg/cluster-vectorchord17
+      destinationPath: s3://${BACKBLAZE_BUCKET}/cloudnative-pg
       endpointURL: https://s3.${ROOT_DOMAIN}
-      serverName: cloudnative-pgvecto
+      serverName: cluster-vectorchord17
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-superuser
