@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: default
 resources:
   - ./cluster-pgvecto.yaml
+  - ./cluster-vectorchord.yaml
   - ./postgresql16.yaml
   - ./scheduledbackup-postgresql16.yaml
   - ./scheduledbackup-pgvecto.yaml
