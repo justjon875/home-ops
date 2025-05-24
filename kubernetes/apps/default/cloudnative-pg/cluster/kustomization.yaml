@@ -8,4 +8,4 @@ resources:
   - ./postgresql16.yaml
   - ./scheduledbackup-postgresql16.yaml
   - ./scheduledbackup-pgvecto.yaml
-  - ./scheduledbackup-vectorchord.yaml.yaml
+  - ./scheduledbackup-vectorchord.yaml
