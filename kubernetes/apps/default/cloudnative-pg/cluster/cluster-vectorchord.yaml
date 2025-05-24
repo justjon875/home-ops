@@ -12,7 +12,7 @@ spec:
     - name: TZ
       value: ${TIMEZONE}
   instances: 1
-  imageName: ghcr.io/tensorchord/cloudnative-pgvecto.rs:16.2-v0.2.0
+  imageName: ghcr.io/tensorchord/cloudnative-vectorchord:16.9-0.3.0
   primaryUpdateStrategy: unsupervised
   storage:
     size: 5Gi
@@ -22,7 +22,7 @@ spec:
   enableSuperuserAccess: true
   postgresql:
     shared_preload_libraries:
-      - "vectors.so"
+      - "vchord.so"
     parameters:
       max_connections: "400"
   resources:
