@@ -3,7 +3,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: cloudnative-pgvecto
+  name: cluster-vectorchord
   namespace: default
   annotations:
     kyverno.io/ignore: "true"
@@ -12,26 +12,24 @@ spec:
     - name: TZ
       value: ${TIMEZONE}
   instances: 1
-  imageName: ghcr.io/tensorchord/cloudnative-pgvecto.rs:16.2-v0.2.0
+  imageName: ghcr.io/tensorchord/cloudnative-vectorchord:16.9-0.3.0
   primaryUpdateStrategy: unsupervised
   storage:
-    size: 10Gi
+    size: 5Gi
     storageClass: local-hostpath
   superuserSecret:
     name: cloudnative-pg-superuser
   enableSuperuserAccess: true
   postgresql:
     shared_preload_libraries:
-      - "vectors.so"
+      - "vchord.so"
     parameters:
-      max_connections: "600"
-      max_slot_wal_keep_size: 10GB
-      shared_buffers: 512MB
+      max_connections: "400"
   resources:
     requests:
-      memory: "512Mi"
+      cpu: 500m
     limits:
-      hugepages-2Mi: "512Mi"
+      memory: 1Gi
   monitoring:
     enablePodMonitor: true
   backup:
@@ -44,7 +42,7 @@ spec:
         maxParallel: 8
       destinationPath: s3://${BACKBLAZE_BUCKET}/cloudnative-pg
       endpointURL: https://s3.${ROOT_DOMAIN}
-      serverName: cloudnative-pgvecto
+      serverName: cluster-vectorchord
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-superuser
@@ -52,3 +50,14 @@ spec:
         secretAccessKey:
           name: cloudnative-pg-superuser
           key: minio-secret-access-key
+  # Note: previousCluster needs to be set to the name of the previous
+  # cluster when recovering from an existing cnpg cluster
+  bootstrap:
+    recovery:
+      source: &previousCluster cloudnative-pgvecto
+  # Note: externalClusters is needed when recovering from an existing cnpg cluster
+  externalClusters:
+    - name: *previousCluster
+      barmanObjectStore:
+        <<: *barmanObjectStore
+        serverName: *previousCluster
