@@ -23,6 +23,7 @@ spec:
   postgresql:
     shared_preload_libraries:
       - "vectors.so"
+      # - "vchord.so"
     parameters:
       max_connections: "600"
   resources:
@@ -52,12 +53,12 @@ spec:
           key: minio-secret-access-key
   # Note: previousCluster needs to be set to the name of the previous
   # cluster when recovering from an existing cnpg cluster
-  bootstrap:
-    recovery:
-      source: &previousCluster cloudnative-pgvecto
+  # bootstrap:
+  #   recovery:
+  #     source: &previousCluster cloudnative-pgvecto
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
-  externalClusters:
-    - name: *previousCluster
-      barmanObjectStore:
-        <<: *barmanObjectStore
-        serverName: *previousCluster
+  # externalClusters:
+  #   - name: *previousCluster
+  #     barmanObjectStore:
+  #       <<: *barmanObjectStore
+  #       serverName: *previousCluster
