@@ -3,8 +3,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: default
 resources:
-  - ./cluster-immich17.yaml
   - ./cluster-pgvecto.yaml
+  - ./cluster-vectorchord17.yaml
   - ./postgresql16.yaml
   - ./scheduledbackup-postgresql16.yaml
   - ./scheduledbackup-pgvecto.yaml
