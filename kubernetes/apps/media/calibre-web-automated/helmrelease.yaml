@@ -51,9 +51,7 @@ spec:
         path: ${NFS_PATH}/calibre-web-automated/config
         server: ${NFS_HOST}
         type: nfs
-      public:
-        globalMounts:
-          - path: /data
+      calibre-library:
         path: /mnt/raid/media/books
         server: ${NFS_HOST}
         type: nfs
