@@ -4,6 +4,7 @@ resources:
   - ./namespace.yaml
   - audiobookshelf
   - calibre
+  - calibre-web-automated
   - flaresolverr
   - invidious
   - jellyfin
