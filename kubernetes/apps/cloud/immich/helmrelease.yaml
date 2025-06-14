@@ -85,6 +85,8 @@ spec:
           machine-learning:
             main:
               - path: /cache
+      nextcloud:
+        existingClaim: immich-nextcloud-pvc
     service:
       machine-learning:
         controller: machine-learning
