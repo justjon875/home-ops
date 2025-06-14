@@ -42,7 +42,7 @@ spec:
         maxParallel: 8
       destinationPath: s3://${BACKBLAZE_BUCKET}/cloudnative-pg
       endpointURL: https://s3.${ROOT_DOMAIN}
-      serverName: cluster-vectorchord
+      serverName: cluster-vectorchord-06-2025
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-superuser
@@ -54,7 +54,7 @@ spec:
   # cluster when recovering from an existing cnpg cluster
   bootstrap:
     recovery:
-      source: &previousCluster cloudnative-pgvecto
+      source: &previousCluster cluster-vectorchord
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
   externalClusters:
     - name: *previousCluster

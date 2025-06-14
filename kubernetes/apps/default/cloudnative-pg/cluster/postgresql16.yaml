@@ -38,7 +38,7 @@ spec:
         maxParallel: 8
       destinationPath: s3://${BACKBLAZE_BUCKET}/cloudnative-pg
       endpointURL: https://s3.${ROOT_DOMAIN}
-      serverName: &currentCluster postgresql16-2
+      serverName: postgresql16-06-2025
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-superuser
@@ -48,12 +48,12 @@ spec:
           key: minio-secret-access-key
   # Note: previousCluster needs to be set to the name of the previous
   # cluster when recovering from an existing cnpg cluster
-  # bootstrap:
-  #   recovery:
-  #     source: &previousCluster postgresql16
+  bootstrap:
+    recovery:
+      source: &previousCluster postgresql16-2
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
-  # externalClusters:
-  #   - name: *previousCluster
-  #     barmanObjectStore:
-  #       <<: *barmanObjectStore
-  #       serverName: *previousCluster
+  externalClusters:
+    - name: *previousCluster
+      barmanObjectStore:
+        <<: *barmanObjectStore
+        serverName: *previousCluster
