@@ -6,7 +6,7 @@ namespace: cloud
 resources:
   - ./configmap.yaml
   - ./secret.sops.yaml
-  - ./volumes.yaml
+  # - ./volumes.yaml
   - ./helmrelease.yaml
 labels:
   - pairs:
