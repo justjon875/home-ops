@@ -8,7 +8,7 @@ spec:
   capacity:
     storage: 1Ti
   accessModes:
-    - ReadWriteMany
+    - ReadOnlyMany
   persistentVolumeReclaimPolicy: Retain
   storageClassName: nfs-csi
   mountOptions:
@@ -30,7 +30,7 @@ metadata:
   namespace: dev
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadOnlyMany
   resources:
     requests:
       storage: 1Ti
