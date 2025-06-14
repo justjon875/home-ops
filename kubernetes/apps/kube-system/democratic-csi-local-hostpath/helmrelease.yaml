@@ -74,7 +74,7 @@ spec:
       extraVolumes:
         - name: local-storage
           hostPath:
-            path: /mnt/raid/local-hostpath
+            path: /mnt/nvme/local-hostpath
             type: DirectoryOrCreate
 
     driver:

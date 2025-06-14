@@ -7,12 +7,12 @@ resources:
   - filebrowser
   - linkwarden
   - matrix-element
-  - matrix-synapse
+  # - matrix-synapse
   - memos
   - openspeedtest
   - paperless-ngx
   - pairdrop
-  - planka
+  # - planka
   - redlib
   - rxresume
   - searxng
