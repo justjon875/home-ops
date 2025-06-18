@@ -27,7 +27,7 @@ spec:
 
     image:
       repository: ghcr.io/crowdsecurity/crowdsec
-      tag: v1.6.8
+      tag: v1.6.9
       pullPolicy: IfNotPresent
 
     # # If you want to specify secrets that will be used for all your crowdsec-agents
