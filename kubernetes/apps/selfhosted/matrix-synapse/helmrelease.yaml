@@ -32,8 +32,7 @@ spec:
       registration_requires_token: true
       suppress_key_server_warning: true
     externalRedis:
-      host: ${REDIS_HOST}
-      password: ${REDIS_PASSWORD}
+      host: valkey.default.svc.cluster.local
     externalPostgresql:
       host: ${POSTGRESQL_HOST}
       port: 5432
