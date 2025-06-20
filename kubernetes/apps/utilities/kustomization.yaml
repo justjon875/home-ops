@@ -7,7 +7,6 @@ resources:
   - goldilocks
   - homepage
   - home-assistant
-  - kubewall
   - mosquitto
   - reloader
   - renovate
