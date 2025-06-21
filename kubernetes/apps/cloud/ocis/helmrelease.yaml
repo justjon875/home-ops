@@ -94,7 +94,7 @@ spec:
             subPath: web.yaml
             readOnly: true
       data:
-        existingClaim: ocis-data
+        existingClaim: ocis-pvc
         globalMounts:
           - path: /var/lib/ocis
             subPath: data
