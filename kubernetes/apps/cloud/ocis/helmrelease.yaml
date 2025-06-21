@@ -73,12 +73,18 @@ spec:
                 drop:
                   - ALL
 
-    service:
+    ingress:
       app:
-        ports:
-          http:
-            port: 9200
-
+        className: internal
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "internal.${CLUSTER_DOMAIN}"
+        hosts:
+          - host: ocis.${ROOT_DOMAIN}
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: &port 9200
     persistence:
       config:
         type: configMap
@@ -99,12 +105,17 @@ spec:
         globalMounts:
           - path: /tmp
             subPath: tmp
-
-    route:
+    service:
       app:
-        hostnames:
-          - files.bjw-s.dev
-        parentRefs:
-          - name: external
-            namespace: kube-system
-            sectionName: https
+        controller: ocis
+        ports:
+          http:
+            port: *port
+            primary: true
+          metrics:
+            port: 9205
+    serviceMonitor:
+      app:
+        serviceName: *app
+        endpoints:
+          - port: metrics
