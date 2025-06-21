@@ -33,7 +33,7 @@ spec:
             env:
               NOTIFICATIONS_SMTP_HOST: email-smtp.eu-west-1.amazonaws.com
               NOTIFICATIONS_SMTP_PORT: 587
-              NOTIFICATIONS_SMTP_SENDER: "OpenCloud notifications <opencloud@opencloud.${ROOT_DOMAIN}>}"
+              NOTIFICATIONS_SMTP_SENDER: "OpenCloud notifications <opencloud@opencloud.${ROOT_DOMAIN}>"
               NOTIFICATIONS_SMTP_AUTHENTICATION: "auto"
               NOTIFICATIONS_SMTP_ENCRYPTION: "starttls"
               OC_ADD_RUN_SERVICES: "notifications"
