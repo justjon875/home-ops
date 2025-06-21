@@ -31,6 +31,11 @@ spec:
               repository: quay.io/opencloudeu/opencloud
               tag: 2.1.2@sha256:0972f604d600359d5836d271407d59e713ecc2072966c7340bf679de268f71d0
             env:
+              NOTIFICATIONS_SMTP_HOST: email-smtp.eu-west-1.amazonaws.com
+              NOTIFICATIONS_SMTP_PORT: 587
+              NOTIFICATIONS_SMTP_SENDER: "OpenCloud notifications <opencloud@opencloud.${ROOT_DOMAIN}>}"
+              NOTIFICATIONS_SMTP_AUTHENTICATION: "auto"
+              NOTIFICATIONS_SMTP_ENCRYPTION: "starttls"
               OC_ADD_RUN_SERVICES: "notifications"
               OC_LOG_COLOR: true
               OC_LOG_LEVEL: info
