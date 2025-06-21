@@ -1,4 +1,3 @@
----
 directives:
   child-src:
     - "'self'"
@@ -9,10 +8,6 @@ directives:
     - "wss://companion.opencloud.${ROOT_DOMAIN}/"
     - "https://raw.githubusercontent.com/opencloud-eu/awesome-apps/"
     - "https://auth.${ROOT_DOMAIN}"
-  default-src:
-    - ""
-    - "https://raw.githubusercontent.com/opencloud-eu/awesome-apps/"
-    - "https://${IDP_DOMAIN|keycloak.opencloud.test}/"
   default-src:
     - "'none'"
   font-src:
