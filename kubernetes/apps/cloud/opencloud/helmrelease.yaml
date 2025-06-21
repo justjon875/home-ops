@@ -58,6 +58,19 @@ spec:
               capabilities:
                 drop:
                   - ALL
+        initContainers:
+          init-config:
+            image:
+              repository: quay.io/opencloudeu/opencloud
+              tag: 2.1.2@sha256:0972f604d600359d5836d271407d59e713ecc2072966c7340bf679de268f71d0
+            command:
+              - /bin/sh
+              - -c
+            args:
+              - |
+                if [ ! -f /etc/opencloud/opencloud.yaml ]; then opencloud init; else exit 0; fi
+            env:
+              OC_INSECURE: true
 
     ingress:
       app:
