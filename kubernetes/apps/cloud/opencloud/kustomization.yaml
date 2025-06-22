@@ -11,6 +11,6 @@ resources:
 configMapGenerator:
   - name: opencloud-configmap
     files:
-      - proxy.yaml=./resources/proxy.yaml
+      - proxy.yaml=./config/proxy.yaml
 generatorOptions:
   disableNameSuffixHash: true
