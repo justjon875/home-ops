@@ -4,10 +4,10 @@ role_assignment:
     role_claim: opencloudRoles
     role_mapping:
       - role_name: admin
-        claim_value: myAdminRole
+        claim_value: admin
       - role_name: spaceadmin
-        claim_value: mySpaceAdminRole
+        claim_value: spaceadmin
       - role_name: user
-        claim_value: myUserRole
+        claim_value: user
       - role_name: guest
-        claim_value: myGuestRole
+        claim_value: guest
