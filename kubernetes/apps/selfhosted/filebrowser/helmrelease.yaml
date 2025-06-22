@@ -103,9 +103,5 @@ spec:
   valuesFrom:
     - kind: Secret
       name: *app
-      targetPath: persistence.originals.path
-      valuesKey: ORIGINALS_PATH
-    - kind: Secret
-      name: *app
       targetPath: persistence.cyberdrop.path
       valuesKey: CYBERDROP_PATH
