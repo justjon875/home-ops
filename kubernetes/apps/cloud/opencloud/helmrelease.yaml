@@ -41,7 +41,6 @@ spec:
               OC_LOG_LEVEL: info
               OC_LOG_PRETTY: true
               OC_URL: https://opencloud.${ROOT_DOMAIN}
-              PROXY_CSP_CONFIG_FILE_LOCATION: /etc/opencloud/csp.yaml
               PROXY_TLS: false
               # Authelia OIDC
               # Auto role assignment:
