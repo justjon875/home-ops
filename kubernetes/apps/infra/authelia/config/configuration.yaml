@@ -12,8 +12,14 @@ access_control:
 identity_providers:
   oidc:
     cors:
-      endpoints: ["authorization", "token", "revocation", "introspection"]
+      endpoints:
+        ["authorization", "token", "revocation", "introspection", "userinfo"]
       allowed_origins_from_client_redirect_uris: true
+    lifespans:
+      custom:
+        opencloud-web:
+          access_token: "2 days"
+          refresh_token: "3 days"
     clients:
       - client_id: grafana
         authorization_policy: two_factor
@@ -121,11 +127,14 @@ identity_providers:
       - client_id: opencloud-web
         authorization_policy: two_factor
         client_name: opencloud web client
+        lifespan: "ocis"
         public: true
+        pkce_challenge_method: "S256"
         pre_configured_consent_duration: 1y
+        require_pkce: true
         redirect_uris:
           - https://opencloud.${ROOT_DOMAIN}/
           - https://opencloud.${ROOT_DOMAIN}/oidc-callback.html
           - https://opencloud.${ROOT_DOMAIN}/oidc-silent-redirect.html
-        scopes: ["openid", "profile", "groups", "email"]
+        scopes: ["openid", "offline_access", "groups", "profile", "email"]
         userinfo_signed_response_alg: none
