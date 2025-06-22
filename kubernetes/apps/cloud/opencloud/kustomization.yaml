@@ -9,8 +9,8 @@ resources:
   - ./volumes.yaml
 
 configMapGenerator:
-  - name: opencloud
+  - name: opencloud-configmap
     files:
-      - csp.yaml=./config/csp.yaml
-configurations:
-  - kustomizeconfig.yaml
+      - proxy.yaml=./resources/proxy.yaml
+generatorOptions:
+  disableNameSuffixHash: true

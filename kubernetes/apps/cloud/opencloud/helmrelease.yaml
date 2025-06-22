@@ -107,10 +107,10 @@ spec:
     persistence:
       config:
         type: configMap
-        name: opencloud
+        name: opencloud-configmap
         globalMounts:
-          - path: /etc/opencloud/csp.yaml
-            subPath: csp.yaml
+          - path: /etc/opencloud/proxy.yaml
+            subPath: proxy.yaml
             readOnly: true
       data:
         existingClaim: opencloud-pvc
