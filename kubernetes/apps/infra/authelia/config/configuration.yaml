@@ -124,8 +124,8 @@ identity_providers:
         public: true
         pre_configured_consent_duration: 1y
         redirect_uris:
-          - https://openloud.${ROOT_DOMAIN}/
-          - https://openloud.${ROOT_DOMAIN}/oidc-callback.html
-          - https://openloud.${ROOT_DOMAIN}/oidc-silent-redirect.html
+          - https://opencloud.${ROOT_DOMAIN}/
+          - https://opencloud.${ROOT_DOMAIN}/oidc-callback.html
+          - https://opencloud.${ROOT_DOMAIN}/oidc-silent-redirect.html
         scopes: ["openid", "profile", "groups", "email"]
         userinfo_signed_response_alg: none
