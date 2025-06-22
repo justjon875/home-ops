@@ -19,10 +19,10 @@ spec:
     readOnly: false
     # volumeHandle format: {nfs-server-address}#{sub-dir-name}#{share-name}
     # make sure this value is unique for every share in the cluster
-    volumeHandle: "${NFS_PATH}#immich#"
+    volumeHandle: "${NFS_HOST}${NVME_NFS_PATH}#immich#"
     volumeAttributes:
       server: "${NFS_HOST}"
-      share: "${NFS_PATH}/immich/server"
+      share: "${NVME_NFS_PATH}/immich/server"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -58,7 +58,7 @@ spec:
     readOnly: false
     # volumeHandle format: {nfs-server-address}#{sub-dir-name}#{share-name}
     # make sure this value is unique for every share in the cluster
-    volumeHandle: "${NFS_HOST}#immich-typesense#"
+    volumeHandle: "${NFS_HOST}${NVME_NFS_PATH}#immich-typesense#"
     volumeAttributes:
       server: "${NFS_HOST}"
       share: "${NVME_NFS_PATH}/immich/typesense"
