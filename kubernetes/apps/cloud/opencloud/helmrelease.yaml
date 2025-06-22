@@ -41,6 +41,7 @@ spec:
               OC_LOG_LEVEL: info
               OC_LOG_PRETTY: true
               OC_URL: https://opencloud.${ROOT_DOMAIN}
+              PROXY_CSP_CONFIG_FILE_LOCATION: /etc/opencloud/csp.yaml
               PROXY_TLS: false
               # Authelia OIDC
               # Auto role assignment:
@@ -104,9 +105,16 @@ spec:
                   identifier: app
                   port: &port 9200
     persistence:
+      csp:
+        type: configMap
+        name: opencloud-csp-configmap
+        globalMounts:
+          - path: /etc/opencloud/csp.yaml
+            subPath: csp.yaml
+            readOnly: true
       config:
         type: configMap
-        name: opencloud-configmap
+        name: opencloud-proxy-configmap
         globalMounts:
           - path: /etc/opencloud/proxy.yaml
             subPath: proxy.yaml

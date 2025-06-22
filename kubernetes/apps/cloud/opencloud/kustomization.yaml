@@ -9,7 +9,10 @@ resources:
   - ./volumes.yaml
 
 configMapGenerator:
-  - name: opencloud-configmap
+  - name: opencloud-csp-configmap
+    files:
+      - proxy.yaml=./config/csp.yaml
+  - name: opencloud-proxy-configmap
     files:
       - proxy.yaml=./config/proxy.yaml
 generatorOptions:
