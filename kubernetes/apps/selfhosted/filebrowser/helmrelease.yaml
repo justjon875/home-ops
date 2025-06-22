@@ -22,6 +22,9 @@ spec:
         containers:
           app:
             env:
+              FB_DATABASE: /config/database.db
+              FB_LOG: stdout
+              FB_NOAUTH: true
               TZ: ${TZ}
             image:
               repository: filebrowser/filebrowser
@@ -66,14 +69,6 @@ spec:
           - path: /srv/cyberdrop
         server: ${NFS_HOST}
         type: nfs
-      filebrowser:
-        enabled: true
-        globalMounts:
-          - path: /.filebrowser.json
-            subPath: filebrowser.json
-            readOnly: true
-        name: filebrowser-config
-        type: configMap
       media:
         enabled: true
         globalMounts:
