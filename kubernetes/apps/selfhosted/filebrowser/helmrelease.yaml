@@ -24,8 +24,8 @@ spec:
             env:
               TZ: ${TZ}
             image:
-              repository: ghcr.io/onedr0p/filebrowser
-              tag: v2.27.0
+              repository: filebrowser/filebrowser
+              tag: v2.33.2@sha256:57a7a972787ae64ca4d26c2c3cb2cdd05f258e8aca250ade6ea2c206341c03bd
             probes:
               liveness: &probes
                 custom: true
@@ -81,10 +81,11 @@ spec:
         path: ${MEDIA_PATH}
         server: ${NFS_HOST}
         type: nfs
-      originals:
+      nvme:
         enabled: true
         globalMounts:
-          - path: /srv/originals
+          - path: /srv/nvme
+        path: ${NVME_NFS_PATH}
         server: ${NFS_HOST}
         type: nfs
     resources:
