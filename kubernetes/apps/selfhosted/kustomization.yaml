@@ -7,7 +7,6 @@ resources:
   - filebrowser
   - linkwarden
   - matrix-element
-  - matrix-synapse
   - memos
   - openspeedtest
   - paperless-ngx
