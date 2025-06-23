@@ -79,8 +79,8 @@ identity_providers:
         scopes: ["openid", "profile", "email"]
         redirect_uris:
           [
-            "https://immich.${SHORT_ROOT_DOMAIN}/auth/login",
-            "https://immich.${SHORT_ROOT_DOMAIN}/user-settings",
+            "https://immich.${ROOT_DOMAIN}/auth/login",
+            "https://immich.${ROOT_DOMAIN}/user-settings",
             "app.immich:///oauth-callback",
           ]
         token_endpoint_auth_method: "client_secret_post"

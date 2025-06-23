@@ -18,6 +18,7 @@ resources:
   - searxng
   - stirling-pdf
   - stump
+  - tuwunel
   - vaultwarden
   - websurfx
   - whoogle
