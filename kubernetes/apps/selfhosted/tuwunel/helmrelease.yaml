@@ -46,6 +46,9 @@ spec:
                 value: "true"
               - name: TUWUNEL_ALLOW_LEGACY_MEDIA
                 value: "false"
+            envFrom:
+              - secretRef:
+                  name: tuwunel-secret
     ingress:
       app:
         className: internal
