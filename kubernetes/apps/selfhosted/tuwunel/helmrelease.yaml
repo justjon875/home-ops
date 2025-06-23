@@ -18,7 +18,7 @@ spec:
       retries: 5
   values:
     controllers:
-      matrix-element:
+      tuwunel:
         containers:
           app:
             image:
