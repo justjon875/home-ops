@@ -17,6 +17,13 @@ spec:
     remediation:
       retries: 5
   values:
+    defaultPodOptions:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        runAsNonRoot: true
+        fsGroup: 1000
+        fsGroupChangePolicy: "OnRootMismatch"
     controllers:
       tuwunel:
         containers:
@@ -55,9 +62,11 @@ spec:
           - hosts:
               - *host
     persistence:
-      data:
+      config:
         enabled: true
         existingClaim: tuwunel-pvc
+        globalMounts:
+          - path: /data
     podAnnotations:
       configmap.reloader.stakater.com/reload: *app
     service:
