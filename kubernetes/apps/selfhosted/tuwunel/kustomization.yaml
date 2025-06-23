@@ -5,6 +5,8 @@ kind: Kustomization
 namespace: selfhosted
 resources:
   - ./helmrelease.yaml
+  - ./secret.sops.yaml
+  - ./volumes.yaml
 labels:
   - pairs:
       app.kubernetes.io/name: tuwunel
