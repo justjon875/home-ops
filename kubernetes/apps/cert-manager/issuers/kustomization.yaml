@@ -5,4 +5,4 @@ kind: Kustomization
 namespace: cert-manager
 resources:
   - ./secret.sops.yaml
-  - ./issuer-letsencrypt-staging.yaml
+  - ./letsencrypt-staging-clusterissuer.yaml
