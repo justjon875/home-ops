@@ -27,5 +27,5 @@ spec:
       tls:
         certificateRefs:
           - kind: Secret
-        name: |-
-          ${SHORT_ROOT_DOMAIN/./-}-tls
+            name: |-
+              ${SHORT_ROOT_DOMAIN/./-}-tls
