@@ -25,8 +25,7 @@ spec:
         kind: Secret
         optional: false
   patches:
-    - # Add Sops decryption and postBuild substitutions to child Kustomizations
-      patch: |-
+    - patch: |-
         apiVersion: kustomize.toolkit.fluxcd.io/v1
         kind: Kustomization
         metadata:
@@ -36,15 +35,13 @@ spec:
             provider: sops
             secretRef:
               name: sops-age
+              namespace: flux-system
           postBuild:
             substituteFrom:
-              - name: cluster-settings
-                kind: ConfigMap
-                optional: false
-              - name: cluster-secrets
-                kind: Secret
-                optional: false
+              - kind: Secret
+                name: cluster-secrets
+                optional: true
       target:
         group: kustomize.toolkit.fluxcd.io
         kind: Kustomization
-        labelSelector: substitution.flux.home.arpa/disabled notin (true)
+        labelSelector: substitution.flux/enabled!=false
