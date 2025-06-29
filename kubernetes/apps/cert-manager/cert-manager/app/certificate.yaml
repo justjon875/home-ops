@@ -2,7 +2,7 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: &name "${ROOT_DOMAIN/./-}-tls"
+  name: &name "cilium-gateway-certifacte-tls"
   namespace: cert-manager
 spec:
   secretName: *name
