@@ -1,10 +1,16 @@
 ---
 kubernetes:
   vars:
-    ansible_user: fedora
+    ansible_user: debian
     ansible_ssh_port: 22
   children:
     master:
       hosts:
         hydrogen:
-          ansible_host: 192.168.122.67
+          ansible_host: 192.168.122.184
+          ansible_python_interpreter: /usr/bin/python3
+    worker:
+      hosts:
+        helium:
+          ansible_host: 192.168.122.126
+          ansible_python_interpreter: /usr/bin/python3

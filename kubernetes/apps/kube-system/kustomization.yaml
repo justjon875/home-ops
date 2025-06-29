@@ -6,6 +6,4 @@ resources:
   - coredns
   - csi-driver-nfs
   - democratic-csi-local-hostpath
-  - intel-device-plugin
   - metrics-server
-  - node-feature-autodiscovery
