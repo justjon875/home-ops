@@ -43,6 +43,7 @@ spec:
                 kind: ConfigMap
                 optional: false
               - name: cluster-secrets
+                namespace: flux-system
                 kind: Secret
                 optional: false
       target:
