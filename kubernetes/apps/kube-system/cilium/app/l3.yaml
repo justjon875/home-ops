@@ -1,55 +1,62 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/cilium.io/ciliumbgpclusterconfig_v2alpha1.json
 apiVersion: cilium.io/v2alpha1
-kind: CiliumBGPClusterConfig
+kind: CiliumLoadBalancerIPPool
 metadata:
-  name: l3-bgp-cluster-config
+  name: default
 spec:
-  bgpInstances:
-    - name: cilium
-      localASN: 64514
-      peers:
-        - name: frr
-          peerASN: 64513
-          peerAddress: 192.168.122.59
-          peerConfigRef:
-            name: l3-bgp-peer-config
+  blocks:
+    - cidr: 192.168.40.0/24
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/cilium.io/ciliumbgppeerconfig_v2alpha1.json
 apiVersion: cilium.io/v2alpha1
 kind: CiliumBGPPeerConfig
 metadata:
-  name: l3-bgp-peer-config
+  name: cilium-peer
 spec:
+  timers:
+    holdTimeSeconds: 90
+    keepAliveTimeSeconds: 30
+    connectRetryTimeSeconds: 120
   families:
     - afi: ipv4
       safi: unicast
       advertisements:
         matchLabels:
           advertise: bgp
+  ebgpMultihop: 10
+  gracefulRestart:
+    enabled: true
+    restartTimeSeconds: 15
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/cilium.io/ciliumbgpadvertisement_v2alpha1.json
+apiVersion: cilium.io/v2alpha1
+kind: CiliumBGPClusterConfig
+metadata:
+  name: cilium-bgp
+spec:
+  nodeSelector:
+    matchLabels:
+      kubernetes.io/os: "linux"
+  bgpInstances:
+    - name: cluster
+      localASN: 64514
+      peers:
+        - name: gateway
+          peerASN: 64513
+          peerAddress: 192.168.122.59
+          peerConfigRef:
+            name: cilium-peer
+---
 apiVersion: cilium.io/v2alpha1
 kind: CiliumBGPAdvertisement
 metadata:
-  name: l3-bgp-advertisement
+  name: bgp-advertisements
   labels:
     advertise: bgp
 spec:
   advertisements:
-    - advertisementType: Service
+    - advertisementType: "Service"
       service:
-        addresses: ["LoadBalancerIP"]
+        addresses:
+          - LoadBalancerIP
       selector:
         matchExpressions:
           - { key: somekey, operator: NotIn, values: ["never-used-value"] }
----
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/cilium.io/ciliumloadbalancerippool_v2alpha1.json
-apiVersion: cilium.io/v2alpha1
-kind: CiliumLoadBalancerIPPool
-metadata:
-  name: pool
-spec:
-  allowFirstLastIPs: "No"
-  blocks:
-    - cidr: 192.168.42.0/24
