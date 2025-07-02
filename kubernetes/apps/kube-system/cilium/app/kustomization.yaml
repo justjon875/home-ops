@@ -4,7 +4,6 @@ namespace: kube-system
 resources:
   - ./helmrelease.yaml
   - ./crds.yaml
-  - ./l3.yaml
 configMapGenerator:
   - name: cilium-values
     files:
