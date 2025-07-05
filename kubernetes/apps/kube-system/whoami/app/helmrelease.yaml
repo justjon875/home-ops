@@ -64,8 +64,8 @@ spec:
             port: *port
     route:
       app:
-        hostnames: ["{{ .Release.Name }}.habjam.xyz"]
+        hostnames: ["{{ .Release.Name }}.example.com"]
         parentRefs:
           - name: internal
             namespace: kube-system
-            sectionName: https
+            sectionName: http

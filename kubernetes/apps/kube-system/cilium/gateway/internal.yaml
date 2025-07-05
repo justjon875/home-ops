@@ -13,19 +13,7 @@ spec:
     - name: http
       protocol: HTTP
       port: 80
-      hostname: "*.habjam.xyz"
+      hostname: "*.example.com"
       allowedRoutes:
         namespaces:
           from: All
-    - name: https
-      protocol: HTTPS
-      port: 443
-      hostname: "*.habjam.xyz"
-      allowedRoutes:
-        namespaces:
-          from: All
-      tls:
-        certificateRefs:
-          - kind: Secret
-            name: |-
-              habjam-xyz-tls
