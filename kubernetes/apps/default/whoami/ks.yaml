@@ -5,11 +5,12 @@ kind: Kustomization
 metadata:
   name: &app whoami
   namespace: &namespace default
+  labels:
+    substitution.flux.home.arpa/disabled: "true"
 spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-      substitution.flux.home.arpa/disabled: "true"
   interval: 1h
   path: ./kubernetes/apps/default/whoami/app
   prune: true
