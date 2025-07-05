@@ -6,6 +6,7 @@ resources:
   - ./crds.yaml
   - ./pool.yaml
   - ./l2.yaml
+  - ./l3.yaml
 configMapGenerator:
   - name: cilium-values
     files:
