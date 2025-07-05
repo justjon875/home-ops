@@ -41,7 +41,7 @@ spec:
             port: *port
 
     route:
-      internal:
+      main:
         hostnames: ["{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}"]
         parentRefs:
           - name: internal
