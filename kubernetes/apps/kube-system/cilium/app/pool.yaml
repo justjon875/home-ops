@@ -7,5 +7,3 @@ spec:
   allowFirstLastIPs: "No"
   blocks:
     - cidr: 10.10.10.100/24
-  externalIPs: true
-  loadBalancerIPs: true
