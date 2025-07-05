@@ -18,6 +18,13 @@ sops --decrypt kubernetes/components/common/cluster-secrets.sops.yaml | kubectl 
 kubectl apply -f kubernetes/components/common/cluster-settings.yaml
 ```
 
+### Install the Gateway CRDs
+
+```
+kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.2.0/standard-install.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/gateway-api/v1.2.0/config/crd/experimental/gateway.networking.k8s.io_tlsroutes.yaml
+```
+
 ### Kick off Flux applying this repository
 
 ```sh
