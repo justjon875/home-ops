@@ -42,12 +42,8 @@ spec:
 
     route:
       main:
-        hostnames: ["{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}"]
+        hostnames: ["whoami.example.com"]
         parentRefs:
           - name: internal
             namespace: kube-system
-            sectionName: https
-        rules:
-          - backendRefs:
-              - identifier: app
-                port: *port
+            sectionName: http
