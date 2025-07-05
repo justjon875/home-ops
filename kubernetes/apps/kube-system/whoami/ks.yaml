@@ -12,7 +12,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   interval: 1h
-  path: ./kubernetes/apps/default/whoami/app
+  path: ./kubernetes/apps/kube-system/whoami/app
   prune: true
   retryInterval: 2m
   sourceRef:
