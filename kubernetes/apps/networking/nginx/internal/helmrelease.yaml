@@ -67,7 +67,7 @@ spec:
           kube-system/${SHORT_ROOT_DOMAIN/./-}-tls
       service:
         annotations:
-          io.cilium/lb-ipam-ips: 192.168.122.200
+          io.cilium/lb-ipam-ips: 192.168.122.102
     defaultBackend:
       enabled: true
       image:
