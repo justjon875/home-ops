@@ -21,7 +21,7 @@ spec:
     controllers:
       whoami:
         strategy: RollingUpdate
-        type: daemonst
+        type: daemonset
         containers:
           app:
             image:
