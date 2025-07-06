@@ -132,12 +132,12 @@
             line: ManageForeignRoutes=no
         - name: Network Configuration | Set NIC
           ansible.builtin.copy:
-            dest: /etc/network/interfaces.d/enp4s0
+            dest: /etc/network/interfaces.d/enp1s0
             content: |
-              auto enp4s0
-              allow-hotplug enp4s0
-              iface enp7s0 inet dhcp
-                  post-up ifconfig enp7s0 mtu 9000
+              auto enp1s0
+              allow-hotplug enp1s0
+              iface enp1s0 inet dhcp
+                  post-up ifconfig enp1s0 mtu 9000
             owner: root
             group: root
             mode: "0644"

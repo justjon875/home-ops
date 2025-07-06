@@ -7,10 +7,10 @@ kubernetes:
     master:
       hosts:
         hydrogen:
-          ansible_host: 192.168.122.184
+          ansible_host: 192.168.1.215
           ansible_python_interpreter: /usr/bin/python3
     worker:
       hosts:
         helium:
-          ansible_host: 192.168.122.126
+          ansible_host: 192.168.1.216
           ansible_python_interpreter: /usr/bin/python3
