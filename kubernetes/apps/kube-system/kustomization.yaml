@@ -7,5 +7,4 @@ components:
 resources:
   - ./cilium/ks.yaml
   - coredns
-  - k8s-gateway
   - ./whoami/ks.yaml
