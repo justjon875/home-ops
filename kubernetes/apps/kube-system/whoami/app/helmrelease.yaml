@@ -63,21 +63,6 @@ spec:
           http:
             port: *port
 
-    ingress:
-      app:
-        className: internal
-        enabled: true
-        hosts:
-          - host: whoami.habjam.xyz
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: app
-                  port: http
-        tls:
-          - hosts:
-              - whoami.habjam.xyz
     route:
       app:
         hostnames: ["whoami.habjam.xyz"]
@@ -85,3 +70,7 @@ spec:
           - name: internal
             namespace: kube-system
             sectionName: https
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: *port
