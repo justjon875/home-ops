@@ -5,6 +5,7 @@ resources:
   - ./helmrelease.yaml
   - ./crds.yaml
   - ./pool.yaml
+  - ./httproute.yaml
   - ./l2.yaml
   - ./l3.yaml
 configMapGenerator:
