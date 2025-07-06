@@ -72,5 +72,6 @@ spec:
             sectionName: https
         rules:
           - backendRefs:
-              - identifier: app
-                port: *port
+              - path:
+                  type: PathPrefix
+                  value: /
