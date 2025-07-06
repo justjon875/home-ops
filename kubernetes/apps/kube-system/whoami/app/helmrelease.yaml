@@ -68,7 +68,7 @@ spec:
         className: internal
         enabled: true
         hosts:
-          - host: whoami.${SHORT_ROOT_DOMAIN}
+          - host: whoami.habjam.xyz
             paths:
               - path: /
                 pathType: Prefix
@@ -77,10 +77,10 @@ spec:
                   port: http
         tls:
           - hosts:
-              - whoami.${SHORT_ROOT_DOMAIN}
+              - whoami.habjam.xyz
     route:
       app:
-        hostnames: ["{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}"]
+        hostnames: ["whoami.habjam.xyz"]
         parentRefs:
           - name: internal
             namespace: kube-system
