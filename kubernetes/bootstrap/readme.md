@@ -13,7 +13,7 @@ kubectl apply --server-side --kustomize ./kubernetes/bootstrap/flux
 _These cannot be applied with `kubectl` in the regular fashion due to be encrypted with sops_
 
 ```sh
-sops --decrypt kubernetes/components/common/age-key.sops.yaml | kubectl apply -f -
+sops --decrypt kubernetes/components/common/secret.sops.yaml | kubectl apply -f -
 sops --decrypt kubernetes/components/common/cluster-secrets.sops.yaml | kubectl apply -f -
 kubectl apply -f kubernetes/components/common/cluster-settings.yaml
 ```
