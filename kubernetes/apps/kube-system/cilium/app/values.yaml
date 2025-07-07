@@ -5,9 +5,9 @@ bandwidthManager:
   enabled: true
 bgpControlPlane:
   enabled: true
-# bpf:
-#   masquerade: true
-#   preallocateMaps: true
+bpf:
+  masquerade: true
+  preallocateMaps: true
 bpfClockProbe: true
 cgroup:
   autoMount:
