@@ -29,8 +29,8 @@ spec:
       localASN: 64514
       peers:
         - name: gateway
-          peerASN: 64513
-          peerAddress: 192.168.1.1
+          peerASN: 64512
+          peerAddress: 192.168.122.226
           peerConfigRef:
             name: cilium-peer
 ---
