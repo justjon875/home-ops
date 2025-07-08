@@ -30,7 +30,7 @@ spec:
       peers:
         - name: gateway
           peerASN: 64513
-          peerAddress: 192.168.1.217
+          peerAddress: 192.168.1.1
           peerConfigRef:
             name: cilium-peer
 ---
