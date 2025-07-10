@@ -86,7 +86,7 @@
             mode: "0755"
             content: |
               if status is-interactive
-                starship init fish | source
+                set -x KUBECONFIG /etc/rancher/k3s/k3s.yaml
                 abbr --add --global -- cat 'batcat'
                 abbr --add --global -- diff 'delta -s'
                 abbr --add --global -- hse 'helm secrets edit'
@@ -130,17 +130,17 @@
             dest: /etc/systemd/networkd.conf
             regexp: ManageForeignRoutes
             line: ManageForeignRoutes=no
-        - name: Network Configuration | Set NIC
-          ansible.builtin.copy:
-            dest: /etc/network/interfaces.d/enp1s0
-            content: |
-              auto enp1s0
-              allow-hotplug enp1s0
-              iface enp1s0 inet dhcp
-                  post-up ifconfig enp1s0 mtu 9000
-            owner: root
-            group: root
-            mode: "0644"
+        # - name: Network Configuration | Set NIC
+        #   ansible.builtin.copy:
+        #     dest: /etc/network/interfaces.d/enp1s0
+        #     content: |
+        #       auto enp1s0
+        #       allow-hotplug enp1s0
+        #       iface enp1s0 inet dhcp
+        #           post-up ifconfig enp1s0 mtu 9000
+        #     owner: root
+        #     group: root
+        #     mode: "0644"
 
     - name: System Configuration
       notify: Reboot
