@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - ./ananace.yaml
   - ./angelnu.yaml
-  - ./app-template.yaml
   - ./bitnami.yaml
   - ./cilium.yaml
   - ./cloudnative-pg.yaml
