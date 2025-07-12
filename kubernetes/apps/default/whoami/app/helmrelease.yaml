@@ -70,3 +70,6 @@ spec:
         parentRefs:
           - name: internal
             namespace: networking
+          - backendRefs:
+              - identifier: app
+                port: *port
