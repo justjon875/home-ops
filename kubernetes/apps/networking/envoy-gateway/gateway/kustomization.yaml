@@ -4,5 +4,6 @@ kind: Kustomization
 resources:
   - internal
   - ./certificate.yaml
+  - ./gatewayclass.yaml
   - ./redirect.yaml
   - ./servicemonitor.yaml
