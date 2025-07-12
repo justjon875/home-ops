@@ -4,8 +4,6 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
   name: internal
-  annotations:
-    external-dns.alpha.kubernetes.io/target: &hostname internal.${SHORT_ROOT_DOMAIN}
 spec:
   gatewayClassName: envoy
   listeners:
