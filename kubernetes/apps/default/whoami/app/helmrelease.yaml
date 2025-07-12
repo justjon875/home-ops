@@ -71,3 +71,7 @@ spec:
           - name: internal
             namespace: networking
             sectionName: http
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: *port
