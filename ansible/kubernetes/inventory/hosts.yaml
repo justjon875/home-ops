@@ -7,10 +7,10 @@ kubernetes:
     master:
       hosts:
         vm1:
-          ansible_host: 192.168.1.216
+          ansible_host: 192.168.1.219
           ansible_python_interpreter: /usr/bin/python3
     worker:
       hosts:
         vm2:
-          ansible_host: 192.168.1.217
+          ansible_host: 192.168.1.218
           ansible_python_interpreter: /usr/bin/python3
