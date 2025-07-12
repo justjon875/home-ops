@@ -5,5 +5,4 @@ resources:
   - internal
   - ./certificate.yaml
   - ./gatewayclass.yaml
-  - ./redirect.yaml
-  - ./servicemonitor.yaml
+  # - ./redirect.yaml
