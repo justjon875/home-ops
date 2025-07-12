@@ -5,8 +5,6 @@ kind: Kustomization
 metadata:
   name: &app whoami
   namespace: &namespace default
-  labels:
-    substitution.flux.home.arpa/disabled: "true"
 spec:
   commonMetadata:
     labels:
