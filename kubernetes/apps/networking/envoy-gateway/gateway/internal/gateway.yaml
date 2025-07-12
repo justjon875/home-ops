@@ -23,7 +23,7 @@ spec:
       hostname: "*.${SHORT_ROOT_DOMAIN}"
       allowedRoutes:
         namespaces:
-          from: Same
+          from: All
     - name: https
       protocol: HTTPS
       port: 443

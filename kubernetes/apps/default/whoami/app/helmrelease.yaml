@@ -70,4 +70,4 @@ spec:
         parentRefs:
           - name: internal
             namespace: networking
-            sectionName: http
+            sectionName: https
