@@ -9,3 +9,9 @@ labels:
   - pairs:
       app.kubernetes.io/name: coredns
       app.kubernetes.io/instance: coredns
+configMapGenerator:
+  - name: cert-manager-values
+    files:
+      - values.yaml=./helm/values.yaml
+configurations:
+  - ./helm/kustomizeconfig.yaml
