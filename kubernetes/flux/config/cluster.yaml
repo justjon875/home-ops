@@ -7,7 +7,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 30m
-  url: ssh://git@forgejo.habanerojam.xyz:2222/forgejo/dev-ops.git 
+  url: ${GIT_REPO_URL}
   ref:
     branch: main
   secretRef:
