@@ -12,7 +12,7 @@ instance:
     - notification-controller
   sync:
     kind: GitRepository
-    url: https://github.com/onedr0p/home-ops
+    url: https://forgejo.habanerojam.xyz/forgejo/dev-ops.git
     ref: refs/heads/main
     path: kubernetes/flux/cluster
     interval: 1h

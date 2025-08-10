@@ -1,11 +1,13 @@
 ---
-clusterName: home-ops
+clusterName: home-cluster
+talosVersion: v1.10.6
+kubernetesVersion: v1.33.3
 endpoint: https://192.168.1.220:6443
 allowSchedulingOnMasters: true
 cniConfig:
   name: none
 nodes:
-  - hostname: master
+  - hostname: kmaster1
     ipAddress: 192.168.1.220
     controlPlane: true
     installDisk: /dev/vda
@@ -14,9 +16,35 @@ nodes:
     networkInterfaces:
       - interface: enp1s0
         addresses:
-          - 192.168.1.220
+          - 192.168.1.220/24
         routes:
           - network: 0.0.0.0/0
             gateway: 192.168.1.1
         vip:
           ip: 192.168.1.220
+controlPlane:
+  patches:
+    - |-
+      - op: add
+        path: /machine/kubelet/extraArgs
+        value:
+          rotate-server-certificates: "true"
+      - op: add
+        path: /cluster/apiServer/extraArgs
+        value:
+          feature-gates: MutatingAdmissionPolicy=true
+          runtime-config: admissionregistration.k8s.io/v1alpha1=true
+      - op: add
+        path: /cluster/controllerManager/extraArgs
+        value:
+          bind-address: 0.0.0.0
+      - op: add
+        path: /cluster/scheduler/extraArgs
+        value:
+          bind-address: 0.0.0.0
+    - |-
+      cluster:
+        proxy:
+          disabled: true
+        coreDNS:
+          disabled: true

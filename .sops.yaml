@@ -1,7 +1,12 @@
 ---
 creation_rules:
-  - path_regex: kubernetes/(apps|components|bootstrap|flux)/.*\.sops\.ya?ml
+  - path_regex: kubernetes/(apps|components|bootstrap|flux|talos)/.*\.sops\.ya?ml
     encrypted_regex: "^(data|stringData)$"
+    key_groups:
+      - age:
+          - age1zynf8jeml4f78k4xr7dg7cpgv0et0ctdwxxkn0878e5puvevyceqk3rvkw
+          - age1e74hyawmdpk4xjhu9xd7rshw85jzedkd2mc73nwuw7r5a8yu3uvq2e3u6t
+  - path_regex: talos/.*\.sops\.ya?ml$
     key_groups:
       - age:
           - age1zynf8jeml4f78k4xr7dg7cpgv0et0ctdwxxkn0878e5puvevyceqk3rvkw
