@@ -12,7 +12,8 @@ instance:
     - notification-controller
   sync:
     kind: GitRepository
-    url: https://forgejo.habanerojam.xyz/forgejo/dev-ops.git
+    url: ssh://git@forgejo.habanerojam.xyz:2222/forgejo/dev-ops.git 
+    pullSecret: git-deploy-key
     ref: refs/heads/main
     path: kubernetes/flux/cluster
     interval: 1h
@@ -45,7 +46,7 @@ instance:
                   - name: manager
                     resources:
                       limits:
-                        memory: 2Gi
+                        memory: 1Gi
         target:
           kind: Deployment
           name: (kustomize-controller|helm-controller|source-controller)
