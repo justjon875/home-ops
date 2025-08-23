@@ -6,4 +6,4 @@ components:
   - ../../components/common
 resources:
   - ./cilium/ks.yaml
-  - coredns
+  - ./coredns/ks.yaml
