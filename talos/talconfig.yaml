@@ -2,13 +2,13 @@
 clusterName: home-cluster
 talosVersion: v1.10.6
 kubernetesVersion: v1.33.3
-endpoint: https://192.168.1.220:6443
+endpoint: https://192.168.1.224:6443
 allowSchedulingOnMasters: true
 cniConfig:
   name: none
 nodes:
   - hostname: kmaster1
-    ipAddress: 192.168.1.220
+    ipAddress: 192.168.1.224
     controlPlane: true
     installDisk: /dev/vda
     nameservers:
@@ -16,19 +16,13 @@ nodes:
     networkInterfaces:
       - interface: enp1s0
         addresses:
-          - 192.168.1.220/24
+          - 192.168.1.224/24
         routes:
           - network: 0.0.0.0/0
             gateway: 192.168.1.1
-        vip:
-          ip: 192.168.1.220
 controlPlane:
   patches:
     - |-
-      - op: add
-        path: /machine/kubelet/extraArgs
-        value:
-          rotate-server-certificates: "true"
       - op: add
         path: /cluster/apiServer/extraArgs
         value:
