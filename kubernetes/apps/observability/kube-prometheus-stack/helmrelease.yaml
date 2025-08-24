@@ -28,28 +28,15 @@ spec:
       enabled: false
       forceDeployDashboards: true
     prometheus:
-      ingress:
-        enabled: true
-        ingressClassName: internal
-        hosts:
-          - prometheus.${ROOT_DOMAIN}
-        tls:
-          - hosts:
-              - prometheus.${ROOT_DOMAIN}
-
+      route:
+        main:
+          enabled: true
+          hostnames: ["prometheus.${SHORT_ROOT_DOMAIN}"]
+          parentRefs:
+            - name: cilium-internal
+              namespace: kube-system
+              sectionName: https
       prometheusSpec:
-        additionalScrapeConfigs:
-          - job_name: lithium
-            static_configs:
-              - targets: ["10.76.103.2:9100"]
-          - job_name: "uptime"
-            scrape_interval: 30s
-            scheme: http
-            static_configs:
-              - targets: ["uptime.${ROOT_DOMAIN}"]
-            basic_auth:
-              username: ${USERNAME}
-              password: ${SECRET_UPTIME_PASSWORD}
         retention: 2d
         retentionSize: 6GB
         enableAdminAPI: true
@@ -57,7 +44,7 @@ spec:
         storageSpec:
           volumeClaimTemplate:
             spec:
-              storageClassName: local-hostpath
+              storageClassName: openebs-hostpath
               resources:
                 requests:
                   storage: 20Gi
@@ -71,10 +58,10 @@ spec:
         enabled: true
         ingressClassName: internal
         hosts:
-          - alertmanager.${ROOT_DOMAIN}
+          - alertmanager.${SHORT_ROOT_DOMAIN}
         tls:
           - hosts:
-              - alertmanager.${ROOT_DOMAIN}
+              - alertmanager.${SHORT_ROOT_DOMAIN}
       config:
         global:
           resolve_timeout: 5m
@@ -106,7 +93,7 @@ spec:
         storage:
           volumeClaimTemplate:
             spec:
-              storageClassName: local-hostpath
+              storageClassName: openebs-hostpath
               resources:
                 requests:
                   storage: 1Gi
@@ -123,6 +110,8 @@ spec:
         https: true
         insecureSkipVerify: true
     kubeProxy:
-      enabled: true
+      enabled: false
     kubeEtcd:
-      enabled: true
+      service:
+        selector:
+          component: kube-apiserver # etcd runs on control plane nodes
