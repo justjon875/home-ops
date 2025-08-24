@@ -20,6 +20,19 @@ nodes:
         routes:
           - network: 0.0.0.0/0
             gateway: 192.168.1.1
+  - hostname: kmaster2
+    ipAddress: 192.168.1.225
+    controlPlane: true
+    installDisk: /dev/vda
+    nameservers:
+      - 192.168.1.200
+    networkInterfaces:
+      - interface: enp1s0
+        addresses:
+          - 192.168.1.225/24
+        routes:
+          - network: 0.0.0.0/0
+            gateway: 192.168.1.1
 controlPlane:
   patches:
     - |-
