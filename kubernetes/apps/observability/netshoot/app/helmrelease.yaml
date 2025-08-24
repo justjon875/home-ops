@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: whoami
+  name: netshoot
 spec:
   interval: 1h
   chartRef:
@@ -19,7 +19,7 @@ spec:
       retries: 3
   values:
     controllers:
-      whoami:
+      netshoot:
         strategy: RollingUpdate
         type: daemonset
         containers:
