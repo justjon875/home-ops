@@ -5,7 +5,7 @@ kind: Kustomization
 namespace: cert-manager
 resources:
   - ./helmrelease.yaml
-  - ./letsencrypt-staging-clusterissuer.yaml
+  - ./letsencrypt-prod-clusterissuer.yaml
   - ./secret.sops.yaml
 labels:
   - pairs:
