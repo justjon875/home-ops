@@ -7,4 +7,5 @@ resources:
   - ./grafana/ks.yaml
   - kube-prometheus-stack
   - loki
+  - ./netshoot/ks.yaml
   - promtail
