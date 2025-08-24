@@ -15,7 +15,7 @@ instance:
     url: ssh://git@forgejo.habanerojam.xyz:2222/forgejo/dev-ops.git 
     pullSecret: git-deploy-key
     ref: refs/heads/main
-    path: kubernetes/flux/cluster
+    path: kubernetes/flux
     interval: 1h
   commonMetadata:
     labels:
