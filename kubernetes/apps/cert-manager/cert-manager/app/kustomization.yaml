@@ -6,6 +6,7 @@ namespace: cert-manager
 resources:
   - ./helmrelease.yaml
   - ./letsencrypt-staging-clusterissuer.yaml
+  - ./secret.sops.yaml
 labels:
   - pairs:
       app.kubernetes.io/name: cert-manager
