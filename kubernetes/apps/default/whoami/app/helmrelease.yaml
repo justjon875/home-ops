@@ -68,8 +68,8 @@ spec:
       app:
         hostnames: ["{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}"]
         parentRefs:
-          - name: internal
-            namespace: networking
+          - name: cilium-internal
+            namespace: kube-system
             sectionName: https
         rules:
           - backendRefs:
