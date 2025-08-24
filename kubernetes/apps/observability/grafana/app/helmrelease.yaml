@@ -191,9 +191,9 @@ spec:
         enabled: true
         hostnames: ["grafana.${SHORT_ROOT_DOMAIN}"]
         parentRefs:
-          - name: internal
-            namespace: networking-system
-            sectionName: https-0
+          - name: cilium-internal
+            namespace: kube-system
+            sectionName: https
 
     resources:
       requests:
@@ -202,9 +202,9 @@ spec:
       limits:
         memory: 366Mi
     admin:
-      existingSecret: grafana-secret
-      userKey: gf_security_admin_user
-      passwordKey: gf_security_admin_password
+      existingSecret: grafana-admin-secret
+      userKey: admin-password
+      passwordKey: admin-user
     serviceMonitor:
       enabled: true
     rbac:
