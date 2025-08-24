@@ -6,8 +6,8 @@ metadata:
   namespace: kube-system
 spec:
   parentRefs:
-    - name: internal
-      namespace: networking
+    - name: cilium-internal
+      namespace: kube-system
   hostnames:
     - "hubble.${SHORT_ROOT_DOMAIN}"
   rules:
