@@ -256,7 +256,7 @@ spec:
     route:
       main:
         enabled: true
-        hostnames: ["{{ .Release.Name }}.{SHORT_ROOT_DOMAIN}"]
+        hostnames: ["{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}"]
         parentRefs:
           - name: cilium-internal
             namespace: kube-system
