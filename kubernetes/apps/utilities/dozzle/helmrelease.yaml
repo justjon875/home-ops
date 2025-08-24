@@ -45,6 +45,7 @@ spec:
               capabilities: { drop: ["ALL"] }
         serviceAccount:
           identifier: dozzle
+        type: daemonset
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
