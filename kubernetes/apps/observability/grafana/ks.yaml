@@ -13,7 +13,7 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *name
-  path: ./kubernetes/apps/observibility/grafana/app
+  path: ./kubernetes/apps/observability/grafana/app
   sourceRef:
     kind: GitRepository
     name: flux-system
