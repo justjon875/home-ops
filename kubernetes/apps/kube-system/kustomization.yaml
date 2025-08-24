@@ -7,6 +7,5 @@ components:
 resources:
   - ./cilium/ks.yaml
   - ./coredns/ks.yaml
-  - democratic-csi-local-hostpath
   - metrics-server
   - ./spegel/ks.yaml
