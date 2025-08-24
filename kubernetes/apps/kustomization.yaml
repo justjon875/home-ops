@@ -6,4 +6,3 @@ resources:
   - default
   - flux-system
   - kube-system
-  - networking
