@@ -6,5 +6,4 @@ resources:
   - default
   - flux-system
   - kube-system
-  - openebs-system
   - utilities
