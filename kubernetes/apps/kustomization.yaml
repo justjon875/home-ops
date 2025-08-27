@@ -6,3 +6,4 @@ resources:
   - default
   - flux-system
   - kube-system
+  - utilities
