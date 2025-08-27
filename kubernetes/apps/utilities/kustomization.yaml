@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - dozzle
-  - netshoot
+  - ./netshoot/ks.yaml
   # - forgejo
   # - frigate
   # - goldilocks
