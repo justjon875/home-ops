@@ -4,7 +4,6 @@ namespace: utilities
 components:
   - ../../components/common
 resources:
-  - ./namespace.yaml
   - dozzle
   - ./netshoot/ks.yaml
   # - forgejo
