@@ -6,5 +6,4 @@ components:
 resources:
   - kube-prometheus-stack
   - loki
-  - ./netshoot/ks.yaml
   - promtail
