@@ -160,7 +160,7 @@ spec:
         enabled: true
         hostnames: ["grafana.${SHORT_ROOT_DOMAIN}"]
         parentRefs:
-          - name: cilium-internal
+          - name: internal
             namespace: kube-system
             sectionName: https
 

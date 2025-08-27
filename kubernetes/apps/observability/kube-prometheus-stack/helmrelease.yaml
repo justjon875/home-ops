@@ -33,7 +33,7 @@ spec:
           enabled: true
           hostnames: ["prometheus.${SHORT_ROOT_DOMAIN}"]
           parentRefs:
-            - name: cilium-internal
+            - name: internal
               namespace: kube-system
               sectionName: https
       prometheusSpec:
