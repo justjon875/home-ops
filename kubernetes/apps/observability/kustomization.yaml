@@ -3,7 +3,3 @@ kind: Kustomization
 namespace: observability
 components:
   - ../../components/common
-resources:
-  - kube-prometheus-stack
-  - loki
-  - promtail
