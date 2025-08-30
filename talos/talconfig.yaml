@@ -1,6 +1,6 @@
 ---
 clusterName: home-cluster
-talosVersion: v1.10.6
+talosVersion: v1.10.7
 kubernetesVersion: v1.33.3
 endpoint: https://192.168.1.224:6443
 allowSchedulingOnMasters: true
@@ -42,6 +42,19 @@ nodes:
       - interface: enp1s0
         addresses:
           - 192.168.1.225/24
+        routes:
+          - network: 0.0.0.0/0
+            gateway: 192.168.1.1
+  - hostname: kmaster3
+    ipAddress: 192.168.1.226
+    controlPlane: true
+    installDisk: /dev/vda
+    nameservers:
+      - 192.168.1.200
+    networkInterfaces:
+      - interface: enp1s0
+        addresses:
+          - 192.168.1.226/24
         routes:
           - network: 0.0.0.0/0
             gateway: 192.168.1.1
