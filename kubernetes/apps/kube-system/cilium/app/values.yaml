@@ -29,7 +29,7 @@ operator:
     enabled: true
     serviceMonitor:
       enabled: true
-  replicas: 3
+  replicas: 2
   rollOutPods: true
 rollOutCiliumPods: true
 securityContext:
