@@ -32,4 +32,4 @@ spec:
       retries: 3
   valuesFrom:
     - kind: ConfigMap
-      name: cert-manager-values
+      name: coredns-values

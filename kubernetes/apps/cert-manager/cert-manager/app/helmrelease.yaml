@@ -22,3 +22,6 @@ spec:
   upgrade:
     remediation:
       retries: 5
+  valuesFrom:
+    - kind: ConfigMap
+      name: cert-manager-values
