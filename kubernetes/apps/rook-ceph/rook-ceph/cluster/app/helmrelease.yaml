@@ -77,17 +77,11 @@ spec:
         osd: system-node-critical
         mgr: system-cluster-critical
       storage:
-        useAllNodes: false
-        useAllDevices: false
         config:
           osdsPerDevice: "1"
-        nodes:
-          - name: kmaster1
-            devices:
-              - name: "/dev/disk/by-path/virtio-pci-0000:08:00.0"
-          - name: kmaster2
-            devices:
-              - name: "/dev/disk/by-path/virtio-pci-0000:08:00.0"
+        useAllNodes: true
+        useAllDevices: false
+        devicePathFilter: /dev/disk/by-path/virtio-pci-0000:08:00.0
       disruptionManagement:
         managePodBudgets: true
         osdMaintenanceTimeout: 30
