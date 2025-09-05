@@ -37,7 +37,7 @@ spec:
               sectionName: https
       prometheusSpec:
         retention: 2d
-        retentionSize: 6GB
+        retentionSize: 1GB
         enableAdminAPI: true
         walCompression: true
         storageSpec:
@@ -46,7 +46,7 @@ spec:
               storageClassName: rook-ceph-block
               resources:
                 requests:
-                  storage: 20Gi
+                  storage: 3Gi
         ruleSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
         podMonitorSelectorNilUsesHelmValues: false
