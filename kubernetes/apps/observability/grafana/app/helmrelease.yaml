@@ -172,8 +172,8 @@ spec:
         memory: 366Mi
     admin:
       existingSecret: grafana-admin-secret
-      userKey: admin-password
-      passwordKey: admin-user
+      userKey: admin-user
+      passwordKey: admin-password
     serviceMonitor:
       enabled: true
     rbac:
