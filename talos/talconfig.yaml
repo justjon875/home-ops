@@ -7,6 +7,7 @@ allowSchedulingOnMasters: true
 cniConfig:
   name: none
 patches:
+  - "@./patches/global/machine-sysctls.yaml"
   - |-
     machine:
       kubelet:

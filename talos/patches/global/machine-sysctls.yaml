@@ -1,0 +1,4 @@
+machine:
+  sysctls:
+    vm.nr_hugepages: 512                  # PostgreSQL
+
