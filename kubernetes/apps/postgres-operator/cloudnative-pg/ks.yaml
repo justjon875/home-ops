@@ -6,20 +6,28 @@ metadata:
   name: &app cloudnative-pg
   namespace: &namespace postgres-operator
 spec:
+  targetNamespace: *namespace
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  interval: 1h
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
   path: ./kubernetes/apps/postgres-operator/cloudnative-pg/app
-  prune: true
-  retryInterval: 2m
   sourceRef:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  targetNamespace: *namespace
-  timeout: 5m
+  prune: true
   wait: false
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
+  postBuild:
+    substituteFrom:
+      - name: cluster-secrets
+        kind: Secret
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1
@@ -28,19 +36,28 @@ metadata:
   name: &app cloudnative-pg-cluster
   namespace: &namespace postgres-operator
 spec:
+  targetNamespace: *namespace
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  dependsOn:
-    - name: cloudnative-pg
-      namespace: postgres-operator
-  interval: 1h
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
   path: ./kubernetes/apps/postgres-operator/cloudnative-pg/cluster
-  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  targetNamespace: *namespace
-  timeout: 15m
-  wait: true
+  dependsOn:
+    - name: cloudnative-pg
+      namespace: postgres-operator
+  prune: true
+  wait: false
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
+  postBuild:
+    substituteFrom:
+      - name: cluster-secrets
+        kind: Secret
