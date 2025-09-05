@@ -59,6 +59,12 @@ nodes:
           - network: 0.0.0.0/0
             gateway: 192.168.1.1
 controlPlane:
+  userVolumes:
+    - name: local-hostpath
+      provisioning:
+        diskSelector:
+          match: disk.transport == "sata"
+        minSize: 19GiB
   patches:
     - |-
       - op: add
