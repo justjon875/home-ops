@@ -5,4 +5,4 @@ namespace: postgres-operator
 components:
   - ../../components/common
 resources:
-  - cloudnative-pg
+  - ./cloudnative-pg/ks.yaml
