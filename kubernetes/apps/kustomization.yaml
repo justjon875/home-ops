@@ -7,5 +7,6 @@ resources:
   - flux-system
   - kube-system
   - openebs-system
+  - postgres-operator
   - rook-ceph
   - utilities
