@@ -6,14 +6,10 @@ metadata:
     name: git-deploy-key
     namespace: flux-system
 stringData:
-    identity: ENC[AES256_GCM,data:wvuXAnpwE2UHYPerRwLhkl81vi1/usb2ZCSdbfiBvkVGNi0uYPiuBgzPGqw4KdJyGoK+TlduMavS5Prv+q5m73XdFP2fFV05j1ND3uFrtBt/zAByyWLOD2eiJK8uxiqfAnxgcrpLxKSpdmg28QubTlLmyLO19dpLjF8f6KahGkpwZUatsNRmjwv0+dkJlfNCmWFi9kVVYz79YhdpsCZJVOI/hXQNR5fHjZatdrPomPYdFkw16TT24zGBH/aOTiOBqXJGCbMGM6agQoSa2ImiW40gVN2zxaB5sK9hjb5F/HAmFqOJBftrpePDPOOzkv3QYO1N4zf7bBgH1gyUmfxtVXDw0JGbyLBvAGh2AymSSRi3WHp+rjyhxSzfEtPhmssBoibJMQ1yVFG/NQcKjNBsMJwIMXLYQw25laelDp95CO07pDBYAYjqXr4Ic75XuZ71AjPW7GfdpPNgeBJPVg1U7kNtNJP1D+1CB1CrKcpDSUcpqUWrk7IMjdgS1ynL2A9wJOCUQchyM57z3Sk04mG89YQorwvq6DmmUaj/,iv:AvFamLFIA/2eRHeAcqWgJcNvCzJt4pabkz2TFJPKzm8=,tag:i+c0xcEZ6qYwMHajj4QeMg==,type:str]
-    identity.pub: ENC[AES256_GCM,data:XJ/cbx41wl++yOWSH0CvuYFYGH/5C/o7ZzDW+KOApL8WEHQMR51tCipo87ou73S0K43oGB4fo2fzOfUATU23GL6rjAsZ7Ju6iEDDUuVcLLtn,iv:faU4/m1QzGMgatgVauujrQ0AaQjgeGQFe9XD5b/WpEQ=,tag:GiL+SqH3PKgmq3zmO0y2KQ==,type:str]
-    known_hosts: ENC[AES256_GCM,data:o5s+WlYHdDMR7k1bFGRqGthyoSWON2LLSzaRoVroYbUxmQCr5oeGpiv1QWd2Ln99ajEZ0ULvpLBC6V7i3RcG3os23jz56ZodhCPImcPP5Psst2E3Pp7umaA1b9PRAwulEwdh727DbvXE9EAAgHXsctqsCmBdR+2lo16KWc8nMWdYcXbI2wUdqQ01qh4Q2yRtC4EFBwjmgBfhYc0abgKUTN6EeBBAW2RWIeKy/yae7jU5oZYZkmKnZgsHjY3VPVaqjmgYpHLF4fGqQA5VvSOoJsq9WN+hMWjUKBjnlGNvxqb9wyJ2qqwS+nvtDMyRnpsk3sJ0N/HstX5KNBU1I+r1yOFGhxQwIdb36adeJyd2yhvNQI2DH9tJGJAhBw3F7wSGQMI9ruCF1ihpi2Vc6woYcUP15x4TJgsAGq5SyXS4NvPn7e6IbbMntlVAyedQOJu28TRoeaBhJkot5Qc6B/JNcYKV3zGOfx1QqdtPpqPsno2Tr9ZiC/iBOxmQs/Ki7v8mhYh2Qko3vr4ba/rKet67+ldSWl54Hf17mr42FQ==,iv:kfhAVU8cmLDzxy1LdfuZoIwD0sgZet6Y+O0ZRT6ILOg=,tag:Mqef2Lhj2rwCDlfZhQRA1g==,type:str]
+    identity: ENC[AES256_GCM,data:xakT0MClqElBicSyZ1CcEOcsUltNS2Tg0IBT9lKXkw0in1PFy5jLPy+xqx221sHsdrskS26s2cLWCe57m0ecpgJPeG17fWJl9G6uuJNVTzWdCaHlxOKP44pmEaeOQLGBf8X2B9KJ1Fh6pocGiVGo8AqznPnExi7CR/lVe05Ir/H+oLJFtfY9DSmignr5+et6EOodM5Jj2s/wg9vHMX1Iyz1qn8Iw3SsVIukmnjCiUAmxvVGOPDJfzmBOy+0Aj+8/SC5bfWE+uZVMOWiz7gcuq66BUSLDYPtSyMRJRRBcThvQDKCvwCUkweNaL7DkZfVIj/tw/dKZbyOCLr6viBGPzXOYIOmQMDpgb5TahDaQaafhPAuN+XxvlXk/di4df+rOsSxu+u1K2IUZyzZLy6VLlONMnRMI6xAXPKyfWJM1lVlrVfNYVltdz+BMVCGOzwvhzm8LDvYMz6d+00mYFgmoJ8ayE0+UbfEvUPHijZQLSN1CtNDtTVnqThYyol8BeO0trKTgDf8K7D7Sg4GhdcAhfAg+FQMspWbKlkrB,iv:uUnKSzkFLpxQxRbm29G3Ttlj1kZ8cmHolWBPERB+t8s=,tag:PfbxpXjeXpGRHW+Z6Pdp4w==,type:str]
+    identity.pub: ENC[AES256_GCM,data:CAS7ZDPP5jbhnlr1vs/0Spc/eGTT+hzRBWlIhoT3zfZaTXZBYck37CqP/cI5/iT5XzHWaPnDYsjl/DnAzXbxkqPhgn7Df/ZavQATgFEIl07s,iv:yEGHCKjSy5qGRgk2ctxXlfdx/7bhf/lwBz5r1J/v47Q=,tag:rfah9ljXqbfJQ8a58HOh3w==,type:str]
+    known_hosts: ENC[AES256_GCM,data:WFd6AlAai27pE5wJd3SnGDxwuVOfW8tIDdSa/NnUHlq4FoblS7jcdi1kgj55Ma8EbLyRGv7G55PmYLKCLqrKR1beGkt3oSfbgPdyx8k0nN5QQMgxYu5CQx1AjH688NI/kOgAf+BSsBSmVaqPW44MkiUGFXOZz5AtaamBR6JyxCokCvdDuTIX29k7gpMfbQPcUVqugkwrxBIUVzgz2Gr9a+oa+SxNVwOtUUoxCi+dBJy3Y25K5deXHZ7Ybds+mua7z8ZFeowXwYEgGOzCY8sP7V4gDycq9UaOCm0z1hM5NLR2ZB1j+CxcUEQvBTbi9efcpJWE730Uk6ENB9TZmiBsmuUoX6V1fO0Q72Jx8NA0Tw73LgFqnahYBX2StRUSFsvRu22l6KxTsZftsHCBgnbyoGJQyYaxrYUNWAbqZU4yhV35iyajlEKV878L19fXOp2lbtCrrm++AaD97WkOIFYt6oVI881vTb/Lyc8avKPMw+EBiIWkF4PhxxyenYJNznJ+zzHHPRCQFRriPo/7se1vYA1PoywmV709WnqRKA==,iv:2iSlZB8nWdHtON3Yo+zvNYCLGsktVNV7QL0BJJeo3gA=,tag:el822P4y11r5SYN+sGTU+g==,type:str]
 sops:
-    kms: []
-    gcp_kms: []
-    azure_kv: []
-    hc_vault: []
     age:
         - recipient: age1zynf8jeml4f78k4xr7dg7cpgv0et0ctdwxxkn0878e5puvevyceqk3rvkw
           enc: |
@@ -33,8 +29,7 @@ sops:
             Vm5jK2VPWmFaL1JKMFE1MXN3S3QyMDQK64ukhLT0Iaofm1Z/OrmON3iA+spPJ4nZ
             ujTVpbphIVo+vo95RyPV4rWQaFwyuyAdD68t4mBLS3Li93IAvQBJYw==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-08-23T10:03:41Z"
-    mac: ENC[AES256_GCM,data:O2vJKliJXjQ4wM7EM4y4tgL4NZIHe/5z0LOlQmR0M25cKwwb+g+T5UqYNMiQ8ewP7iCe6PtJqKuh70aMxjsap+HJ9DWybjYnpLyJeE1tFXW5UdB9QlAC2jFOMm1AIFI1FU2G/FnnFD/8NR1B/pKevRvSDtazBaQxsik8Y0WX3ms=,iv:IwW0opRR8AjlgoKj1he196u/Zp6VXKc+fYVL2N+onq0=,tag:xgl+xqSFrT3mxy5gEhWrAQ==,type:str]
-    pgp: []
+    lastmodified: "2025-11-23T13:11:03Z"
+    mac: ENC[AES256_GCM,data:RneIw0qOotfKhki/Yk9y0SKbBOlwi4HxwiaH00IngG6RD5D98ZeVEFIcBLnJZJ9/7kAGWBaDjHSkMAP/R5YBBqJGG3262rNBeGlj+UnsBeS96MBWKmyMvLYxwS7CFYCAUQEzvXZlZytg3ZO81k7PI9RILB5plx3NpzLirwkwZsY=,iv:+TzkZ7fYtvQL7KFCCNaO3hZpGbVwqZaW2aEkG645p3A=,tag:+meQZKvPr3dQslr/Ruguhw==,type:str]
     encrypted_regex: ^(data|stringData)$
-    version: 3.9.1
+    version: 3.11.0
