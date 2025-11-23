@@ -5,7 +5,7 @@ cgroup:
   automount:
     enabled: false
   hostRoot: /sys/fs/cgroup
-devices: enp+
+devices: ens+
 endpointRoutes:
   enabled: true
 gatewayAPI:

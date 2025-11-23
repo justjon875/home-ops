@@ -11,9 +11,3 @@ labels:
   - pairs:
       app.kubernetes.io/name: cert-manager
       app.kubernetes.io/instance: cert-manager
-configMapGenerator:
-  - name: cert-manager-values
-    files:
-      - values.yaml=./helm/values.yaml
-configurations:
-  - ./helm/kustomizeconfig.yaml

@@ -1,8 +1,8 @@
 ---
 clusterName: home-cluster
-talosVersion: v1.10.7
-kubernetesVersion: v1.33.3
-endpoint: https://192.168.1.224:6443
+talosVersion: v1.11.5
+kubernetesVersion: v1.34.1
+endpoint: https://cluster.habanerojam.xyz:6443
 allowSchedulingOnMasters: true
 cniConfig:
   name: none
@@ -20,70 +20,56 @@ patches:
               - rshared
               - rw
 nodes:
-  - hostname: kmaster1
-    ipAddress: 192.168.1.224
+  - hostname: master1
+    ipAddress: 192.168.3.25
     controlPlane: true
-    installDisk: /dev/vda
+    installDisk: /dev/sda
     nameservers:
-      - 192.168.1.200
+      - 192.168.3.1
     networkInterfaces:
-      - interface: enp1s0
+      - interface: ens18
         addresses:
-          - 192.168.1.224/24
+          - 192.168.3.25/24
         routes:
           - network: 0.0.0.0/0
-            gateway: 192.168.1.1
-  - hostname: kmaster2
-    ipAddress: 192.168.1.225
+            gateway: 192.168.3.1
+  - hostname: master2
+    ipAddress: 192.168.3.26
     controlPlane: true
-    installDisk: /dev/vda
+    installDisk: /dev/sda
     nameservers:
-      - 192.168.1.200
+      - 192.168.3.1
     networkInterfaces:
-      - interface: enp1s0
+      - interface: ens18
         addresses:
-          - 192.168.1.225/24
+          - 192.168.3.26/24
         routes:
           - network: 0.0.0.0/0
-            gateway: 192.168.1.1
-  - hostname: kmaster3
-    ipAddress: 192.168.1.226
+            gateway: 192.168.3.1
+  - hostname: master3
+    ipAddress: 192.168.3.27
     controlPlane: true
-    installDisk: /dev/vda
+    installDisk: /dev/sda
     nameservers:
-      - 192.168.1.200
+      - 192.168.3.1
     networkInterfaces:
-      - interface: enp1s0
+      - interface: ens18
         addresses:
-          - 192.168.1.226/24
+          - 192.168.3.27/24
         routes:
           - network: 0.0.0.0/0
-            gateway: 192.168.1.1
+            gateway: 192.168.3.1
 controlPlane:
   userVolumes:
     - name: local-hostpath
       provisioning:
         diskSelector:
-          match: disk.transport == "sata"
-        minSize: 19GiB
+          match: disk.model == "QEMU HARDDISK" && !system_disk
+        minSize: 100GiB
   patches:
     - |-
-      - op: add
-        path: /cluster/apiServer/extraArgs
-        value:
-          feature-gates: MutatingAdmissionPolicy=true
-          runtime-config: admissionregistration.k8s.io/v1alpha1=true
-      - op: add
-        path: /cluster/controllerManager/extraArgs
-        value:
-          bind-address: 0.0.0.0
-      - op: add
-        path: /cluster/scheduler/extraArgs
-        value:
-          bind-address: 0.0.0.0
-    - |-
       cluster:
-        proxy:
-          disabled: true
         coreDNS:
+          disabled: true
+        proxy:
           disabled: true
