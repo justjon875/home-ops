@@ -9,9 +9,6 @@ spec:
   chartRef:
     kind: OCIRepository
     name: flux-operator
-  install:
-    remediation:
-      retries: -1
   values:
     serviceMonitor:
       create: true
