@@ -52,14 +52,13 @@ function apply_namespaces() {
   done
 }
 
-# SOPS secrets to be applied before the helmfile charts are installed
 function apply_sops_secrets() {
   log debug "Applying secrets"
 
   local -r secrets=(
     "${ROOT_DIR}/bootstrap/git-deploy-key.sops.yaml"
-    "${ROOT_DIR}/kubernetes/components/common/cluster-secrets.sops.yaml"
     "${ROOT_DIR}/kubernetes/components/common/secret.sops.yaml"
+    "${ROOT_DIR}/kubernetes/components/common/cluster-secrets.sops.yaml"
   )
 
   for secret in "${secrets[@]}"; do
