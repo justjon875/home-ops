@@ -12,3 +12,6 @@ spec:
   install:
     remediation:
       retries: -1
+  values:
+    serviceMonitor:
+      create: true
