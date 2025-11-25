@@ -1,0 +1,12 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: "${SHORT_ROOT_DOMAIN/./-}-production"
+spec:
+  secretName: "${SHORT_ROOT_DOMAIN/./-}-staging-tls"
+  issuerRef:
+    name: letsencrypt-staging-clusterissuer
+    kind: ClusterIssuer
+  commonName: "${SHORT_ROOT_DOMAIN}"
+  dnsNames: ["${SHORT_ROOT_DOMAIN}", "*.${SHORT_ROOT_DOMAIN}"]
