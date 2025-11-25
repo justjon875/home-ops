@@ -14,8 +14,11 @@ spec:
 apiVersion: cilium.io/v2
 kind: CiliumBGPClusterConfig
 metadata:
-  name: cilium-bgp
+  name: bgp-cluster-config
 spec:
+  nodeSelector:
+    matchLabels:
+      kubernetes.io/os: linux
   bgpInstances:
     - name: cluster
       localASN: 64514
