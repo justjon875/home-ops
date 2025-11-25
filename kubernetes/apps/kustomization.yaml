@@ -6,7 +6,7 @@ resources:
   # - default
   - flux-system
   - kube-system
-  # - network
+  - network
   # - openebs-system
   # - postgres-operator
   # - rook-ceph
