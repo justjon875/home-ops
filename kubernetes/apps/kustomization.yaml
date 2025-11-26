@@ -8,7 +8,7 @@ resources:
   - kube-system
   - network
   # - openebs-system
-  # - postgres-operator
+  - postgres-operator
   # - rook-ceph
   - utilities
   # - volsync-system
