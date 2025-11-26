@@ -6,6 +6,7 @@ components:
 resources:
   # - dozzle
   - ./netshoot/ks.yaml
+  - ./echo/ks.yaml
   # - forgejo
   # - frigate
   # - goldilocks
