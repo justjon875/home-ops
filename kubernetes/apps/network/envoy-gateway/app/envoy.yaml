@@ -69,7 +69,7 @@ spec:
       tls:
         certificateRefs:
           - kind: Secret
-            name: ${SHORT_ROOT_DOMAIN/./-}-production-tls
+            name: ${SHORT_ROOT_DOMAIN/./-}-staging-tls
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
