@@ -15,5 +15,5 @@ spec:
             type: PathPrefix
             value: /
       backendRefs:
-        - name: hubble-ui
+        - name: hubble-relay
           port: 80
