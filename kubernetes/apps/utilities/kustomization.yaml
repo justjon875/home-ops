@@ -5,7 +5,6 @@ components:
   - ../../components/sops
 resources:
   - ./dozzle/ks.yaml
-  - ./netshoot/ks.yaml
   # - forgejo
   # - frigate
   # - goldilocks
