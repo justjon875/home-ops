@@ -52,7 +52,7 @@ spec:
   infrastructure:
     annotations:
       external-dns.alpha.kubernetes.io/hostname: external.${SHORT_ROOT_DOMAIN}
-      lbipam.cilium.io/ips: 192.168.3.252
+      lbipam.cilium.io/ips: 172.16.0.11
   listeners:
     - name: http
       protocol: HTTP
@@ -82,7 +82,7 @@ spec:
   infrastructure:
     annotations:
       external-dns.alpha.kubernetes.io/hostname: internal.${SHORT_ROOT_DOMAIN}
-      lbipam.cilium.io/ips: 192.168.3.251
+      lbipam.cilium.io/ips: 172.16.0.10
   listeners:
     - name: http
       protocol: HTTP
