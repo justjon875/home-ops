@@ -10,10 +10,6 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-age
   path: ./kubernetes/apps/postgres-operator/cloudnative-pg/app
   sourceRef:
     kind: GitRepository
@@ -40,10 +36,6 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-age
   path: ./kubernetes/apps/postgres-operator/cloudnative-pg/cluster
   sourceRef:
     kind: GitRepository
