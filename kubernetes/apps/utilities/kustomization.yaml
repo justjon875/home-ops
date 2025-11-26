@@ -4,9 +4,8 @@ namespace: utilities
 components:
   - ../../components/sops
 resources:
-  # - dozzle
+  - dozzle
   - ./netshoot/ks.yaml
-  - ./echo/ks.yaml
   # - forgejo
   # - frigate
   # - goldilocks
