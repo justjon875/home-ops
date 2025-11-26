@@ -4,9 +4,9 @@ kind: Certificate
 metadata:
   name: "${SHORT_ROOT_DOMAIN/./-}-production"
 spec:
-  secretName: "${SHORT_ROOT_DOMAIN/./-}-staging-tls"
+  secretName: "${SHORT_ROOT_DOMAIN/./-}-prod-tls"
   issuerRef:
-    name: letsencrypt-staging-clusterissuer
+    name: letsencrypt-prod-clusterissuer
     kind: ClusterIssuer
   commonName: "${SHORT_ROOT_DOMAIN}"
   dnsNames: ["${SHORT_ROOT_DOMAIN}", "*.${SHORT_ROOT_DOMAIN}"]
