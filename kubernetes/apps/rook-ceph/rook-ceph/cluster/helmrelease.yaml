@@ -20,7 +20,6 @@ spec:
           memory: 105Mi
         limits:
           memory: 105Mi
-
     route:
       dashboard:
         host:
@@ -107,7 +106,7 @@ spec:
         spec:
           failureDomain: host
           replicated:
-            size: 2
+            size: 3
         storageClass:
           enabled: true
           name: rook-ceph-block
