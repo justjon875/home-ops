@@ -3,7 +3,6 @@ kind: Kustomization
 namespace: kube-system
 resources:
   - ./helmrelease.yaml
-  - ./crds.yaml
   - ./pool.yaml
   - ./httproute.yaml
   - ./l3.yaml
