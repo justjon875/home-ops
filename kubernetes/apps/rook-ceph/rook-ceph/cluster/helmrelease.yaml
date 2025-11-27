@@ -40,7 +40,7 @@ spec:
       continueUpgradeAfterChecksEvenIfNotHealthy: false
       waitTimeoutForHealthyOSDInMinutes: 10
       mon:
-        count: 2
+        count: 3
         allowMultiplePerNode: false
       mgr:
         count: 1
@@ -69,7 +69,7 @@ spec:
           osdsPerDevice: "1"
         useAllNodes: true
         useAllDevices: false
-        devicePathFilter: /dev/disk/by-path/virtio-pci-0000:08:00.0
+        devicePathFilter: /dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi1
       disruptionManagement:
         managePodBudgets: true
         osdMaintenanceTimeout: 30
