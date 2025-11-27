@@ -8,7 +8,7 @@ spec:
   env:
     - name: TZ
       value: ${TIMEZONE}
-  instances: 2
+  instances: 3
   imageName: ghcr.io/cloudnative-pg/postgresql:16.9-22
   primaryUpdateStrategy: unsupervised
   storage:
