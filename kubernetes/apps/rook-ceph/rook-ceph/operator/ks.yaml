@@ -8,10 +8,6 @@ spec:
   interval: 1h
   prune: true
   path: ./kubernetes/apps/rook-ceph/rook-ceph/operator/app
-  postBuild:
-    substituteFrom:
-      - name: cluster-secrets
-        kind: Secret
   sourceRef:
     kind: GitRepository
     name: flux-system
