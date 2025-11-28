@@ -9,6 +9,5 @@ resources:
   - network
   - openebs-system
   - postgres-operator
-  - rook-ceph
   - utilities
   - volsync-system
