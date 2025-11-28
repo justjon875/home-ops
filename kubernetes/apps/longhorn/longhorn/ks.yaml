@@ -18,7 +18,7 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  targetNamespace: longhorn-system
+  targetNamespace: longhorn
   timeout: 5m
   wait: false # no flux ks dependents
 # ---
