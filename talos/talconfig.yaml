@@ -67,12 +67,6 @@ nodes:
           - network: 0.0.0.0/0
             gateway: 192.168.3.1
 controlPlane:
-  userVolumes:
-    - name: local-hostpath
-      provisioning:
-        diskSelector:
-          match: disk.model == "QEMU HARDDISK"
-        minSize: 100GiB
   patches:
     - |-
       cluster:
@@ -80,3 +74,18 @@ controlPlane:
           disabled: true
         proxy:
           disabled: true
+  schematic:
+    customization:
+      extraKernelArgs:
+        - net.ifnames=0
+      systemExtensions:
+        officialExtensions:
+          - siderolabs/iscsi-tools # Longhorn
+          - siderolabs/nfsrahead # NFS Performance
+          - siderolabs/util-linux-tools # Longhorn
+  userVolumes:
+    - name: local-hostpath
+      provisioning:
+        diskSelector:
+          match: disk.model == "QEMU HARDDISK"
+        minSize: 100GiB
