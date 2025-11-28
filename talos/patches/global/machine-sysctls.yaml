@@ -1,4 +1,10 @@
 machine:
   sysctls:
     vm.nr_hugepages: 512                  # PostgreSQL
-
+    #   TODO: decide if this needed
+    #   https://longhorn.io/docs/1.10.1/v2-data-engine/quick-start/
+#   kernel:
+#     modules:
+#       - name: nvme_tcp
+#       - name: vfio_pci
+# #     - name: uio_pci_generic

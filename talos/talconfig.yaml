@@ -19,6 +19,13 @@ patches:
               - rbind
               - rshared
               - rw
+          - destination: /var/lib/longhorn
+            type: bind
+            source: /var/lib/longhorn
+            options:
+              - rbind
+              - rshared
+              - rw
 nodes:
   - hostname: master1
     ipAddress: 192.168.3.25
@@ -64,7 +71,7 @@ controlPlane:
     - name: local-hostpath
       provisioning:
         diskSelector:
-          match: disk.model == "QEMU HARDDISK" && !system_disk
+          match: disk.model == "QEMU HARDDISK"
         minSize: 100GiB
   patches:
     - |-
