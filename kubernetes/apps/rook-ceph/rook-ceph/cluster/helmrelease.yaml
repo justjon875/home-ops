@@ -18,7 +18,7 @@ spec:
     route:
       dashboard:
         host:
-          name: rook.turbo.ac
+          name: rook.${SHORT_ROOT_DOMAIN}
           path: /
           pathType: PathPrefix
         parentRefs:
@@ -52,6 +52,15 @@ spec:
             enabled: true
           - name: rook
             enabled: true
+      network:
+        provider: host
+        addressRanges:
+          public:
+            - 169.254.255.0/24
+          cluster:
+            - 169.254.255.0/24
+        connections:
+          requireMsgr2: true
       resources:
         osd:
           limits:
