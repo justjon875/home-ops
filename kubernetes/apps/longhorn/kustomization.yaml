@@ -5,6 +5,7 @@ kind: Kustomization
 namespace: longhorn
 
 components:
+  - ../../components/sops
   - ../../components/privileged-namespace
 
 resources:
