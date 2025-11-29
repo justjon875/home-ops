@@ -6,7 +6,7 @@ metadata:
 spec:
   secretName: "${SHORT_ROOT_DOMAIN/./-}-prod-tls"
   issuerRef:
-    name: letsencrypt-prod-clusterissuer
+    name: letsencrypt-staging-clusterissuer
     kind: ClusterIssuer
   commonName: "${SHORT_ROOT_DOMAIN}"
   dnsNames: ["${SHORT_ROOT_DOMAIN}", "*.${SHORT_ROOT_DOMAIN}"]
