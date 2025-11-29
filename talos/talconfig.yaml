@@ -80,9 +80,3 @@ controlPlane:
         diskSelector:
           match: system_disk
         maxSize: 50GiB
-    - name: local-hostpath
-      provisioning:
-        diskSelector:
-          match: system_disk
-        minSize: 50GiB
-        grow: true

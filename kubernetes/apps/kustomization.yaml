@@ -8,7 +8,7 @@ resources:
   - kube-system
   # - longhorn
   - network
-  - openebs-system
+  # - openebs-system
   - postgres-operator
   - rook-ceph
   - utilities
