@@ -31,7 +31,7 @@ spec:
       automount:
         enabled: false
       hostRoot: /sys/fs/cgroup
-    devices: ens+
+    devices: ens+ eth+
     dashboards:
       enabled: true
     endpointRoutes:
