@@ -6,9 +6,10 @@ resources:
   # - default
   - flux-system
   - kube-system
-  - longhorn
+  # - longhorn
   - network
   - openebs-system
   - postgres-operator
+  - rook-ceph
   - utilities
   - volsync-system

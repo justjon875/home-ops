@@ -84,8 +84,14 @@ controlPlane:
           - siderolabs/nfsrahead # NFS Performance
           - siderolabs/util-linux-tools # Longhorn
   userVolumes:
+    - name: EPHEMERAL
+      provisioning:
+        diskSelector:
+          match: system_disk
+        minSize: 50GiB
     - name: local-hostpath
       provisioning:
         diskSelector:
-          match: disk.model == "QEMU HARDDISK"
-        minSize: 100GiB
+          match: system_disk
+        minSize: 50GiB
+        grow: true
