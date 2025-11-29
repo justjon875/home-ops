@@ -62,7 +62,7 @@ spec:
         useAllNodes: true
         useAllDevices: false
         devices:
-          - /dev/sdb
+          - name: /dev/sdb
         config:
           osdsPerDevice: "1"
     cephBlockPools:
