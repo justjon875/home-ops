@@ -60,9 +60,7 @@ spec:
             memory: 8Gi
       storage:
         useAllNodes: true
-        useAllDevices: false
-        devices:
-          - name: /dev/sdb
+        useAllDevices: true
         config:
           osdsPerDevice: "1"
     cephBlockPools:
