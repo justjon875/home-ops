@@ -7,7 +7,7 @@ metadata:
 spec:
   components:
     # TODO: see if this is worth is
-    - ../../../../components/nfs-scaler
+    # - ../../../../components/nfs-scaler
   dependsOn:
     - name: volsync
   interval: 1h
