@@ -9,7 +9,7 @@ spec:
     - name: TZ
       value: ${TIMEZONE}
   instances: 2
-  imageName: ghcr.io/cloudnative-pg/postgresql:16.9-22
+  imageName: ghcr.io/cloudnative-pg/postgresql:17
   primaryUpdateStrategy: unsupervised
   storage:
     size: 5Gi
