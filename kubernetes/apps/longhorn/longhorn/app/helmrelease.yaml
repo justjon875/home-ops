@@ -17,24 +17,8 @@ spec:
     remediation:
       retries: 3
   values:
-    persistence:
-      defaultDataLocality: best-effort
     defaultSettings:
-      replicaDiskSoftAntiAffinity: false
-      createDefaultDiskLabeledNodes: true
-      defaultDataLocality: best-effort
-      defaultDataPath: "/var/mnt/longhorn"
-      defaultLonghornStaticStorageClass: longhorn
-      defaultReplicaCount: "2"
-      guaranteedEngineManagerCPU: "20"
-      guaranteedReplicaManagerCPU: "20"
-      nodeDownPodDeletionPolicy: delete-both-statefulset-and-deployment-pod
-      orphanAutoDeletion: true
-      replicaAutoBalance: best-effort
-      storageMinimalAvailablePercentage: "1"
-      storageReservedPercentageForDefaultDisk: "10"
-    ingress:
-      enabled: false
-    metrics:
-      serviceMonitor:
-        enabled: true
+      defaultReplicaCount: 2
+    persistence:
+      reclaimPolicy: Retain
+      defaultClassReplicaCount: 2
