@@ -110,3 +110,5 @@ spec:
                 subPath: logs
               - path: /tmp
                 subPath: tmp
+              - path: /repository
+                subPath: repository
