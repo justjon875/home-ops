@@ -8,6 +8,7 @@ cniConfig:
   name: none
 patches:
   - "@./patches/global/machine-sysctls.yaml"
+  - "@./patches/controller/cluster.yaml"
   - |-
     machine:
       kubelet:
@@ -66,13 +67,6 @@ controlPlane:
           "allowScheduling":true
         }]'
   nodeTaints: {}
-  patches:
-    - |-
-      cluster:
-        coreDNS:
-          disabled: true
-        proxy:
-          disabled: true
   schematic:
     customization:
       extraKernelArgs:
