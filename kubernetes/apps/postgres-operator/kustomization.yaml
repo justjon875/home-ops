@@ -4,5 +4,6 @@ kind: Kustomization
 namespace: postgres-operator
 components:
   - ../../components/sops
+  - ../../components/common
 resources:
   - ./cloudnative-pg/ks.yaml
