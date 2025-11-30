@@ -19,9 +19,9 @@ patches:
               - rbind
               - rshared
               - rw
-          - destination: /var/lib/longhorn
+          - destination: /var/mnt/host-nvme
             type: bind
-            source: /var/lib/longhorn
+            source: /var/mnt/host-nvme
             options:
               - bind
               - rshared
@@ -53,20 +53,19 @@ nodes:
         routes:
           - network: 0.0.0.0/0
             gateway: 192.168.3.1
-  - hostname: master3
-    ipAddress: 192.168.3.27
-    controlPlane: true
-    installDisk: /dev/sda
-    nameservers:
-      - 192.168.3.1
-    networkInterfaces:
-      - interface: ens18
-        addresses:
-          - 192.168.3.27/24
-        routes:
-          - network: 0.0.0.0/0
-            gateway: 192.168.3.1
 controlPlane:
+  nodeLabels:
+    node.longhorn.io/create-default-disk: 'config'
+  nodeAnnotations:
+    node.longhorn.io/default-disks-config:
+      '[{
+          "name":"longhorn-nvme",
+          "path":"/var/mnt/host-nvme/",
+          "storageReserved":0,
+          "tags": ["ultra-fast", "ssd"],
+          "allowScheduling":true
+        }]'
+  nodeTaints: {}
   patches:
     - |-
       cluster:
@@ -81,6 +80,8 @@ controlPlane:
       systemExtensions:
         officialExtensions:
           - siderolabs/nfsrahead # NFS Performance
+          - siderolabs/iscsi-tools
+          - siderolabs/util-linux-tools
   userVolumes:
     - name: EPHEMERAL
       provisioning:
