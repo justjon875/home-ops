@@ -19,6 +19,13 @@ patches:
               - rbind
               - rshared
               - rw
+          - destination: /var/lib/longhorn
+            type: bind
+            source: /var/lib/longhorn
+            options:
+              - bind
+              - rshared
+              - rw
 nodes:
   - hostname: master1
     ipAddress: 192.168.3.25

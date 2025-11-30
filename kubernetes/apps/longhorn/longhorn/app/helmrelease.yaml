@@ -23,8 +23,9 @@ spec:
       replicaDiskSoftAntiAffinity: false
       createDefaultDiskLabeledNodes: true
       defaultDataLocality: best-effort
+      defaultDataPath: "/var/mnt/longhorn"
       defaultLonghornStaticStorageClass: longhorn
-      defaultReplicaCount: "3"
+      defaultReplicaCount: "2"
       guaranteedEngineManagerCPU: "20"
       guaranteedReplicaManagerCPU: "20"
       nodeDownPodDeletionPolicy: delete-both-statefulset-and-deployment-pod
