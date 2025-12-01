@@ -5,9 +5,6 @@ kind: Kustomization
 metadata:
   name: kopia
 spec:
-  components:
-    - ../../../../components/common
-    - ../../../../components/sops
     # TODO: see if this is worth is
     # - ../../../../components/nfs-scaler
   dependsOn:
