@@ -31,6 +31,17 @@ releases:
     chart: oci://quay.io/jetstack/charts/cert-manager
     version: v1.19.1
     values: ['./templates/values.yaml.gotmpl']
+    hooks:
+      - # Create self-signed issuer and create bitwarden certificate
+        events:
+          - 'postsync'
+        command: kubectl
+        args:
+          - apply
+          - --namespace=external-secrets
+          - --server-side
+          - --field-manager=kustomize-controller
+          - --filename=../../kubernetes/apps/external-secrets/external-secrets/app/certificate.yaml
     needs: ['kube-system/spegel']
 
   - name: external-secrets
