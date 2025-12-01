@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - cert-manager
   # - default
+  - external-secrets
   - flux-system
   - kube-system
   - longhorn
