@@ -8,4 +8,4 @@ resources:
   - ./helmrelease.yaml
   - ./ocirepository.yaml
   - ./pdb.yaml
-  - stores
+  - ./secret.sops.yaml
