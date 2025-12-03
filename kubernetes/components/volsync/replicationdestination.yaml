@@ -22,9 +22,9 @@ spec:
     copyMethod: Snapshot
     enableFileDeletion: true
     moverSecurityContext:
-      runAsUser: ${VOLSYNC_PUID:=4012}
-      runAsGroup: ${VOLSYNC_PGID:=4014}
-      fsGroup: ${VOLSYNC_PGID:=4014}
+      runAsUser: ${VOLSYNC_PUID:=1000}
+      runAsGroup: ${VOLSYNC_PGID:=1000}
+      fsGroup: ${VOLSYNC_PGID:=1000}
     repository: "kopia-secret" # volsync for local, volsync-minio for minio
     sourceIdentity:
       sourceName: ${APP}

@@ -3,25 +3,12 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &app kite
-  namespace: utilities
+  name: kite
 spec:
+  chartRef:
+    kind: OCIRepository
+    name: kite
   interval: 1h
-  chart:
-    spec:
-      chart: kite
-      version: 0.7.2
-      sourceRef:
-        kind: HelmRepository
-        name: kite
-        namespace: flux-system
-  install:
-    remediation:
-      retries: -1
-  upgrade:
-    cleanupOnFail: true
-    remediation:
-      retries: 3
   values:
     resources:
       limits:
