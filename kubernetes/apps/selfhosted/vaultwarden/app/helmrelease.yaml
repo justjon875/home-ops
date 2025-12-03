@@ -23,7 +23,7 @@ spec:
           app:
             env:
               DATA_FOLDER: /data
-              DOMAIN: https://vaultwarden.${SHORT_ROOT_DOMAIN}
+              DOMAIN: https://{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}
               SIGNUPS_ALLOWED: false
               SMTP_FROM: vaultwarden@${SHORT_ROOT_DOMAIN}
               SMTP_HOST: email-smtp.eu-west-1.amazonaws.com
