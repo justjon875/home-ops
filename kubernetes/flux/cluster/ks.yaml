@@ -1,4 +1,4 @@
----
+G
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -42,12 +42,6 @@ spec:
                   rollback:
                     cleanupOnFail: true
                     recreate: true
-                postBuild:
-                  substituteFrom:
-                    - name: cluster-secrets
-                      kind: Secret
-                    - name: cluster-settings
-                      kind: ConfigMap
                   upgrade:
                     cleanupOnFail: true
                     crds: CreateReplace
