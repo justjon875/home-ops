@@ -28,5 +28,5 @@ spec:
     repository: ${APP}-volsync-secret
     sourceIdentity:
       sourceName: ${APP}
-    storageClassName: "${VOLSYNC_STORAGECLASS:=longhorn-ultra-fast}"
-    volumeSnapshotClassName: "${VOLSYNC_SNAPSHOTCLASS:=longhorn}"
+    storageClassName: ${VOLSYNC_STORAGECLASS:=longhorn-ultra-fast}
+    volumeSnapshotClassName: ${VOLSYNC_SNAPSHOTCLASS:=longhorn}
