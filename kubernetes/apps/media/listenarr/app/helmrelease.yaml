@@ -22,7 +22,7 @@ spec:
         containers:
           app:
             env:
-              LISTENARR_PUBLIC_URL: https://{{ Release.Name }}.${SHORT_ROOT_DOMAIN}
+              LISTENARR_PUBLIC_URL: https://{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}
               TZ: Asia/Singapore
             image:
               repository: hcr.io/therobbiedavis/listenarr
