@@ -23,9 +23,9 @@ spec:
           app:
             env:
               DATA_FOLDER: /data
-              DOMAIN: https://vaultwarden.${ROOT_DOMAIN}
+              DOMAIN: https://vaultwarden.${SHORT_ROOT_DOMAIN}
               SIGNUPS_ALLOWED: false
-              SMTP_FROM: vaultwarden@${ROOT_DOMAIN}
+              SMTP_FROM: vaultwarden@${SHORT_ROOT_DOMAIN}
               SMTP_HOST: email-smtp.eu-west-1.amazonaws.com
               SMTP_PORT: 587
               SMTP_SECURITY: starttls
@@ -37,29 +37,23 @@ spec:
             image:
               repository: ghcr.io/dani-garcia/vaultwarden
               tag: 1.34.1@sha256:48267ea14d8649b2e553a5fe290c40b5dd94d54e9a24b26ae7134a75a659695f
-    ingress:
-      app:
-        className: internal
-        enabled: true
-        hosts:
-          - host: &host "{{ .Release.Name }}.${ROOT_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: app
-                  port: http
-        tls:
-          - hosts:
-              - *host
     persistence:
       config:
         enabled: true
+        existingClaim: *app
         globalMounts:
           - path: /data
-        path: /mnt/raid/nfs/vaultwarden
-        server: ${NFS_HOST}
-        type: nfs
+    route:
+      app:
+        hostnames: ["{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}"]
+        parentRefs:
+          - name: external
+            namespace: network
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
     service:
       app:
         controller: *app
