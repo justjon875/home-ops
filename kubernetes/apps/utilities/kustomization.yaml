@@ -10,6 +10,7 @@ components:
 
 resources:
   - ./dozzle/ks.yaml
+  - ./kite/ks.yaml
   # - forgejo
   # - frigate
   # - goldilocks
