@@ -13,9 +13,9 @@ patches:
     machine:
       kubelet:
         extraMounts:
-          - destination: /var/openebs/local
+          - destination: /var/mnt/local-hostpath
             type: bind
-            source: /var/openebs/local
+            source: /var/mnt/local-hostpath
             options:
               - rbind
               - rshared
@@ -82,6 +82,12 @@ controlPlane:
         diskSelector:
           match: system_disk
         maxSize: 50GiB
+    - name: local-hostpath
+      provisioning:
+        diskSelector:
+          match: system_disk
+        minSize: 50GiB
+        grow: true
     - name: host-nvme
       provisioning:
         diskSelector:
