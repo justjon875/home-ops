@@ -60,7 +60,8 @@ spec:
             memory: 8Gi
       storage:
         useAllNodes: true
-        useAllDevices: true
+        useAllDevices: false
+        devicePathFilter: /dev/disk/by-path/virtio-pci*
         config:
           osdsPerDevice: "1"
     cephBlockPools:
