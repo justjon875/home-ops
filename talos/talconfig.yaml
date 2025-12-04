@@ -89,9 +89,10 @@ controlPlane:
           match: system_disk
         minSize: 50GiB
         grow: true
-    - name: host-nvme
-      provisioning:
-        diskSelector:
-          match: "!system_disk"
-        minSize: 50GiB
-        grow: true
+
+    # - name: host-nvme
+    #   provisioning:
+    #     diskSelector:
+    #       match: "!system_disk"
+    #     minSize: 50GiB
+    #     grow: true
