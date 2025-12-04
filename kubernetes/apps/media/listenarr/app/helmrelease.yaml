@@ -35,6 +35,8 @@ spec:
     persistence:
       config:
         existingClaim: "{{ .Release.Name }}"
+        globalMounts:
+          - path: /app/config
       media:
         enabled: true
         path: /mnt/raid/media/
