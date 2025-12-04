@@ -24,7 +24,7 @@ spec:
               tag:  canary-0.2.40@sha256:8df01f5d9801ab2c8c97fa469f229786be0ef63b0c08cf7e49694833a4ef0a93 
             securityContext:
               allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
+              readOnlyRootFilesystem: false
               capabilities: { drop: ["ALL"] }
     defaultPodOptions:
       securityContext:
