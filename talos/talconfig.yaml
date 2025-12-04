@@ -9,6 +9,7 @@ cniConfig:
 patches:
   - "@./patches/global/machine-sysctls.yaml"
   - "@./patches/controller/cluster.yaml"
+  - "@./patches/controller/admission-controller-patch.yaml"
   - |-
     machine:
       kubelet:
