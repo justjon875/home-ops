@@ -37,6 +37,8 @@ spec:
         existingClaim: "{{ .Release.Name }}"
         globalMounts:
           - path: /app/config
+      complete:
+        existingClaim: "{{ .Release.Name }}-complete"
       media:
         enabled: true
         path: /mnt/raid/media/
