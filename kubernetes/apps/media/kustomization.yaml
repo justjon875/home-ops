@@ -7,7 +7,6 @@ namespace: media
 components:
   - ../../components/common
   - ../../components/sops
-  - ../../components/privileged-namespace
 
 resources:
   - ./namespace.yaml

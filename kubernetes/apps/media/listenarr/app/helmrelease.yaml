@@ -35,7 +35,7 @@ spec:
         runAsUser: 1000
     persistence:
       config:
-        existingClaim: "{{ .Release.Name }}-test"
+        existingClaim: "{{ .Release.Name }}"
       media:
         enabled: true
         path: /mnt/raid/media/
