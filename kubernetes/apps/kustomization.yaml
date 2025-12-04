@@ -14,4 +14,4 @@ resources:
   # - postgres-operator
   - rook-ceph
   - utilities
-  # - volsync-system
+  - volsync-system
