@@ -7,11 +7,11 @@ resources:
   - external-secrets
   - flux-system
   - kube-system
-  - longhorn
-  - media
+  # - longhorn
+  # - media
   - network
   - openebs-system
-  - postgres-operator
+  # - postgres-operator
   # - rook-ceph
   - utilities
-  - volsync-system
+  # - volsync-system
