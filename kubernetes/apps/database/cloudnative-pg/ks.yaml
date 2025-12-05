@@ -35,7 +35,7 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: cloudnative-pg
-      namespace: postgres-operator
+      namespace: database
   interval: 30m
   path: ./kubernetes/apps/database/cloudnative-pg/cluster
   postBuild:
