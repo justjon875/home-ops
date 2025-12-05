@@ -11,7 +11,7 @@ spec:
     - name: rook-ceph-cluster
       namespace: rook-ceph
   interval: 1h
-  path: ./kubernetes/apps/media/listenarr/app
+  path: ./kubernetes/apps/cloud/opencloud-community/app
   postBuild:
     substitute:
       APP: listenarr
