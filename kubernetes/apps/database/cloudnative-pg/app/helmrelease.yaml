@@ -9,14 +9,19 @@ spec:
   chartRef:
     kind: OCIRepository
     name: cloudnative-pg
-  values:
-    crds:
-      create: true
   dependsOn:
     - name: openebs
       namespace: openebs-system
   values:
+    crds:
+      create: true
     monitoring:
       podMonitorEnabled: false
       grafanaDashboard:
         create: true
+    resources:
+      requests:
+        cpu: 15m
+        memory: 192Mi
+      limits:
+        memory: 384Mi
