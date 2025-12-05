@@ -31,6 +31,12 @@ spec:
     - name: garage
   interval: 1h
   path: ./kubernetes/apps/cloud/garage/webui
+  postBuild:
+    substituteFrom:
+      - name: cluster-secrets
+        kind: Secret
+      - name: cluster-settings
+        kind: ConfigMap
   prune: true
   sourceRef:
     kind: GitRepository
