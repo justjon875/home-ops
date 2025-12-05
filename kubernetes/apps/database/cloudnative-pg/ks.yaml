@@ -5,24 +5,24 @@ kind: Kustomization
 metadata:
   name: &app cloudnative-pg
 spec:
-  targetNamespace: database
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  interval: 30m
   path: ./kubernetes/apps/database/cloudnative-pg/app
+  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  prune: true
-  wait: false
-  interval: 30m
   retryInterval: 1m
-  timeout: 5m
   postBuild:
     substituteFrom:
       - name: cluster-secrets
         kind: Secret
+  targetNamespace: database
+  timeout: 5m
+  wait: false
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1
@@ -30,20 +30,23 @@ kind: Kustomization
 metadata:
   name: &app plugin-barman-cloud
 spec:
-  targetNamespace: database
+  dependsOn:
+    - name: cloudnative-pg
+      namespace: database
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/apps/database/cloudnative-pg/app
+  interval: 30m
+  path: ./kubernetes/apps/database/cloudnative-pg/plugin-barman-cloud
+  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  prune: true
-  wait: false
-  interval: 30m
   retryInterval: 1m
+  targetNamespace: database
   timeout: 5m
+  wait: false
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1
