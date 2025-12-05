@@ -163,21 +163,31 @@ spec:
           gateway:
             hostNetwork: false
             port: 80
-            instances: 2
-            healthCheck:
-              bucket:
-                interval: 60s
             resources:
+              requests:
+                cpu: 100m
+                memory: 1Gi
               limits:
                 memory: 2Gi
-              requests:
-                cpu: 5m
-                memory: 256Mi
+            instances: 2
+            priorityClassName: system-cluster-critical
+          healthCheck:
+            bucket:
+              interval: 60s
+        route:
+          enabled: true
+          host:
+            name: rgw.${SHORT_ROOT_DOMAIN}
+            path: /
+            pathType: PathPrefix
+          parentRefs:
+            - name: envoy-internal
+              namespace: network
+              sectionName: https
         storageClass:
           enabled: true
           name: ceph-bucket
           reclaimPolicy: Delete
+          volumeBindingMode: Immediate
           parameters:
             region: ap-southeast-1
-        ingress:
-          enabled: false
