@@ -22,8 +22,6 @@ spec:
             resources:
               requests:
                 cpu: 100m
-              limits:
-                gpu.intel.com/i915: 1
         pod:
           securityContext:
             fsGroup: 1000
