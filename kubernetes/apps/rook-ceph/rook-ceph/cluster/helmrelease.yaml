@@ -59,17 +59,11 @@ spec:
           limits:
             memory: 8Gi
       storage:
-        useAllNodes: false
+        useAllNodes: true
         useAllDevices: false
+        devicePathFilter: /dev/disk/by-path/virtio-pci*
         config:
           osdsPerDevice: "1"
-        nodes:
-          - name: master1
-            devices:
-              - name: /dev/disk/by-path/virtio-pci-0000:00:0a.0
-          - name: master2
-            devices:
-              - name: /dev/disk/by-path/virtio-pci-0000:00:0a.0
     cephBlockPools:
       - name: ceph-blockpool
         spec:
