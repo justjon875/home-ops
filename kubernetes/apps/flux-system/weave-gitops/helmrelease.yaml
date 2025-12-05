@@ -35,8 +35,8 @@ spec:
       create: true
       clientID: weave-gitops
       clientSecret: "${SECRET_WEAVEGITOPS_OAUTH_CLIENT_SECRET}"
-      issuerURL: https://auth.${ROOT_DOMAIN}
-      redirectURL: https://weave.${ROOT_DOMAIN}/oauth2/callback
+      issuerURL: https://auth.$\{SHORT_ROOT_DOMAIN\}
+      redirectURL: https://weave.$\{SHORT_ROOT_DOMAIN\}/oauth2/callback
     ingress:
       enabled: true
       className: internal
@@ -44,7 +44,7 @@ spec:
         nginx.ingress.kubernetes.io/proxy-buffer-size: 24k
         nginx.ingress.kubernetes.io/proxy-buffers-number: "32"
       hosts:
-        - host: &host "weave.${ROOT_DOMAIN}"
+        - host: &host "weave.$\{SHORT_ROOT_DOMAIN\}"
           paths:
             - path: /
               pathType: Prefix

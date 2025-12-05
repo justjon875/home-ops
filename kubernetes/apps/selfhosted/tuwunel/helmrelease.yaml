@@ -33,11 +33,11 @@ spec:
               tag: v1.1.0-release-all-x86_64-linux-gnu@sha256:0ffaa9bd91bb6819a7fbc57b9be79e86925a80cf63a106f35926bbe48b29d55e
             env:
               - name: TUWUNEL_SERVER_NAME
-                value: "${ROOT_DOMAIN}"
+                value: "$\{SHORT_ROOT_DOMAIN\}"
               - name: TUWUNEL_WELL_KNOWN__CLIENT
-                value: "https://tuwunel.${ROOT_DOMAIN}"
+                value: "https://tuwunel.$\{SHORT_ROOT_DOMAIN\}"
               - name: TUWUNEL_WELL_KNOWN__SERVER
-                value: "tuwunel.${ROOT_DOMAIN}:443"
+                value: "tuwunel.$\{SHORT_ROOT_DOMAIN\}:443"
               - name: TUWUNEL_DATABASE_PATH
                 value: "/data/db"
               - name: TUWUNEL_ADDRESS
@@ -58,7 +58,7 @@ spec:
         className: internal
         enabled: true
         hosts:
-          - host: &host tuwunel.${ROOT_DOMAIN}
+          - host: &host tuwunel.$\{SHORT_ROOT_DOMAIN\}
             paths:
               - path: /
                 pathType: Prefix

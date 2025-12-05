@@ -47,7 +47,7 @@ spec:
         className: internal
         enabled: true
         hosts:
-          - host: invidious.${ROOT_DOMAIN}
+          - host: invidious.$\{SHORT_ROOT_DOMAIN\}
             paths:
               - path: /
                 pathType: Prefix
@@ -56,7 +56,7 @@ spec:
                   port: http
         tls:
           - hosts:
-              - invidious.${ROOT_DOMAIN}
+              - invidious.$\{SHORT_ROOT_DOMAIN\}
     service:
       inv-sig-helper:
         controller: inv-sig-helper

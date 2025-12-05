@@ -31,7 +31,7 @@ spec:
         className: internal
         enabled: true
         hosts:
-          - host: &host "{{ .Release.Name }}.${ROOT_DOMAIN}"
+          - host: &host "{{ .Release.Name }}.$\{SHORT_ROOT_DOMAIN\}"
             paths:
               - path: /
                 pathType: Prefix

@@ -33,14 +33,14 @@ spec:
           DB_TYPE: postgres
           HOST: ${POSTGRESQL_HOST}
         migrations:
-          ALLOWED_DOMAINS: gitea.lithium.${ROOT_DOMAIN}
+          ALLOWED_DOMAINS: gitea.lithium.$\{SHORT_ROOT_DOMAIN\}
         queue:
           CONN_STR: "redis://valkey.default.svc.cluster.local:6379/0"
           TYPE: redis
         server:
           LANDING_PAGE: login
-          ROOT_URL: https://forgejo.${ROOT_DOMAIN}
-          SSH_DOMAIN: &host forgejo.${ROOT_DOMAIN}
+          ROOT_URL: https://forgejo.$\{SHORT_ROOT_DOMAIN\}
+          SSH_DOMAIN: &host forgejo.$\{SHORT_ROOT_DOMAIN\}
     image:
       rootless: true
     ingress:

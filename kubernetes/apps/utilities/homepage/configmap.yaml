@@ -34,13 +34,13 @@ data:
         memory: true
         label: "hydrogen"
     - unifi_console:
-        url: https://unifi.lithium.${ROOT_DOMAIN}
+        url: https://unifi.lithium.$\{SHORT_ROOT_DOMAIN\}
         username: ${USERNAME}
         password: ${SECRET_UNIFI_PASSWORD}
     - search:
         provider: custom
         target: _self
-        url: https://whoogle.${ROOT_DOMAIN}/search?q=
+        url: https://whoogle.$\{SHORT_ROOT_DOMAIN\}/search?q=
     - openmeteo:
         label: Home # optional
         latitude: ${SECRET_LATITUDE}
@@ -51,246 +51,246 @@ data:
     ---
     - Lithium:
         - AdguardHome lithium:
-            href: https://adguard.lithium.${ROOT_DOMAIN}
+            href: https://adguard.lithium.$\{SHORT_ROOT_DOMAIN\}
             icon: adguard-home.png
             description: Pi Ad-Blocking
             widget:
               type: adguard
-              url: https://adguard.lithium.${ROOT_DOMAIN}
+              url: https://adguard.lithium.$\{SHORT_ROOT_DOMAIN\}
               username: admin
               password: ${SECRET_ADGUARD_PASSWORD}
         - Forgejo lithium:
-            href: https://forgejo.lithium.${ROOT_DOMAIN}
+            href: https://forgejo.lithium.$\{SHORT_ROOT_DOMAIN\}
             icon: forgejo.png
             description: Beyond coding. We forge.
         - Portainer:
-            href: https://portainer.lithium.${ROOT_DOMAIN}
+            href: https://portainer.lithium.$\{SHORT_ROOT_DOMAIN\}
             icon: portainer.png
             description: Deploy, configure, troubleshoot and secure containers
             widget:
               type: portainer
-              url: https://portainer.lithium.${ROOT_DOMAIN}
+              url: https://portainer.lithium.$\{SHORT_ROOT_DOMAIN\}
               env: 2
               key: ${SECRET_PORTAINER_KEY}
         - Unifi:
-            href: https://unifi.lithium.${ROOT_DOMAIN}
+            href: https://unifi.lithium.$\{SHORT_ROOT_DOMAIN\}
             icon: unifi.png
             description: Unifi console
         - Whoogle lithium:
-            href: https://whoogle.lithium.${ROOT_DOMAIN}
+            href: https://whoogle.lithium.$\{SHORT_ROOT_DOMAIN\}
             icon: whooglesearch.png
             description: Ad-free, privacy-respecting metasearch engine
     - Cloud:
         - Immich:
-            href: https://immich.${ROOT_DOMAIN}
+            href: https://immich.$\{SHORT_ROOT_DOMAIN\}
             icon: immich.png
             description: High performance self-hosted photo and video backup solution
             namespace: cloud
             app: immich
             widget:
               type: immich
-              url: https://immich.${ROOT_DOMAIN}
+              url: https://immich.$\{SHORT_ROOT_DOMAIN\}
               key: ${SECRET_IMMICH_KEY}
               version: 2
         - Minio:
-            href: https://minio.${ROOT_DOMAIN}
+            href: https://minio.$\{SHORT_ROOT_DOMAIN\}
             icon: minio.png
             description: S3 object storage
             namespace: cloud
             app: minio
         - Nextcloud:
-            href: https://nextcloud.${ROOT_DOMAIN}
+            href: https://nextcloud.$\{SHORT_ROOT_DOMAIN\}
             icon: nextcloud.png
             description: Cloudstorage
             namespace: cloud
             app: nextcloud
         - Photoview:
-            href: https://photoview.${ROOT_DOMAIN}
+            href: https://photoview.$\{SHORT_ROOT_DOMAIN\}
             icon: photoview.png
             description: Simple and user-friendly photo gallery
     - Infra:
         - OPNSense:
-            href: https://dashboard.oxygen.${ROOT_DOMAIN}
+            href: https://dashboard.oxygen.$\{SHORT_ROOT_DOMAIN\}
             icon: opnsense.png
             description: Firewall and router
             widget:
               type: opnsense
-              url: https://dashboard.oxygen.${ROOT_DOMAIN}
+              url: https://dashboard.oxygen.$\{SHORT_ROOT_DOMAIN\}
               username: ${SECRET_OPNSENSE_USERNAME}
               password: ${SECRET_OPNSENSE_PASSWORD}
     - Media:
         - Calibre:
-            href: https://calibre.${ROOT_DOMAIN}
+            href: https://calibre.$\{SHORT_ROOT_DOMAIN\}
             icon: calibre.png
             description: calibre is a powerful and easy to use e-book manager
         - Invidious:
-            href: https://invidious.${ROOT_DOMAIN}
+            href: https://invidious.$\{SHORT_ROOT_DOMAIN\}
             icon: invidious.png
             description: An alternative front-end to YouTube
         - Jellyfin:
-            href: https://jellyfin.${ROOT_DOMAIN}
+            href: https://jellyfin.$\{SHORT_ROOT_DOMAIN\}
             icon: jellyfin.png
             description: Mediaserver
             widget:
               type: jellyfin
-              url: https://jellyfin.${ROOT_DOMAIN}
+              url: https://jellyfin.$\{SHORT_ROOT_DOMAIN\}
               key: ${SECRET_JELLYFIN_KEY}
         - Kavita:
-            href: https://kavita.${ROOT_DOMAIN}
+            href: https://kavita.$\{SHORT_ROOT_DOMAIN\}
             icon: kavita.png
             description: Kavita is a fast, feature rich, cross platform reading server
         - Navidrome:
-            href: https://navidrome.${ROOT_DOMAIN}
+            href: https://navidrome.$\{SHORT_ROOT_DOMAIN\}
             icon: navidrome.png
             description: Music Player
             widget:
               type: navidrome
-              url: https://navidrome.${ROOT_DOMAIN}
+              url: https://navidrome.$\{SHORT_ROOT_DOMAIN\}
               user: ${USERNAME}
               salt: ${SECRET_NAVIDROME_SALT}
               token: ${SECRET_NAVIDROME_TOKEN}
         - Piped:
-            href: https://piped.${ROOT_DOMAIN}
+            href: https://piped.$\{SHORT_ROOT_DOMAIN\}
             icon: piped.png
             description: An alternative front-end to YouTube
         - Stump:
-            href: https://stump.${ROOT_DOMAIN}
+            href: https://stump.$\{SHORT_ROOT_DOMAIN\}
             icon: /icons/stump.png
             description: Comics, manga and digital book server
     - Media Management:
       - Jellyseerr:
-          href: https://jellyseerr.${ROOT_DOMAIN}
+          href: https://jellyseerr.$\{SHORT_ROOT_DOMAIN\}
           icon: jellyseerr.png
           description: TODO
           widget:
             type: jellyseerr
-            url: https://jellyseerr.${ROOT_DOMAIN}
+            url: https://jellyseerr.$\{SHORT_ROOT_DOMAIN\}
             key: ${SECRET_JELLYSEERR_KEY}
       - Metube:
-          href: https://metube.${ROOT_DOMAIN}
+          href: https://metube.$\{SHORT_ROOT_DOMAIN\}
           icon: metube.png
           description: Web GUI for youtube-dl
       - Prowlarr:
-          href: https://prowlarr.${ROOT_DOMAIN}
+          href: https://prowlarr.$\{SHORT_ROOT_DOMAIN\}
           icon: prowlarr.png
           description: TODO
           widget:
             type: prowlarr
-            url: https://prowlarr.${ROOT_DOMAIN}
+            url: https://prowlarr.$\{SHORT_ROOT_DOMAIN\}
             key: ${SECRET_PROWLARR_KEY}
       - Radarr:
-          href: https://radarr.${ROOT_DOMAIN}
+          href: https://radarr.$\{SHORT_ROOT_DOMAIN\}
           icon: radarr.png
           description: TODO
           widget:
             type: radarr
-            url: https://radarr.${ROOT_DOMAIN}
+            url: https://radarr.$\{SHORT_ROOT_DOMAIN\}
             key: ${SECRET_RADARR_KEY}
       - SABnzbd:
-          href: https://sabnzbd.${ROOT_DOMAIN}
+          href: https://sabnzbd.$\{SHORT_ROOT_DOMAIN\}
           icon: sabnzbd.png
           description: SABnzbd is an open-source binary newsreader written in Python
           widget:
             type: sabnzbd
-            url: https://sabnzbd.${ROOT_DOMAIN}
+            url: https://sabnzbd.$\{SHORT_ROOT_DOMAIN\}
             key: ${SECRET_SABNZBD_APIKEY}
       - Sonarr:
-          href: https://sonarr.${ROOT_DOMAIN}
+          href: https://sonarr.$\{SHORT_ROOT_DOMAIN\}
           icon: sonarr.png
           description: TODO
           widget:
             type: sonarr
-            url: https://sonarr.${ROOT_DOMAIN}
+            url: https://sonarr.$\{SHORT_ROOT_DOMAIN\}
             key: ${SECRET_SONARR_KEY}
     - Selfhosted:
         - FileBrowser:
-            href: https://filebrowser.${ROOT_DOMAIN}
+            href: https://filebrowser.$\{SHORT_ROOT_DOMAIN\}
             icon: filebrowser.png
             description: File managing interface
         - Linkwarden:
-            href: https://linkwarden.${ROOT_DOMAIN}
+            href: https://linkwarden.$\{SHORT_ROOT_DOMAIN\}
             icon: /icons/linkwarden.png
             description: ️Self-hosted collaborative bookmark manager to collect, organize, and preserve webpages and articles
             widget:
               type: linkwarden
-              url: https://linkwarden.${ROOT_DOMAIN}
+              url: https://linkwarden.$\{SHORT_ROOT_DOMAIN\}
               key: ${SECRET_LINKWARDEN}
         - Memos:
-            href: https://memos.${ROOT_DOMAIN}
+            href: https://memos.$\{SHORT_ROOT_DOMAIN\}
             icon: memos.png
             description: A lightweight, self-hosted memo hub
         - OpenSpeedTest:
-            href: https://openspeedtest.${ROOT_DOMAIN}
+            href: https://openspeedtest.$\{SHORT_ROOT_DOMAIN\}
             icon: openspeedtest.png
             description: HTML5 Network Performance Estimation Tool
         - Paperless-ngx:
-            href: https://paperless-ngx.${ROOT_DOMAIN}
+            href: https://paperless-ngx.$\{SHORT_ROOT_DOMAIN\}
             icon: /icons/paperless-ngx.svg
             description: Scan, index and archive all your physical documents
         - PairDrop:
-            href: https://pairdrop.${ROOT_DOMAIN}
+            href: https://pairdrop.$\{SHORT_ROOT_DOMAIN\}
             icon: /icons/pairdrop.png
             description: Sublime alternative to AirDrop that works on all platforms
         - Planka:
-            href: https://planka.${ROOT_DOMAIN}
+            href: https://planka.$\{SHORT_ROOT_DOMAIN\}
             icon: planka.png
             description: Kanban board
         - Redlib:
-            href: https://redlib.${ROOT_DOMAIN}
+            href: https://redlib.$\{SHORT_ROOT_DOMAIN\}
             icon: reddit.png
             description: Private front-end for Reddit
         - RxResume:
-            href: https://rxresume.${ROOT_DOMAIN}
+            href: https://rxresume.$\{SHORT_ROOT_DOMAIN\}
             icon: /icons/rxresume.png
             description: Resume Builder
         - Stirling-PDF:
-            href: https://stirling-pdf.${ROOT_DOMAIN}
+            href: https://stirling-pdf.$\{SHORT_ROOT_DOMAIN\}
             icon: /icons/stirling.png
             description: PDF manipulation tool
         - Vaultwarden:
-            href: https://vaultwarden.${ROOT_DOMAIN}
+            href: https://vaultwarden.$\{SHORT_ROOT_DOMAIN\}
             icon: bitwarden.png
             description: Password tool
         - Whoogle:
-            href: https://whoogle.${ROOT_DOMAIN}
+            href: https://whoogle.$\{SHORT_ROOT_DOMAIN\}
             icon: whooglesearch.png
             description: Ad-free, privacy-respecting metasearch engine
     - Utilities:
         - Element Web:
-            href: https://element.${ROOT_DOMAIN}
+            href: https://element.$\{SHORT_ROOT_DOMAIN\}
             icon: element.png
             description: Element is a Matrix-based end-to-end encrypted messenger and secure collaboration app
         - Frigate:
-            href: https://frigate.${ROOT_DOMAIN}
+            href: https://frigate.$\{SHORT_ROOT_DOMAIN\}
             icon: frigate.png
             description: Frigate is an open source NVR built around real-time AI object detection
         - Forgejo:
-            href: https://forgejo.${ROOT_DOMAIN}
+            href: https://forgejo.$\{SHORT_ROOT_DOMAIN\}
             icon: forgejo.png
             description: self-hosted lightweight software forge
         - Goldilocks:
-            href: https://goldilocks.${ROOT_DOMAIN}
+            href: https://goldilocks.$\{SHORT_ROOT_DOMAIN\}
             icon: https://raw.githubusercontent.com/FairwindsOps/goldilocks/master/img/goldilocks.svg
             description: Helps identify a starting point for resource requests and limits
         - Grafana:
-            href: https://grafana.${ROOT_DOMAIN}
+            href: https://grafana.$\{SHORT_ROOT_DOMAIN\}
             icon: grafana.png
             description: Metric Monitoring
         - Kubernetes:
-            href: https://k8s.${ROOT_DOMAIN}
+            href: https://k8s.$\{SHORT_ROOT_DOMAIN\}
             icon: kubernetes-dashboard.png
             description: Kubernetes Dashboard
         - Weave:
-            href: https://weave.${ROOT_DOMAIN}
+            href: https://weave.$\{SHORT_ROOT_DOMAIN\}
             icon: /icons/weave.svg
             description: GitOps for K8s
         - Uptime Kuma:
-            href: https://uptime.${ROOT_DOMAIN}
+            href: https://uptime.$\{SHORT_ROOT_DOMAIN\}
             icon: uptime-kuma.png
             description: A fancy self-hosted monitoring tool
             widget:
               type: uptimekuma
-              url: https://uptime.${ROOT_DOMAIN}
+              url: https://uptime.$\{SHORT_ROOT_DOMAIN\}
               slug: up
   bookmarks.yaml: |
     ---

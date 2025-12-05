@@ -36,7 +36,7 @@ spec:
               PAPERLESS_OCR_LANGUAGE: eng
               PAPERLESS_REDIS: redis://valkey.default.svc.cluster.local
               PAPERLESS_TIME_ZONE: ${TIMEZONE}
-              PAPERLESS_URL: https://paperless-ngx.${ROOT_DOMAIN}
+              PAPERLESS_URL: https://paperless-ngx.$\{SHORT_ROOT_DOMAIN\}
             envFrom:
               - secretRef:
                   name: *app
@@ -50,7 +50,7 @@ spec:
         className: internal
         enabled: true
         hosts:
-          - host: &host "{{ .Release.Name }}.${ROOT_DOMAIN}"
+          - host: &host "{{ .Release.Name }}.$\{SHORT_ROOT_DOMAIN\}"
             paths:
               - path: /
                 pathType: Prefix

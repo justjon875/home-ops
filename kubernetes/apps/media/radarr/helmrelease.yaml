@@ -57,7 +57,7 @@ spec:
         className: internal
         enabled: true
         hosts:
-          - host: radarr.${ROOT_DOMAIN}
+          - host: radarr.$\{SHORT_ROOT_DOMAIN\}
             paths:
               - path: /
                 pathType: Prefix
@@ -66,7 +66,7 @@ spec:
                   port: http
         tls:
           - hosts:
-              - radarr.${ROOT_DOMAIN}
+              - radarr.$\{SHORT_ROOT_DOMAIN\}
     persistence:
       config:
         enabled: true

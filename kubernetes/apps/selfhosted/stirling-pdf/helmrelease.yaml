@@ -29,7 +29,7 @@ spec:
         className: internal
         enabled: true
         hosts:
-          - host: &host stirling-pdf.${ROOT_DOMAIN}
+          - host: &host stirling-pdf.$\{SHORT_ROOT_DOMAIN\}
             paths:
               - path: /
                 pathType: Prefix

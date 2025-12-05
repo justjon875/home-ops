@@ -29,7 +29,7 @@ spec:
         className: internal
         enabled: true
         hosts:
-          - host: jellyseerr.${ROOT_DOMAIN}
+          - host: jellyseerr.$\{SHORT_ROOT_DOMAIN\}
             paths:
               - path: /
                 pathType: Prefix
@@ -38,7 +38,7 @@ spec:
                   port: http
         tls:
           - hosts:
-              - jellyseerr.${ROOT_DOMAIN}
+              - jellyseerr.$\{SHORT_ROOT_DOMAIN\}
     persistence:
       config:
         enabled: true

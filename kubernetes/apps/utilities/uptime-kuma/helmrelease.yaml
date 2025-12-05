@@ -31,7 +31,7 @@ spec:
         className: internal
         enabled: true
         hosts:
-          - host: &host "uptime.${ROOT_DOMAIN}"
+          - host: &host "uptime.$\{SHORT_ROOT_DOMAIN\}"
             paths:
               - path: /
                 pathType: Prefix

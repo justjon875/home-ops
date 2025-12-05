@@ -28,9 +28,9 @@ spec:
               tag: 2024.6.30-39aaac40d@sha256:149477f50e9fd7a90bd1455009b332433d65a9beeb0e0a6f9a4bdc11a860c0b6
             env:
               TZ: ${TIMEZONE}
-              SEARXNG_BASE_URL: https://search.${ROOT_DOMAIN}
+              SEARXNG_BASE_URL: https://search.$\{SHORT_ROOT_DOMAIN\}
               SEARXNG_REDIS_URL: "redis://valkey.default.svc.cluster.local:6379"
-              SEARXNG_URL: https://search.${ROOT_DOMAIN}
+              SEARXNG_URL: https://search.$\{SHORT_ROOT_DOMAIN\}
             envFrom:
               - secretRef:
                   name: searxng-secret
@@ -38,10 +38,10 @@ spec:
       app:
         className: external
         annotations:
-          external-dns.alpha.kubernetes.io/target: external.${ROOT_DOMAIN}
+          external-dns.alpha.kubernetes.io/target: external.$\{SHORT_ROOT_DOMAIN\}
         enabled: true
         hosts:
-          - host: &host search.${ROOT_DOMAIN}
+          - host: &host search.$\{SHORT_ROOT_DOMAIN\}
             paths:
               - path: /
                 pathType: Prefix

@@ -32,7 +32,7 @@ spec:
         enabled: true
         ingressClassName: internal
         hosts:
-          - host: &host goldilocks.${ROOT_DOMAIN}
+          - host: &host goldilocks.$\{SHORT_ROOT_DOMAIN\}
             paths:
               - path: /
                 type: ImplementationSpecific

@@ -24,13 +24,13 @@ spec:
       retries: 5
   values:
     env:
-      email: admin@${ROOT_DOMAIN}
+      email: admin@$\{SHORT_ROOT_DOMAIN\}
     existingSecret: pgadmin-secrets
     ingress:
       enabled: true
       ingressClassName: internal
       hosts:
-        - host: &host "pgadmin.${ROOT_DOMAIN}"
+        - host: &host "pgadmin.$\{SHORT_ROOT_DOMAIN\}"
           paths:
             - path: /
               pathType: Prefix

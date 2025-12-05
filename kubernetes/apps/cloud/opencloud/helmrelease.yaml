@@ -33,21 +33,21 @@ spec:
             env:
               NOTIFICATIONS_SMTP_HOST: email-smtp.eu-west-1.amazonaws.com
               NOTIFICATIONS_SMTP_PORT: 587
-              NOTIFICATIONS_SMTP_SENDER: "OpenCloud notifications <opencloud@opencloud.${ROOT_DOMAIN}>"
+              NOTIFICATIONS_SMTP_SENDER: "OpenCloud notifications <opencloud@opencloud.$\{SHORT_ROOT_DOMAIN\}>"
               NOTIFICATIONS_SMTP_AUTHENTICATION: "auto"
               NOTIFICATIONS_SMTP_ENCRYPTION: "starttls"
               OC_ADD_RUN_SERVICES: "notifications"
               OC_LOG_COLOR: true
               OC_LOG_LEVEL: info
               OC_LOG_PRETTY: true
-              OC_URL: https://opencloud.${ROOT_DOMAIN}
+              OC_URL: https://opencloud.$\{SHORT_ROOT_DOMAIN\}
               PROXY_CSP_CONFIG_FILE_LOCATION: /etc/opencloud/csp.yaml
               PROXY_TLS: false
               # Authelia OIDC
               # Auto role assignment:
               # docs: https://doc.owncloud.com/ocis/next/deployment/services/s-list/proxy.html#automatic-role-assignments
               OC_EXCLUDE_RUN_SERVICES: "idp"
-              OC_OIDC_ISSUER: https://auth.${ROOT_DOMAIN}
+              OC_OIDC_ISSUER: https://auth.$\{SHORT_ROOT_DOMAIN\}
               PROXY_AUTOPROVISION_ACCOUNTS: true
               PROXY_OIDC_ACCESS_TOKEN_VERIFY_METHOD: none
               PROXY_OIDC_REWRITE_WELLKNOWN: true
@@ -56,7 +56,7 @@ spec:
               PROXY_USER_OIDC_CLAIM: "preferred_username"
               PROXY_USER_CS3_CLAIM: "username"
               WEB_OIDC_CLIENT_ID: opencloud-web
-              WEB_OIDC_METADATA_URL: https://auth.${ROOT_DOMAIN}/.well-known/openid-configuration
+              WEB_OIDC_METADATA_URL: https://auth.$\{SHORT_ROOT_DOMAIN\}/.well-known/openid-configuration
               WEB_OIDC_SCOPE: "openid profile email groups"
             envFrom:
               - secretRef:
@@ -96,9 +96,9 @@ spec:
       app:
         className: internal
         annotations:
-          external-dns.alpha.kubernetes.io/target: "internal.${ROOT_DOMAIN}"
+          external-dns.alpha.kubernetes.io/target: "internal.$\{SHORT_ROOT_DOMAIN\}"
         hosts:
-          - host: opencloud.${ROOT_DOMAIN}
+          - host: opencloud.$\{SHORT_ROOT_DOMAIN\}
             paths:
               - path: /
                 service:

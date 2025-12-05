@@ -30,7 +30,7 @@ spec:
         className: internal
         enabled: true
         hosts:
-          - host: &host websurfx.${ROOT_DOMAIN}
+          - host: &host websurfx.$\{SHORT_ROOT_DOMAIN\}
             paths:
               - path: /
                 pathType: Prefix

@@ -72,7 +72,7 @@ spec:
     ingress:
       app:
         hosts:
-          - host: audiobookshelf.${ROOT_DOMAIN}
+          - host: audiobookshelf.$\{SHORT_ROOT_DOMAIN\}
             paths:
               - path: /
                 service:

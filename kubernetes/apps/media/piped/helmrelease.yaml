@@ -25,7 +25,7 @@ spec:
       enabled: false
     frontend:
       env:
-        BACKEND_HOSTNAME: &pipedapi pipedapi.${ROOT_DOMAIN}
+        BACKEND_HOSTNAME: &pipedapi pipedapi.$\{SHORT_ROOT_DOMAIN\}
       image:
         repository: docker.io/1337kavin/piped-frontend
         pullPolicy: "Always"
@@ -33,7 +33,7 @@ spec:
       config:
         PORT: 8080
         NUM_WORKERS: 2
-        PROXY_PART: https://ytproxy.${ROOT_DOMAIN}
+        PROXY_PART: https://ytproxy.$\{SHORT_ROOT_DOMAIN\}
         database:
           connection_url: jdbc:postgresql://${POSTGRESQL_HOST}:5432/piped
           driver_class: org.postgresql.Driver
@@ -50,10 +50,10 @@ spec:
         enabled: true
         annotations:
           nginx.ingress.kubernetes.io/enable-cors: "true"
-          nginx.ingress.kubernetes.io/cors-allow-origin: "https://piped.${ROOT_DOMAIN}, https://ytproxy.${ROOT_DOMAIN}, https://pipedapi.${ROOT_DOMAIN}"
+          nginx.ingress.kubernetes.io/cors-allow-origin: "https://piped.$\{SHORT_ROOT_DOMAIN\}, https://ytproxy.$\{SHORT_ROOT_DOMAIN\}, https://pipedapi.$\{SHORT_ROOT_DOMAIN\}"
         ingressClassName: internal
         hosts:
-          - host: &host piped.${ROOT_DOMAIN}
+          - host: &host piped.$\{SHORT_ROOT_DOMAIN\}
             paths:
               - path: "/"
         tls:
@@ -63,7 +63,7 @@ spec:
         enabled: true
         annotations:
           nginx.ingress.kubernetes.io/enable-cors: "true"
-          nginx.ingress.kubernetes.io/cors-allow-origin: "https://piped.${ROOT_DOMAIN}, https://ytproxy.${ROOT_DOMAIN}, https://pipedapi.${ROOT_DOMAIN}"
+          nginx.ingress.kubernetes.io/cors-allow-origin: "https://piped.$\{SHORT_ROOT_DOMAIN\}, https://ytproxy.$\{SHORT_ROOT_DOMAIN\}, https://pipedapi.$\{SHORT_ROOT_DOMAIN\}"
         ingressClassName: internal
         hosts:
           - host: *pipedapi
@@ -76,10 +76,10 @@ spec:
         enabled: true
         annotations:
           nginx.ingress.kubernetes.io/enable-cors: "true"
-          nginx.ingress.kubernetes.io/cors-allow-origin: "https://piped.${ROOT_DOMAIN}, https://ytproxy.${ROOT_DOMAIN}, https://pipedapi.${ROOT_DOMAIN}"
+          nginx.ingress.kubernetes.io/cors-allow-origin: "https://piped.$\{SHORT_ROOT_DOMAIN\}, https://ytproxy.$\{SHORT_ROOT_DOMAIN\}, https://pipedapi.$\{SHORT_ROOT_DOMAIN\}"
         ingressClassName: internal
         hosts:
-          - host: &proxy ytproxy.${ROOT_DOMAIN}
+          - host: &proxy ytproxy.$\{SHORT_ROOT_DOMAIN\}
             paths:
               - path: "/"
         tls:

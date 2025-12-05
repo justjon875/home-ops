@@ -34,7 +34,7 @@ spec:
         className: internal
         enabled: true
         hosts:
-          - host: &host stump.${ROOT_DOMAIN}
+          - host: &host stump.$\{SHORT_ROOT_DOMAIN\}
             paths:
               - path: /
                 pathType: Prefix
