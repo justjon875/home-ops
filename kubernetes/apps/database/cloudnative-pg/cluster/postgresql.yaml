@@ -9,13 +9,13 @@ spec:
     - name: TZ
       value: ${TIMEZONE}
   instances: 3
-  imageName: ghcr.io/cloudnative-pg/postgresql:17
+  imageName: ghcr.io/cloudnative-pg/postgresql:18
   primaryUpdateStrategy: unsupervised
   storage:
-    size: 5Gi
+    size: 10Gi
     storageClass: openebs-hostpath
-  # superuserSecret:
-  #   name: cloudnative-pg-superuser
+  superuserSecret:
+    name: cloudnative-pg-superuser
   enableSuperuserAccess: true
   postgresql:
     parameters:
