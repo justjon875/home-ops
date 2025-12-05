@@ -8,10 +8,10 @@ resources:
   - flux-system
   - kube-system
   # - longhorn
-  # - media
+  - media
   - network
   - openebs-system
-  # - postgres-operator
+  - postgres-operator
   - rook-ceph
   - utilities
   - volsync-system
