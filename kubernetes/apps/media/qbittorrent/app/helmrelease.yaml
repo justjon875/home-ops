@@ -1,0 +1,72 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app qbittorrent
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: *app
+  values:
+    controllers:
+      qbittorrent:
+        containers:
+          app:
+            env:
+              QBITTORRENT__BT_PORT: 56304
+              TZ: ${TIMEZONE}
+            image:
+              repository: ghcr.io/home-operations/qbittorrent
+              tag: 5.1.4@sha256:25fc7caf22101f85276ede9b1f76a46b7a93971bb6b70b6c58d14d6ab7f51415
+            env:
+              TZ: ${TIMEZONE}
+              QBT_WEBUI_PORT: &port 80
+              QBT_TORRENTING_PORT: 50469
+        replicas: 1
+    configMaps:
+      config:
+        data:
+          .qbt.toml: |-
+            [qbittorrent]
+            addr = "http://localhost:80"
+    defaultPodOptions:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+    persistence:
+      config:
+        existingClaim: "{{ .Release.Name }}"
+      config-file:
+        type: configMap
+        identifier: config
+        globalMounts:
+          - path: /config/.qbt.toml
+            subPath: .qbt.toml
+      media:
+        advancedMounts:
+          qbittorrent:
+            app:
+            - path: /opt/qBittorrent/downloads
+        enabled: true
+        path: /mnt/raid/media/qbittorrent/downloads
+        server: ${NFS_HOST}
+        type: nfs
+      tmp:
+        type: emptyDir
+    route:
+      app:
+        hostnames:
+        - '{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}'
+        parentRefs:
+        - name: envoy-internal
+          namespace: network
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: &port 8080
+    service:
+      app:
+        ports:
+          http:
+            port: *port

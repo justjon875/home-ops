@@ -1,0 +1,48 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app ytptube
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: *app
+  values:
+    controllers:
+      ytptube:
+        containers:
+          app:
+            env:
+              AUDIO_DOWNLOAD_DIR: /audio
+              TZ: ${TIMEZONE}
+            image:
+              repository: ghcr.io/arabcoders/ytptube
+              tag: v1.0.9@sha256:f6d6e502e91ad44c9da92d0c6350eb6b81b3a6147b39b39fe960e9d2718ac022
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+        runAsGroup: 1000
+        runAsUser: 1000
+    persistence:
+      audio:
+        enabled: true
+        path: ${NFS_PATH}/navidrome/media/ytdl
+        server: ${NFS_HOST}
+        type: nfs
+      downloads:
+        enabled: true
+        path: /mnt/raid/media/ytptube
+        server: ${NFS_HOST}
+        type: nfs
+    route:
+      app:
+        hostnames:
+        - '{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}'
+        parentRefs:
+        - name: envoy-internal
+          namespace: network
+    service:
+      app:
+        ports:
+          http:
+            port: 8081

@@ -1,0 +1,77 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app jellyfin
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: *app
+  values:
+    controllers:
+      jellyfin:
+        containers:
+          app:
+            env:
+              TZ: ${TZ}
+            image:
+              repository: ghcr.io/jellyfin/jellyfin
+              tag: 10.11.4@sha256:37f2625f5d5d70c5b1ceb57f4d8f2a7ff666ea723fb96b468275bbafbde2c06c
+            resources:
+              requests:
+                cpu: 100m
+              limits:
+                gpu.intel.com/i915: 1
+        pod:
+          securityContext:
+            fsGroup: 1000
+            fsGroupChangePolicy: OnRootMismatch
+            runAsGroup: 1000
+            runAsUser: 1000
+    persistence:
+      audio:
+        enabled: true
+        globalMounts:
+          - path: /mnt/audio
+        path: ${NFS_PATH}/navidrome/media
+        server: ${NFS_HOST}
+        type: nfs
+      config:
+        existingClaim: "{{ .Release.Name }}"
+      media:
+        enabled: true
+        globalMounts:
+          - path: /media
+        path: /mnt/raid/media/qbittorrent/downloads
+        server: ${NFS_HOST}
+        type: nfs
+      metube:
+        enabled: true
+        globalMounts:
+          - path: /mnt/metube
+        path: /mnt/raid/media/metube
+        server: ${NFS_HOST}
+        type: nfs
+      youtube:
+        enabled: true
+        globalMounts:
+          - path: /mnt/youtube
+        path: /mnt/raid/media/youtube
+        server: ${NFS_HOST}
+        type: nfs
+      transcodes:
+        enabled: true
+        type: emptyDir
+        globalMounts:
+          - path: /transcodes
+    route:
+      app:
+        hostnames:
+          - "{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+    service:
+      app:
+        ports:
+          http:
+            port: 8096

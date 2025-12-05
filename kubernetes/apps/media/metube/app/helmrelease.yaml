@@ -1,0 +1,48 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app metube
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: *app
+  values:
+    controllers:
+      metube:
+        containers:
+          app:
+            env:
+              AUDIO_DOWNLOAD_DIR: /audio
+              TZ: ${TIMEZONE}
+            image:
+              repository: ghcr.io/alexta69/metube
+              tag: latest@sha256:fe87482a11a86071093438cfb53f6cdcd9c648c248bccc88f3535bd275166fc8
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+        runAsGroup: 1000
+        runAsUser: 1000
+    persistence:
+      audio:
+        enabled: true
+        path: ${NFS_PATH}/navidrome/media/ytdl
+        server: ${NFS_HOST}
+        type: nfs
+      downloads:
+        enabled: true
+        path: /mnt/raid/media/metube
+        server: ${NFS_HOST}
+        type: nfs
+    route:
+      app:
+        hostnames:
+          - "{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+    service:
+      app:
+        ports:
+          http:
+            port: 8081

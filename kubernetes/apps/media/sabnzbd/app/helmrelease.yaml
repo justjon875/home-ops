@@ -1,0 +1,68 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app sabnzbd
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: *app
+  values:
+    controllers:
+      sabnzbd:
+        annotations:
+          reloader.stakater.com/auto: 'true'
+        containers:
+          app:
+            env:
+              TZ: ${TIMEZONE}
+            image:
+              repository: quay.io/11notes/sabnzbd
+              tag: 4.5.5@sha256:8d72fc9b9544708e9a67d365d19929b2887beadbe30b2a12961fd3c74a8281a4
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: {drop: ["ALL"]}
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+        runAsGroup: 1000
+        runAsUser: 1000
+        runAsNonRoot: true
+    hostname: sabnzbd
+    persistence:
+      config:
+        advancedMounts:
+          sabnzbd:
+            app:
+            - path: /sabnzbd/etc
+        existingClaim: "{{ .Release.Name }}"
+      sabnzbd:
+        advancedMounts:
+          sabnzbd:
+            app:
+            - path: /mnt/sabdnzb
+        path: /mnt/raid/media/sabnzbd/downloads
+        server: ${NFS_HOST}
+        type: nfs
+      tmpfs:
+        type: emptyDir
+        advancedMounts:
+          sabnzbd:
+            app:
+            - path: /config/logs
+              subPath: logs
+            - path: /tmp
+              subPath: tmp
+    route:
+      app:
+        hostnames:
+        - '{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}'
+        parentRefs:
+        - name: envoy-internal
+          namespace: network
+    service:
+      app:
+        ports:
+          http:
+            port: 8080

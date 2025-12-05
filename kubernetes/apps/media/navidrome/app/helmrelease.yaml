@@ -1,0 +1,47 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app navidrome
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: *app
+  values:
+    controllers:
+      navidrome:
+        containers:
+          app:
+            env:
+              ND_DATAFOLDER: /config
+              ND_MUSICFOLDER: /music
+              TZ: ${TIMEZONE}
+            image:
+              repository: ghcr.io/navidrome/navidrome
+              tag: 0.58.5@sha256:648ebd45c50c58edc7ad9f0cc3b4411a1bece16c81f0b3630a0ab0a739c6d7ec
+        pod:
+          securityContext:
+            runAsUser: 568
+            runAsGroup: 568
+            runAsNonRoot: true
+            fsGroup: 568
+            fsGroupChangePolicy: OnRootMismatch
+    persistence:
+      config:
+        existingClaim: "{{ .Release.Name }}"
+      music:
+        enabled: true
+        path: ${NFS_PATH}/navidrome/media
+        server: ${NFS_HOST}
+        type: nfs
+    route:
+      app:
+        hostnames:
+          - "{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+    service:
+      app:
+        ports:
+          http:
+            port: 4533

@@ -1,0 +1,97 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app piped
+  namespace: media
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: piped
+      version: 8.0.26
+      sourceRef:
+        kind: HelmRepository
+        name: teampiped
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    postgresql:
+      enabled: false
+    frontend:
+      env:
+        BACKEND_HOSTNAME: &pipedapi pipedapi.${ROOT_DOMAIN}
+      image:
+        repository: docker.io/1337kavin/piped-frontend
+        pullPolicy: "Always"
+    backend:
+      config:
+        PORT: 8080
+        NUM_WORKERS: 2
+        PROXY_PART: https://ytproxy.${ROOT_DOMAIN}
+        database:
+          connection_url: jdbc:postgresql://${POSTGRESQL_HOST}:5432/piped
+          driver_class: org.postgresql.Driver
+          dialect: org.hibernate.dialect.PostgreSQLDialect
+      image:
+        repository: docker.io/1337kavin/piped
+        tag: latest@sha256:1f38b992ce02a50afddbbf68be1ac11cff6953d36fd8fa2b98c08a19f8ef06e7
+    ytproxy:
+      image:
+        repository: "docker.io/1337kavin/piped-proxy"
+        pullPolicy: "Always"
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          nginx.ingress.kubernetes.io/enable-cors: "true"
+          nginx.ingress.kubernetes.io/cors-allow-origin: "https://piped.${ROOT_DOMAIN}, https://ytproxy.${ROOT_DOMAIN}, https://pipedapi.${ROOT_DOMAIN}"
+        ingressClassName: internal
+        hosts:
+          - host: &host piped.${ROOT_DOMAIN}
+            paths:
+              - path: "/"
+        tls:
+          - hosts:
+              - *host
+      backend:
+        enabled: true
+        annotations:
+          nginx.ingress.kubernetes.io/enable-cors: "true"
+          nginx.ingress.kubernetes.io/cors-allow-origin: "https://piped.${ROOT_DOMAIN}, https://ytproxy.${ROOT_DOMAIN}, https://pipedapi.${ROOT_DOMAIN}"
+        ingressClassName: internal
+        hosts:
+          - host: *pipedapi
+            paths:
+              - path: "/"
+        tls:
+          - hosts:
+              - *pipedapi
+      ytproxy:
+        enabled: true
+        annotations:
+          gatus.home-operations.com/enabled: "false"
+          nginx.ingress.kubernetes.io/enable-cors: "true"
+          nginx.ingress.kubernetes.io/cors-allow-origin: "https://piped.${ROOT_DOMAIN}, https://ytproxy.${ROOT_DOMAIN}, https://pipedapi.${ROOT_DOMAIN}"
+        ingressClassName: internal
+        hosts:
+          - host: &proxy ytproxy.${ROOT_DOMAIN}
+            paths:
+              - path: "/"
+        tls:
+          - hosts:
+              - *proxy
+  valuesFrom:
+    - kind: Secret
+      name: *app
+      valuesKey: database.password
+      targetPath: backend.config.database.password
+    - kind: Secret
+      name: *app
+      valuesKey: database.username
+      targetPath: backend.config.database.username
