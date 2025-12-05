@@ -5,6 +5,7 @@ resources:
   - cert-manager
   - cloud
   # - default
+  - database
   - external-secrets
   - flux-system
   - kube-system
@@ -12,7 +13,6 @@ resources:
   - media
   - network
   - openebs-system
-  - postgres-operator
   - rook-ceph
   - utilities
   - volsync-system

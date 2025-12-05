@@ -3,19 +3,19 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: postgresql16
+  name: postgresql
 spec:
   env:
     - name: TZ
       value: ${TIMEZONE}
-  instances: 2
+  instances: 3
   imageName: ghcr.io/cloudnative-pg/postgresql:17
   primaryUpdateStrategy: unsupervised
   storage:
     size: 5Gi
-    storageClass: ceph-block
-  superuserSecret:
-    name: cloudnative-pg-superuser
+    storageClass: openebs-hostpath
+  # superuserSecret:
+  #   name: cloudnative-pg-superuser
   enableSuperuserAccess: true
   postgresql:
     parameters:
