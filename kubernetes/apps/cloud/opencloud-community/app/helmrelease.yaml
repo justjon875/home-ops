@@ -10,7 +10,6 @@ spec:
   chartRef:
     kind: OCIRepository
     name: opencloud
-    namespace: flux-system
   values:
     # Global settings that apply across components
     global:
