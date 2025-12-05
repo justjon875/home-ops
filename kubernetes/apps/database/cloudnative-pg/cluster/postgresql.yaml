@@ -8,8 +8,8 @@ spec:
   env:
     - name: TZ
       value: ${TIMEZONE}
-  instances: 3
-  imageName: ghcr.io/cloudnative-pg/postgresql:18
+  instances: 2
+  imageName: ghcr.io/cloudnative-pg/postgresql:18.1-standard-trixie@sha256:bbefe420af6ba639167cf6b5ea385a5a5816db47cfaa8c6b1fecc2c503b8df81
   primaryUpdateStrategy: unsupervised
   storage:
     size: 10Gi
@@ -28,3 +28,39 @@ spec:
       hugepages-2Mi: "512Mi"
   monitoring:
     enablePodMonitor: true
+  plugins:
+    - name: &plugin barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: &store garage-store
+  # Note: previousCluster needs to be set to the name of the previous
+  # cluster when recovering from an existing cnpg cluster
+  # bootstrap:
+  #   recovery:
+  #     source: &previousCluster kochhaus-v3
+    # upgrade or recover from another running instance
+    # initdb:
+    #   import:
+    #     type: monolith
+    #     databases:
+    #       - "*"
+    #     roles:
+    #       - "*"
+    #     source:
+    #       externalCluster: kochhaus-v16
+
+  # Note: externalClusters is needed when recovering from an existing cnpg cluster
+  # externalClusters:
+  #   - name: *previousCluster
+  #     barmanObjectStore:
+  #       <<: *barmanObjectStore
+  #       serverName: *previousCluster
+    # - name: kochhaus-v16
+    #   connectionParameters:
+    #     host: kochhaus-v16-ro.dbms
+    #     user: postgres
+    #     dbname: postgres
+    #     sslmode: require
+    #   password:
+    #     name: cloudnative-pg-secret
+    #     key: password

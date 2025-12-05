@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   # - ./cluster-vectorchord.yaml
   - ./postgresql.yaml
-  # - ./scheduledbackup-postgresql16.yaml
+  - ./objectstore.yaml
+  - ./scheduledbackup.yaml
   # - ./scheduledbackup-pgvecto.yaml
   # - ./scheduledbackup-vectorchord.yaml
