@@ -4,7 +4,6 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: &app opencloud
-  namespace: cloud
 spec:
   interval: 30m
   chartRef:
@@ -68,7 +67,13 @@ spec:
         persistence:
           enabled: false
           existingClaim: opencloud-posixfs-pvc
-    ingress:
+    httpRoute:
+      # Enable HTTPRoute resources (set to true to create Gateway API routes)
       enabled: true
-      ingressClassName: internal
 
+      # Gateway configuration
+      gateway:
+        name: opencloud-gateway
+        className: envoy
+        namespace: network
+        sectionName: ""
