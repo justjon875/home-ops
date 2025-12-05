@@ -24,7 +24,7 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: opencloud-community
+    name: flux-system
     namespace: flux-system
   targetNamespace: media
   wait: false
