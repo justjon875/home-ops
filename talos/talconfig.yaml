@@ -69,18 +69,6 @@ nodes:
           - network: 0.0.0.0/0
             gateway: 192.168.3.1
 controlPlane:
-  nodeLabels:
-    node.longhorn.io/create-default-disk: 'config'
-  nodeAnnotations:
-    node.longhorn.io/default-disks-config:
-      '[{
-          "name":"longhorn-nvme",
-          "path":"/var/mnt/host-nvme/",
-          "storageReserved":0,
-          "tags": ["ultra-fast", "ssd"],
-          "allowScheduling":true
-        }]'
-  nodeTaints: {}
   schematic:
     customization:
       extraKernelArgs:
@@ -88,8 +76,6 @@ controlPlane:
       systemExtensions:
         officialExtensions:
           - siderolabs/nfsrahead # NFS Performance
-          - siderolabs/iscsi-tools
-          - siderolabs/util-linux-tools
   userVolumes:
     - name: EPHEMERAL
       provisioning:
