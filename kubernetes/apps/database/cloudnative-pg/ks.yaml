@@ -58,7 +58,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    - name: cloudnative-pg
+    - name: plugin-barman-cloud
       namespace: database
     - name: openebs
       namespace: openebs-system
