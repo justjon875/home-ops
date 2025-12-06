@@ -12,6 +12,5 @@ resources:
   - ./namespace.yaml
   # - immich
   - ./garage/ks.yaml
-  - ./opencloud-community/ks.yaml
   # - nextcloud
   # - photoview
