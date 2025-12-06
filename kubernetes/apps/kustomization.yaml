@@ -10,7 +10,7 @@ resources:
   - flux-system
   - kube-system
   # - longhorn
-  - media
+  # - media
   - network
   - openebs-system
   - rook-ceph
