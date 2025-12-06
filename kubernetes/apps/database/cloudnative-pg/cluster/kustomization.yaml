@@ -3,7 +3,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   # - ./cluster-vectorchord.yaml
-  - ./postgresql18.yaml
+  - ./postgresql-18.yaml
   - ./objectstore.yaml
   - ./scheduledbackup.yaml
   # - ./scheduledbackup-pgvecto.yaml
