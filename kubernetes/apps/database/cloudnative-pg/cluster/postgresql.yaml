@@ -33,34 +33,15 @@ spec:
       isWALArchiver: true
       parameters:
         barmanObjectName: &store garage-store
+        #
   # Note: previousCluster needs to be set to the name of the previous
   # cluster when recovering from an existing cnpg cluster
-  # bootstrap:
-  #   recovery:
-  #     source: &previousCluster kochhaus-v3
-    # upgrade or recover from another running instance
-    # initdb:
-    #   import:
-    #     type: monolith
-    #     databases:
-    #       - "*"
-    #     roles:
-    #       - "*"
-    #     source:
-    #       externalCluster: kochhaus-v16
-
+  bootstrap:
+    recovery:
+      source: &previousCluster cloudnative-postgresql-16-6
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
-  # externalClusters:
-  #   - name: *previousCluster
-  #     barmanObjectStore:
-  #       <<: *barmanObjectStore
-  #       serverName: *previousCluster
-    # - name: kochhaus-v16
-    #   connectionParameters:
-    #     host: kochhaus-v16-ro.dbms
-    #     user: postgres
-    #     dbname: postgres
-    #     sslmode: require
-    #   password:
-    #     name: cloudnative-pg-secret
-    #     key: password
+  externalClusters:
+    - name: *previousCluster
+      plugin:
+        name: barman-cloud.cloudnative-pg.io
+        parameters: *parameters
