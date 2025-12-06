@@ -33,16 +33,16 @@ spec:
       isWALArchiver: true
       parameters: &parameters
         barmanObjectName: garage-store
-        serverName: postgresql
+        serverName: postgresql-1
 
   # Note: previousCluster needs to be set to the name of the previous
   # cluster when recovering from an existing cnpg cluster
-  # bootstrap:
-  #   recovery:
-  #     source: &previousCluster postgresql-16
+  bootstrap:
+    recovery:
+      source: &previousCluster postgresql
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
-  # externalClusters:
-  #   - name: *previousCluster
-  #     plugin:
-  #       name: *plugin
-  #       parameters: *parameters
+  externalClusters:
+    - name: *previousCluster
+      plugin:
+        name: *plugin
+        parameters: *parameters
