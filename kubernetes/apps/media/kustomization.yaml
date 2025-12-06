@@ -21,7 +21,7 @@ resources:
   - ./metube/ks.yaml
   # - navidrome
   - ./piped/ks.yaml
-  # - prowlarr
+  - ./prowlarr/ks.yaml
   # - qbittorrent
   # - radarr
   - ./sabnzbd/ks.yaml

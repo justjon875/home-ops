@@ -6,18 +6,28 @@ spec:
   chartRef:
     kind: OCIRepository
     name: *app
+  interval: 1h
   values:
     controllers:
       prowlarr:
         containers:
           app:
-            env:
-              PGID: '1000'
-              PUID: '1000'
-              TZ: Asia/Singapore
             image:
-              repository: quay.io/11notes/prowlarr
-              tag: 2.3.0@sha256:46e0ca1a9117eff5c0b09029a93244d1e81828d562ae2153631a748e88394988
+              repository: ghcr.io/home-operations/prowlarr
+              tag: 2.3.0.5236@sha256:1a8a4b11972b2e62671b49949c622b8cb1110e2b5c77199ac795a6d79fe106e8
+            env:
+              PROWLARR__APP__INSTANCENAME: Prowlarr
+              PROWLARR__APP__THEME: dark
+              PROWLARR__AUTH__METHOD: Forms
+              PROWLARR__AUTH__REQUIRED: DisabledForLocalAddresses
+              PROWLARR__LOG__DBENABLED: "False"
+              PROWLARR__LOG__LEVEL: info
+              PROWLARR__SERVER__PORT: &port 9696
+              PROWLARR__UPDATE__BRANCH: develop
+              TZ: ${TIMEZONE}
+            envFrom:
+              - secretRef:
+                  name: prowlarr-secret
     defaultPodOptions:
       securityContext:
         fsGroup: 1000
@@ -26,22 +36,9 @@ spec:
         runAsUser: 1000
     persistence:
       config:
-        advancedMounts:
-          prowlarr:
-            app:
-            - path: /prowlarr/etc
         existingClaim: "{{ .Release.Name }}"
-      tmpfs:
+      tmp:
         type: emptyDir
-        advancedMounts:
-          prowlarr:
-            app:
-            - path: /config/cache
-              subPath: cache
-            - path: /config/log
-              subPath: log
-            - path: /tmp
-              subPath: tmp
     route:
       app:
         hostnames:

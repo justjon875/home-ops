@@ -23,7 +23,7 @@ spec:
               SONARR__POSTGRES__MAINDB: sonarr_main
               SONARR__POSTGRES__PORT: "5432"
               SONARR__POSTGRES__USER: sonarr
-              TZ: Asia/Singapore
+              TZ: ${TIMEZONE}
             envFrom: &envFrom
               - secretRef:
                   name: sonarr-secret
