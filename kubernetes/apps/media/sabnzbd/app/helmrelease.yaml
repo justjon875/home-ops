@@ -47,8 +47,8 @@ spec:
       sabnzbd:
         globalMounts:
           - path: /media/downloads/sabnzbd
-            subPath: downloads/sabnzbd
-        path: /mnt/raid/media/sabnzbd/downloads
+            subPath: sabnzbd/downloads
+        path: /mnt/raid/media/
         server: ${NFS_HOST}
         type: nfs
       incomplete:
