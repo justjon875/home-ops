@@ -7,7 +7,7 @@ metadata:
 spec:
   configuration:
     destinationPath: s3://postgres/
-    endpointURL: http://garage.cloud.svc:3900
+    endpointURL: http://garage-app.cloud.svc:3900
     s3Credentials:
       accessKeyId:
         name: cloudnative-pg-secret
