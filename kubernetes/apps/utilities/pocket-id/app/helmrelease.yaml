@@ -13,6 +13,14 @@ spec:
       main:
         annotations:
           reloader.stakater.com/auto: "true"
+        initContainers:
+          init-db:
+            image:
+              repository: ghcr.io/home-operations/postgres-init
+              tag: 18.1
+            envFrom: &envFrom
+              - secretRef:
+                  name: pocket-id-secret
         containers:
           app:
             image:
@@ -20,11 +28,14 @@ spec:
               tag: v1.16.0@sha256:f8cde808e8e840acda25683fc2168e0206e3f3fb1a48cca89d211aafd87eaeef
             command: ["/app/pocket-id"]
             env:
-              DB_CONNECTION_STRING: file:/app/data/pocket-id.db?_journal_mode=WAL&_busy_timeout=2500&_txlock=immediate
-              APP_URL: https://pocket-id.${ROOT_DOMAIN}
+              ANALYTICS_DISABLED: true
+              DB_PROVIDER: postgres
+              ENCRYPTION_KEY_FILE: /encryption/ENCRYPTION_KEY
+              KEYS_PATH: /data/keys
+              METRICS_ENABLED: true
               TRUST_PROXY: true
               TZ: ${TIMEZONE}
-              UPLOAD_PATH: /app/data/uploads
+              UPLOAD_PATH: /data/uploads
             probes:
               liveness:
                 enabled: true
@@ -41,6 +52,10 @@ spec:
                 cpu: 10m
               limits:
                 memory: 400M
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities: { drop: ["ALL"] }
+              readOnlyRootFilesystem: true
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
@@ -61,6 +76,10 @@ spec:
       var:
         type: emptyDir
         sizeLimit: 1Gi
+      encryption:
+        enabled: true
+        type: secret
+        name: pocket-id
     service:
       app:
         ports:

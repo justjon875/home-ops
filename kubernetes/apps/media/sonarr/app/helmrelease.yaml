@@ -19,7 +19,7 @@ spec:
               PUID: '1000'
               SONARR__LOG__DBENABLED: 'False'
               SONARR__LOG__LEVEL: info
-              SONARR__POSTGRES__HOST: "postgresql-rw.database.svc.cluster.local"
+              SONARR__POSTGRES__HOST: ${POSTGRESQL_HOST}
               SONARR__POSTGRES__MAINDB: sonarr_main
               SONARR__POSTGRES__PORT: "5432"
               SONARR__POSTGRES__USER: sonarr
