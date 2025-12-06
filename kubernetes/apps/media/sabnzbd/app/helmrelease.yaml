@@ -43,8 +43,7 @@ spec:
         runAsNonRoot: true
     persistence:
       config:
-      #   existingClaim: "{{ .Release.Name }}"
-        type: emptyDir
+        existingClaim: "{{ .Release.Name }}"
       sabnzbd:
         globalMounts:
           - path: /media/downloads/sabnzbd
@@ -59,7 +58,7 @@ spec:
     route:
       app:
         hostnames:
-        - '{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}'
+        - '{{ .Release.Name }}.${ROOT_DOMAIN}'
         parentRefs:
         - name: envoy-internal
           namespace: network
