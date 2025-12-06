@@ -11,6 +11,7 @@ components:
 resources:
   - ./dozzle/ks.yaml
   - ./kite/ks.yaml
+  - ./pocket-id/ks.yaml
   # - forgejo
   # - frigate
   # - goldilocks
