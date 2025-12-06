@@ -3,7 +3,9 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: postgresql-1
+  name: postgresql
+  annotations:
+    cnpg.io/skipEmptyWalArchiveCheck: enabled
 spec:
   env:
     - name: TZ
