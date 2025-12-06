@@ -30,17 +30,18 @@ spec:
       hugepages-2Mi: "512Mi"
   monitoring:
     enablePodMonitor: true
-  plugins:
-    - name: barman-cloud.cloudnative-pg.io
-      isWALArchiver: true
-      parameters: &parameters
-        barmanObjectName: garage-store
-        serverName: postgresql
   bootstrap:
     recovery:
-      source: source
+      source: &src source
+  plugins:
+    - name: &plugin barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: &store garage-store
   externalClusters:
-    - name: source
+    - name: *src
       plugin:
-        name: barman-cloud.cloudnative-pg.io
-        parameters: *parameters
+        name: *plugin
+        parameters:
+          barmanObjectName: *store
+          serverName: postgresql
