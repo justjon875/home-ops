@@ -29,20 +29,16 @@ spec:
   monitoring:
     enablePodMonitor: true
   plugins:
-    - name: &plugin barman-cloud.cloudnative-pg.io
+    - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true
       parameters: &parameters
         barmanObjectName: garage-store
-        serverName: postgresql-1
-
-  # Note: previousCluster needs to be set to the name of the previous
-  # cluster when recovering from an existing cnpg cluster
+        serverName: postgresql
   bootstrap:
     recovery:
-      source: &previousCluster postgresql
-  # Note: externalClusters is needed when recovering from an existing cnpg cluster
+      source: source
   externalClusters:
-    - name: *previousCluster
+    - name: source
       plugin:
-        name: *plugin
+        name: barman-cloud.cloudnative-pg.io
         parameters: *parameters
