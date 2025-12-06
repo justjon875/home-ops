@@ -25,5 +25,6 @@ resources:
   # - qbittorrent
   # - radarr
   # - sabnzbd
-  - ./sonarr/ks.yaml
+  
+  # - ./sonarr/ks.yaml
   # - ytptube
