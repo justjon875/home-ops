@@ -10,6 +10,16 @@ spec:
   values:
     controllers:
       sonarr:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        initContainers:
+          init-db:
+            image:
+              repository: ghcr.io/home-operations/postgres-init
+              tag: 18.1@sha256:866f15038ed5185a2b8118821f470bb7ca0df8c4231b8e277446e681ebb1ed84
+            envFrom: &envFrom
+              - secretRef:
+                  name: sonarr-secret
         containers:
           app:
             env:
@@ -18,18 +28,14 @@ spec:
               SONARR__LOG__DBENABLED: 'False'
               SONARR__LOG__LEVEL: info
               TZ: Asia/Singapore
-            envFrom:
-            - secretRef:
-                name: sonarr-secret
+            envFrom: *envFrom
             image:
               repository: quay.io/11notes/sonarr
               tag: 4.0.16@sha256:c8f72e7f34015d99f49eaacb31d6cceeb6306960cf5115505bdecb66e2b7c2ec
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
-              capabilities:
-                drop:
-                - ALL
+              capabilities: { drop: ["ALL"] }
     defaultPodOptions:
       securityContext:
         fsGroup: 1000
