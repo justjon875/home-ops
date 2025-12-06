@@ -62,7 +62,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    - name: barman-cloud
+    - name: cloudnative-pg-barman-cloud
     - name: openebs
       namespace: openebs-system
   interval: 30m
