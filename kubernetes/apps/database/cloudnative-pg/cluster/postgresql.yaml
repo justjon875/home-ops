@@ -31,17 +31,18 @@ spec:
   plugins:
     - name: &plugin barman-cloud.cloudnative-pg.io
       isWALArchiver: true
-      parameters:
-        barmanObjectName: &store garage-store
-        #
+      parameters: &parameters
+        barmanObjectName: garage-store
+        serverName: cloudnative-postgresql-16-6
+
   # Note: previousCluster needs to be set to the name of the previous
   # cluster when recovering from an existing cnpg cluster
   bootstrap:
     recovery:
-      source: &previousCluster cloudnative-postgresql-16-6
+      source: &previousCluster postgresql-16
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
   externalClusters:
     - name: *previousCluster
       plugin:
-        name: barman-cloud.cloudnative-pg.io
+        name: *plugin
         parameters: *parameters
