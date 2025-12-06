@@ -42,8 +42,9 @@ spec:
         runAsUser: 1000
         runAsNonRoot: true
     persistence:
-      # config:
+      config:
       #   existingClaim: "{{ .Release.Name }}"
+        type: emptyDir
       sabnzbd:
         globalMounts:
           - path: /media/downloads/sabnzbd
