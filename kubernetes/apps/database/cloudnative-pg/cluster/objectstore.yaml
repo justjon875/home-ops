@@ -8,7 +8,7 @@ spec:
   configuration:
     data:
       compression: gzip
-    destinationPath: s3://postgres/
+    destinationPath: s3://cnpg/
     endpointURL: https://s3.${ROOT_DOMAIN}
     s3Credentials:
       accessKeyId:

@@ -26,9 +26,9 @@ spec:
     requests:
       cpu: 50m
   bootstrap:
-    # initdb: {}
-    recovery:
-      source: &recoveryServer postgresql
+    initdb: {}
+    # recovery:
+    #   source: &recoveryServer postgresql
 
   plugins:
     - name: barman-cloud.cloudnative-pg.io
@@ -38,10 +38,10 @@ spec:
         serverName: &currentServer cluster-18-v1
 
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
-  externalClusters:
-    - name: *recoveryServer
-      plugin:
-        name: barman-cloud.cloudnative-pg.io
-        parameters:
-          barmanObjectName: &store garage-store
-          serverName: *recoveryServer
+  # externalClusters:
+  #   - name: *recoveryServer
+  #     plugin:
+  #       name: barman-cloud.cloudnative-pg.io
+  #       parameters:
+  #         barmanObjectName: &store garage-store
+  #         serverName: *recoveryServer
