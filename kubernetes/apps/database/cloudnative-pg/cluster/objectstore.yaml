@@ -6,6 +6,8 @@ metadata:
   name: garage-store
 spec:
   configuration:
+    data:
+      compression: gzip
     destinationPath: s3://postgres/
     endpointURL: https://s3.${ROOT_DOMAIN}
     s3Credentials:
@@ -15,11 +17,6 @@ spec:
       secretAccessKey:
         name: cloudnative-pg-secret
         key: aws-secret-access-key
-      region:
-        name: cloudnative-pg-secret
-        key: region
     wal:
       compression: zstd
-    data:
-      compression: gzip
-  retentionPolicy: "30d"
+  retentionPolicy: 14d
