@@ -80,7 +80,7 @@ spec:
       encryption:
         enabled: true
         type: secret
-        name: pocket-id
+        name: pocket-id-encryption
     service:
       app:
         ports:
