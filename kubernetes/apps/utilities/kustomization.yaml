@@ -12,6 +12,7 @@ resources:
   - ./dozzle/ks.yaml
   - ./kite/ks.yaml
   - ./pocket-id/ks.yaml
+  - ./smtp-relay/ks.yaml
   # - forgejo
   # - frigate
   # - goldilocks
