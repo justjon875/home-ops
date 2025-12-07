@@ -70,11 +70,10 @@ spec:
               # prevent nested mounts
               WEB_ASSET_APPS_PATH: /opt/extensions/usr/share/nginx/html/apps
 
-              # TODO: smtp
-              # NOTIFICATIONS_SMTP_HOST: smtp-relay.cluster-infra
-              # NOTIFICATIONS_SMTP_PORT: 25
-              # NOTIFICATIONS_SMTP_SENDER: bot@${SECRET_DOMAIN}
-              # NOTIFICATIONS_SMTP_INSECURE: true
+              NOTIFICATIONS_SMTP_HOST: smtp-relay.utilities.svc.cluster.local
+              NOTIFICATIONS_SMTP_PORT: 25
+              NOTIFICATIONS_SMTP_SENDER: no-reply@opencloud.${ROOT_DOMAIN}
+              NOTIFICATIONS_SMTP_INSECURE: true
 
               STORAGE_USERS_DRIVER: decomposeds3
               STORAGE_SYSTEM_DRIVER: decomposed
