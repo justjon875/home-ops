@@ -1,5 +1,6 @@
 machine:
   sysctls:
+    user.max_user_namespaces: 11255       # User Namespaces
     vm.nr_hugepages: 512                  # PostgreSQL
     #   TODO: decide if this needed
     #   https://longhorn.io/docs/1.10.1/v2-data-engine/quick-start/
