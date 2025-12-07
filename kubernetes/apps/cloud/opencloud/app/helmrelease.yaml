@@ -28,7 +28,7 @@ spec:
               OC_INSECURE: false
               OC_LOG_LEVEL: info
               OC_URL: &url https://opencloud.${ROOT_DOMAIN}
-              OC_OIDC_ISSUER: https://pocket-id.${ROOT_DOMAIN}
+              OC_OIDC_ISSUER: https://id.${ROOT_DOMAIN}
               OC_EXCLUDE_RUN_SERVICES: idp,ocm
               OC_ADD_RUN_SERVICES: notifications
               OC_SHARING_PUBLIC_SHARE_MUST_HAVE_PASSWORD: true
@@ -66,7 +66,7 @@ spec:
               GRAPH_ASSIGN_DEFAULT_USER_ROLE: false
               GRAPH_USERNAME_MATCH: "none"
 
-              WEB_OPTION_ACCOUNT_EDIT_LINK_HREF: https://pocket-id.${ROOT_DOMAIN}/settings/apps
+              WEB_OPTION_ACCOUNT_EDIT_LINK_HREF: https://id.${ROOT_DOMAIN}/settings/apps
               # prevent nested mounts
               WEB_ASSET_APPS_PATH: /opt/extensions/usr/share/nginx/html/apps
 
@@ -84,6 +84,9 @@ spec:
               SEARCH_EXTRACTOR_TYPE: tika
               SEARCH_EXTRACTOR_TIKA_TIKA_URL: http://opencloud-tika:9998
               FRONTEND_FULL_TEXT_SEARCH_ENABLED: "true"
+            envFrom:
+              - secretRef:
+                  name: opencloud-secret
             securityContext: &sec
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
@@ -373,7 +376,7 @@ spec:
               script-src:
                 - '''self'''
                 - '''unsafe-inline'''
-                - 'https://pocket-id.${ROOT_DOMAIN}/'
+                - 'https://id.${ROOT_DOMAIN}/'
               style-src:
                 - '''self'''
                 - '''unsafe-inline'''
