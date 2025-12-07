@@ -6,6 +6,5 @@ resources:
   - ./cluster-18.yaml
   - ./objectstore.yaml
   - ./scheduledbackup-18.yaml
-  - ./restore-test-cluster-18.yaml
   # - ./scheduledbackup-pgvecto.yaml
   # - ./scheduledbackup-vectorchord.yaml
