@@ -72,8 +72,12 @@ spec:
         - name: envoy-internal
           namespace: network
     persistence:
-      config:
+      data:
         existingClaim: "{{ .Release.Name }}"
+        globalMounts:
+          - path: /data
+          - path: /app/backend/data
+            subPath: backend
       var:
         type: emptyDir
         sizeLimit: 1Gi
