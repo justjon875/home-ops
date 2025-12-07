@@ -36,6 +36,7 @@ spec:
               TRUST_PROXY: true
               TZ: ${TIMEZONE}
               UPLOAD_PATH: /data/uploads
+            envFrom: *envFrom
             probes:
               liveness:
                 enabled: true
