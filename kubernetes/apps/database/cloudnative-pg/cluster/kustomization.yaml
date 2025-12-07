@@ -5,6 +5,6 @@ resources:
   # - ./cluster-vectorchord.yaml
   - ./postgresql-18.yaml
   - ./objectstore.yaml
-  - ./scheduledbackup.yaml
+  - ./scheduledbackup-18.yaml
   # - ./scheduledbackup-pgvecto.yaml
   # - ./scheduledbackup-vectorchord.yaml
