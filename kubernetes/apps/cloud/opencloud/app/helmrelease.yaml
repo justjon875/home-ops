@@ -76,10 +76,8 @@ spec:
               # NOTIFICATIONS_SMTP_SENDER: bot@${SECRET_DOMAIN}
               # NOTIFICATIONS_SMTP_INSECURE: true
 
-              STORAGE_USERS_DRIVER: posix
+              STORAGE_USERS_DRIVER: decomposeds3
               STORAGE_USERS_ID_CACHE_STORE: nats-js-kv
-              STORAGE_USERS_POSIX_ROOT: &path /data
-              THUMBNAILS_FILESYSTEMSTORAGE_ROOT: /data/thumbs
 
               SEARCH_EXTRACTOR_TYPE: tika
               SEARCH_EXTRACTOR_TIKA_TIKA_URL: http://opencloud-tika:9998
@@ -155,7 +153,7 @@ spec:
                 --o:ssl.ssl_verification=false \
                 --o:ssl.termination=true \
                 --o:welcome.enable=false \
-                --o:net.frame_ancestors=cloud.${ROOT_DOMAIN}
+                --o:net.frame_ancestors=opencloud.${ROOT_DOMAIN}
               username:
                 valueFrom:
                   secretKeyRef:
@@ -290,27 +288,6 @@ spec:
                 subPath: csp.yaml
               - path: /etc/opencloud/proxy.yaml
                 subPath: proxy.yaml
-      data:
-        existingClaim: opencloud
-        advancedMounts:
-          opencloud:
-            opencloud:
-              - path: /var/lib/opencloud
-                subPath: data
-              - path: /etc/opencloud
-                subPath: config
-          wopi:
-            wopi:
-              - path: /etc/opencloud
-                subPath: config
-      files:
-        type: nfs
-        server: ${NFS_SERVER}
-        path: /files/opencloud
-        advancedMounts:
-          opencloud:
-            opencloud:
-              - path: *path
       tmpfs:
         type: emptyDir
         advancedMounts:
