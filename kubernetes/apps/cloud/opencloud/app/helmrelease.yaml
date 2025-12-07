@@ -158,12 +158,12 @@ spec:
               username:
                 valueFrom:
                   secretKeyRef:
-                    name: opencloud
+                    name: opencloud-secret
                     key: COLLABORA_ADMIN_USER
               password:
                 valueFrom:
                   secretKeyRef:
-                    name: opencloud
+                    name: opencloud-secret
                     key: COLLABORA_ADMIN_PASS
             securityContext:
               <<: *sec
