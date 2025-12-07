@@ -288,6 +288,19 @@ spec:
                 subPath: csp.yaml
               - path: /etc/opencloud/proxy.yaml
                 subPath: proxy.yaml
+      data:
+        existingClaim: opencloud
+        advancedMounts:
+          opencloud:
+            opencloud:
+              - path: /var/lib/opencloud
+                subPath: data
+              - path: /etc/opencloud
+                subPath: config
+          wopi:
+            wopi:
+              - path: /etc/opencloud
+                subPath: config
       tmpfs:
         type: emptyDir
         advancedMounts:
