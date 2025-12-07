@@ -28,7 +28,7 @@ spec:
               tag: v1.16.0@sha256:f8cde808e8e840acda25683fc2168e0206e3f3fb1a48cca89d211aafd87eaeef
             command: ["/app/pocket-id"]
             env:
-              APP_URl: https://id.${ROOT_DOMAIN}
+              APP_URL: https://id.${ROOT_DOMAIN}
               ANALYTICS_DISABLED: true
               DB_PROVIDER: postgres
               ENCRYPTION_KEY_FILE: /encryption/ENCRYPTION_KEY
