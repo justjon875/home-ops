@@ -209,8 +209,8 @@ spec:
         seccompProfile: { type: RuntimeDefault }
     service:
       opencloud:
-        forceRename: opencloud
-        controller: opencloud
+        forceRename: *app
+        controller: *app
         ports:
           http:
             port: *port
@@ -244,24 +244,22 @@ spec:
           - port: debug
     route:
       opencloud:
-        forceRename: opencloud
+        forceRename: *app
         hostnames:
           - opencloud.${ROOT_DOMAIN}
         parentRefs:
-          - name: external
-            namespace: envoy-internal
-            sectionName: https
+          - name: envoy-internal
+            namespace: network
         rules:
           - backendRefs:
-            - identifier: opencloud
+            - identifier: *app
               port: *port
       wopi:
         hostnames:
           - wopi.${ROOT_DOMAIN}
         parentRefs:
-          - name: external
-            namespace: envoy-internal
-            sectionName: https
+          - name: envoy-internal
+            namespace: network
         rules:
           - backendRefs:
             - identifier: wopi
@@ -270,9 +268,8 @@ spec:
         hostnames:
           - collabora.${ROOT_DOMAIN}
         parentRefs:
-          - name: external
-            namespace: envoy-internal
-            sectionName: https
+          - name: envoy-internal
+            namespace: network
         rules:
           - backendRefs:
             - identifier: collabora
