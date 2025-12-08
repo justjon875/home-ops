@@ -3,31 +3,43 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: piped
+  name: piped-frontend
 spec:
   hostnames: ["piped.${SHORT_ROOT_DOMAIN}"]
   parentRefs:
     - name: envoy-internal
       namespace: network
   rules:
-    - matches:
-      - path:
-          type: PathPrefix
-          value: /
-      backendRefs:
-          - name: piped-frontend
-            port: 80
-    - matches:
-      - path:
-          type: PathPrefix
-          value: /api
-      backendRefs:
-          - name: piped-backend
-            port: 8080
-    - matches:
-      - path:
-          type: PathPrefix
-          value: /ytproxy
-      backendRefs:
-          - name: piped-ytproxy
-            port: 8080
+    - backendRefs:
+        - name: piped-frontend
+          port: 80
+---
+# yaml-language-server: $schema=https://schemas.budimanjojo.com/gateway.networking.k8s.io/httproute_v1.json
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: piped-backend
+spec:
+  hostnames: ["piped-api.${SHORT_ROOT_DOMAIN}"]
+  parentRefs:
+    - name: envoy-internal
+      namespace: network
+  rules:
+    - backendRefs:
+        - name: piped-backend
+          port: 8080
+---
+# yaml-language-server: $schema=https://schemas.budimanjojo.com/gateway.networking.k8s.io/httproute_v1.json
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: piped-ytproxy
+spec:
+  hostnames: ["ytproxy.${SHORT_ROOT_DOMAIN}"]
+  parentRefs:
+    - name: envoy-internal
+      namespace: network
+  rules:
+    - backendRefs:
+        - name: piped-ytproxy
+          port: 8080

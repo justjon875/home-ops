@@ -25,7 +25,7 @@ spec:
       enabled: false
     frontend:
       env:
-        BACKEND_HOSTNAME: piped.${ROOT_DOMAIN}/api
+        BACKEND_HOSTNAME: piped-api.${ROOT_DOMAIN}
       image:
         repository: docker.io/1337kavin/piped-frontend
         pullPolicy: "Always"
@@ -33,7 +33,7 @@ spec:
       config:
         PORT: 8080
         NUM_WORKERS: 2
-        PROXY_PART: https://piped.${ROOT_DOMAIN}/piped-ytproxy
+        PROXY_PART: https://ytproxy.${ROOT_DOMAIN}
         database:
           connection_url: jdbc:postgresql://${POSTGRESQL_HOST}:5432/piped
           driver_class: org.postgresql.Driver
