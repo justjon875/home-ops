@@ -289,7 +289,6 @@ spec:
               - path: /etc/opencloud/proxy.yaml
                 subPath: proxy.yaml
       data:
-        existingClaim: opencloud
         advancedMounts:
           opencloud:
             opencloud:
@@ -301,6 +300,11 @@ spec:
             wopi:
               - path: /etc/opencloud
                 subPath: config
+
+
+        path: ${NVME_NFS_PATH}/opencloud
+        server: ${NFS_HOST}
+        type: nfs
       tmpfs:
         type: emptyDir
         advancedMounts:
