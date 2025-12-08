@@ -14,18 +14,20 @@ spec:
       - path:
           type: PathPrefix
           value: /
-      - backendRefs:
+      backendRefs:
           - name: piped-frontend
             port: 80
+    - matches:
       - path:
           type: PathPrefix
           value: /api
-      - backendRefs:
+      backendRefs:
           - name: piped-backend
             port: 8080
+    - matches:
       - path:
           type: PathPrefix
           value: /ytproxy
-      - backendRefs:
+      backendRefs:
           - name: piped-ytproxy
             port: 8080
