@@ -10,6 +10,22 @@ spec:
     - name: envoy-internal
       namespace: network
   rules:
-    - backendRefs:
-        - name: piped-frontend
-          port: 80
+    - matches:
+      - path:
+          type: PathPrefix
+          value: /
+      - backendRefs:
+          - name: piped-frontend
+            port: 80
+      - path:
+          type: PathPrefix
+          value: /api
+      - backendRefs:
+          - name: piped-backend
+            port: 8080
+      - path:
+          type: PathPrefix
+          value: /ytproxy
+      - backendRefs:
+          - name: piped-ytproxy
+            port: 8080
