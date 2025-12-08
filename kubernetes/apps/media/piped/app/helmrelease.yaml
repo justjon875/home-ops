@@ -25,7 +25,7 @@ spec:
       enabled: false
     frontend:
       env:
-        BACKEND_HOSTNAME: &pipedapi pipedapi.${ROOT_DOMAIN}
+        BACKEND_HOSTNAME: piped-backend
       image:
         repository: docker.io/1337kavin/piped-frontend
         pullPolicy: "Always"
@@ -33,7 +33,7 @@ spec:
       config:
         PORT: 8080
         NUM_WORKERS: 2
-        PROXY_PART: https://ytproxy.${ROOT_DOMAIN}
+        PROXY_PART: http://piped-ytproxy
         database:
           connection_url: jdbc:postgresql://${POSTGRESQL_HOST}:5432/piped
           driver_class: org.postgresql.Driver
@@ -45,47 +45,6 @@ spec:
       image:
         repository: "docker.io/1337kavin/piped-proxy"
         pullPolicy: "Always"
-    ingress:
-      main:
-        enabled: true
-        annotations:
-          nginx.ingress.kubernetes.io/enable-cors: "true"
-          nginx.ingress.kubernetes.io/cors-allow-origin: "https://piped.${ROOT_DOMAIN}, https://ytproxy.${ROOT_DOMAIN}, https://pipedapi.${ROOT_DOMAIN}"
-        ingressClassName: internal
-        hosts:
-          - host: &host piped.${ROOT_DOMAIN}
-            paths:
-              - path: "/"
-        tls:
-          - hosts:
-              - *host
-      backend:
-        enabled: true
-        annotations:
-          nginx.ingress.kubernetes.io/enable-cors: "true"
-          nginx.ingress.kubernetes.io/cors-allow-origin: "https://piped.${ROOT_DOMAIN}, https://ytproxy.${ROOT_DOMAIN}, https://pipedapi.${ROOT_DOMAIN}"
-        ingressClassName: internal
-        hosts:
-          - host: *pipedapi
-            paths:
-              - path: "/"
-        tls:
-          - hosts:
-              - *pipedapi
-      ytproxy:
-        enabled: true
-        annotations:
-          gatus.home-operations.com/enabled: "false"
-          nginx.ingress.kubernetes.io/enable-cors: "true"
-          nginx.ingress.kubernetes.io/cors-allow-origin: "https://piped.${ROOT_DOMAIN}, https://ytproxy.${ROOT_DOMAIN}, https://pipedapi.${ROOT_DOMAIN}"
-        ingressClassName: internal
-        hosts:
-          - host: &proxy ytproxy.${ROOT_DOMAIN}
-            paths:
-              - path: "/"
-        tls:
-          - hosts:
-              - *proxy
   valuesFrom:
     - kind: Secret
       name: *app
