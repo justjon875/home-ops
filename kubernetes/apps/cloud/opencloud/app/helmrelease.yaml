@@ -76,7 +76,7 @@ spec:
               NOTIFICATIONS_SMTP_INSECURE: true
 
               STORAGE_USERS_DRIVER: decomposeds3
-              STORAGE_SYSTEM_DRIVER: decomposed
+              STORAGE_internal_DRIVER: decomposed
               STORAGE_USERS_ID_CACHE_STORE: nats-js-kv
 
               SEARCH_EXTRACTOR_TYPE: tika
@@ -87,7 +87,7 @@ spec:
                   name: opencloud-secret
             securityContext: &sec
               allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
+              readOnlyRootFileinternal: true
               capabilities: { drop: ["ALL"] }
             resources:
               requests:
@@ -249,7 +249,7 @@ spec:
           - opencloud.${ROOT_DOMAIN}
         parentRefs:
           - name: external
-            namespace: envoy-system
+            namespace: envoy-internal
             sectionName: https
         rules:
           - backendRefs:
@@ -260,7 +260,7 @@ spec:
           - wopi.${ROOT_DOMAIN}
         parentRefs:
           - name: external
-            namespace: envoy-system
+            namespace: envoy-internal
             sectionName: https
         rules:
           - backendRefs:
@@ -271,7 +271,7 @@ spec:
           - collabora.${ROOT_DOMAIN}
         parentRefs:
           - name: external
-            namespace: envoy-system
+            namespace: envoy-internal
             sectionName: https
         rules:
           - backendRefs:
