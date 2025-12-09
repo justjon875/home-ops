@@ -158,7 +158,7 @@ spec:
               DONT_GEN_SSL_CERT: "YES"
               extra_params: |
                 --o:ssl.enable=true \
-                --o:ssl.ssl_verification=true \
+                --o:ssl.ssl_verification=false \
                 --o:ssl.termination=false \
                 --o:welcome.enable=false \
                 --o:net.frame_ancestors=opencloud.${ROOT_DOMAIN}
