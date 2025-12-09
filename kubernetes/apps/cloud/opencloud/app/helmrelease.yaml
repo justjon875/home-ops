@@ -28,6 +28,9 @@ spec:
               OC_ENABLE_OCM: false
               OC_INSECURE: true
               OC_LOG_LEVEL: debug
+              OC_LOG_COLOR: true
+              OC_LOG_PRETTY: true
+              OC_LOG_TIMEZONE: ${TIMEZONE}
               OC_URL: &url https://opencloud.${ROOT_DOMAIN}
               OC_OIDC_ISSUER: https://id.${ROOT_DOMAIN}
               OC_EXCLUDE_RUN_SERVICES: idp,ocm
@@ -55,6 +58,7 @@ spec:
               PROXY_DEBUG_ADDR: 0.0.0.0:9205
 
               # For collaboration to connect
+              COLLABORA_DOMAIN: collabora.${ROOT_DOMAIN}
               GATEWAY_GRPC_ADDR: 0.0.0.0:9142
               NATS_NATS_HOST: 0.0.0.0
               NATS_NATS_PORT: 9233
