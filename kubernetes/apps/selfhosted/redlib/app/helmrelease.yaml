@@ -19,7 +19,7 @@ spec:
               REDLIB_DEFAULT_THEME: dark
               REDLIB_DEFAULT_SUBSCRIPTIONS: "ergomechkeyboards+linux+patientgamers+privacy+Piracy+selfhosted+sffpc+olkb+unixporn"
             image:
-              repository: quay.io/redlib/redlib
+              repository: manwichmakesameal/redlib
               tag: latest
           # Configure the gluetun sidecar
           gluetun:
