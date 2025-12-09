@@ -23,6 +23,54 @@ spec:
               - "-c"
               - "opencloud init || true; opencloud server"
             env:
+              IDM_CREATE_DEMO_USERS: false
+              OC_ADMIN_USER_ID: ""
+              OC_ENABLE_OCM: false
+              OC_INSECURE: true
+              OC_LOG_LEVEL: debug
+              OC_URL: &url https://opencloud.${ROOT_DOMAIN}
+              OC_OIDC_ISSUER: https://id.${ROOT_DOMAIN}
+              OC_EXCLUDE_RUN_SERVICES: idp,ocm
+              OC_ADD_RUN_SERVICES: notifications
+              OC_OIDC_CLIENT_ID: opencloud-web
+              WEB_OIDC_CLIENT_ID: opencloud-web
+              WEB_OIDC_METADATA_URL: https://id.${ROOT_DOMAIN}/.well-known/openid-configuration
+
+              FRONTEND_APP_HANDLER_SECURE_VIEW_APP_ADDR: eu.opencloud.api.collaboration.CollaboraOnline
+              GRAPH_AVAILABLE_ROLES: "b1e2218d-eef8-4d4c-b82d-0f1a1b48f3b5,a8d5fe5e-96e3-418d-825b-534dbdf22b99,fb6c3e19-e378-47e5-b277-9732f9de6e21,58c63c02-1d89-4572-916a-870abc5a1b7d,2d00ce52-1fc2-4dbc-8b95-a73b73395f5a,1c996275-f1c9-4e71-abdf-a42f6495e960,312c0871-5ef7-4b3a-85b6-0e4074c64049,aa97fe03-7980-45ac-9e50-b325749fd7e6"
+
+              PROXY_TLS: false
+              PROXY_AUTOPROVISION_ACCOUNTS: true
+              PROXY_AUTOPROVISION_CLAIM_USERNAME: sub
+              PROXY_ROLE_ASSIGNMENT_DRIVER: oidc
+              PROXY_ROLE_ASSIGNMENT_OIDC_CLAIM: roles
+              PROXY_USER_OIDC_CLAIM: preferred_username
+              PROXY_USER_CS3_CLAIM: username
+              WEB_OIDC_SCOPE: "openid profile email"
+              PROXY_CSP_CONFIG_FILE_LOCATION: &cspPath /etc/opencloud/csp.yaml
+              PROXY_OIDC_REWRITE_WELLKNOWN: true # mobile apps try to re-register via internal idp
+              PROXY_OIDC_ACCESS_TOKEN_VERIFY_METHOD: none
+              PROXY_HTTP_ADDR: 0.0.0.0:9200
+              # metrics
+              PROXY_DEBUG_ADDR: 0.0.0.0:9205
+
+              # For collaboration to connect
+              GATEWAY_GRPC_ADDR: 0.0.0.0:9142
+              NATS_NATS_HOST: 0.0.0.0
+              NATS_NATS_PORT: 9233
+
+              OC_CACHE_STORE: nats-js-kv
+              MICRO_REGISTRY_ADDRESS: 127.0.0.1:9233
+              MICRO_REGISTRY: nats-js-kv
+              OC_CACHE_STORE_NODES: 127.0.0.1:9233
+              OC_PERSISTENT_STORE_NODES: 127.0.0.1:9233
+              OC_EVENTS_ENDPOINT: 127.0.0.1:9233
+
+              SETTINGS_SETUP_DEFAULT_ASSIGNMENTS: false
+
+              GRAPH_ASSIGN_DEFAULT_USER_ROLE: false
+              GRAPH_USERNAME_MATCH: "none"
+
               WEB_OPTION_ACCOUNT_EDIT_LINK_HREF: https://id.${ROOT_DOMAIN}/settings/apps
               # prevent nested mounts
               WEB_ASSET_APPS_PATH: /opt/extensions/usr/share/nginx/html/apps
@@ -70,7 +118,7 @@ spec:
               - "-c"
               - "opencloud collaboration server"
             env:
-              COLLABORATION_WOPI_SRC: http://opencloud-wopi:9300
+              COLLABORATION_WOPI_SRC: &wopi https://wopi.${ROOT_DOMAIN}
               COLLABORATION_APP_NAME: CollaboraOnline
               COLLABORATION_APP_PRODUCT: Collabora
               COLLABORATION_APP_INSECURE: true
@@ -102,7 +150,7 @@ spec:
               repository: docker.io/collabora/code
               tag: 25.04.7.3.1@sha256:9a6eb1042fa38f80127ae4b0e9c6f0ac549b267ecc8433bc7bb906eeee0ae176
             env:
-              aliasgroup1: https://wopi.${ROOT_DOMAIN}
+              aliasgroup1: *wopi
               DONT_GEN_SSL_CERT: "YES"
               extra_params: |
                 --o:ssl.enable=false \
@@ -110,8 +158,6 @@ spec:
                 --o:ssl.termination=true \
                 --o:welcome.enable=false \
                 --o:net.frame_ancestors=opencloud.${ROOT_DOMAIN}
-                --o:net.lok_allow.host[14]=opencloud.${ROOT_DOMAIN}
-                --o:home_mode.enable=false
               username:
                 valueFrom:
                   secretKeyRef:
