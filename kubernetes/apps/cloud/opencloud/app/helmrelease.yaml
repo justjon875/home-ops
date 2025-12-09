@@ -131,6 +131,8 @@ spec:
               COLLABORATION_GRPC_ADDR: 0.0.0.0:9301
               COLLABORATION_HTTP_ADDR: 0.0.0.0:9300
               COLLABORATION_LOG_LEVEL: debug
+              COLLABORATION_LOG_COLOR: true
+              COLLABORATION_LOG_PRETTY: true
               COLLABORATION_WOPI_SRC: &wopi https://wopi.${ROOT_DOMAIN}
               MICRO_REGISTRY_ADDRESS: opencloud:9233
               OC_PERSISTENT_STORE_NODES: opencloud:9233
