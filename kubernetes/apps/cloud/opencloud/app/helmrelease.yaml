@@ -23,59 +23,21 @@ spec:
               - "-c"
               - "opencloud init || true; opencloud server"
             env:
-              OC_URL: &url https://opencloud.${ROOT_DOMAIN}
-              OC_LOG_LEVEL: debug
-              OC_LOG_COLOR: true
-              OC_LOG_TIMEZONE: ${TIMEZONE}
-              OC_LOG_PRETTY: true
-              OC_EXCLUDE_RUN_SERVICES: idp,ocm
-              GATEWAY_GRPC_ADDR: 0.0.0.0:9142
-              OC_INSECURE: false
-              PROXY_ENABLE_BASIC_AUTH: false
-              IDM_CREATE_DEMO_USERS: false
-              FRONTEND_OCS_ENABLE_DENIALS: false ##
-              MICRO_REGISTRY_ADDRESS: 127.0.0.1:9233
-              NATS_NATS_HOST: 0.0.0.0
-              NATS_NATS_PORT: 9233
-              PROXY_CSP_CONFIG_FILE_LOCATION: &cspPath /etc/opencloud/csp.yaml
+              WEB_OPTION_ACCOUNT_EDIT_LINK_HREF: https://id.${ROOT_DOMAIN}/settings/apps
+              # prevent nested mounts
+              WEB_ASSET_APPS_PATH: /opt/extensions/usr/share/nginx/html/apps
 
-              OC_OIDC_ISSUER: https://id.${ROOT_DOMAIN}
-              PROXY_OIDC_REWRITE_WELLKNOWN: true # mobile apps try to re-register via internal idp
-              PROXY_USER_OIDC_CLAIM: preferred_username
-              PROXY_USER_CS3_CLAIM: username
-              PROXY_AUTOPROVISION_ACCOUNTS: true
-              PROXY_OIDC_ACCESS_TOKEN_VERIFY_METHOD: none
-              PROXY_ROLE_ASSIGNMENT_DRIVER: oidc
-              PROXY_TLS: false
-              GRAPH_ASSIGN_DEFAULT_USER_ROLE: false
-              WEB_OIDC_CLIENT_ID: opencloud-web
-              WEB_OIDC_METADATA_URL: https://id.${ROOT_DOMAIN}/.well-known/openid-configuration
-
-              COLLABORA_DOMAIN: collabora.${ROOT_DOMAIN}
-              FRONTEND_APP_HANDLER_SECURE_VIEW_APP_ADDR: eu.opencloud.api.collaboration.CollaboraOnline
-              FRONTEND_FULL_TEXT_SEARCH_ENABLED: "true"
-              GRAPH_AVAILABLE_ROLES: "b1e2218d-eef8-4d4c-b82d-0f1a1b48f3b5,a8d5fe5e-96e3-418d-825b-534dbdf22b99,fb6c3e19-e378-47e5-b277-9732f9de6e21,58c63c02-1d89-4572-916a-870abc5a1b7d,2d00ce52-1fc2-4dbc-8b95-a73b73395f5a,1c996275-f1c9-4e71-abdf-a42f6495e960,312c0871-5ef7-4b3a-85b6-0e4074c64049,aa97fe03-7980-45ac-9e50-b325749fd7e6"
-              # GRAPH_USERNAME_MATCH: "none"
-              #
-              MICRO_REGISTRY: nats-js-kv
               NOTIFICATIONS_SMTP_HOST: smtp-relay.utilities.svc.cluster.local
-              NOTIFICATIONS_SMTP_INSECURE: true
               NOTIFICATIONS_SMTP_PORT: 25
               NOTIFICATIONS_SMTP_SENDER: no-reply@opencloud.${ROOT_DOMAIN}
-              # OC_ADD_RUN_SERVICES: notifications
-              OC_CACHE_STORE: nats-js-kv
-              OC_CACHE_STORE_NODES: 127.0.0.1:9233
-              # OC_ENABLE_OCM: false
-              OC_EVENTS_ENDPOINT: 127.0.0.1:9233
-              OC_PERSISTENT_STORE_NODES: 127.0.0.1:9233
+              NOTIFICATIONS_SMTP_INSECURE: true
 
+              STORAGE_USERS_DRIVER: decomposed
+              STORAGE_USERS_ID_CACHE_STORE: nats-js-kv
 
-              SEARCH_EXTRACTOR_TIKA_TIKA_URL: http://opencloud-tika:9998
               SEARCH_EXTRACTOR_TYPE: tika
-              # SETTINGS_SETUP_DEFAULT_ASSIGNMENTS: false
-              # STORAGE_USERS_DRIVER: decomposed
-              # STORAGE_USERS_ID_CACHE_STORE: nats-js-kv
-              # WEB_OPTION_ACCOUNT_EDIT_LINK_HREF: https://id.${ROOT_DOMAIN}/settings/apps
+              SEARCH_EXTRACTOR_TIKA_TIKA_URL: http://opencloud-tika:9998
+              FRONTEND_FULL_TEXT_SEARCH_ENABLED: "true"
             envFrom:
               - secretRef:
                   name: opencloud-secret
@@ -108,7 +70,7 @@ spec:
               - "-c"
               - "opencloud collaboration server"
             env:
-              COLLABORATION_WOPI_SRC: https://wopi.${ROOT_DOMAIN}
+              COLLABORATION_WOPI_SRC: http://opencloud-wopi:9300
               COLLABORATION_APP_NAME: CollaboraOnline
               COLLABORATION_APP_PRODUCT: Collabora
               COLLABORATION_APP_INSECURE: true
@@ -148,6 +110,8 @@ spec:
                 --o:ssl.termination=true \
                 --o:welcome.enable=false \
                 --o:net.frame_ancestors=opencloud.${ROOT_DOMAIN}
+                --o:net.lok_allow.host[14]=opencloud.${ROOT_DOMAIN}
+                --o:home_mode.enable=false
               username:
                 valueFrom:
                   secretKeyRef:
@@ -328,7 +292,7 @@ spec:
                 - 'wss://wopi.${ROOT_DOMAIN}/'
                 - 'https://raw.githubusercontent.com/opencloud-eu/awesome-apps/'
                 - 'https://id.${ROOT_DOMAIN}/'
-                - 'wss://id.${ROOT_DOMAIN}/'
+                - 'wss://id.${ROOT_DOMAIN}'
               default-src:
                 - '''none'''
               font-src:
