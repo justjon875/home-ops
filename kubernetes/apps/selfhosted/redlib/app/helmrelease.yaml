@@ -44,10 +44,6 @@ spec:
         parentRefs:
           - name: envoy-internal
             namespace: network
-        rules:
-          - backendRefs:
-              - identifier: app
-                port: &port 8080
     service:
       app:
         ports:
