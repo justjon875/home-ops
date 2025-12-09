@@ -9,6 +9,5 @@ components:
   - ../../components/sops
 
 resources:
-  - ./namespace.yaml
   - ./valkey/ks.yaml
   - ./whoami/ks.yaml
