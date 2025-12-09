@@ -157,9 +157,9 @@ spec:
               aliasgroup1: *wopi
               DONT_GEN_SSL_CERT: "YES"
               extra_params: |
-                --o:ssl.enable=false \
+                --o:ssl.enable=true \
                 --o:ssl.ssl_verification=true \
-                --o:ssl.termination=true \
+                --o:ssl.termination=false \
                 --o:welcome.enable=false \
                 --o:net.frame_ancestors=opencloud.${ROOT_DOMAIN}
                 --o:net.lok_allow.host[14]=opencloud.${ROOT_DOMAIN}
