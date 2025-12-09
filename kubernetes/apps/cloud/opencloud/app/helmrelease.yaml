@@ -23,15 +23,14 @@ spec:
               - "-c"
               - "opencloud init || true; opencloud server"
             env:
-              OC_ADMIN_USER_ID: a15f91db-50ff-4b61-aafa-ad5276a4c21e
+              OC_ADMIN_USER_ID: ""
               OC_ENABLE_OCM: false
               OC_INSECURE: false
-              OC_LOG_LEVEL: info
+              OC_LOG_LEVEL: debug
               OC_URL: &url https://opencloud.${ROOT_DOMAIN}
               OC_OIDC_ISSUER: https://id.${ROOT_DOMAIN}
               OC_EXCLUDE_RUN_SERVICES: idp,ocm
               OC_ADD_RUN_SERVICES: notifications
-              OC_SHARING_PUBLIC_SHARE_MUST_HAVE_PASSWORD: true
               OC_OIDC_CLIENT_ID: opencloud-web
 
               FRONTEND_APP_HANDLER_SECURE_VIEW_APP_ADDR: eu.opencloud.api.collaboration.CollaboraOnline
@@ -75,8 +74,7 @@ spec:
               NOTIFICATIONS_SMTP_SENDER: no-reply@opencloud.${ROOT_DOMAIN}
               NOTIFICATIONS_SMTP_INSECURE: true
 
-              STORAGE_USERS_DRIVER: decomposeds3
-              STORAGE_internal_DRIVER: decomposed
+              STORAGE_USERS_DRIVER: decomposed
               STORAGE_USERS_ID_CACHE_STORE: nats-js-kv
 
               SEARCH_EXTRACTOR_TYPE: tika
@@ -378,8 +376,8 @@ spec:
                 role_claim: oc_groups
                 role_mapping:
                   - role_name: admin
-                    claim_value: opencloud-admins
+                    claim_value: opencloudAdmins
                   - role_name: user
-                    claim_value: opencloud-users
+                    claim_value: opencloudUsers
                   - role_name: guest
-                    claim_value: opencloud-guests
+                    claim_value: opencloudGuests
