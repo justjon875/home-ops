@@ -158,6 +158,8 @@ spec:
                 --o:ssl.termination=true \
                 --o:welcome.enable=false \
                 --o:net.frame_ancestors=opencloud.${ROOT_DOMAIN}
+                --o:net.lok_allow.host[14]=opencloud.${ROOT_DOMAIN}
+                --o:home_mode.enable=false
               username:
                 valueFrom:
                   secretKeyRef:
