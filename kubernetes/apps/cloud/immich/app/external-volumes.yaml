@@ -36,3 +36,4 @@ spec:
       storage: 1Ti
   storageClassName: nfs-csi
   volumeName: immich-nextcloud-pv-nfs
+

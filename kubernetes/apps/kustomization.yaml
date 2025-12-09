@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - cert-manager
   - cloud
-  # - default
+  - default
   - database
   - external-secrets
   - flux-system
