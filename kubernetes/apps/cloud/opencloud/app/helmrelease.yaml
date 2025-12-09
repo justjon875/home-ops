@@ -135,8 +135,6 @@ spec:
               COLLABORATION_LOG_PRETTY: true
               COLLABORATION_WOPI_SRC: &wopi https://wopi.${ROOT_DOMAIN}
               MICRO_REGISTRY_ADDRESS: opencloud:9233
-              OC_PERSISTENT_STORE_NODES: opencloud:9233
-              OC_CACHE_STORE: nats-js-kv
               MICRO_REGISTRY: nats-js-kv
               OC_URL: *url
             securityContext: *sec
@@ -160,7 +158,7 @@ spec:
               DONT_GEN_SSL_CERT: "YES"
               extra_params: |
                 --o:ssl.enable=false \
-                --o:ssl.ssl_verification=false \
+                --o:ssl.ssl_verification=true \
                 --o:ssl.termination=true \
                 --o:welcome.enable=false \
                 --o:net.frame_ancestors=opencloud.${ROOT_DOMAIN}
@@ -241,6 +239,7 @@ spec:
         controller: wopi
         ports:
           http:
+            appProtocol: kubernetes.io/ws
             port: 9300
           grpc:
             port: 9301
