@@ -73,7 +73,6 @@ spec:
               SETTINGS_SETUP_DEFAULT_ASSIGNMENTS: false
 
               GRAPH_ASSIGN_DEFAULT_USER_ROLE: false
-              GRAPH_USERNAME_MATCH: "none"
 
               WEB_OPTION_ACCOUNT_EDIT_LINK_HREF: https://id.${ROOT_DOMAIN}/settings/apps
               # prevent nested mounts
