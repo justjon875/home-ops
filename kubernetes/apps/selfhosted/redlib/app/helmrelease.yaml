@@ -20,7 +20,7 @@ spec:
               REDLIB_DEFAULT_SUBSCRIPTIONS: "ergomechkeyboards+linux+patientgamers+privacy+Piracy+selfhosted+sffpc+olkb+unixporn"
             image:
               repository: manwichmakesameal/redlib
-              tag: latest
+              tag: alpine-20251208
           # Configure the gluetun sidecar
           gluetun:
             image:
