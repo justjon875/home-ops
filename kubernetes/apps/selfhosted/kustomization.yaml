@@ -10,7 +10,7 @@ components:
 
 resources:
   - ./namespace.yaml
-  # - ./redlib/ks.yaml
+  - ./redlib/ks.yaml
   # - atuin
   # - eddrit
   # - filebrowser
