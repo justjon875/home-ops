@@ -14,30 +14,12 @@ spec:
           reloader.stakater.com/auto: "true"
         containers:
           app:
-            dependsOn: gluetun
             env:
               REDLIB_DEFAULT_THEME: dark
               REDLIB_DEFAULT_SUBSCRIPTIONS: "ergomechkeyboards+linux+patientgamers+privacy+Piracy+selfhosted+sffpc+olkb+unixporn"
             image:
               repository: quay.io/redlib/redlib
               tag: latest@sha256:25dbb5466ebd22e58277d4aa54897899b044f02f7219ca3054784aecc0be34e1
-          # Configure the gluetun sidecar
-          gluetun:
-            image:
-              repository: ghcr.io/qdm12/gluetun
-              tag: v3.40.3@sha256:ef4a44819a60469682c7b5e69183e6401171891feaa60186652d292c59e41b30 
-            env:
-              SERVER_COUNTRIES: Germany
-              VPN_INTERFACE: wg0
-              VPN_SERVICE_PROVIDER: protonvpn
-              VPN_TYPE: wireguard
-            envFrom:
-              - secretRef:
-                  name: redlib-secret
-            securityContext:
-              capabilities:
-                add:
-                  - NET_ADMIN
     route:
       app:
         hostnames: ["{{ .Release.Name }}.${ROOT_DOMAIN}"]
