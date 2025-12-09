@@ -121,16 +121,17 @@ spec:
               - "-c"
               - "opencloud collaboration server"
             env:
-              COLLABORATION_WOPI_SRC: &wopi https://wopi.${ROOT_DOMAIN}
               COLLABORATION_APP_NAME: CollaboraOnline
               COLLABORATION_APP_PRODUCT: Collabora
               COLLABORATION_APP_INSECURE: true
-              COLLABORATION_CS3API_DATAGATEWAY_INSECURE: true
               COLLABORATION_APP_ADDR: https://collabora.${ROOT_DOMAIN}
               COLLABORATION_APP_ICON: https://collabora.${ROOT_DOMAIN}/favicon.ico
               COLLABORATION_APP_PROOF_DISABLE: true
+              COLLABORATION_CS3API_DATAGATEWAY_INSECURE: true
               COLLABORATION_GRPC_ADDR: 0.0.0.0:9301
               COLLABORATION_HTTP_ADDR: 0.0.0.0:9300
+              COLLABORATION_LOG_LEVEL: debug
+              COLLABORATION_WOPI_SRC: &wopi https://wopi.${ROOT_DOMAIN}
               MICRO_REGISTRY_ADDRESS: opencloud:9233
               OC_PERSISTENT_STORE_NODES: opencloud:9233
               OC_CACHE_STORE: nats-js-kv
