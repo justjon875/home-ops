@@ -5,17 +5,9 @@ kind: Kustomization
 metadata:
   name: immich
 spec:
-  components:
-    - ../../../../components/volsync
-  dependsOn:
-    - name: rook-ceph-cluster
-      namespace: rook-ceph
   interval: 1h
-  path: ./kubernetes/apps/media/listenarr/app
+  path: ./kubernetes/apps/cloud/immich/app
   postBuild:
-    substitute:
-      APP: listenarr
-      VOLSYNC_CAPACITY: 1Gi
     substituteFrom:
       - name: cluster-secrets
         kind: Secret
@@ -26,5 +18,5 @@ spec:
     kind: GitRepository
     name: immich
     namespace: flux-system
-  targetNamespace: media
+  targetNamespace: cloud
   wait: false
