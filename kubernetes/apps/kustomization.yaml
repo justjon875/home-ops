@@ -13,5 +13,6 @@ resources:
   - network
   - openebs-system
   - rook-ceph
+  - selfhosted
   - utilities
   - volsync-system
