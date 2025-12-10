@@ -11,7 +11,7 @@ spec:
     name: *app
   values:
     controllers:
-      pgadmin:
+      app:
         annotations:
           reloader.stakater.com/auto: "true"
         pod:
@@ -38,29 +38,18 @@ spec:
                 memory: 500Mi
     service:
       app:
-        controller: *app
         ports:
           http:
-            port: &port 80
+            port: 80
     route:
       app:
+        hostnames:
+          - '{{ .Release.Name }}.${ROOT_DOMAIN}'
         parentRefs:
           - name: envoy-internal
             namespace: kube-system
-            sectionName: https
-        hostnames:
-          - '{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}'
-        rules:
-          - matches:
-              - path:
-                  type: PathPrefix
-                  value: /
-            backendRefs:
-              - name: *app
-                port: *port
-
     persistence:
       config:
         existingClaim: *app
         globalMounts:
-          - path: /var/lib/pgadmin  
+          - path: /var/lib/pgadmin
