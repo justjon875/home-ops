@@ -38,7 +38,7 @@ spec:
     size: 10Gi
     storageClass: openebs-hostpath
   superuserSecret:
-    name: cloudnative-pg-secret
+    name: immich-secret
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
   # externalClusters:
   #   - name: *recoveryServer
