@@ -42,5 +42,5 @@ spec:
       plugin:
         name: barman-cloud.cloudnative-pg.io
         parameters:
-          barmanObjectName: &store garage-store
+          barmanObjectName: *store 
           serverName: cloudnative-vectorchordv16-9-0-3
