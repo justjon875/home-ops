@@ -12,10 +12,10 @@ spec:
     endpointURL: https://s3.${ROOT_DOMAIN}
     s3Credentials:
       accessKeyId:
-        name: cloudnative-pg-secret
+        name: immich-secret
         key: aws-access-key-id
       secretAccessKey:
-        name: cloudnative-pg-secret
+        name: immich-secret
         key: aws-secret-access-key
     wal:
       compression: zstd
