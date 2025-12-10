@@ -1,0 +1,66 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app pgadmin
+spec:
+  interval: 30m
+  chartRef:
+    kind: OCIRepository
+    name: *app
+  values:
+    controllers:
+      pgadmin:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        pod:
+          securityContext:
+            runAsUser: 5050 # ${APP_UID}
+            runAsGroup: 5050 # ${APP_GID}
+            fsGroup: 5050 # ${APP_GID}
+            fsGroupChangePolicy: OnRootMismatch
+        containers:
+          app:
+            image:
+              repository: dpage/pgadmin4
+              tag: 9.9
+            env:
+              PGADMIN_CONFIG_ENHANCED_COOKIE_PROTECTION: "False"
+            envFrom:
+              - secretRef:
+                  name: pgadmin-secret
+            resources:
+              requests:
+                cpu: 50m
+                memory: 100Mi
+              limits:
+                memory: 500Mi
+    service:
+      app:
+        controller: *app
+        ports:
+          http:
+            port: &port 80
+    route:
+      app:
+        parentRefs:
+          - name: envoy-internal
+            namespace: kube-system
+            sectionName: https
+        hostnames:
+          - '{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}'
+        rules:
+          - matches:
+              - path:
+                  type: PathPrefix
+                  value: /
+            backendRefs:
+              - name: *app
+                port: *port
+
+    persistence:
+      config:
+        existingClaim: *app
+        globalMounts:
+          - path: /var/lib/pgadmin  
