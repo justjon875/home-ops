@@ -7,24 +7,15 @@ metadata:
     cnpg.io/skipEmptyWalArchiveCheck: "enabled"
 kind: Cluster
 spec:
-  instances: 3
-  imageName: "ghcr.io/tensorchord/cloudnative-vectorchord:18.0-0.5.3@sha256:267f6cbb32af6e109e138a143c7e9dd5d44d68433ec2303f0c30e745c788d1a9"
-  enableSuperuserAccess: false
-  storage:
-    size: 10Gi
-    storageClass: openebs-hostpath
-  resources:
-    limits:
-      cpu: 500m
-      memory: 256Mi
-    requests:
-      cpu: 50m
   bootstrap:
     initdb:
       database: immich
       postInitApplicationSQL:
         - CREATE EXTENSION IF NOT EXISTS vchord CASCADE;
         - CREATE EXTENSION IF NOT EXISTS earthdistance CASCADE;
+  enableSuperuserAccess: true
+  instances: 3
+  imageName: "ghcr.io/tensorchord/cloudnative-vectorchord:18.0-0.5.3@sha256:267f6cbb32af6e109e138a143c7e9dd5d44d68433ec2303f0c30e745c788d1a9"
   postgresql:
     shared_preload_libraries:
       - "vchord.so"
@@ -37,7 +28,17 @@ spec:
       parameters:
         barmanObjectName: &store immich-store
         serverName: *currentServer
-
+  resources:
+    limits:
+      cpu: 500m
+      memory: 256Mi
+    requests:
+      cpu: 50m
+  storage:
+    size: 10Gi
+    storageClass: openebs-hostpath
+  superuserSecret:
+    name: cloudnative-pg-secret
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
   # externalClusters:
   #   - name: *recoveryServer
