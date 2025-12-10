@@ -1,0 +1,22 @@
+---
+# yaml-language-server: $schema=https://k8s-schemas.m00nlit.dev/barmancloud.cnpg.io/objectstore_v1.json
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: immich-store
+spec:
+  configuration:
+    data:
+      compression: gzip
+    destinationPath: s3://cnpg/
+    endpointURL: https://s3.${ROOT_DOMAIN}
+    s3Credentials:
+      accessKeyId:
+        name: cloudnative-pg-secret
+        key: aws-access-key-id
+      secretAccessKey:
+        name: cloudnative-pg-secret
+        key: aws-secret-access-key
+    wal:
+      compression: zstd
+  retentionPolicy: 14d
