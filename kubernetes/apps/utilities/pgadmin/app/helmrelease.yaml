@@ -14,7 +14,7 @@ spec:
       pgadmin:
         annotations:
           reloader.stakater.com/auto: "true"
-        app:
+        pod:
           securityContext:
             runAsUser: 5050 # ${APP_UID}
             runAsGroup: 5050 # ${APP_GID}
@@ -36,11 +36,11 @@ spec:
                 memory: 100Mi
               limits:
                 memory: 500Mi
-    service:
-      app:
-        ports:
-          http:
-            port: 80
+    persistence:
+      config:
+        existingClaim: *app
+        globalMounts:
+          - path: /var/lib/pgadmin
     route:
       app:
         hostnames:
@@ -48,8 +48,8 @@ spec:
         parentRefs:
           - name: envoy-internal
             namespace: network
-    persistence:
-      config:
-        existingClaim: *app
-        globalMounts:
-          - path: /var/lib/pgadmin
+    service:
+      app:
+        ports:
+          http:
+            port: 80
