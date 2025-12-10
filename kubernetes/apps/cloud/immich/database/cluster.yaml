@@ -28,12 +28,6 @@ spec:
       parameters:
         barmanObjectName: &store immich-store
         serverName: *currentServer
-  resources:
-    limits:
-      cpu: 500m
-      memory: 256Mi
-    requests:
-      cpu: 50m
   storage:
     size: 10Gi
     storageClass: openebs-hostpath
