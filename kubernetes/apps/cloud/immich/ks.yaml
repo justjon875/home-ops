@@ -25,6 +25,12 @@ spec:
       kind: Cluster
       current: status.phase == 'Cluster in healthy state'
   path: ./kubernetes/apps/cloud/immich/database
+  postBuild:
+    substituteFrom:
+      - name: cluster-secrets
+        kind: Secret
+      - name: cluster-settings
+        kind: ConfigMap
   prune: true
   targetNamespace: cloud
   timeout: 5m
