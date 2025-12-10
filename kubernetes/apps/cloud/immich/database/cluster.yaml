@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/postgresql.cnpg.io/cluster_v1.json
 apiVersion: postgresql.cnpg.io/v1
 metadata:
-  name: &currentServer immich-cluster
+  name: immich-cluster
   annotations:
     # required for seamless bootstrap: https://github.com/cloudnative-pg/cloudnative-pg/issues/5778#issuecomment-2783417464
     cnpg.io/skipEmptyWalArchiveCheck: "enabled"
@@ -36,7 +36,7 @@ spec:
       isWALArchiver: true
       parameters:
         barmanObjectName: &store immich-store
-        serverName: *currentServer
+        serverName: immich-cluster-v1
 
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
   # externalClusters:
