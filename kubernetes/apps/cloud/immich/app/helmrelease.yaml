@@ -69,6 +69,10 @@ spec:
         parentRefs:
           - name: envoy-internal
             namespace: network
+        rules:
+          - backendRefs:
+              - identifier: server
+                port: *port
     service:
       machine-learning:
         controller: machine-learning
