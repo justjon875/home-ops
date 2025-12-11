@@ -32,7 +32,7 @@ spec:
     size: 10Gi
     storageClass: openebs-hostpath
   superuserSecret:
-    name: immich-secret
+    name: immich-database-secret
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
   bootstrap:
     initdb:
