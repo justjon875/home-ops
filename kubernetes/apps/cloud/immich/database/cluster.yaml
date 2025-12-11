@@ -7,12 +7,6 @@ metadata:
     cnpg.io/skipEmptyWalArchiveCheck: "enabled"
 kind: Cluster
 spec:
-  bootstrap:
-    initdb:
-      database: immich
-      postInitApplicationSQL:
-        - CREATE EXTENSION IF NOT EXISTS vchord CASCADE;
-        - CREATE EXTENSION IF NOT EXISTS earthdistance CASCADE;
   enableSuperuserAccess: true
   instances: 3
   imageName: "ghcr.io/tensorchord/cloudnative-vectorchord:18.0-0.5.3@sha256:267f6cbb32af6e109e138a143c7e9dd5d44d68433ec2303f0c30e745c788d1a9"
@@ -27,23 +21,27 @@ spec:
       isWALArchiver: true
       parameters:
         barmanObjectName: &store immich-store
-        serverName: *currentServer
+        serverName: immich-cluster-v1
   resources:
-    limits:
-      cpu: 500m
-      memory: 1Gi
     requests:
-      cpu: 50m
+      cpu: 200m
+      memory: 1Gi
+    limits:
+      memory: 2Gi
   storage:
     size: 10Gi
     storageClass: openebs-hostpath
   superuserSecret:
     name: immich-secret
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
+  bootstrap:
+    init: {}
+  #   recovery:
+  #     source: source
   # externalClusters:
-  #   - name: *recoveryServer
+  #   - name: source
   #     plugin:
   #       name: barman-cloud.cloudnative-pg.io
   #       parameters:
-  #         barmanObjectName: &store garage-store
-  #         serverName: *recoveryServer
+  #         barmanObjectName: *store 
+  #         serverName: cloudnative-vectorchordv16-9-0-3
