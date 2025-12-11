@@ -72,7 +72,7 @@ spec:
         rules:
           - backendRefs:
               - identifier: server
-                port: *port
+                port: &port 2283
     service:
       machine-learning:
         controller: machine-learning
@@ -83,4 +83,4 @@ spec:
         controller: server
         ports:
           http:
-            port: 2283
+            port: *port
