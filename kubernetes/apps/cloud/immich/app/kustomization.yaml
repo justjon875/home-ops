@@ -6,5 +6,4 @@ resources:
   - ./configmap.yaml
   - ./external-volumes.yaml
   - ./secret.sops.yaml
-  - ./volumes.yaml
   - ./helmrelease.yaml

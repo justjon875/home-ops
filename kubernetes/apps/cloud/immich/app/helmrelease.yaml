@@ -47,10 +47,11 @@ spec:
                 memory: 100Mi
     persistence:
       library:
-        enabled: true
-        existingClaim: immich-pvc
         globalMounts:
           - path: /usr/src/app/upload
+        path: ${NFS_PATH}/immich/server
+        server: ${NFS_HOST}
+        type: nfs
       model-cache:
         type: emptyDir
         advancedMounts:
@@ -58,11 +59,13 @@ spec:
             main:
               - path: /cache
       nextcloud:
-        existingClaim: immich-nextcloud-pvc
+        path: ${NFS_PATH}/nextcloud
+        server: ${NFS_HOST}
+        type: nfs
     route:
       app:
         hostnames:
-          - "{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}"
+          - "{{ .Release.Name }}.${ROOT_DOMAIN}"
         parentRefs:
           - name: envoy-internal
             namespace: network
