@@ -35,7 +35,9 @@ spec:
     name: immich-secret
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
   bootstrap:
-    init: {}
+    initdb:
+      postInitSQL:
+        - CREATE EXTENSION IF NOT EXISTS vchord CASCADE;
   #   recovery:
   #     source: source
   # externalClusters:
