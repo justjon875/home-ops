@@ -21,8 +21,6 @@ spec:
               PAPERLESS_CONSUMPTION_DIR: /paperless/consume
               PAPERLESS_DATA_DIR: /paperless/data
               PAPERLESS_DBHOST: ${POSTGRESQL_HOST}
-              PAPERLESS_FILENAME_FORMAT: '{created_year}/{correspondent}/{title}'
-              PAPERLESS_FILENAME_FORMAT_REMOVE_NONE: true
               PAPERLESS_MEDIA_ROOT: /paperless/media
               PAPERLESS_OCR_LANGUAGE: eng
               PAPERLESS_REDIS: redis://valkey.default.svc.cluster.local
@@ -44,6 +42,13 @@ spec:
     persistence:
       paperless:
         existingClaim: "{{ .Release.Name }}"
+      data:
+        enabled: true
+        globalMounts:
+          - path: /old
+        path: /mnt/raid/nfs/paperless-ngx
+        server: ${NFS_HOST}
+        type: nfs
     route:
       app:
         hostnames:
