@@ -53,6 +53,10 @@ spec:
         seccompProfile: { type: RuntimeDefault }
     persistence:
       config:
+        type: emptyDir
+        globalMounts:
+          - path: /app/config
+      config-files:
         type: configMap
         name: homepage-config
         globalMounts:
