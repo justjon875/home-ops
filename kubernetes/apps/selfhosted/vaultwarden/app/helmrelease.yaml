@@ -20,7 +20,6 @@ spec:
               SIGNUPS_ALLOWED: false
               SMTP_FROM: vaultwarden@${ROOT_DOMAIN}
               SMTP_HOST: smtp-relay.${ROOT_DOMAIN}
-              SMTP_PORT: 25
               TZ: ${TIMEZONE}
               WEBSOCKET_ENABLED: true
             envFrom:
