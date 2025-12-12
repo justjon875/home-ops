@@ -4,7 +4,8 @@ namespace: observability
 components:
   - ../../components/common
 resources:
-  - ./headlamp/ks.yaml
+  # - ./headlamp/ks.yaml
+  - ./fluent-bit/ks.yaml
   - ./grafana/ks.yaml
   - ./kube-prometheus-stack/ks.yaml
-  - loki
+  - ./victoria-logs/ks.yaml

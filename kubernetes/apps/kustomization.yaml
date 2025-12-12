@@ -11,6 +11,7 @@ resources:
   - kube-system
   - media
   - network
+  - observability
   - openebs-system
   - rook-ceph
   - selfhosted
