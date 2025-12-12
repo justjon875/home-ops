@@ -19,8 +19,8 @@ spec:
               DOMAIN: https://vaultwarden.${ROOT_DOMAIN}
               SIGNUPS_ALLOWED: false
               SMTP_FROM: vaultwarden@${ROOT_DOMAIN}
-              SMTP_HOST: ${SMTP_HOST}
-              SMTP_PORT: 25
+              SMTP_HOST: smtp-relay.${ROOT_DOMAIN}
+              SMTP_PORT: 587
               TZ: ${TIMEZONE}
               WEBSOCKET_ENABLED: true
             envFrom:
