@@ -191,7 +191,7 @@ data:
           widget:
             type: radarr
             url: https://radarr.${ROOT_DOMAIN}
-            key: ${SECRET_RADARR_KEY}
+            key: '{{RADARR_API_KEY}}'
       - SABnzbd:
           href: https://sabnzbd.${ROOT_DOMAIN}
           icon: sabnzbd.png
@@ -207,7 +207,7 @@ data:
           widget:
             type: sonarr
             url: https://sonarr.${ROOT_DOMAIN}
-            key: ${SECRET_SONARR_KEY}
+            key: '{{SONARR_API_KEY}}'
     - Selfhosted:
         - FileBrowser:
             href: https://filebrowser.${ROOT_DOMAIN}
