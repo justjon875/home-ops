@@ -53,14 +53,12 @@ spec:
           - subPath: widgets.yaml
             path: /app/config/widgets.yaml
       images:
-        enabled: true
         globalMounts:
           - path: /app/public/images
         path: ${NFS_PATH}/homepage/images
         server: ${NFS_HOST}
         type: nfs
       logos:
-        enabled: true
         globalMounts:
           - path: /app/public/icons
         path: ${NFS_PATH}/homepage/icons
@@ -79,6 +77,3 @@ spec:
         ports:
           http:
             port: 3000
-    serviceAccount:
-      create: true
-      name: *app
