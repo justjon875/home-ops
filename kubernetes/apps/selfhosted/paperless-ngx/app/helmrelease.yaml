@@ -1,0 +1,58 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app paperless-ngx
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: *app
+  interval: 1h
+  values:
+    controllers:
+      paperless-ngx:
+        containers:
+          app:
+            env:
+              COMPOSE_PROJECT_NAME: paperless-ngx
+              PAPERLESS_CONSUMER_DELETE_DUPLICATES: true
+              PAPERLESS_CONSUMER_POLLING: 60
+              PAPERLESS_CONSUMER_RECURSIVE: true
+              PAPERLESS_CONSUMER_SUBDIRS_AS_TAGS: true
+              PAPERLESS_CONSUMPTION_DIR: /paperless/consume
+              PAPERLESS_DATA_DIR: /paperless/data
+              PAPERLESS_DBHOST: ${POSTGRESQL_HOST}
+              PAPERLESS_FILENAME_FORMAT: '{created_year}/{correspondent}/{title}'
+              PAPERLESS_FILENAME_FORMAT_REMOVE_NONE: true
+              PAPERLESS_MEDIA_ROOT: /paperless/media
+              PAPERLESS_OCR_LANGUAGE: eng
+              PAPERLESS_REDIS: redis://valkey.default.svc.cluster.local
+              PAPERLESS_TIME_ZONE: ${TIMEZONE}
+              PAPERLESS_URL: https://paperless-ngx.${ROOT_DOMAIN}
+            envFrom:
+            - secretRef:
+                name: paperless-ngx
+            image:
+              repository: quay.io/11notes/paperless-ngx
+              tag: 2.20.1@sha256:935da70f09f940f71c7d4438bcd6ebae76e4d17088d2089f52ff7c2ed1413a77
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+    persistence:
+      paperless:
+        existingClaim: "{{ .Release.Name }}"
+    route:
+      app:
+        hostnames:
+        - '{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}'
+        parentRefs:
+        - name: envoy-internal
+          namespace: network
+    service:
+      app:
+        ports:
+          http:
+            port: 8000

@@ -1,0 +1,41 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app matrix-element
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: *app
+  interval: 1h
+  values:
+    controllers:
+      matrix-element:
+        containers:
+          app:
+            image:
+              repository: vectorim/element-web
+              tag: v1.12.6
+    global:
+      nameOverride: matrix-element
+    persistence:
+      config-file:
+        globalMounts:
+        - path: /app/config.json
+          readOnly: true
+          subPath: config.json
+        name: matrix-element
+        type: configMap
+    podAnnotations:
+      configmap.reloader.stakater.com/reload: matrix-element
+    route:
+      app:
+        hostnames:
+        - '{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}'
+        parentRefs:
+        - name: envoy-internal
+          namespace: network
+    service:
+      app:
+        ports:
+          http:
+            port: 80

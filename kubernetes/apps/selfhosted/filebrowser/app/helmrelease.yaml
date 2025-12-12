@@ -1,0 +1,106 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app filebrowser
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: *app
+  interval: 1h
+  valuesFrom:
+  - kind: Secret
+    name: filebrowser
+    targetPath: persistence.cyberdrop.path
+    valuesKey: CYBERDROP_PATH
+  values:
+    controllers:
+      filebrowser:
+        containers:
+          app:
+            env:
+              FB_DATABASE: /config/database.db
+              FB_LOG: stdout
+              FB_NOAUTH: true
+              TZ: ${TIMEZONE}
+            image:
+              repository: filebrowser/filebrowser
+              tag: v2.51.2@sha256:68ac4b9ce0846c03226f169faedb2f704f36c64be2511579d5de590f57692854
+            probes:
+              liveness:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /health
+                    port: 80
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /health
+                    port: 80
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              startup:
+                enabled: false
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop:
+                - ALL
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 512Mi
+        pod:
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+            runAsNonRoot: true
+            fsGroup: 1000
+            fsGroupChangePolicy: OnRootMismatch
+            supplementalGroups:
+            - 10000
+    persistence:
+      config:
+        existingClaim: "{{ .Release.Name }}"
+        globalMounts:
+        - path: /config
+      media:
+        globalMounts:
+        - path: /srv/media
+        path: ${MEDIA_PATH}
+        server: ${NFS_HOST}
+        type: nfs
+      nvme:
+        globalMounts:
+        - path: /srv/nvme
+        path: ${NVME_NFS_PATH}
+        server: ${NFS_HOST}
+        type: nfs
+    resources:
+      limits:
+        memory: 500Mi
+      requests:
+        cpu: 10m
+        memory: 50Mi
+    route:
+      app:
+        hostnames:
+        - '{{ .Release.Name }}.${ROOT_DOMAIN}'
+        parentRefs:
+        - name: envoy-internal
+          namespace: network
+    service:
+      app:
+        ports:
+          http:
+            port: 80

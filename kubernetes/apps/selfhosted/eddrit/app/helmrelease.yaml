@@ -1,0 +1,33 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app eddrit
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: *app
+  interval: 1h
+  values:
+    controllers:
+      eddrit:
+        containers:
+          app:
+            env:
+              VALKEY_URL: valkey://valkey.default.svc.cluster.local
+            image:
+              repository: ghcr.io/corenting/eddrit
+              tag: 0.16.0@sha256:b16fc29b93053fb973bd15cfb0739bc9a58d7d22eadce84ba0be4f6f28d1ff34
+    route:
+      app:
+        hostnames:
+        - '{{ .Release.Name }}.${ROOT_DOMAIN}'
+        parentRefs:
+        - name: envoy-internal
+          namespace: network
+    service:
+      app:
+        ports:
+          http:
+            port: 8080

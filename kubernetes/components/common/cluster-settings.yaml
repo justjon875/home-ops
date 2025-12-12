@@ -4,10 +4,11 @@ kind: ConfigMap
 metadata:
   name: cluster-settings
 data:
-  NFS_HOST: 192.168.2.5
   LOCAL_PATH: /mnt/raid/local
   MEDIA_PATH: /mnt/raid/media
+  NFS_HOST: 192.168.2.5
+  NFS_PATH: /mnt/raid/nfs
   NVME_NFS_PATH: /mnt/nvme/nfs
   NVME_LOCAL_PATH: /mnt/raid/local
-  NFS_PATH: /mnt/raid/nfs
+  SMTP_HOST: 172.16.0.125
   TIMEZONE: Asia/Singapore

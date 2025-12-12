@@ -1,4 +1,3 @@
----
 # yaml-language-server: $schema=https://json.schemastore.org/kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
@@ -6,3 +5,10 @@ resources:
   - ./helmrelease.yaml
   - ./ocirepository.yaml
   - ./secret.sops.yaml
+configMapGenerator:
+  - name: searxng-configmap
+    files:
+      - settings.yml=./resources/settings.yaml
+      - limiter.toml=./resources/limiter.toml
+generatorOptions:
+  disableNameSuffixHash: true

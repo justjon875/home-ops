@@ -1,0 +1,63 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app tuwunel
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: *app
+  interval: 1h
+  values:
+    controllers:
+      tuwunel:
+        containers:
+          server:
+            image:
+              repository: ghcr.io/matrix-construct/tuwunel
+              tag: v1.1.0-release-all-x86_64-linux-gnu@sha256:0ffaa9bd91bb6819a7fbc57b9be79e86925a80cf63a106f35926bbe48b29d55e
+            env:
+            - name: TUWUNEL_SERVER_NAME
+              value: ${ROOT_DOMAIN}
+            - name: TUWUNEL_WELL_KNOWN__CLIENT
+              value: https://tuwunel.${ROOT_DOMAIN}
+            - name: TUWUNEL_WELL_KNOWN__SERVER
+              value: tuwunel.${ROOT_DOMAIN}:443
+            - name: TUWUNEL_DATABASE_PATH
+              value: /data/db
+            - name: TUWUNEL_ADDRESS
+              value: 0.0.0.0
+            - name: RUST_LOG
+              value: info
+            - name: TUWUNEL_ALLOW_FEDERATION
+              value: 'false'
+            - name: TUWUNEL_ALLOW_REGISTRATION
+              value: 'true'
+            - name: TUWUNEL_ALLOW_LEGACY_MEDIA
+              value: 'false'
+            envFrom:
+            - secretRef:
+                name: tuwunel-secret
+    defaultPodOptions:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        runAsNonRoot: true
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+    persistence:
+      data:
+        existingClaim: "{{ .Release.Name }}"
+    podAnnotations:
+      configmap.reloader.stakater.com/reload: tuwunel
+    route:
+      app:
+        hostnames:
+        - '{{ .Release.Name }}.${ROOT_DOMAIN}'
+        parentRefs:
+        - name: envoy-internal
+          namespace: network
+    service:
+      server:
+        ports:
+          http:
+            port: 8008

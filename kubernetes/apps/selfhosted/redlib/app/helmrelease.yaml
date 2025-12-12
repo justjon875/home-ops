@@ -29,7 +29,7 @@ spec:
             env:
               FIREWALL_DEBUG: "on"
               FIREWALL_INPUT_PORTS: "8080"
-              SERVER_COUNTRIES: Germany
+              SERVER_COUNTRIES: Vietnam
               VPN_INTERFACE: wg0
               VPN_SERVICE_PROVIDER: protonvpn
               VPN_TYPE: wireguard

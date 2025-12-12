@@ -3,7 +3,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app vaultwarden
+  name: &app searxng
 spec:
   components:
     - ../../../../components/volsync
@@ -11,12 +11,11 @@ spec:
     - name: rook-ceph-cluster
       namespace: rook-ceph
   interval: 1h
-  path: ./kubernetes/app/selfhosted/vaultwarden/app
+  path: ./kubernetes/app/selfhosted/searxng/app
   postBuild:
     substitute:
       APP: *app
       VOLSYNC_CAPACITY: 1Gi
-  postBuild:
     substituteFrom:
       - name: cluster-secrets
         kind: Secret

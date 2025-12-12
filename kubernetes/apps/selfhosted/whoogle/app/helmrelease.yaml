@@ -1,0 +1,46 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app whoogle
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: *app
+  values:
+    controllers:
+      whoogle:
+        containers:
+          app:
+            env:
+              WHOOGLE_ALT_IG: farside.link/bibliogram/u
+              WHOOGLE_ALT_IMDB: farside.link/libremdb
+              WHOOGLE_ALT_IMG: farside.link/rimgo
+              WHOOGLE_ALT_MD: farside.link/scribe
+              WHOOGLE_ALT_QUORA: farside.link/quetre
+              WHOOGLE_ALT_RD: redlib.habanerojam.xyz
+              WHOOGLE_ALT_TL: farside.link/lingva
+              WHOOGLE_ALT_TW: farside.link/nitter
+              WHOOGLE_ALT_WIKI: farside.link/wikiless
+              WHOOGLE_ALT_YT: farside.link/invidious
+              WHOOGLE_CONFIG_ALTS: 1
+              WHOOGLE_CONFIG_STYLE: ':root {    /* DARK THEME COLORS */    --whoogle-dark-logo: #cdd6f4;    --whoogle-dark-page-bg: #1e1e2e;    --whoogle-dark-element-bg: #45475a;    --whoogle-dark-text: #cdd6f4;    --whoogle-dark-contrast-text: #bac2de;    --whoogle-dark-secondary-text: #a6adc8;    --whoogle-dark-result-bg: #313244;    --whoogle-dark-result-title: #b4befe;    --whoogle-dark-result-url: #f5e0dc;    --whoogle-dark-result-visited: #eba0ac;}#whoogle-w {    fill: #89b4fa;}#whoogle-h {    fill: #f38ba8;}#whoogle-o-1 {    fill: #f9e2af;}#whoogle-o-2 {    fill: #89b4fa;}#whoogle-g {    fill: #a6e3a1;}#whoogle-l {    fill: #f38ba8;}#whoogle-e {    fill: #f9e2af;}'
+              WHOOGLE_CONFIG_THEME: dark
+              WHOOGLE_DOTENV: 1
+            image:
+              repository: ghcr.io/benbusby/whoogle-search
+              tag: latest@sha256:337ee555ab272db01cafd152636fc01fcddbd7eab0079abbade2c14992d53378
+    route:
+      app:
+        hostnames:
+        - '{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}'
+        parentRefs:
+        - name: envoy-internal
+          namespace: network
+    service:
+      app:
+        ports:
+          http:
+            port: 5000
+  interval: 15m

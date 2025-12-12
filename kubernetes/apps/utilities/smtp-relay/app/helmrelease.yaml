@@ -48,7 +48,7 @@ spec:
     service:
       app:
         annotations:
-          lbipam.cilium.io/ips: 172.16.0.125
+          lbipam.cilium.io/ips: ${SMTP_HOST}
         type: LoadBalancer
         externalTrafficPolicy: Local
         ports:

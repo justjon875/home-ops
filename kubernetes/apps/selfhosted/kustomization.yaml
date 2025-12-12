@@ -1,32 +1,19 @@
----
-# yaml-language-server: $schema=https://json.schemastore.org/kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: selfhosted
-
-components:
-  - ../../components/sops
-  - ../../components/common
-
 resources:
   - ./namespace.yaml
+  - ./atuin/ks.yaml
+  - ./eddrit/ks.yaml
+  - ./filebrowser/ks.yaml
+  - ./linkwarden/ks.yaml
+  - ./matrix-element/ks.yaml
+  - ./memos/ks.yaml
+  - ./openspeedtest/ks.yaml
+  - ./paperless-ngx/ks.yaml
+  - ./pairdrop/ks.yaml
   - ./redlib/ks.yaml
-  # - atuin
-  # - eddrit
-  # - filebrowser
-  # - linkwarden
-  # - matrix-element
-  # - memos
-  # - openspeedtest
-  # - paperless-ngx
-  # - pairdrop
-  # - planka
-  # - redlib
-  # - rxresume
-  # - searxng
-  # - stirling-pdf
-  # - stump
-  # - tuwunel
-  # - vaultwarden
-  # - websurfx
-  # - whoogle
+  - ./searxng/ks.yaml
+  - ./stirling-pdf/ks.yaml
+  - ./tuwunel/ks.yaml
+  - ./vaultwarden/ks.yaml
+  - ./whoogle/ks.yaml
