@@ -17,6 +17,7 @@ spec:
             env:
               DATA_FOLDER: /data
               DOMAIN: https://vaultwarden.${ROOT_DOMAIN}
+              LOG_LEVEL: debug
               SIGNUPS_ALLOWED: false
               SMTP_FROM: vaultwarden@${ROOT_DOMAIN}
               SMTP_HOST: smtp-relay.${ROOT_DOMAIN}
