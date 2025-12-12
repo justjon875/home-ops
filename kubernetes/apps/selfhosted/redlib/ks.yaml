@@ -5,17 +5,12 @@ kind: Kustomization
 metadata:
   name: &app redlib
 spec:
-  components:
-    - ../../../../components/volsync
-  dependsOn:
-    - name: rook-ceph-cluster
-      namespace: rook-ceph
   interval: 1h
   path: ./kubernetes/apps/selfhosted/redlib/app
   postBuild:
-    substitute:
-      APP: *app
-      VOLSYNC_CAPACITY: 2Gi
+    substituteFrom:
+      - name: cluster-secrets
+        kind: Secret
   prune: true
   sourceRef:
     kind: GitRepository
