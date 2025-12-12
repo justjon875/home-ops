@@ -17,9 +17,6 @@ spec:
         containers:
           app:
             env:
-              PGID: '1000'
-              PUID: '1000'
-              TZ: ${TIMEZONE}
               RADARR__APP__INSTANCENAME: Radarr
               RADARR__APP__THEME: dark
               RADARR__AUTH__METHOD: External
@@ -27,6 +24,7 @@ spec:
               RADARR__LOG__DBENABLED: 'False'
               RADARR__LOG__LEVEL: info
               RADARR__UPDATE__BRANCH: develop
+              TZ: ${TIMEZONE}
             envFrom:
             - secretRef:
                 name: radarr-secret
@@ -48,14 +46,10 @@ spec:
           type: RuntimeDefault
     persistence:
       config:
-        advancedMounts:
-          radarr:
-            app:
-            - path: /radarr/etc
         existingClaim: "{{ .Release.Name }}"
       media:
         enabled: true
-        path: /mnt/raid/media/qbittorrent/downloads
+        path: ${NFS_PATH}/qbittorrent/downloads
         server: ${NFS_HOST}
         type: nfs
       sabnzbd:
@@ -64,7 +58,7 @@ spec:
             app:
             - path: /mnt/sabdnzb
         enabled: true
-        path: /mnt/raid/media/sabnzbd/downloads
+        path: ${NFS_PATH}/sabnzbd/downloads
         server: ${NFS_HOST}
         type: nfs
       tmpfs:
@@ -81,7 +75,7 @@ spec:
     route:
       app:
         hostnames:
-        - '{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}'
+        - '{{ .Release.Name }}.${ROOT_DOMAIN}'
         parentRefs:
         - name: envoy-internal
           namespace: network
