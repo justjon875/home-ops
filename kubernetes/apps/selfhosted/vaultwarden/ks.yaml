@@ -11,7 +11,7 @@ spec:
     - name: rook-ceph-cluster
       namespace: rook-ceph
   interval: 1h
-  path: ./kubernetes/app/selfhosted/vaultwarden/app
+  path: ./kubernetes/apps/selfhosted/vaultwarden/app
   postBuild:
     substitute:
       APP: *app

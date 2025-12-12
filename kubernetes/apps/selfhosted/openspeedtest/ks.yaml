@@ -6,7 +6,7 @@ metadata:
   name: &app openspeedtest
 spec:
   interval: 1h
-  path: ./kubernetes/app/selfhosted/openspeedtest/app
+  path: ./kubernetes/apps/selfhosted/openspeedtest/app
   postBuild:
     substituteFrom:
       - name: cluster-secrets

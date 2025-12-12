@@ -11,7 +11,7 @@ spec:
     - name: rook-ceph-cluster
       namespace: rook-ceph
   interval: 1h
-  path: ./kubernetes/app/selfhosted/whoogle/app
+  path: ./kubernetes/apps/selfhosted/whoogle/app
   postBuild:
     substituteFrom:
       - name: cluster-secrets

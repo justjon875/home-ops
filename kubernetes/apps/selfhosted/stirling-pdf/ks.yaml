@@ -6,7 +6,7 @@ metadata:
   name: &app stirling-pdf
 spec:
   interval: 1h
-  path: ./kubernetes/app/selfhosted/stirling-pdf/app
+  path: ./kubernetes/apps/selfhosted/stirling-pdf/app
   postBuild:
     substituteFrom:
       - name: cluster-secrets

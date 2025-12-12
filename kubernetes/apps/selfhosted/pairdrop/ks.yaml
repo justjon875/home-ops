@@ -6,7 +6,7 @@ metadata:
   name: &app pairdrop
 spec:
   interval: 1h
-  path: ./kubernetes/app/selfhosted/pairdrop/app
+  path: ./kubernetes/apps/selfhosted/pairdrop/app
   postBuild:
     substituteFrom:
       - name: cluster-secrets

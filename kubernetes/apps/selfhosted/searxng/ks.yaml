@@ -11,7 +11,7 @@ spec:
     - name: rook-ceph-cluster
       namespace: rook-ceph
   interval: 1h
-  path: ./kubernetes/app/selfhosted/searxng/app
+  path: ./kubernetes/apps/selfhosted/searxng/app
   postBuild:
     substitute:
       APP: *app

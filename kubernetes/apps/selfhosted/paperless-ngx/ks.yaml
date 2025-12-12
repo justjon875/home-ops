@@ -11,7 +11,7 @@ spec:
     - name: rook-ceph-cluster
       namespace: rook-ceph
   interval: 1h
-  path: ./kubernetes/app/selfhosted/paperless-ngx/app
+  path: ./kubernetes/apps/selfhosted/paperless-ngx/app
   postBuild:
     substitute:
       APP: *app
