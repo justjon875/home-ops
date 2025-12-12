@@ -7,7 +7,7 @@ spec:
   components:
     - ../../../../components/cnpg
   dependsOn:
-    - name: secret-stores
+    - name: external-secrets
       namespace: external-secrets
     - name: cloudnative-pg
       namespace: database
