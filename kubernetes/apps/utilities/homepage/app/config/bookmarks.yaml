@@ -1,0 +1,16 @@
+---
+  - Developer:
+    - Github:
+      - icon: github-light.png
+        href: https://github.com/
+    - Mullvad:
+      - icon: mullvad.png
+        href: https://mullvad.net/en/check
+
+  - Social:
+    - Lemmy:
+      - icon: lemmy.png
+        href: https://p.lemmy.world
+    - Twitch:
+      - icon: twitch.png
+        href: https://twitch.tv
