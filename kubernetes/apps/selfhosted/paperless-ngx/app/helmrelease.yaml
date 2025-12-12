@@ -42,13 +42,6 @@ spec:
     persistence:
       paperless:
         existingClaim: "{{ .Release.Name }}"
-      data:
-        enabled: true
-        globalMounts:
-          - path: /old
-        path: /mnt/raid/nfs/paperless-ngx
-        server: ${NFS_HOST}
-        type: nfs
     route:
       app:
         hostnames:
