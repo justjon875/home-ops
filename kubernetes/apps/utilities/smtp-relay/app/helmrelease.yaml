@@ -60,7 +60,10 @@ spec:
           maddy.conf: |-
             state_dir /cache/state
             runtime_dir /cache/run
-            tls off
+            tls file /tls/tls.crt /tls/tls.key {
+              protocols tls1.2 tls1.3
+              curves X25519
+            }
             hostname {env:SMTP_RELAY_HOSTNAME}
             smtp tcp://0.0.0.0:{env:SMTP_RELAY_SMTP_PORT} {
                 default_source {
@@ -84,3 +87,9 @@ spec:
         globalMounts:
           - path: /data/maddy.conf
             subPath: maddy.conf
+      tls:
+        type: secret
+        name: tls.smtp-relay
+        globalMounts:
+          - path: /tls
+            readOnly: true
