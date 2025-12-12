@@ -4,6 +4,13 @@ kind: Kustomization
 metadata:
   name: kite
 spec:
+  components:
+    - ../../../../components/cnpg
+  dependsOn:
+    - name: secret-stores
+      namespace: external-secrets
+    - name: cloudnative-pg
+      namespace: database
   interval: 1h
   path: ./kubernetes/apps/utilities/kite/app
   postBuild:
