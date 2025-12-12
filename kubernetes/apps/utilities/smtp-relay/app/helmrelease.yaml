@@ -12,7 +12,7 @@ spec:
   values:
     controllers:
       smtp-relay:
-        replicas: 2
+        replicas: 1
         strategy: RollingUpdate
         annotations:
           reloader.stakater.com/auto: "true"
@@ -22,6 +22,7 @@ spec:
               repository: ghcr.io/foxcpp/maddy
               tag: 0.8.1@sha256:55636d8a29588eea62d81d51acdafe38e0f694fb91801ab12dc1ed8c47b6439d
             env:
+              DEBUG: true
               SMTP_RELAY_SMTP_PORT: &port 25
             envFrom:
               - secretRef:
@@ -66,6 +67,9 @@ spec:
             }
             hostname {env:SMTP_RELAY_HOSTNAME}
             smtp tcp://0.0.0.0:{env:SMTP_RELAY_SMTP_PORT} {
+                debug {env:DEBUG}
+                io_debug {env:DEBUG}
+
                 default_source {
                     deliver_to &remote_queue
                 }
