@@ -23,7 +23,7 @@ resources:
   - ./piped/ks.yaml
   - ./prowlarr/ks.yaml
   # - qbittorrent
-  # - radarr
+  - ./radarr/ks.yaml
   - ./sabnzbd/ks.yaml
   - ./sonarr/ks.yaml
   # - ytptube
