@@ -26,8 +26,8 @@ spec:
               RADARR__UPDATE__BRANCH: develop
               TZ: ${TIMEZONE}
             envFrom:
-            - secretRef:
-                name: radarr-secret
+              - secretRef:
+                  name: "{{ .Release.Name }}-secret"
             image:
               repository: ghcr.io/home-operations/radarr
               tag: 6.1.0.10293@sha256:22bbf7e924dd929b756147d8110664c3e2da37c59516b249945ab1d63657be29

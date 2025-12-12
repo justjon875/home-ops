@@ -7,11 +7,6 @@ spec:
     kind: OCIRepository
     name: *app
   interval: 1h
-  valuesFrom:
-  - kind: Secret
-    name: filebrowser
-    targetPath: persistence.cyberdrop.path
-    valuesKey: CYBERDROP_PATH
   values:
     controllers:
       filebrowser:

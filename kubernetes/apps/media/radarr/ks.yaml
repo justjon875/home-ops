@@ -9,6 +9,10 @@ spec:
     - ../../../../components/cnpg
     - ../../../../components/volsync
   dependsOn:
+    - name: cloudnative-pg
+      namespace: database
+    - name: external-secrets
+      namespace: external-secrets
     - name: rook-ceph-cluster
       namespace: rook-ceph
   interval: 1h
