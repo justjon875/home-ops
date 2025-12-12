@@ -77,3 +77,5 @@ spec:
         ports:
           http:
             port: 3000
+    serviceAccount:
+      *app : {}
