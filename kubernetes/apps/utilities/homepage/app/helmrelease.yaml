@@ -47,9 +47,7 @@ spec:
     defaultPodOptions:
       securityContext:
         runAsUser: 1000
-        runAsGroup: 100
-        fsGroup: 100
-        fsGroupChangePolicy: OnRootMismatch
+        runAsGroup: 1000
         seccompProfile: { type: RuntimeDefault }
     persistence:
       config:
