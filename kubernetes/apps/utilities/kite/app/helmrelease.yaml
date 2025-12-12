@@ -81,7 +81,7 @@ spec:
         rules:
           - backendRefs:
               - identifier: app
-                port: *port
+                port: &port 8080
     persistence:
       config:
         type: emptyDir
@@ -107,7 +107,7 @@ spec:
         controller: *app
         ports:
           http:
-            port: &port 8080
+            port: *port
     serviceAccount:
       *app : {}
     serviceMonitor:
