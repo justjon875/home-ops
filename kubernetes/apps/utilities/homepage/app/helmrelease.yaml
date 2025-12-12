@@ -37,7 +37,13 @@ spec:
                 cpu: 15m
                 memory: 200M
               limits:
-                memory: 2G
+                memory: 1G
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: false # does funky uid stuff
+              capabilities:
+                drop:
+                  - ALL
     persistence:
       config:
         type: configMap
