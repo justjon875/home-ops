@@ -8,6 +8,7 @@ spec:
   chartRef:
     kind: OCIRepository
     name: *app
+  interval: 1h
   values:
     controllers:
       whoogle:
@@ -34,7 +35,7 @@ spec:
     route:
       app:
         hostnames:
-        - '{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}'
+        - '{{ .Release.Name }}.${ROOT_DOMAIN}'
         parentRefs:
         - name: envoy-internal
           namespace: network
@@ -43,4 +44,3 @@ spec:
         ports:
           http:
             port: 5000
-  interval: 15m

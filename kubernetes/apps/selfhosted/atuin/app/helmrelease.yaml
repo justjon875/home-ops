@@ -53,8 +53,7 @@ spec:
             runAsUser: 1000
     persistence:
       config:
-        enabled: true
-        type: emptyDir
+        existingClaim: "{{ .Release.Name }}"
     route:
       app:
         hostnames:

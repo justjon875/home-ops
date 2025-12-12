@@ -57,7 +57,7 @@ spec:
             port: *port
     route:
       app:
-        hostnames: ["{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}"]
+        hostnames: ["{{ .Release.Name }}.${ROOT_DOMAIN}"]
         parentRefs:
           - name: envoy-internal
             namespace: network
