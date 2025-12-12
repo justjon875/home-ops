@@ -11,7 +11,7 @@ spec:
       inputName: DS_PROMETHEUS
   instanceSelector:
     matchLabels:
-      dashboards: grafana
+      grafana.internal/instance: grafana
   configMapRef:
     key: cnp.json
     name: cnpg-grafana-dashboard
