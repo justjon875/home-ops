@@ -28,7 +28,7 @@ spec:
               repository: ghcr.io/zxh326/kite
               tag: v0.7.4@sha256:a7ec3d8fbf0b4598d25a84ba9795684a151495a00b4cbe17b3f279ac078ca161
             env:
-              HOST: https://{{ .Release.Name }}.${SECRET_DOMAIN}
+              HOST: https://{{ .Release.Name }}.${ROOT_DOMAIN}
               # ENABLE_ANALYTICS: true
               DB_TYPE: postgres
               DB_DSN:
