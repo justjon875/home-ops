@@ -23,11 +23,17 @@ spec:
               RADARR__AUTH__REQUIRED: DisabledForLocalAddresses
               RADARR__LOG__DBENABLED: 'False'
               RADARR__LOG__LEVEL: info
+              RADARR__POSTGRES__HOST: ENC[AES256_GCM,data:65p+GqBSu5Qkw/jFxcgRtHAyyqGnLzAwnK0dn18v9WNhD5oqbYbbGA==,iv:4Dh13A6TUvoaTe1KybavqatGnO0AcPSA9e9a7TwS98I=,tag:CRPJm/a5x7Y9I/Z836cP8g==,type:str]
+              RADARR__POSTGRES__MAINDB: *app
+              RADARR__POSTGRES__PASSWORD:
+                valueFrom:
+                  secretKeyRef:
+                    name: &pg "{{ .Release.Name }}-pguser-secret"
+                    key: password
+              RADARR__POSTGRES__PORT: ENC[AES256_GCM,data:X+c38w==,iv:rnpeV4MWiwgDDIHmOb39kE689Q32wfpqI09i7Ke7jrY=,tag:gUF9uqx3st5KuDlbcXnTZQ==,type:str]
+              RADARR__POSTGRES__USER: *app
               RADARR__UPDATE__BRANCH: develop
               TZ: ${TIMEZONE}
-            envFrom:
-              - secretRef:
-                  name: "{{ .Release.Name }}-secret"
             image:
               repository: ghcr.io/home-operations/radarr
               tag: 6.1.0.10293@sha256:22bbf7e924dd929b756147d8110664c3e2da37c59516b249945ab1d63657be29
