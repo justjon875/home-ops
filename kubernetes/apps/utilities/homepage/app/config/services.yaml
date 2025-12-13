@@ -77,7 +77,7 @@
         widget:
           type: immich
           url: https://immich.${ROOT_DOMAIN}
-          key: ${SECRET_IMMICH_KEY}
+          key: {{IMMICH_KEY}}
           version: 2
     - Minio:
         href: https://minio.${ROOT_DOMAIN}
