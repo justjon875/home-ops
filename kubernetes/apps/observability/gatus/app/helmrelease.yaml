@@ -90,9 +90,10 @@ spec:
                 - watch
                 - list
             - apiGroups:
-                - networking.k8s.io
+                - gateway.networking.k8s.io
               resources:
-                - ingresses
+                - gateways
+                - httproutes
               verbs:
                 - get
                 - watch
@@ -104,6 +105,8 @@ spec:
             identifier: gatus
           subjects:
             - identifier: gatus
+    serviceAccount:
+      gatus: {}
     route:
       app:
         annotations:
@@ -123,5 +126,3 @@ spec:
       app:
         endpoints:
           - port: http
-    serviceAccount:
-      gatus: {}
