@@ -17,14 +17,6 @@
     cpu: true
     memory: true
     label: "hydrogen"
-- unifi_console:
-    url: https://unifi.lithium.${ROOT_DOMAIN}
-    username: ${USERNAME}
-    password: ${SECRET_UNIFI_PASSWORD}
-- search:
-    provider: custom
-    target: _self
-    url: https://whoogle.${ROOT_DOMAIN}/search?q=
 - openmeteo:
     label: Home # optional
     latitude: ${SECRET_LATITUDE}

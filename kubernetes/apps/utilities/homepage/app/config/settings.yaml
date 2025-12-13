@@ -1,7 +1,38 @@
 ---
-title: Dashboard
 background: /images/background.jpg
 backgroundOpacity: 0.5
-theme: dark
 color: slate
+headerStyle: clean
+theme: dark
 target: _self
+title: Dashboard
+layout:
+  Cluster:
+    style: row
+    columns: 2
+    icon: mdi-play-circle
+  Lithium:
+    style: row
+    columns: 4
+    icon: mdi-play-circle
+  Cloud:
+    style: row
+    columns: 4
+    icon: mdi-play-circle
+  Media:
+    style: row
+    columns: 2
+    icon: mdi-play-circle
+  Media Management:
+    style: row
+    columns: 2
+    icon: mdi-play-circle
+  Selfhosted:
+    style: row
+    columns: 4
+    icon: mdi-play-circle
+  Utilities:
+    style: row
+    columns: 4
+    icon: mdi-play-circle
+

@@ -31,6 +31,15 @@
               query: count(count by (node) (kube_node_status_condition{condition="Ready"}))
               format:
                 type: number
+    - OPNSense:
+        href: https://oxygen.${OLD_DOMAIN}
+        icon: opnsense.png
+        description: Firewall and router
+        widget:
+          type: opnsense
+          url: https://oxygen.${OLD_DOMAIN}
+          username: {{HOMEPAGE_VAR_OPNSENSE_USERNAME}}
+          password: {{HOMEPAGE_VAR_OPNSENSE_PASSWORD}}
 - Lithium:
     - Dozzle lithium:
         href: https://dozzle.lithium.${OLD_DOMAIN}
@@ -91,16 +100,6 @@
         description: Cloudstorage
         namespace: cloud
         app: opencloud
-- Infra:
-    - OPNSense:
-        href: https://oxygen.${OLD_DOMAIN}
-        icon: opnsense.png
-        description: Firewall and router
-        widget:
-          type: opnsense
-          url: https://oxygen.${OLD_DOMAIN}
-          username: {{HOMEPAGE_VAR_OPNSENSE_USERNAME}}
-          password: {{HOMEPAGE_VAR_OPNSENSE_PASSWORD}}
 - Media:
     - Calibre:
         href: https://calibre.${ROOT_DOMAIN}
