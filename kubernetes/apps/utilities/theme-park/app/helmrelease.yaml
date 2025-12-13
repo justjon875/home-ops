@@ -5,8 +5,7 @@ metadata:
 spec:
   chartRef:
     kind: OCIRepository
-    name: app-template
-    namespace: flux-system
+    name: "{{ .Release.Name }}"
   install:
     createNamespace: true
     remediation:
