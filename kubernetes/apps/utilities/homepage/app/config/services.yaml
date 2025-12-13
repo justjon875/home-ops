@@ -55,8 +55,8 @@
         widget:
           type: komodo
           url: https://komodo.lithium.habanerojam.xyz
-          key: ${SECRET_KOMODO_KEY}
-          secret: ${SECRET_KOMODO_SECRET}
+          key: {{KOMODO_KEY}}
+          secret: {{KOMODO_SECRET}}
           showSummary: true
           showStacks: true
     - Unifi:
@@ -93,12 +93,12 @@
         app: opencloud
 - Infra:
     - OPNSense:
-        href: https://oxygen.${ROOT_DOMAIN}
+        href: https://oxygen.${OLD_DOMAIN}
         icon: opnsense.png
         description: Firewall and router
         widget:
           type: opnsense
-          url: https://oxygen.${ROOT_DOMAIN}
+          url: https://oxygen.${OLD_DOMAIN}
           username: ${SECRET_OPNSENSE_USERNAME}
           password: ${SECRET_OPNSENSE_PASSWORD}
 - Media:
