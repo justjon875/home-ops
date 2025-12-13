@@ -49,12 +49,12 @@
         icon: pocket-id.png
         description: A simple OIDC provider that allows users to authenticate with their passkeys to your services
     - Komodo:
-        href: https://komodo.lithium.habanerojam.xyz
+        href: https://komodo.lithium.${OLD_DOMAIN}
         icon: komodo.png
         description: Deploy, configure, troubleshoot and secure containers
         widget:
           type: komodo
-          url: https://komodo.lithium.habanerojam.xyz
+          url: https://komodo.lithium.${OLD_DOMAIN}
           key: "{{KOMODO_KEY}}"
           secret: "{{KOMODO_SECRET}}"
           showSummary: true
