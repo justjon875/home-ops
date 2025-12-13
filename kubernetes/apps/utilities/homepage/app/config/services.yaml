@@ -99,8 +99,8 @@
         widget:
           type: opnsense
           url: https://oxygen.${OLD_DOMAIN}
-          username: ${SECRET_OPNSENSE_USERNAME}
-          password: ${SECRET_OPNSENSE_PASSWORD}
+          username: {{HOMEPAGE_VAR_OPNSENSE_USERNAME}}
+          password: {{HOMEPAGE_VAR_OPNSENSE_PASSWORD}}
 - Media:
     - Calibre:
         href: https://calibre.${ROOT_DOMAIN}
@@ -117,7 +117,7 @@
         widget:
           type: jellyfin
           url: https://jellyfin.${ROOT_DOMAIN}
-          key: ${SECRET_JELLYFIN_KEY}
+          key: {{HOMEPAGE_VAR_JELLYFIN_KEY}}
     - Navidrome:
         href: https://navidrome.${ROOT_DOMAIN}
         icon: navidrome.png
@@ -126,16 +126,12 @@
           type: navidrome
           url: https://navidrome.${ROOT_DOMAIN}
           user: ${USERNAME}
-          salt: ${SECRET_NAVIDROME_SALT}
-          token: ${SECRET_NAVIDROME_TOKEN}
+          salt: {{HOMEPAGE_VAR_NAVIDROME_SALT}}
+          token: {{HOMEPAGE_VAR_NAVIDROME_TOKEN}}
     - Piped:
         href: https://piped.${ROOT_DOMAIN}
         icon: piped.png
         description: An alternative front-end to YouTube
-    - Stump:
-        href: https://stump.${ROOT_DOMAIN}
-        icon: /icons/stump.png
-        description: Comics, manga and digital book server
 - Media Management:
   - Jellyseerr:
       href: https://jellyseerr.${ROOT_DOMAIN}
@@ -144,7 +140,7 @@
       widget:
         type: jellyseerr
         url: https://jellyseerr.${ROOT_DOMAIN}
-        key: ${SECRET_JELLYSEERR_KEY}
+        key: {{HOMEPAGE_VAR__JELLYSEERR_KEY}}
   - Metube:
       href: https://metube.${ROOT_DOMAIN}
       icon: metube.png
@@ -156,7 +152,7 @@
       widget:
         type: prowlarr
         url: https://prowlarr.${ROOT_DOMAIN}
-        key: ${SECRET_PROWLARR_KEY}
+        key: {{HOMEPAGE_VAR_PROWLARR_KEY}}
   - Radarr:
       href: https://radarr.${ROOT_DOMAIN}
       icon: radarr.png
@@ -172,7 +168,7 @@
       widget:
         type: sabnzbd
         url: https://sabnzbd.${ROOT_DOMAIN}
-        key: ${SECRET_SABNZBD_APIKEY}
+        key: {{HOMEPAGE_VAR_SABNZBD__API_KEY}}
   - Sonarr:
       href: https://sonarr.${ROOT_DOMAIN}
       icon: sonarr.png
@@ -210,18 +206,10 @@
         href: https://pairdrop.${ROOT_DOMAIN}
         icon: /icons/pairdrop.png
         description: Sublime alternative to AirDrop that works on all platforms
-    - Planka:
-        href: https://planka.${ROOT_DOMAIN}
-        icon: planka.png
-        description: Kanban board
     - Redlib:
         href: https://redlib.${ROOT_DOMAIN}
         icon: reddit.png
         description: Private front-end for Reddit
-    - RxResume:
-        href: https://rxresume.${ROOT_DOMAIN}
-        icon: /icons/rxresume.png
-        description: Resume Builder
     - Stirling-PDF:
         href: https://stirling-pdf.${ROOT_DOMAIN}
         icon: /icons/stirling.png
@@ -267,10 +255,6 @@
         href: https://k8s.${ROOT_DOMAIN}
         icon: kubernetes-dashboard.png
         description: Kubernetes Dashboard
-    - Weave:
-        href: https://weave.${ROOT_DOMAIN}
-        icon: /icons/weave.svg
-        description: GitOps for K8s
     - Uptime Kuma:
         href: https://uptime.${ROOT_DOMAIN}
         icon: uptime-kuma.png
