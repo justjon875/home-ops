@@ -20,6 +20,6 @@ resources:
   - ./redlib/ks.yaml
   - ./searxng/ks.yaml
   - ./stirling-pdf/ks.yaml
-  - ./tuwunel/ks.yaml
+  # - ./tuwunel/ks.yaml
   - ./vaultwarden/ks.yaml
   - ./whoogle/ks.yaml

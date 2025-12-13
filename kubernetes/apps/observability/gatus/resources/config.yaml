@@ -1,0 +1,15 @@
+---
+connectivity:
+  checker:
+    target: 192.168.1.1:53
+    interval: 1m
+
+metrics: true
+
+ui:
+  title: Status | Gatus
+  header: Status
+  link: https://forgejo.lithium.${ROOT_DOMAIN}
+
+web:
+  port: 80
