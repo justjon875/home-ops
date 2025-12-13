@@ -55,8 +55,8 @@
         widget:
           type: komodo
           url: https://komodo.lithium.habanerojam.xyz
-          key: {{KOMODO_KEY}}
-          secret: {{KOMODO_SECRET}}
+          key: "{{KOMODO_KEY}}"
+          secret: "{{KOMODO_SECRET}}"
           showSummary: true
           showStacks: true
     - Unifi:
@@ -164,7 +164,7 @@
       widget:
         type: radarr
         url: https://radarr.${ROOT_DOMAIN}
-        key: '{{RADARR_API_KEY}}'
+        key: "{{RADARR_API_KEY}}"
   - SABnzbd:
       href: https://sabnzbd.${ROOT_DOMAIN}
       icon: sabnzbd.png
@@ -180,7 +180,7 @@
       widget:
         type: sonarr
         url: https://sonarr.${ROOT_DOMAIN}
-        key: '{{SONARR_API_KEY}}'
+        key: "{{SONARR_API_KEY}}"
 - Selfhosted:
     - FileBrowser:
         href: https://filebrowser.${ROOT_DOMAIN}
