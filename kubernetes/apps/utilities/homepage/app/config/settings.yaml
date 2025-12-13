@@ -10,15 +10,15 @@ layout:
   Cluster:
     style: row
     columns: 2
-    icon: mdi-chip-circle
+    icon: mdi-chip
   Lithium:
     style: row
     columns: 4
-    icon: mdi-pi-circle
+    icon: mdi-pi
   Cloud:
     style: row
     columns: 3
-    icon: mdi-cloud-circle
+    icon: mdi-cloud
   Media:
     style: row
     columns: 2
@@ -26,13 +26,13 @@ layout:
   Media Management:
     style: row
     columns: 2
-    icon: mdi-play-network-circle
+    icon: mdi-network
   Selfhosted:
     style: row
     columns: 4
-    icon: mdi-cupboard-circle
+    icon: mdi-cupboard
   Utilities:
     style: row
     columns: 4
-    icon: mdi-screwdriver-circle
+    icon: mdi-screwdriver
 
