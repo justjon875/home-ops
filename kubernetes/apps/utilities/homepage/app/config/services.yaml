@@ -131,7 +131,7 @@
       widget:
         type: prowlarr
         url: https://prowlarr.${ROOT_DOMAIN}
-        key: {{HOMEPAGE_VAR_PROWLARR_KEY}}
+        key: {{HOMEPAGE_VAR_PROWLARR_API_KEY}}
   - Radarr:
       href: https://radarr.${ROOT_DOMAIN}
       icon: radarr.png
@@ -213,10 +213,3 @@
     - Kubernetes:
         href: https://k8s.${ROOT_DOMAIN}
         icon: kubernetes-dashboard.png
-    - Uptime Kuma:
-        href: https://uptime.${ROOT_DOMAIN}
-        icon: uptime-kuma.png
-        widget:
-          type: uptimekuma
-          url: https://uptime.${ROOT_DOMAIN}
-          slug: up
