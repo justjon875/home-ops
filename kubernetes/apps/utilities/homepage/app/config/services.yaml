@@ -2,7 +2,6 @@
 - Cluster:
     - Cluster:
         icon: talos.svg
-        description: Prometheus
         widget:
           type: prometheusmetric
           url: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:9090
@@ -34,7 +33,6 @@
     - OPNSense:
         href: https://oxygen.${OLD_DOMAIN}
         icon: opnsense.png
-        description: Firewall and router
         widget:
           type: opnsense
           url: https://oxygen.${OLD_DOMAIN}
@@ -44,23 +42,18 @@
     - Dozzle lithium:
         href: https://dozzle.lithium.${OLD_DOMAIN}
         icon: dozzle.png
-        description: Simple Container Monitoring and Logging
     - Forgejo lithium:
         href: https://forgejo.lithium.${OLD_DOMAIN}
         icon: forgejo.png
-        description: Beyond coding. We forge.
     - Isaiah:
         href: https://isaiah.lithium.${OLD_DOMAIN}
         icon: isaiah.png
-        description: TBD
     - Pocket-ID:
         href: https://pocketid.lithium.${OLD_DOMAIN}
         icon: pocket-id.png
-        description: A simple OIDC provider that allows users to authenticate with their passkeys to your services
     - Komodo:
         href: https://komodo.lithium.${OLD_DOMAIN}
         icon: komodo.png
-        description: Deploy, configure, troubleshoot and secure containers
         widget:
           type: komodo
           url: https://komodo.lithium.${OLD_DOMAIN}
@@ -71,16 +64,13 @@
     - Unifi:
         href: https://unifi.lithium.${OLD_DOMAIN}
         icon: unifi.png
-        description: Unifi console
     - Whoogle lithium:
         href: https://whoogle.lithium.${OLD_DOMAIN}
         icon: whoogle.png
-        description: Ad-free, privacy-respecting metasearch engine
 - Cloud:
     - Immich:
         href: https://immich.${ROOT_DOMAIN}
         icon: immich.png
-        description: High performance self-hosted photo and video backup solution
         namespace: cloud
         app: immich
         widget:
@@ -91,28 +81,23 @@
     - Minio:
         href: https://minio.${ROOT_DOMAIN}
         icon: minio.png
-        description: S3 object storage
         namespace: cloud
         app: minio
     - OpenCloud:
         href: https://opencloud.${ROOT_DOMAIN}
         icon: sh-opencloud.svg
-        description: Cloudstorage
         namespace: cloud
         app: opencloud
 - Media:
     - Calibre:
         href: https://calibre.${ROOT_DOMAIN}
         icon: calibre.png
-        description: calibre is a powerful and easy to use e-book manager
     - Invidious:
         href: https://invidious.${ROOT_DOMAIN}
         icon: invidious.png
-        description: An alternative front-end to YouTube
     - Jellyfin:
         href: https://jellyfin.${ROOT_DOMAIN}
         icon: jellyfin.png
-        description: Mediaserver
         widget:
           type: jellyfin
           url: https://jellyfin.${ROOT_DOMAIN}
@@ -120,7 +105,6 @@
     - Navidrome:
         href: https://navidrome.${ROOT_DOMAIN}
         icon: navidrome.png
-        description: Music Player
         widget:
           type: navidrome
           url: https://navidrome.${ROOT_DOMAIN}
@@ -130,12 +114,10 @@
     - Piped:
         href: https://piped.${ROOT_DOMAIN}
         icon: piped.png
-        description: An alternative front-end to YouTube
 - Media Management:
   - Jellyseerr:
       href: https://jellyseerr.${ROOT_DOMAIN}
       icon: jellyseerr.png
-      description: TODO
       widget:
         type: jellyseerr
         url: https://jellyseerr.${ROOT_DOMAIN}
@@ -143,11 +125,9 @@
   - Metube:
       href: https://metube.${ROOT_DOMAIN}
       icon: metube.png
-      description: Web GUI for youtube-dl
   - Prowlarr:
       href: https://prowlarr.${ROOT_DOMAIN}
       icon: prowlarr.png
-      description: TODO
       widget:
         type: prowlarr
         url: https://prowlarr.${ROOT_DOMAIN}
@@ -155,7 +135,6 @@
   - Radarr:
       href: https://radarr.${ROOT_DOMAIN}
       icon: radarr.png
-      description: TODO
       widget:
         type: radarr
         url: https://radarr.${ROOT_DOMAIN}
@@ -163,7 +142,6 @@
   - SABnzbd:
       href: https://sabnzbd.${ROOT_DOMAIN}
       icon: sabnzbd.png
-      description: SABnzbd is an open-source binary newsreader written in Python
       widget:
         type: sabnzbd
         url: https://sabnzbd.${ROOT_DOMAIN}
@@ -171,7 +149,6 @@
   - Sonarr:
       href: https://sonarr.${ROOT_DOMAIN}
       icon: sonarr.png
-      description: TODO
       widget:
         type: sonarr
         url: https://sonarr.${ROOT_DOMAIN}
@@ -180,11 +157,9 @@
     - FileBrowser:
         href: https://filebrowser.${ROOT_DOMAIN}
         icon: filebrowser.png
-        description: File managing interface
     - Linkwarden:
         href: https://linkwarden.${ROOT_DOMAIN}
         icon: /icons/linkwarden.png
-        description: ️Self-hosted collaborative bookmark manager to collect, organize, and preserve webpages and articles
         widget:
           type: linkwarden
           url: https://linkwarden.${ROOT_DOMAIN}
@@ -192,72 +167,55 @@
     - Memos:
         href: https://memos.${ROOT_DOMAIN}
         icon: memos.png
-        description: A lightweight, self-hosted memo hub
     - OpenSpeedTest:
         href: https://openspeedtest.${ROOT_DOMAIN}
         icon: openspeedtest.png
-        description: HTML5 Network Performance Estimation Tool
     - Paperless-ngx:
         href: https://paperless-ngx.${ROOT_DOMAIN}
         icon: /icons/paperless-ngx.svg
-        description: Scan, index and archive all your physical documents
     - PairDrop:
         href: https://pairdrop.${ROOT_DOMAIN}
         icon: /icons/pairdrop.png
-        description: Sublime alternative to AirDrop that works on all platforms
     - Redlib:
         href: https://redlib.${ROOT_DOMAIN}
         icon: reddit.png
-        description: Private front-end for Reddit
     - Stirling-PDF:
         href: https://stirling-pdf.${ROOT_DOMAIN}
         icon: /icons/stirling.png
-        description: PDF manipulation tool
     - Vaultwarden:
         href: https://vaultwarden.${ROOT_DOMAIN}
         icon: bitwarden.png
-        description: Password tool
     - Whoogle:
         href: https://whoogle.${ROOT_DOMAIN}
         icon: whoogle.png
-        description: Ad-free, privacy-respecting metasearch engine
 - Utilities:
     - Checkmate:
         href: https://checkmate.${ROOT_DOMAIN}
         icon: sh-checkmate.png
-        description: Track and monitor server hardware, uptime, response times, and incidents in real-time
     - Dozzle:
         href: https://dozzle.${ROOT_DOMAIN}
         icon: dozzle.png
-        description: Simple Container Monitoring and Logging
     - Element Web:
         href: https://element.${ROOT_DOMAIN}
         icon: element.png
-        description: Element is a Matrix-based end-to-end encrypted messenger and secure collaboration app
     - Frigate:
         href: https://frigate.${ROOT_DOMAIN}
         icon: frigate.png
-        description: Frigate is an open source NVR built around real-time AI object detection
     - Forgejo:
         href: https://forgejo.${ROOT_DOMAIN}
         icon: forgejo.png
-        description: self-hosted lightweight software forge
     - Goldilocks:
         href: https://goldilocks.${ROOT_DOMAIN}
         icon: https://raw.githubusercontent.com/FairwindsOps/goldilocks/master/img/goldilocks.svg
-        description: Helps identify a starting point for resource requests and limits
     - Grafana:
         href: https://grafana.${ROOT_DOMAIN}
         icon: grafana.png
-        description: Metric Monitoring
     - Kubernetes:
         href: https://k8s.${ROOT_DOMAIN}
         icon: kubernetes-dashboard.png
-        description: Kubernetes Dashboard
     - Uptime Kuma:
         href: https://uptime.${ROOT_DOMAIN}
         icon: uptime-kuma.png
-        description: A fancy self-hosted monitoring tool
         widget:
           type: uptimekuma
           url: https://uptime.${ROOT_DOMAIN}
