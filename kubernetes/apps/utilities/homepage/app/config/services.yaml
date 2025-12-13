@@ -55,8 +55,8 @@
         widget:
           type: komodo
           url: https://komodo.lithium.${OLD_DOMAIN}
-          key: "{{KOMODO_KEY}}"
-          secret: "{{KOMODO_SECRET}}"
+          key: "{{HOMEPAGE_VAR_KOMODO_KEY}}"
+          secret: "{{HOMEPAGE_VAR_KOMODO_SECRET}}"
           showSummary: true
           showStacks: true
     - Unifi:
@@ -77,7 +77,7 @@
         widget:
           type: immich
           url: https://immich.${ROOT_DOMAIN}
-          key: {{IMMICH_KEY}}
+          key: {{HOMEPAGE_VAR_IMMICH_KEY}}
           version: 2
     - Minio:
         href: https://minio.${ROOT_DOMAIN}
@@ -164,7 +164,7 @@
       widget:
         type: radarr
         url: https://radarr.${ROOT_DOMAIN}
-        key: "{{RADARR_API_KEY}}"
+        key: "{{HOMEPAGE_VAR_RADARR_API_KEY}}"
   - SABnzbd:
       href: https://sabnzbd.${ROOT_DOMAIN}
       icon: sabnzbd.png
@@ -180,7 +180,7 @@
       widget:
         type: sonarr
         url: https://sonarr.${ROOT_DOMAIN}
-        key: "{{SONARR_API_KEY}}"
+        key: "{{HOMEPAGE_VAR_SONARR_API_KEY}}"
 - Selfhosted:
     - FileBrowser:
         href: https://filebrowser.${ROOT_DOMAIN}
