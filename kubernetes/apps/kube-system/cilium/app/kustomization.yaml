@@ -6,3 +6,4 @@ resources:
   - ./pool.yaml
   - ./httproute.yaml
   - ./l3.yaml
+  - ./ocirepository.yaml
