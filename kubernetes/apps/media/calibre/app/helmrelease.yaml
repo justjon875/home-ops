@@ -28,7 +28,7 @@ spec:
               TZ: ${TZ}
             image:
               repository: lscr.io/linuxserver/calibre
-              tag: 8.16.0@sha256:705f69164b3d74e8599eba639557e47094d15ed2c52e37eec88baacc61134279
+              tag: 8.16.2@sha256:31324cc3da5fe71a195cbe4398656471ace6d90a466f04280f12643d87da0a38
     persistence:
       config:
         existingClaim: "{{ .Release.Name }}"
