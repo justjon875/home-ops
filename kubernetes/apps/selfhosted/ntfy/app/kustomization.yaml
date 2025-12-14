@@ -9,9 +9,7 @@ resources:
 configMapGenerator:
   - name: ntfy-configmap
     files:
-      - server.yaml=./resources/server.yaml
+      - ./resources/server.yaml
 
-generatorOptions:
-  disableNameSuffixHash: true
-  annotations:
-    kustomize.toolkit.fluxcd.io/substitute: disabled
+configurations:
+  - ./resources/kustomizeconfig.yaml
