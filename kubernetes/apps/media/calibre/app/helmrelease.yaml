@@ -30,7 +30,7 @@ spec:
     route:
       app:
         hostnames:
-          - "{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}"
+          - "{{ .Release.Name }}.${ROOT_DOMAIN}"
         parentRefs:
           - name: envoy-internal
             namespace: network
@@ -40,7 +40,7 @@ spec:
                 port: &port 8080
       content-server:
         hostnames:
-          - calibre-content.${SHORT_ROOT_DOMAIN}
+          - calibre-content.${ROOT_DOMAIN}
         parentRefs:
           - name: envoy-internal
             namespace: network
