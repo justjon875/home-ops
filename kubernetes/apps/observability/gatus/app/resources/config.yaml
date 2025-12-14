@@ -13,8 +13,8 @@ alerting:
       send-on-resolved: true
       success-threshold: 3
     server-url: https://tuwunel.${ROOT_DOMAIN}
-    access-token: $ACCESS_TOKEN
-    internal-room-id: $INTERNAL_ROOM_ID
+    access-token: ${ACCESS_TOKEN}
+    internal-room-id: ${INTERNAL_ROOM_ID}
 
 metrics: true
 
