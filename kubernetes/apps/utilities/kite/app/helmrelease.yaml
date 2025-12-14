@@ -10,6 +10,16 @@ spec:
     name: *app
   interval: 1h
   values:
+    affinity:
+      nodeAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 100          # max weight = 100
+          preference:
+            matchExpressions:
+            - key: cpu
+              operator: In
+              values:
+              - high
     controllers:
       *app :
         annotations:
