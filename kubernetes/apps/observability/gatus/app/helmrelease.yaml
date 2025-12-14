@@ -77,6 +77,8 @@ spec:
         type: configMap
         name: "{{ .Release.Name }}-configmap"
         globalMounts:
+          - path: /config/alerts.yaml
+            subPath: alerts.yaml
           - path: /config/config.yaml
             subPath: config.yaml
     rbac:
