@@ -8,8 +8,8 @@ components:
 
 resources:
   # - ./headlamp/ks.yaml
-  - ./fluent-bit/ks.yaml
+  # - ./fluent-bit/ks.yaml
   - ./grafana/ks.yaml
   - ./gatus/ks.yaml
   - ./kube-prometheus-stack/ks.yaml
-  - ./victoria-logs/ks.yaml
+  # - ./victoria-logs/ks.yaml
