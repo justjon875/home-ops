@@ -22,7 +22,7 @@ spec:
     route:
       app:
         hostnames:
-          - "${GATUS_SUBDOMAIN:=${APP}}.${CLUSTER_DOMAIN}"
+          - "${GATUS_SUBDOMAIN:=${APP}}.${ROOT_DOMAIN}"
         parentRefs:
         - name: envoy-internal
           namespace: network
