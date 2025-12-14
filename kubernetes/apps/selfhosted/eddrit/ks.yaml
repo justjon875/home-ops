@@ -5,9 +5,15 @@ kind: Kustomization
 metadata:
   name: &app eddrit
 spec:
+  components:
+    - ../../../../components/gatus/internal
   interval: 1h
   path: ./kubernetes/apps/selfhosted/eddrit/app
   postBuild:
+  postBuild:
+    substitute:
+      APP: eddrit
+      GATUS_SUBDOMAIN: eddrit
     substituteFrom:
       - name: cluster-secrets
         kind: Secret
