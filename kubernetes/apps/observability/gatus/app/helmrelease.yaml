@@ -79,12 +79,6 @@ spec:
         globalMounts:
           - path: /config/config.yaml
             subPath: config.yaml
-      secret-file:
-        type: secret
-        name: "{{ .Release.Name }}-secret"
-        globalMounts:
-          - path: /config/secret.yaml
-            subPath: secret.yaml
     rbac:
       roles:
         gatus:
