@@ -15,6 +15,7 @@ resources:
   - ./kite/ks.yaml
   - ./pgadmin/ks.yaml
   - ./pocket-id/ks.yaml
+  - ./reloader/ks.yaml
   - ./renovate/ks.yaml
   - ./smtp-relay/ks.yaml
   # - ./theme-park/ks.yaml
@@ -22,6 +23,5 @@ resources:
   # - forgejo
   # - frigate
   # - home-assistant
-  # - reloader
   # - pgbackweb
   # - uptime-kuma
