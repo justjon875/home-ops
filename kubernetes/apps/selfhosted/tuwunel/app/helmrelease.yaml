@@ -61,9 +61,6 @@ spec:
               - path:
                   type: PathPrefix
                   value: /_matrix
-            backendRefs:
-              - identifier: main
-                port: *port
       app:
         hostnames:
           - "${ROOT_DOMAIN}"
@@ -75,9 +72,6 @@ spec:
               - path:
                   type: PathPrefix
                   value: /.well-known/matrix
-            backendRefs:
-              - identifier: http
-                port: *port
     service:
       server:
         ports:
