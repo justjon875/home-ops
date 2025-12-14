@@ -50,14 +50,55 @@ spec:
     podAnnotations:
       configmap.reloader.stakater.com/reload: tuwunel
     route:
+      int:
+        hostnames:
+          - "tuwunel.${ROOT_DOMAIN}"
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
+        rules:
+          - matches:
+              - path:
+                  type: PathPrefix
+                  value: /_matrix
+              - path:
+                  type: PathPrefix
+                  value: /
+            backendRefs:
+              - name: *app
+                port: 80
+      matrix:
+        hostnames:
+          - "tuwunel.${ROOT_DOMAIN}"
+        parentRefs:
+          - name: envoy-external
+            namespace: networking
+        rules:
+          - matches:
+              - path:
+                  type: PathPrefix
+                  value: /_matrix
+            backendRefs:
+              - name: *app
+                port: 80
       app:
         hostnames:
-        - '{{ .Release.Name }}.${ROOT_DOMAIN}'
+          - "tuwunel.${ROOT_DOMAIN}"
         parentRefs:
-        - name: envoy-internal
-          namespace: network
+          - name: envoy-external
+            namespace: networking
+        rules:
+          - matches:
+              - path:
+                  type: PathPrefix
+                  value: /.well-known/matrix
+            backendRefs:
+              - name: *app
+                port: 80
     service:
       server:
         ports:
           http:
-            port: 8008
+            port: 80
+            protocol: TCP
+            targetPort: 8080
