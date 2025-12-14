@@ -32,7 +32,7 @@ spec:
                   name: *app
             image:
               repository: quay.io/invidious/invidious
-              tag: 2025.10.17-5cfe294@sha256:e73798b2a8faeca2e0b9dd5674627cf58c2e08619dcc59dce0fba9345dcdb154
+              tag: 2025.10.17-5cfe294@sha256:befb6db9d38a5e7aa4b3db2652702714e445c80c93ce12d178006f70ad6a4046
             env:
               TZ: "${TIMEZONE}"
               INVIDIOUS_PORT: "3000" # https://github.com/iv-org/invidious/issues/2970
