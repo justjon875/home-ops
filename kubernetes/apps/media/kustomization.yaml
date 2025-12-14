@@ -11,7 +11,7 @@ components:
 resources:
   - ./namespace.yaml
   # - audiobookshelf
-  - ./calibre/ks.yaml
+  # - ./calibre/ks.yaml
   # - calibre-web-automated
   # - flaresolverr
   # - flood
