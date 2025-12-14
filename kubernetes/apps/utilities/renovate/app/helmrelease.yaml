@@ -11,7 +11,6 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: renovate
-        namespace: flux-system
       interval: 15m
   install:
     createNamespace: true
@@ -36,6 +35,6 @@ spec:
           "dependencyDashboard": true,
           "printConfig": true,
           "repositories": [
-              "forgejo_admin/home-ops"
+              "forgejo/dev-ops"
           ],
         }
