@@ -8,18 +8,18 @@ components:
 
 resources:
   - ./namespace.yaml
-  # - ./atuin/ks.yaml
+  - ./atuin/ks.yaml
   # - ./eddrit/ks.yaml
   # - ./filebrowser/ks.yaml
   # - ./linkwarden/ks.yaml
   # - ./matrix-element/ks.yaml
   # - ./memos/ks.yaml
   # - ./openspeedtest/ks.yaml
-  # - ./paperless-ngx/ks.yaml
-  # - ./pairdrop/ks.yaml
+  - ./paperless-ngx/ks.yaml
+  - ./pairdrop/ks.yaml
   # - ./redlib/ks.yaml
-  # - ./searxng/ks.yaml
+  - ./searxng/ks.yaml
   # - ./stirling-pdf/ks.yaml
   # - ./tuwunel/ks.yaml
   - ./vaultwarden/ks.yaml
-  # - ./whoogle/ks.yaml
+  - ./whoogle/ks.yaml
