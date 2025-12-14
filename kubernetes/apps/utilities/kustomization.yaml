@@ -9,7 +9,7 @@ components:
   - ../../components/common
 
 resources:
-  - ./dozzle/ks.yaml
+  # - ./dozzle/ks.yaml
   # - ./goldilocks/ks.yaml
   - ./homepage/ks.yaml
   - ./kite/ks.yaml
