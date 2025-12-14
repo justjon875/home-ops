@@ -16,18 +16,6 @@ alerting:
     access-token: $ACCESS_TOKEN
     internal-room-id: $INTERNAL_ROOM_ID
 
-endpoints:
-  - name: eddrit
-    url: https://eddrit.${ROOT_DOMAIN}
-    client:
-      timeout: 10s
-    conditions:
-      - "[STATUS] == 200"
-    alerts:
-      - type: matrix
-        description: "healthcheck failed"
-        send-on-resolved: true
-
 metrics: true
 
 ui:

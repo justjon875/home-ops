@@ -4,6 +4,11 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
   name: internal
+  annotations:
+    gatus.home-operations.com/endpoint: |
+      interval: 30s
+      alerts:
+        - type: matrix
 spec:
   gatewayClassName: cilium
   listeners:

@@ -97,7 +97,6 @@ spec:
               resources:
                 - gateways
                 - httproutes
-                - ingresses
               verbs:
                 - get
                 - watch
