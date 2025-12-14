@@ -21,7 +21,7 @@ spec:
       isWALArchiver: true
       parameters:
         barmanObjectName: &store immich-store
-        serverName: immich-cluster-v1
+        serverName: immich-cluster-v2
   resources:
     requests:
       cpu: 200m
@@ -40,12 +40,12 @@ spec:
       postInitApplicationSQL:
         - CREATE EXTENSION IF NOT EXISTS vchord CASCADE;
         - CREATE EXTENSION IF NOT EXISTS earthdistance CASCADE;
-  #   recovery:
-  #     source: source
-  # externalClusters:
-  #   - name: source
-  #     plugin:
-  #       name: barman-cloud.cloudnative-pg.io
-  #       parameters:
-  #         barmanObjectName: *store 
-  #         serverName: cloudnative-vectorchordv16-9-0-3
+  recovery:
+    source: source
+    externalClusters:
+      - name: source
+        plugin:
+          name: barman-cloud.cloudnative-pg.io
+          parameters:
+            barmanObjectName: *store 
+            serverName: immich-cluster-v1
