@@ -17,18 +17,11 @@ resources:
   - ./pocket-id/ks.yaml
   - ./renovate/ks.yaml
   - ./smtp-relay/ks.yaml
-  - ./theme-park/ks.yaml
+  # - ./theme-park/ks.yaml
+  #
   # - forgejo
   # - frigate
-  # - goldilocks
-  # - homepage
   # - home-assistant
-  # - kubewall
-  # - mosquitto
   # - reloader
-  # - renovate
-  # - pgadmin
   # - pgbackweb
-  # - theme-park
   # - uptime-kuma
-  # - vpa
