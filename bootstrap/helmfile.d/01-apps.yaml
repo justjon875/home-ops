@@ -41,7 +41,7 @@ releases:
           - --namespace=external-secrets
           - --server-side
           - --field-manager=kustomize-controller
-          - --filename=../../kubernetes/apps/external-secrets/external-secrets/app/certificate.yaml
+          - --filename=../../kubernetes/apps/external-secrets/external-secrets/bitwarden/certificate.yaml
     needs: ['kube-system/spegel']
 
   - name: external-secrets
