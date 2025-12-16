@@ -5,7 +5,7 @@
             "server_name": "tuwunel.${ROOT_DOMAIN}"
         },
         "m.identity_server": {
-            "base_url": "https://tuwunel.habanerojam.xyz"
+            "base_url": "https://tuwunel.${ROOT_DOMAIN}"
         }
     },
     "disable_custom_urls": false,
