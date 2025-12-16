@@ -82,8 +82,8 @@ spec:
       iron:
         globalMounts:
         - path: /srv/iron
-        path: /
-        server: 192.168.1.161:/hddShare
+        path: /hddShare
+        server: 192.168.1.161
         type: nfs
       media:
         globalMounts:
