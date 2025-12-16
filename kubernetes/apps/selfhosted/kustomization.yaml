@@ -15,7 +15,7 @@ resources:
   - ./matrix-element/ks.yaml
   # - ./memos/ks.yaml
   # - ./openspeedtest/ks.yaml
-  - ./paperless-ngx/ks.yaml
+  # - ./paperless-ngx/ks.yaml
   - ./pairdrop/ks.yaml
   # - ./redlib/ks.yaml
   - ./searxng/ks.yaml
