@@ -75,7 +75,7 @@ spec:
                   value: /_matrix
             backendRefs:
               - identifier: main
-                port: &port 8080
+                port: &port 80
       app:
         hostnames:
           - "${ROOT_DOMAIN}"
@@ -94,6 +94,6 @@ spec:
       main:
         ports:
           http:
-            port: 80
+            port: *port
             protocol: TCP
-            targetPort: *port
+            targetPort: 8080
