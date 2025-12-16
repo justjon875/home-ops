@@ -36,8 +36,6 @@ spec:
               value: /data/db
             - name: TUWUNEL_ADDRESS
               value: 0.0.0.0
-            - name: TUWUNEL_PORT
-              value: '8080'
             - name: RUST_LOG
               value: info
             - name: TUWUNEL_ALLOW_FEDERATION
@@ -73,9 +71,10 @@ spec:
               - path:
                   type: PathPrefix
                   value: /_matrix
+            filters: []
             backendRefs:
               - identifier: main
-                port: &port 80
+                port: &port 8008
       app:
         hostnames:
           - "${ROOT_DOMAIN}"
@@ -96,4 +95,3 @@ spec:
           http:
             port: *port
             protocol: TCP
-            targetPort: 8080
