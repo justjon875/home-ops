@@ -36,6 +36,8 @@ spec:
               value: /data/db
             - name: TUWUNEL_ADDRESS
               value: 0.0.0.0
+            - name: TUWUNEL_PORT
+              value: '8080'
             - name: RUST_LOG
               value: info
             - name: TUWUNEL_ALLOW_FEDERATION
@@ -60,14 +62,38 @@ spec:
     podAnnotations:
       configmap.reloader.stakater.com/reload: tuwunel
     route:
+      matrix:
+        hostnames:
+          - "tuwunel.${ROOT_DOMAIN}"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+        rules:
+          - matches:
+              - path:
+                  type: PathPrefix
+                  value: /_matrix
+            backendRefs:
+              - identifier: main
+                port: &port 8080
       app:
         hostnames:
-        - '{{ .Release.Name }}.${ROOT_DOMAIN}'
+          - "${ROOT_DOMAIN}"
         parentRefs:
-        - name: envoy-internal
-          namespace: network
+          - name: envoy-internal
+            namespace: network
+        rules:
+          - matches:
+              - path:
+                  type: PathPrefix
+                  value: /.well-known/matrix
+            backendRefs:
+              - identifier: main
+                port: *port
     service:
-      server:
+      main:
         ports:
           http:
-            port: 8008
+            port: 80
+            protocol: TCP
+            targetPort: *port
