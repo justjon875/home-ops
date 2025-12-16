@@ -109,7 +109,7 @@ spec:
                 name: "repository",
                 nfs: Object.spec.template.spec.volumes.nfs{
                   server: "hydrogen.home.arpa",
-                  path: "${NFS_PATH}/kopia/repository"
+                  path: "/mnt/raid/nfs/kopia/repository"
                 }
               }
             }
