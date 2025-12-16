@@ -27,7 +27,7 @@ spec:
               tag: v1.1.0-release-all-x86_64-linux-gnu@sha256:0ffaa9bd91bb6819a7fbc57b9be79e86925a80cf63a106f35926bbe48b29d55e
             env:
             - name: TUWUNEL_SERVER_NAME
-              value: ${ROOT_DOMAIN}
+              value: tuwunel.${ROOT_DOMAIN}
             - name: TUWUNEL_WELL_KNOWN__CLIENT
               value: https://tuwunel.${ROOT_DOMAIN}
             - name: TUWUNEL_WELL_KNOWN__SERVER
@@ -37,7 +37,7 @@ spec:
             - name: TUWUNEL_ADDRESS
               value: 0.0.0.0
             - name: RUST_LOG
-              value: info
+              value: debug
             - name: TUWUNEL_ALLOW_FEDERATION
               value: 'false'
             - name: TUWUNEL_ALLOW_REGISTRATION
