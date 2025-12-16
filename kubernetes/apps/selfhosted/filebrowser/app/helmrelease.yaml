@@ -79,7 +79,7 @@ spec:
         existingClaim: "{{ .Release.Name }}"
         globalMounts:
         - path: /config
-      media:
+      iron:
         globalMounts:
         - path: /srv/iron
         path: /
