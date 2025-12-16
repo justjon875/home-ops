@@ -62,7 +62,7 @@ spec:
     route:
       app:
         hostnames:
-        - '{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}'
+        - '{{ .Release.Name }}.${ROOT_DOMAIN}'
         parentRefs:
         - name: envoy-internal
           namespace: network
@@ -70,6 +70,4 @@ spec:
       server:
         ports:
           http:
-            port: 80
-            protocol: TCP
-            targetPort: 8080
+            port: 8008
