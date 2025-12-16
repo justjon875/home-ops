@@ -79,12 +79,6 @@ spec:
         existingClaim: "{{ .Release.Name }}"
         globalMounts:
         - path: /config
-      iron:
-        globalMounts:
-        - path: /srv/iron
-        path: /hddSingle
-        server: 192.168.1.161
-        type: nfs
       media:
         globalMounts:
         - path: /srv/media
