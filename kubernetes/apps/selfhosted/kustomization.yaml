@@ -10,7 +10,7 @@ resources:
   - ./namespace.yaml
   - ./atuin/ks.yaml
   # - ./eddrit/ks.yaml
-  # - ./filebrowser/ks.yaml
+  - ./filebrowser/ks.yaml
   # - ./linkwarden/ks.yaml
   - ./matrix-element/ks.yaml
   # - ./memos/ks.yaml
