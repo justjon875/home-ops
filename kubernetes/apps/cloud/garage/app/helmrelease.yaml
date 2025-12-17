@@ -104,7 +104,7 @@ spec:
       nas:
         type: nfs
         server: ${NFS_HOST}
-        path: /mnt/raid/nfs/garage
+        path: ${NFS_PATH}
         advancedMounts:
           garage:
             app:
