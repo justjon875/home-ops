@@ -12,7 +12,7 @@ spec:
   interval: 1h
   values:
     values:
-    autoDirectNodeRoutes: false
+    autoDirectNodeRoutes: true
     bpf:
       masquerade: true
       # Ref: https://github.com/siderolabs/talos/issues/10002
