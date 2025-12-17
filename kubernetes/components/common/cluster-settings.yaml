@@ -5,9 +5,9 @@ metadata:
   name: cluster-settings
 data:
   LOCAL_PATH: /mnt/raid/local
-  MEDIA_PATH: /mnt/raid/media
-  NFS_HOST: 192.168.2.5
-  NFS_PATH: /mnt/raid/nfs
+  MEDIA_PATH: /media
+  NFS_HOST: cobalt.internal
+  NFS_PATH: /nfs
   NVME_NFS_PATH: /mnt/nvme/nfs
   NVME_LOCAL_PATH: /mnt/raid/local
   SMTP_HOST: 172.16.0.125
