@@ -44,8 +44,8 @@ spec:
               value: Object.spec.template.spec.volumes{
                 name: "repository",
                 nfs: Object.spec.template.spec.volumes.nfs{
-                  server: "hydrogen.internal",
-                  path: "/mnt/raid/nfs/kopia/repository"
+                  server: "cobalt.internal",
+                  path: "/nfs/kopia/repository"
                 }
               }
             },
