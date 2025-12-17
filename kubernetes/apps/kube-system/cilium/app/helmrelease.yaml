@@ -29,6 +29,7 @@ spec:
     devices: ens+ eth+
     dashboards:
       enabled: true
+    enableIPv4Masquerade: true
     endpointRoutes:
       enabled: true
     envoy:
