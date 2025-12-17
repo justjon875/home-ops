@@ -80,9 +80,6 @@ spec:
           - name: master2
             devices:
               - name: /dev/disk/by-path/virtio-pci-0000:00:0a.0
-          - name: master3
-            devices:
-              - name: /dev/disk/by-path/pci-0000:01:02.0-scsi-0:0:0:1
     cephBlockPools:
       - name: ceph-blockpool
         spec:
