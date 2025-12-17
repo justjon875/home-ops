@@ -32,7 +32,7 @@ spec:
       config:
         existingClaim: "{{ .Release.Name }}"
       calibre-library:
-        path: /mnt/raid/media/books
+        path: /media/books
         server: ${NFS_HOST}
         type: nfs
     service:

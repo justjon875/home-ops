@@ -39,7 +39,7 @@ spec:
           - path: /app/config
       media:
         enabled: true
-        path: /mnt/raid/media/
+        path: /media/
         server: ${NFS_HOST}
         type: nfs
     route:

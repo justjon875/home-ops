@@ -31,7 +31,7 @@ spec:
         type: nfs
       downloads:
         enabled: true
-        path: /mnt/raid/media/ytptube
+        path: /media/ytptube
         server: ${NFS_HOST}
         type: nfs
     route:

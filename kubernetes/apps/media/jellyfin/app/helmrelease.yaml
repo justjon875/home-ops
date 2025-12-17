@@ -52,21 +52,21 @@ spec:
         enabled: true
         globalMounts:
           - path: /media
-        path: /mnt/raid/media/qbittorrent/downloads
+        path: /media/qbittorrent/downloads
         server: ${NFS_HOST}
         type: nfs
       metube:
         enabled: true
         globalMounts:
           - path: /mnt/metube
-        path: /mnt/raid/media/metube
+        path: /media/metube
         server: ${NFS_HOST}
         type: nfs
       youtube:
         enabled: true
         globalMounts:
           - path: /mnt/youtube
-        path: /mnt/raid/media/youtube
+        path: /media/youtube
         server: ${NFS_HOST}
         type: nfs
       transcodes:

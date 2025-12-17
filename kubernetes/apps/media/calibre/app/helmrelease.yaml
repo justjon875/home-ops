@@ -35,7 +35,7 @@ spec:
       media:
         globalMounts:
           - path: /data
-        path: /mnt/raid/media/books
+        path: /media/books
         server: ${NFS_HOST}
         type: nfs
     route:

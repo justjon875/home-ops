@@ -75,7 +75,7 @@ spec:
       media:
         type: nfs
         server: ${NFS_HOST}
-        path: /mnt/raid/media/youtube
+        path: /media/youtube
         advancedMounts:
           pinchflat:
             app:

@@ -57,7 +57,7 @@ spec:
         existingClaim: "{{ .Release.Name }}"
       media:
         enabled: true
-        path: /mnt/raid/media/qbittorrent/downloads
+        path: /media/qbittorrent/downloads
         server: ${NFS_HOST}
         type: nfs
       sabnzbd:
@@ -66,7 +66,7 @@ spec:
             app:
             - path: /mnt/sabdnzb
         enabled: true
-        path: /mnt/raid/media/sabnzbd/downloads
+        path: /media/sabnzbd/downloads
         server: ${NFS_HOST}
         type: nfs
       tmpfs:

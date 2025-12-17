@@ -34,7 +34,7 @@ spec:
         type: nfs
       downloads:
         enabled: true
-        path: /mnt/raid/media/metube
+        path: /media/metube
         server: ${NFS_HOST}
         type: nfs
     route:
