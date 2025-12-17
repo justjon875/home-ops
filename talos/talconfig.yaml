@@ -29,6 +29,19 @@ patches:
               - rshared
               - rw
 nodes:
+  - hostname: hydrogen1
+    ipAddress: 192.168.2.25
+    controlPlane: true
+    installDisk: /dev/sda
+    nameservers:
+      - 192.168.2.1
+    networkInterfaces:
+      - interface: ens18
+        addresses:
+          - 192.168.2.25/24
+        routes:
+          - network: 0.0.0.0/0
+            gateway: 192.168.2.1
   - hostname: master1
     ipAddress: 192.168.3.25
     controlPlane: true
