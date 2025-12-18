@@ -12,7 +12,7 @@ spec:
   interval: 1h
   values:
     values:
-    autoDirectNodeRoutes: false
+    autoDirectNodeRoutes: true
     bpf:
       masquerade: true
       # Ref: https://github.com/siderolabs/talos/issues/10002
@@ -29,7 +29,6 @@ spec:
     devices: ens+ eth+
     dashboards:
       enabled: true
-    enableIPv4Masquerade: true
     endpointRoutes:
       enabled: true
     envoy:
