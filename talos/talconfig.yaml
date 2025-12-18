@@ -2,7 +2,7 @@
 clusterName: home-cluster
 talosVersion: v1.11.5
 kubernetesVersion: v1.34.1
-endpoint: https://cluster.habanerojam.xyz:6443
+endpoint: https://cluster.habjam.xyz:6443
 allowSchedulingOnneons: true
 cniConfig:
   name: none
@@ -45,7 +45,7 @@ nodes:
   - hostname: neon1
     ipAddress: 192.168.2.100
     controlPlane: true
-    installDisk: /dev/sda
+    installDisk: /dev/vda
     nameservers:
       - 192.168.2.1
     networkInterfaces:
@@ -58,7 +58,7 @@ nodes:
   - hostname: neon2
     ipAddress: 192.168.2.101
     controlPlane: true
-    installDisk: /dev/sda
+    installDisk: /dev/vda
     nameservers:
       - 192.168.2.1
     networkInterfaces:
