@@ -3,7 +3,7 @@ clusterName: home-cluster
 talosVersion: v1.11.5
 kubernetesVersion: v1.34.1
 endpoint: https://cluster.habanerojam.xyz:6443
-allowSchedulingOnMasters: true
+allowSchedulingOnneons: true
 cniConfig:
   name: none
 patches:
@@ -29,8 +29,8 @@ patches:
               - rshared
               - rw
 nodes:
-  - hostname: hydrogen1
-    ipAddress: 192.168.2.25
+  - hostname: hydrogen0
+    ipAddress: 192.168.2.50
     controlPlane: true
     installDisk: /dev/sda
     nameservers:
@@ -38,49 +38,49 @@ nodes:
     networkInterfaces:
       - interface: ens18
         addresses:
-          - 192.168.2.25/24
+          - 192.168.2.50/24
         routes:
           - network: 0.0.0.0/0
             gateway: 192.168.2.1
-  - hostname: master1
-    ipAddress: 192.168.3.25
+  - hostname: neon1
+    ipAddress: 192.168.2.100
     controlPlane: true
     installDisk: /dev/sda
     nameservers:
-      - 192.168.3.1
+      - 192.168.2.1
     networkInterfaces:
       - interface: ens18
         addresses:
-          - 192.168.3.25/24
+          - 192.168.2.100/24
         routes:
           - network: 0.0.0.0/0
-            gateway: 192.168.3.1
-  - hostname: master2
-    ipAddress: 192.168.3.26
+            gateway: 192.168.2.1
+  - hostname: neon2
+    ipAddress: 192.168.2.101
     controlPlane: true
     installDisk: /dev/sda
     nameservers:
-      - 192.168.3.1
+      - 192.168.2.1
     networkInterfaces:
       - interface: ens18
         addresses:
-          - 192.168.3.26/24
+          - 192.168.2.101/24
         routes:
           - network: 0.0.0.0/0
-            gateway: 192.168.3.1
-  - hostname: master3
-    ipAddress: 192.168.3.27
+            gateway: 192.168.2.1
+  - hostname: neon3
+    ipAddress: 192.168.2.102
     controlPlane: true
     installDisk: /dev/sda
     nameservers:
-      - 192.168.3.1
+      - 192.168.2.1
     networkInterfaces:
       - interface: ens18
         addresses:
-          - 192.168.3.27/24
+          - 192.168.2.102/24
         routes:
           - network: 0.0.0.0/0
-            gateway: 192.168.3.1
+            gateway: 192.168.2.1
 controlPlane:
   schematic:
     customization:
