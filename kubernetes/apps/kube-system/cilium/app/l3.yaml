@@ -1,8 +1,24 @@
 ---
+apiVersion: cilium.io/v2
+kind: CiliumBGPAdvertisement
+metadata:
+  name: l3-bgp-advertisement
+  labels:
+    advertise: bgp
+spec:
+  advertisements:
+    - advertisementType: Service
+      service:
+        addresses:
+          - LoadBalancerIP
+      selector:
+        matchExpressions:
+          - {key: somekey, operator: NotIn, values: ["never-used-value"]}
+---
 apiVersion: cilium.io/v2alpha1
 kind: CiliumBGPPeerConfig
 metadata:
-  name: bgp-peer-config-v4
+  name: l3-bgp-peer-config
 spec:
   families:
     - afi: ipv4
@@ -14,33 +30,17 @@ spec:
 apiVersion: cilium.io/v2
 kind: CiliumBGPClusterConfig
 metadata:
-  name: bgp-cluster-config
+  name: l3-bgp-cluster-config
 spec:
   nodeSelector:
     matchLabels:
       kubernetes.io/os: linux
   bgpInstances:
-    - name: opnsense
-      localASN: 64513
+    - name: cilium
+      localASN: 65001
       peers:
-        - name: gateway
-          peerASN: 64512
+        - name: opnsense
+          peerASN: 65000
           peerAddress: 192.168.1.1
           peerConfigRef:
-            name: bgp-peer-config-v4
----
-apiVersion: cilium.io/v2
-kind: CiliumBGPAdvertisement
-metadata:
-  name: bgp-advertisements
-  labels:
-    advertise: bgp
-spec:
-  advertisements:
-    - advertisementType: "Service"
-      service:
-        addresses:
-          - LoadBalancerIP
-      selector:
-        matchExpressions:
-          - { key: somekey, operator: NotIn, values: ["never-used-value"] }
+            name: l3-bgp-peer-config
