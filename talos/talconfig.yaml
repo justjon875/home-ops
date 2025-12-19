@@ -4,8 +4,6 @@ talosVersion: v1.11.5
 kubernetesVersion: v1.34.1
 endpoint: https://cluster.habjam.xyz:6443
 allowSchedulingOnneons: true
-clusterPodNets: ["10.42.0.0/16"]
-clusterSvcNets: ["10.43.0.0/16"]
 cniConfig:
   name: none
 patches:
