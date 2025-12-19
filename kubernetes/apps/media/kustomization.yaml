@@ -15,15 +15,15 @@ resources:
   # - calibre-web-automated
   # - flaresolverr
   # - flood
-  - ./jellyfin/ks.yaml
+  # - ./jellyfin/ks.yaml
   # - jellyseerr
   # - ./listenarr/ks.yaml
   # - ./metube/ks.yaml
   # - navidrome
-  - ./piped/ks.yaml
-  - ./prowlarr/ks.yaml
+  # - ./piped/ks.yaml
+  # - ./prowlarr/ks.yaml
   # - qbittorrent
-  - ./radarr/ks.yaml
-  - ./sabnzbd/ks.yaml
-  - ./sonarr/ks.yaml
+  # - ./radarr/ks.yaml
+  # - ./sabnzbd/ks.yaml
+  # - ./sonarr/ks.yaml
   # - ytptube

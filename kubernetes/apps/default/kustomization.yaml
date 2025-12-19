@@ -6,4 +6,5 @@ namespace: default
 
 resources:
   - ./namespace.yaml
-  - ./valkey/ks.yaml
+  - ./whoami/ks.yaml
+  # - ./valkey/ks.yaml
