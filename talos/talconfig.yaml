@@ -30,7 +30,7 @@ patches:
               - rw
 nodes:
   - hostname: hydrogen0
-    ipAddress: 192.168.1.50
+    ipAddress: 192.168.1.205
     controlPlane: true
     installDisk: /dev/sda
     nameservers:
@@ -38,36 +38,36 @@ nodes:
     networkInterfaces:
       - interface: eth0
         addresses:
-          - 192.168.1.50/24
+          - 192.168.1.205/24
         routes:
           - network: 0.0.0.0/0
             gateway: 192.168.1.1
-  - hostname: neon0
-    ipAddress: 192.168.1.210
-    controlPlane: true
-    installDisk: /dev/sda
-    nameservers:
-      - 192.168.1.1
-    networkInterfaces:
-      - interface: eth0
-        addresses:
-          - 192.168.1.210/24
-        routes:
-          - network: 0.0.0.0/0
-            gateway: 192.168.1.1
-  - hostname: neon1
-    ipAddress: 192.168.1.211
-    controlPlane: true
-    installDisk: /dev/sda
-    nameservers:
-      - 192.168.1.1
-    networkInterfaces:
-      - interface: eth0
-        addresses:
-          - 192.168.1.211/24
-        routes:
-          - network: 0.0.0.0/0
-            gateway: 192.168.1.1
+  # - hostname: neon0
+  #   ipAddress: 192.168.1.210
+  #   controlPlane: true
+  #   installDisk: /dev/sda
+  #   nameservers:
+  #     - 192.168.1.1
+  #   networkInterfaces:
+  #     - interface: eth0
+  #       addresses:
+  #         - 192.168.1.210/24
+  #       routes:
+  #         - network: 0.0.0.0/0
+  #           gateway: 192.168.1.1
+  # - hostname: neon1
+  #   ipAddress: 192.168.1.211
+  #   controlPlane: true
+  #   installDisk: /dev/sda
+  #   nameservers:
+  #     - 192.168.1.1
+  #   networkInterfaces:
+  #     - interface: eth0
+  #       addresses:
+  #         - 192.168.1.211/24
+  #       routes:
+  #         - network: 0.0.0.0/0
+  #           gateway: 192.168.1.1
 controlPlane:
   schematic:
     customization:
