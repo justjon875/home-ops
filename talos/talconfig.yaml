@@ -70,7 +70,7 @@ nodes:
             gateway: 192.168.1.1
   - hostname: neon2
     ipAddress: 192.168.1.102
-    controlPlane: true
+    controlPlane: false
     installDisk: /dev/sda
     nameservers:
       - 192.168.1.1

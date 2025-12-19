@@ -11,8 +11,7 @@ spec:
     name: cilium
   interval: 1h
   values:
-    values:
-    autoDirectNodeRoutes: true
+    autoDirectNodeRoutes: false
     bpf:
       masquerade: true
       # Ref: https://github.com/siderolabs/talos/issues/10002
