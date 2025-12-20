@@ -29,7 +29,7 @@ patches:
               - rshared
               - rw
 nodes:
-  - hostname: hydrogen0
+  - hostname: hydrogen1
     ipAddress: 192.168.3.206
     controlPlane: true
     installDisk: /dev/sda
@@ -37,6 +37,7 @@ nodes:
       - 192.168.3.1
     networkInterfaces:
       - interface: eth0
+        mtu: 1420
         addresses:
           - 192.168.3.206/24
         routes:
@@ -50,6 +51,7 @@ nodes:
       - 192.168.3.1
     networkInterfaces:
       - interface: eth0
+        mtu: 1420
         addresses:
           - 192.168.3.211/24
         routes:
@@ -63,8 +65,23 @@ nodes:
       - 192.168.3.1
     networkInterfaces:
       - interface: eth0
+        mtu: 1420
         addresses:
           - 192.168.3.212/24
+        routes:
+          - network: 0.0.0.0/0
+            gateway: 192.168.3.1
+  - hostname: neon3
+    ipAddress: 192.168.3.213
+    controlPlane: true
+    installDisk: /dev/sda
+    nameservers:
+      - 192.168.3.1
+    networkInterfaces:
+      - interface: eth0
+        mtu: 1420
+        addresses:
+          - 192.168.3.213/24
         routes:
           - network: 0.0.0.0/0
             gateway: 192.168.3.1
