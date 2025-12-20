@@ -27,7 +27,6 @@ spec:
     storageClass: openebs-hostpath
   superuserSecret:
     name: immich-database-secret
-  # Note: externalClusters is needed when recovering from an existing cnpg cluster
   bootstrap:
     recovery:
       source: origin
@@ -36,7 +35,7 @@ spec:
       isWALArchiver: true
       parameters:
         barmanObjectName: &store immich-store
-        serverName: immich-cluster-v3
+        serverName: immich-cluster-v2
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
   externalClusters:
     - name: origin
@@ -44,4 +43,4 @@ spec:
         name: barman-cloud.cloudnative-pg.io
         parameters:
           barmanObjectName: *store
-          serverName: immich-cluster-v2
+          serverName: immich-cluster-v1
