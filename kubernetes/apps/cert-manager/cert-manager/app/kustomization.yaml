@@ -6,6 +6,6 @@ namespace: cert-manager
 resources:
   - ./grafanadashboard.yaml
   - ./helmrelease.yaml
-  - ./letsencrypt-prod-clusterissuer.yaml
+  - ./letsencrypt-staging-clusterissuer.yaml
   - ./ocirepository.yaml
   - ./secret.sops.yaml

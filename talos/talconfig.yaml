@@ -42,7 +42,7 @@ nodes:
         routes:
           - network: 0.0.0.0/0
             gateway: 192.168.3.1
-  - hostname: neon0
+  - hostname: neon1
     ipAddress: 192.168.3.211
     controlPlane: true
     installDisk: /dev/sda
@@ -55,7 +55,7 @@ nodes:
         routes:
           - network: 0.0.0.0/0
             gateway: 192.168.3.1
-  - hostname: neon1
+  - hostname: neon2
     ipAddress: 192.168.3.212
     controlPlane: true
     installDisk: /dev/sda
