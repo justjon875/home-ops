@@ -71,13 +71,13 @@ spec:
         config:
           osdsPerDevice: "1"
         nodes:
-          - name: hydrogen0
-            devices:
-              - name: /dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi1
-          - name: neon0
+          - name: hydrogen1
             devices:
               - name: /dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi1
           - name: neon1
+            devices:
+              - name: /dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi1
+          - name: neon2
             devices:
               - name: /dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi1
     cephBlockPools:
