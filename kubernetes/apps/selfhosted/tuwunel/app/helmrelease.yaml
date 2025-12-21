@@ -36,7 +36,7 @@ spec:
                 name: tuwunel-secret
             image:
               repository: ghcr.io/matrix-construct/tuwunel
-              tag: v1.1.0-release-all-x86_64-linux-gnu@sha256:0ffaa9bd91bb6819a7fbc57b9be79e86925a80cf63a106f35926bbe48b29d55e
+              tag: v1.4.7@sha256:1f384b50a1f87a3839b160d5db4fb157abba92d4b9f8fe683d971b2515a5b8c3
     defaultPodOptions:
       securityContext:
         runAsUser: 1000
@@ -50,14 +50,38 @@ spec:
     podAnnotations:
       configmap.reloader.stakater.com/reload: tuwunel
     route:
-      app:
+      matrix:
         hostnames:
-          - "{{ .Release.Name }}.${ROOT_DOMAIN}"
+          - "tuwunel.${ROOT_DOMAIN}"
         parentRefs:
           - name: envoy-internal
             namespace: network
-    service:
+        rules:
+          - matches:
+              - path:
+                  type: PathPrefix
+                  value: /_matrix
+            backendRefs:
+              - identifier: main
+                port: &port 80
       app:
+        hostnames:
+          - "${ROOT_DOMAIN}"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+        rules:
+          - matches:
+              - path:
+                  type: PathPrefix
+                  value: /.well-known/matrix
+            backendRefs:
+              - identifier: main
+                port: *port
+    service:
+      main:
         ports:
           http:
-            port: 8008
+            port: *port
+            protocol: TCP
+            targetPort: 8008
