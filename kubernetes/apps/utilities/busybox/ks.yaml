@@ -15,10 +15,6 @@ spec:
     substitute:
       APP: pgadmin
       VOLSYNC_CAPACITY: 1Gi
-  postBuild:
-    substituteFrom:
-      - name: cluster-secrets
-        kind: Secret
   prune: true
   sourceRef:
     kind: GitRepository
