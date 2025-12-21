@@ -26,4 +26,4 @@ spec:
         controller: *app
     persistence:
       config:
-        existingClaim: *app
+        existingClaim: pgadmin
