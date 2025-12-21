@@ -70,5 +70,5 @@ spec:
       main:
         ports:
           http:
-            port: *port
+            port: 8008
             protocol: TCP
