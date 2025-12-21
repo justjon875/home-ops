@@ -85,12 +85,6 @@ spec:
         path: ${MEDIA_PATH}
         server: ${NFS_HOST}
         type: nfs
-      nvme:
-        globalMounts:
-        - path: /srv/nvme
-        path: ${NVME_NFS_PATH}
-        server: ${NFS_HOST}
-        type: nfs
     resources:
       limits:
         memory: 500Mi
