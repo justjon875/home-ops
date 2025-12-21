@@ -13,7 +13,7 @@ spec:
   path: ./kubernetes/apps/utilities/busybox/app
   postBuild:
     substitute:
-      APP: *app
+      APP: pgadmin
       VOLSYNC_CAPACITY: 1Gi
   postBuild:
     substituteFrom:
