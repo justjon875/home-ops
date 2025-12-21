@@ -9,31 +9,17 @@ spec:
   chartRef:
     kind: OCIRepository
     name: *app
-  install:
-    remediation:
-      retries: -1
-  upgrade:
-    cleanupOnFail: true
-    remediation:
-      retries: 3
   values:
     controllers:
       busybox:
         containers:
           app:
+            command:
+              - sleep
+              - "3600"
             image:
               repository: docker.io/library/busybox
               tag: latest
-            securityContext:
-              privileged: true
-              capabilities:
-                drop: ["ALL"]
-    defaultPodOptions:
-      securityContext:
-        runAsUser: 0
-        runAsGroup: 0
-        fsGroup: 0
-
     service:
       app:
         enabled: false
