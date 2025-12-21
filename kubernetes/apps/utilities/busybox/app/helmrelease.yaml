@@ -18,8 +18,8 @@ spec:
               - sleep
               - "3600"
             image:
-              repository: postgres:18
-              tag: latest
+              repository: postgres
+              tag: 18
     service:
       app:
         enabled: false
