@@ -35,6 +35,6 @@ spec:
           "dependencyDashboard": true,
           "printConfig": true,
           "repositories": [
-              "forgejo/dev-ops"
+              "forgejo_admin/dev-ops"
           ],
         }
