@@ -4,5 +4,6 @@ kind: Kustomization
 resources:
   - ./cluster-18.yaml
   - ./objectstore.yaml
+  - ./podmonitor.yaml
   - ./scheduledbackup-18.yaml
   - https://raw.githubusercontent.com/cloudnative-pg/artifacts/refs/heads/main/image-catalogs/catalog-standard-trixie.yaml
