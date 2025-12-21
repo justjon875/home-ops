@@ -11,14 +11,14 @@ components:
 resources:
   - ./namespace.yaml
   # - audiobookshelf
-  # - ./calibre/ks.yaml
+  - ./calibre/ks.yaml
   # - calibre-web-automated
   # - flaresolverr
   # - flood
   - ./jellyfin/ks.yaml
   # - jellyseerr
   # - ./listenarr/ks.yaml
-  # - ./metube/ks.yaml
+  - ./metube/ks.yaml
   # - navidrome
   - ./piped/ks.yaml
   - ./prowlarr/ks.yaml
