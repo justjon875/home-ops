@@ -60,12 +60,18 @@ spec:
         path: ${NFS_PATH}/immich/server
         server: ${NFS_HOST}
         type: nfs
-      model-cache:
-        type: emptyDir
+      machine-learning-cache:
+        type: persistentVolumeClaim
+        storageClass: openebs-hostpath
+        accessMode: ReadWriteOnce
+        size: 25Gi
         advancedMounts:
           machine-learning:
             main:
               - path: /cache
+                subPath: cache
+              - path: /.cache
+                subPath: dotCache
       nextcloud:
         path: ${NFS_PATH}/nextcloud
         server: ${NFS_HOST}
