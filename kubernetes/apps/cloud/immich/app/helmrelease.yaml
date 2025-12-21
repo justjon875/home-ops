@@ -8,16 +8,6 @@ spec:
     name: *app
   interval: 1h
   values:
-    affinity:
-      nodeAffinity:
-        preferredDuringSchedulingIgnoredDuringExecution:
-        - weight: 100          # max weight = 100
-          preference:
-            matchExpressions:
-            - key: cpu
-              operator: In
-              values:
-              - high
     controllers:
       machine-learning:
         annotations:
@@ -55,6 +45,14 @@ spec:
               requests:
                 cpu: 10m
                 memory: 100Mi
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+        seccompProfile: {type: RuntimeDefault}
     persistence:
       library:
         globalMounts:
