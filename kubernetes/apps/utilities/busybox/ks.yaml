@@ -4,17 +4,8 @@ kind: Kustomization
 metadata:
   name: busybox
 spec:
-  components:
-    - ../../../../components/volsync
-  dependsOn:
-    - name: rook-ceph-cluster
-      namespace: rook-ceph
   interval: 1h
   path: ./kubernetes/apps/utilities/busybox/app
-  postBuild:
-    substitute:
-      APP: pgadmin
-      VOLSYNC_CAPACITY: 1Gi
   prune: true
   sourceRef:
     kind: GitRepository
