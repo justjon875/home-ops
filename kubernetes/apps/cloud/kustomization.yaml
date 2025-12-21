@@ -12,5 +12,4 @@ resources:
   - ./namespace.yaml
   - ./immich/ks.yaml
   - ./garage/ks.yaml
-  # - ./opencloud/ks.yaml
-  # - photoview
+  - ./opencloud/ks.yaml
