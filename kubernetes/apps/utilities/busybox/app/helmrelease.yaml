@@ -27,7 +27,6 @@ spec:
             securityContext:
               privileged: true
               capabilities: { drop: ["ALL"] }
-                  defaultPodOptions:
       securityContext:
         runAsUser: 0
         runAsGroup: 0
