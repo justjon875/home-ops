@@ -8,26 +8,13 @@ spec:
     name: *app
   interval: 1h
   values:
-    affinity:
-      nodeAffinity:
-        preferredDuringSchedulingIgnoredDuringExecution:
-        - weight: 100          # max weight = 100
-          preference:
-            matchExpressions:
-            - key: cpu
-              operator: In
-              values:
-              - high
     controllers:
       tuwunel:
         containers:
           app:
-            image:
-              repository: ghcr.io/matrix-construct/tuwunel
-              tag: v1.1.0-release-all-x86_64-linux-gnu@sha256:0ffaa9bd91bb6819a7fbc57b9be79e86925a80cf63a106f35926bbe48b29d55e
             env:
             - name: TUWUNEL_SERVER_NAME
-              value: tuwunel.${ROOT_DOMAIN}
+              value: ${ROOT_DOMAIN}
             - name: TUWUNEL_WELL_KNOWN__CLIENT
               value: https://tuwunel.${ROOT_DOMAIN}
             - name: TUWUNEL_WELL_KNOWN__SERVER
@@ -47,6 +34,9 @@ spec:
             envFrom:
             - secretRef:
                 name: tuwunel-secret
+            image:
+              repository: ghcr.io/matrix-construct/tuwunel
+              tag: v1.1.0-release-all-x86_64-linux-gnu@sha256:0ffaa9bd91bb6819a7fbc57b9be79e86925a80cf63a106f35926bbe48b29d55e
     defaultPodOptions:
       securityContext:
         runAsUser: 1000
@@ -62,7 +52,7 @@ spec:
     route:
       app:
         hostnames:
-          - "tuwunel.${ROOT_DOMAIN}"
+          - "{{ .Release.Name }}.${ROOT_DOMAIN}"
         parentRefs:
           - name: envoy-internal
             namespace: network
@@ -71,4 +61,3 @@ spec:
         ports:
           http:
             port: 8008
-            protocol: TCP
