@@ -29,4 +29,6 @@ spec:
         type: nfs
         server: ${NFS_HOST}
         path: ${NFS_PATH}/cloudnative-pg-backup
-        readonly: true
+        globalMounts:
+          - path: /mnt/data
+            readOnly: true
