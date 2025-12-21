@@ -18,12 +18,15 @@ spec:
               - sleep
               - "3600"
             image:
-              repository: docker.io/library/busybox
+              repository: postgres:18
               tag: latest
     service:
       app:
         enabled: false
         controller: *app
     persistence:
-      config:
-        existingClaim: pgadmin
+      data:
+        type: nfs
+        server: ${NFS_HOST}
+        path: ${NFS_PATH}/cloudnative-pg-backup
+        readonly: true
