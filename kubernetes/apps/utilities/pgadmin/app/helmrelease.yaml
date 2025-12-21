@@ -22,6 +22,9 @@ spec:
             fsGroupChangePolicy: OnRootMismatch
         containers:
           app:
+            command:
+              - sleep
+              - "3600"
             image:
               repository: docker.io/library/busybox
               tag: latest
