@@ -89,7 +89,7 @@ spec:
               WEB_ASSET_APPS_PATH: /opt/extensions/usr/share/nginx/html/apps
 
               NOTIFICATIONS_SMTP_HOST: smtp-relay.utilities.svc.cluster.local
-              NOTIFICATIONS_SMTP_PORT: 25
+              NOTIFICATIONS_SMTP_PORT: 587
               NOTIFICATIONS_SMTP_SENDER: no-reply@opencloud.${ROOT_DOMAIN}
               NOTIFICATIONS_SMTP_INSECURE: true
 
@@ -304,6 +304,8 @@ spec:
             opencloud:
               - path: *cspPath
                 subPath: csp.yaml
+              - path: /etc/opencloud/proxy.yaml
+                subPath: proxy.yaml
       data:
         advancedMounts:
           opencloud:
@@ -389,3 +391,17 @@ spec:
               style-src:
                 - '''self'''
                 - '''unsafe-inline'''
+          proxy.yaml: |
+            role_assignment:
+              driver: oidc
+              oidc_role_mapper:
+                role_claim: opencloudRoles
+                role_mapping:
+                  - role_name: admin
+                    claim_value: opencloudAdmin
+                  - role_name: spaceadmin
+                    claim_value: opencloudSpaceAdmin
+                  - role_name: user
+                    claim_value: opencloudUser
+                  - role_name: guest
+                    claim_value: opencloudGuest
