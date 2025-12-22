@@ -24,7 +24,7 @@ spec:
           app:
             image:
               repository: vectorim/element-web
-              tag: v1.12.6
+              tag: v1.12.7
     global:
       nameOverride: matrix-element
     persistence:
