@@ -11,11 +11,11 @@ components:
 resources:
   - ./namespace.yaml
   # - ./busybox/ks.yaml
-  # - ./dozzle/ks.yaml
-  # - ./goldilocks/ks.yaml
+  - ./dozzle/ks.yaml
+  - ./goldilocks/ks.yaml
   - ./homepage/ks.yaml
   - ./kite/ks.yaml
-  - ./pgadmin/ks.yaml
+  # - ./pgadmin/ks.yaml
   - ./pocket-id/ks.yaml
   - ./reloader/ks.yaml
   - ./renovate/ks.yaml
