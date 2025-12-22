@@ -30,7 +30,7 @@ spec:
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
   bootstrap:
     recovery:
-      source: origin
+      source: source
       recoveryTarget:
         targetTime: "2025-12-22 12:00:00.00000+02"
   plugins:
