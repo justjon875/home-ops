@@ -17,6 +17,7 @@ resources:
   # - ./openspeedtest/ks.yaml
   - ./paperless-ngx/ks.yaml
   - ./pairdrop/ks.yaml
+  - ./planka/ks.yaml
   - ./redlib/ks.yaml
   - ./searxng/ks.yaml
   # - ./stirling-pdf/ks.yaml
