@@ -18,14 +18,12 @@ spec:
               - sleep
               - "3600"
             image:
-              repository: postgres
-              tag: 18
+              repository: docker.io/library/busybox
+              tag: latest
     service:
       app:
         enabled: false
         controller: *app
     persistence:
       config:
-        existingClaim: pgadmin
-        globalMounts:
-          - path: /var/lib/pgadmin
+        existingClaim: *app
