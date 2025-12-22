@@ -10,6 +10,8 @@ spec:
   values:
     controllers:
       planka:
+        annotations:
+          reloader.stakater.com/auto: "true"
         containers:
           app:
             envFrom:
