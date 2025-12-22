@@ -31,6 +31,8 @@ spec:
   bootstrap:
     recovery:
       source: source
+      recoveryTarget:
+        targetTime: "20251222T023702"
   plugins:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true
