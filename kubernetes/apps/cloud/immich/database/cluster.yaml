@@ -39,11 +39,11 @@ spec:
       isWALArchiver: true
       parameters:
         barmanObjectName: &store immich-store
-        serverName: immich-cluster-v2
-  # externalClusters:
-  #   - name: source
-  #     plugin:
-  #       name: barman-cloud.cloudnative-pg.io
-  #       parameters:
-  #         barmanObjectName: *store 
-  #         serverName: immich-cluster-v1
+        serverName: immich-cluster-v3
+  externalClusters:
+    - name: source
+      plugin:
+        name: barman-cloud.cloudnative-pg.io
+        parameters:
+          barmanObjectName: *store 
+          serverName: immich-cluster-v2
