@@ -35,7 +35,7 @@ spec:
       isWALArchiver: true
       parameters:
         barmanObjectName: &store garage-store
-        serverName: cluster-18-v2
+        serverName: cluster-18-v3
 
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
   externalClusters:
@@ -44,4 +44,4 @@ spec:
         name: barman-cloud.cloudnative-pg.io
         parameters:
           barmanObjectName: *store
-          serverName: cluster-18-v1
+          serverName: cluster-18-v2
