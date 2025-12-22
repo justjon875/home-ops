@@ -29,11 +29,10 @@ spec:
     name: immich-database-secret
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
   bootstrap:
-    initdb:
-      database: immich
-      postInitApplicationSQL:
-        - CREATE EXTENSION IF NOT EXISTS vchord CASCADE;
-        - CREATE EXTENSION IF NOT EXISTS earthdistance CASCADE;
+    recovery:
+      source: origin
+      recoveryTarget:
+        targetTime: "2025-12-22 12:00:00.00000+02"
   plugins:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true
