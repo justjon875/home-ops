@@ -19,7 +19,7 @@ resources:
   # - jellyseerr
   # - ./listenarr/ks.yaml
   - ./metube/ks.yaml
-  # - navidrome
+  - ./navidrome/ks.yaml
   - ./piped/ks.yaml
   - ./prowlarr/ks.yaml
   # - qbittorrent

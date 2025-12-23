@@ -15,19 +15,27 @@ spec:
               ND_DATAFOLDER: /config
               ND_MUSICFOLDER: /music
               TZ: ${TIMEZONE}
+            command:
+              - sleep
+              - "3600"
             image:
-              repository: ghcr.io/navidrome/navidrome
-              tag: 0.59.0@sha256:4edc8a1de3e042f30b78a478325839f4395177eb8201c27543dccc0eba674f23
+              repository: docker.io/library/busybox
+              tag: latest
         pod:
           securityContext:
-            runAsUser: 568
-            runAsGroup: 568
+            runAsUser: 1000
+            runAsGroup: 1000
             runAsNonRoot: true
-            fsGroup: 568
+            fsGroup: 1000
             fsGroupChangePolicy: OnRootMismatch
     persistence:
       config:
         existingClaim: "{{ .Release.Name }}"
+      old:
+        enabled: true
+        path: ${NFS_PATH}/navidrome/config
+        server: ${NFS_HOST}
+        type: nfs
       music:
         enabled: true
         path: ${NFS_PATH}/navidrome/media
@@ -36,7 +44,7 @@ spec:
     route:
       app:
         hostnames:
-          - "{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}"
+          - "{{ .Release.Name }}.${ROOT_DOMAIN}"
         parentRefs:
           - name: envoy-internal
             namespace: network
