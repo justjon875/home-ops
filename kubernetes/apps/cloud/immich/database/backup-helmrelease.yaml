@@ -16,7 +16,7 @@ spec:
               - /backup.sh
             env:
               - name: POSTGRES_HOST
-                value: immich-cluster.cloud.svc.cluster.local
+                value: immich-cluster-r.cloud.svc.cluster.local
               - name: POSTGRES_PASSWORD
                 valueFrom:
                   secretKeyRef:
