@@ -210,7 +210,7 @@
     - Grafana:
         href: https://grafana.${ROOT_DOMAIN}
         icon: grafana.png
-- VolsyncSystem
+- VolsyncSystem:
     - Kopia:
         href: https://kopia.${ROOT_DOMAIN}
         icon: kopia.png
