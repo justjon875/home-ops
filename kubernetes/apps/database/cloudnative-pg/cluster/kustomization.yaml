@@ -2,8 +2,10 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
+  - ./backup-helmrelease.yaml
   - ./cluster-18.yaml
   - ./objectstore.yaml
   - ./podmonitor.yaml
+  - ./ocirepository.yaml
   - ./scheduledbackup-18.yaml
   - https://raw.githubusercontent.com/cloudnative-pg/artifacts/refs/heads/main/image-catalogs/catalog-standard-trixie.yaml

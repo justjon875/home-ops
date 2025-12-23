@@ -1,0 +1,68 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: postgres-backup
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: backup
+  interval: 1h
+  values:
+    controllers:
+      postgres-backup:
+        containers:
+          app:
+            command:
+              - /backup.sh
+            env:
+              - name: POSTGRES_HOST
+                value: cluster-18-r.database.svc.cluster.local
+              - name: POSTGRES_PASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    name: cloudnative-pg-secret
+                    key: password
+              - name: POSTGRES_USER
+                valueFrom:
+                  secretKeyRef:
+                    name: cloudnative-pg-secret
+                    key: username
+              - name: POSTGRES_CLUSTER
+                value: "true"
+              - name: BACKUP_KEEP_DAYS
+                value: "7"
+              - name: BACKUP_KEEP_WEEKS
+                value: "4"
+              - name: BACKUP_KEEP_MONTHS
+                value: "6"
+              - name: BACKUP_KEEP_MINS
+                value: "7200"
+              - name: POSTGRES_EXTRA_OPTS
+                value: -b -C -Z6
+            image:
+              repository: docker.io/prodrigestivill/postgres-backup-local
+              tag: 18@sha256:f70742ebe42b2277689b028d1fd15aa80f77cffa01da163cc9f85a6ff1866e7f
+        cronjob:
+          schedule: "@daily"
+          ttlSecondsAfterFinished: 43200
+        pod:
+          enableServiceLinks: false
+          securityContext:
+            fsGroup: 1000
+            fsGroupChangePolicy: OnRootMismatch
+            runAsGroup: 1000
+            runAsUser: 1000
+        type: cronjob
+    persistence:
+      backups:
+        enabled: true
+        globalMounts:
+          - path: /backups
+            subPath: all
+        path: ${NFS_PATH}/postgres-backup-local
+        server: ${NFS_HOST}
+        type: nfs
+    service:
+      app:
+        controller: postgres-backup
+        enabled: false
