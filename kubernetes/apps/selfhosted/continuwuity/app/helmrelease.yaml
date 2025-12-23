@@ -1,0 +1,122 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app continuwuity
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: *app
+  interval: 1h
+  values:
+    defaultPodOptions:
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
+    controllers:
+      continuwuity:
+        type: statefulset
+        annotations:
+          reloader.stakater.com/auto: "true"
+        pod:
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+            runAsNonRoot: true
+            fsGroup: 1000
+            fsGroupChangePolicy: "OnRootMismatch"
+        containers:
+          app:
+            image:
+              repository: forgejo.ellis.link/continuwuation/continuwuity
+              tag: main@sha256:1c28af98c0bbf3e0f44db7048a33ee75f69dff8abe6f272d19e050dc6bf377ad
+            env:
+              CONDUWUIT_CONFIG: "/config/conduit.toml"
+              CONDUWUIT_PORT: &port 8008
+            probes:
+              liveness: &probe
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /_matrix/client/versions
+                    port: *port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probe
+            resources:
+              limits:
+                #                cpu: 50M
+                memory: 1Gi
+              requests:
+                cpu: 2
+                memory: 512Mi
+            securityContext:
+              capabilities:
+                drop:
+                  - ALL
+    service:
+      app:
+        controller: *app
+        ports:
+          http:
+            port: 80
+            targetPort: *port
+    route:
+      app:
+        hostnames: [ "matrix.${ROOT_DOMAIN}" ]
+        forceRename: *app
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+        rules:
+          - matches:
+              - path:
+                  type: PathPrefix
+                  value: /
+            backendRefs:
+              - identifier: app
+                port: 80
+      federation:
+        hostnames: [ "matrix-fed.${ROOT_DOMAIN}" ]
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: 80
+      well-known:
+        hostnames: [ "${ROOT_DOMAIN}" ]
+        annotations:
+          external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+        rules:
+          - matches:
+              - path:
+                  type: PathPrefix
+                  value: /.well-known/matrix/
+            backendRefs:
+              - identifier: app
+                port: 80
+
+    persistence:
+      data:
+        existingClaim: *app
+      config:
+        type: configMap
+        name: conduit-configmap
+        globalMounts:
+          - path: /config/conduit.toml
+            subPath: conduit.toml
+      token:
+        type: secret
+        name: conduit-registration-secret
+        globalMounts:
+          - path: /config/token
+            subPath: token

@@ -9,7 +9,7 @@ components:
 resources:
   - ./namespace.yaml
   - ./atuin/ks.yaml
-  - ./backrest/ks.yaml
+  - ./continuwuity/ks.yaml
   # - ./eddrit/ks.yaml
   - ./filebrowser/ks.yaml
   # - ./linkwarden/ks.yaml
@@ -22,6 +22,5 @@ resources:
   - ./redlib/ks.yaml
   - ./searxng/ks.yaml
   # - ./stirling-pdf/ks.yaml
-  - ./tuwunel/ks.yaml
   - ./vaultwarden/ks.yaml
   - ./whoogle/ks.yaml
