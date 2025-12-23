@@ -45,9 +45,6 @@
     - Forgejo lithium:
         href: https://forgejo.lithium.${OLD_DOMAIN}
         icon: forgejo.png
-    - Isaiah:
-        href: https://isaiah.lithium.${OLD_DOMAIN}
-        icon: isaiah.png
     - Pocket-ID:
         href: https://pocketid.lithium.${OLD_DOMAIN}
         icon: pocket-id.png
@@ -67,6 +64,9 @@
     - Whoogle lithium:
         href: https://whoogle.lithium.${OLD_DOMAIN}
         icon: whoogle.png
+    - Zerobyte:
+        href: https://zerobyte.lithium.${OLD_DOMAIN}
+        icon: zerobyte.png
 - Cloud:
     - Immich:
         href: https://immich.${ROOT_DOMAIN}
@@ -210,6 +210,10 @@
     - Grafana:
         href: https://grafana.${ROOT_DOMAIN}
         icon: grafana.png
-    - Kubernetes:
-        href: https://k8s.${ROOT_DOMAIN}
-        icon: kubernetes-dashboard.png
+- VolsyncSystem
+    - Kopia:
+        href: https://kopia.${ROOT_DOMAIN}
+        icon: kopia.png
+        widget:
+          type: kopia
+          url: http://kopia.${ROOT_DOMAIN}
