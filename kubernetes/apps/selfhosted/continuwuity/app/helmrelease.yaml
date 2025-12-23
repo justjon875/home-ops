@@ -34,6 +34,9 @@ spec:
             env:
               CONDUWUIT_CONFIG: "/config/conduit.toml"
               CONDUWUIT_PORT: &port 8008
+            envFrom:
+            - secretRef:
+                name: continuwuity-secret
             probes:
               liveness: &probe
                 enabled: true
@@ -114,9 +117,3 @@ spec:
         globalMounts:
           - path: /config/conduit.toml
             subPath: conduit.toml
-      token:
-        type: secret
-        name: conduit-registration-secret
-        globalMounts:
-          - path: /config/token
-            subPath: token
