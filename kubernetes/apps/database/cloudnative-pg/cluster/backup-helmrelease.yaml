@@ -27,6 +27,8 @@ spec:
                   secretKeyRef:
                     name: cloudnative-pg-secret
                     key: username
+              - name: POSTGRES_DB
+                value: postgres
               - name: POSTGRES_CLUSTER
                 value: "true"
               - name: BACKUP_KEEP_DAYS
