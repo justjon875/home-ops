@@ -10,7 +10,7 @@ components:
 
 resources:
   - ./namespace.yaml
-  # - audiobookshelf
+  - ./audiobookshelf/ks.yaml
   - ./calibre/ks.yaml
   # - calibre-web-automated
   # - flaresolverr
