@@ -5,16 +5,8 @@ metadata:
 spec:
   chartRef:
     kind: OCIRepository
-    name: app-template
-    namespace: flux-system
-  install:
-    createNamespace: true
-    remediation:
-      retries: 5
-  interval: 15m
-  upgrade:
-    remediation:
-      retries: 5
+    name: immich
+  interval: 1h
   values:
     controllers:
       postgres-backup:
@@ -24,7 +16,17 @@ spec:
               - /backup.sh
             env:
               - name: POSTGRES_HOST
-                value: cluster-vectorchord-r.default
+                value: immich-cluster.cloud.svc.cluster.local
+              - name: POSTGRES_PASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    name: immich-database-secret
+                    key: POSTGRES_PASSWORD
+              - name: POSTGRES_USER
+                valueFrom:
+                  secretKeyRef:
+                    name: immich-database-secret
+                    key: POSTGRES_USER
               - name: POSTGRES_DB
                 value: immich
               - name: BACKUP_KEEP_DAYS
@@ -37,12 +39,9 @@ spec:
                 value: "7200"
               - name: POSTGRES_EXTRA_OPTS
                 value: -b -C -Z6
-            envFrom:
-              - secretRef:
-                  name: cloudnative-pg-superuser
             image:
               repository: docker.io/prodrigestivill/postgres-backup-local
-              tag: 17@sha256:e803bd9eb4bfb42e9b3e74ba411227f3d55da292905800395659cc579b6641e8
+              tag: 18@sha256:f70742ebe42b2277689b028d1fd15aa80f77cffa01da163cc9f85a6ff1866e7f
         cronjob:
           schedule: "@daily"
           ttlSecondsAfterFinished: 43200
@@ -60,6 +59,8 @@ spec:
         globalMounts:
           - path: /backups
             subPath: immich
+        path: ${NFS_PATH}/postgres-backup-local
+        server: ${NFS_HOST}
         type: nfs
     service:
       app:
