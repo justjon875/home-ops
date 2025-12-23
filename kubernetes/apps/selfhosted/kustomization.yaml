@@ -9,6 +9,7 @@ components:
 resources:
   - ./namespace.yaml
   - ./atuin/ks.yaml
+  - ./backrest/ks.yaml
   # - ./eddrit/ks.yaml
   - ./filebrowser/ks.yaml
   # - ./linkwarden/ks.yaml

@@ -1,0 +1,77 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app app
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: *app
+  interval: 1h
+  values:
+    controllers:
+      backrest:
+        containers:
+          app:
+            env:
+              BACKREST_DATA: /data
+              BACKREST_CONFIG: /config/config.json
+              XDG_CACHE_HOME: /cache
+              TMPDIR: /tmp
+              TZ: ${TIMEZONE}
+            image:
+              repository: garethgeorge/backrest
+              tag: v1.10.1-scratch@sha256:c9933d81bbc19e058d831617194d8f9408ffd657f14ca6adc7bca7f9d97ce195
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+              startup:
+                enabled: false
+            securityContext:
+              privileged: true
+              runAsUser: 0
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 512Mi
+    persistence:
+      cache:
+        type: emptyDir
+        advancedMounts:
+          backrest:
+            app:
+            - path: /cache
+      data:
+        advancedMounts:
+          backrest:
+            app:
+            - path: /data
+              subPath: data
+            - path: /config
+              subPath: config
+        path: ${NFS_PATH}/backrest
+        server: ${NFS_HOST}
+        type: nfs
+      storage:
+        advancedMounts:
+          backrest:
+            app:
+            - path: /btrfs_snapshots
+        path: ${NFS_PATH}
+        server: ${NFS_HOST}
+        type: nfs
+    route:
+      app:
+        hostnames:
+        - '{{ .Release.Name }}.${ROOT_DOMAIN}'
+        parentRefs:
+        - name: envoy-internal
+          namespace: network
+    service:
+      app:
+        controller: backrest
+        ports:
+          http:
+            port: 9898
