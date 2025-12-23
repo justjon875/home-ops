@@ -21,12 +21,12 @@ spec:
                 valueFrom:
                   secretKeyRef:
                     name: immich-database-secret
-                    key: username
+                    key: password
               - name: POSTGRES_USER
                 valueFrom:
                   secretKeyRef:
                     name: immich-database-secret
-                    key: password
+                    key: username
               - name: POSTGRES_DB
                 value: immich
               - name: BACKUP_KEEP_DAYS
