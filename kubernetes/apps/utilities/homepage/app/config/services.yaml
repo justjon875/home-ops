@@ -216,4 +216,4 @@
         icon: kopia.png
         widget:
           type: kopia
-          url: http://kopia.${ROOT_DOMAIN}
+          url: https://kopia.${ROOT_DOMAIN}
