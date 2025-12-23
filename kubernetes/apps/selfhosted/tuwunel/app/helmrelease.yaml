@@ -10,29 +10,31 @@ spec:
   values:
     controllers:
       tuwunel:
+        annotations:
+          configmap.reloader.stakater.com/reload: "true"
         containers:
           app:
             env:
-            - name: TUWUNEL_SERVER_NAME
-              value: ${ROOT_DOMAIN}
-            - name: TUWUNEL_WELL_KNOWN__CLIENT
-              value: https://tuwunel.${ROOT_DOMAIN}
-            - name: TUWUNEL_WELL_KNOWN__SERVER
-              value: tuwunel.${ROOT_DOMAIN}:443
-            - name: TUWUNEL_DATABASE_PATH
-              value: /data/db
-            - name: TUWUNEL_ADDRESS
-              value: 0.0.0.0
-            - name: TUWUNEL_PORT
-              value: "8080"
             - name: RUST_LOG
               value: debug
+            - name: TUWUNEL_ADDRESS
+              value: 0.0.0.0
             - name: TUWUNEL_ALLOW_FEDERATION
               value: 'false'
             - name: TUWUNEL_ALLOW_REGISTRATION
               value: 'true'
             - name: TUWUNEL_ALLOW_LEGACY_MEDIA
               value: 'false'
+            - name: TUWUNEL_DATABASE_PATH
+              value: /data/db
+            - name: TUWUNEL_PORT
+              value: "8080"
+            - name: TUWUNEL_SERVER_NAME
+              value: ${ROOT_DOMAIN}
+            - name: TUWUNEL_WELL_KNOWN__CLIENT
+              value: https://tuwunel.${ROOT_DOMAIN}
+            - name: TUWUNEL_WELL_KNOWN__SERVER
+              value: tuwunel.${ROOT_DOMAIN}:443
             envFrom:
             - secretRef:
                 name: tuwunel-secret
@@ -49,8 +51,6 @@ spec:
     persistence:
       data:
         existingClaim: "{{ .Release.Name }}"
-    podAnnotations:
-      configmap.reloader.stakater.com/reload: tuwunel
     service:
       main:
         ports:
