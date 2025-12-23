@@ -44,21 +44,17 @@ spec:
             app:
             - path: /cache
       data:
-        advancedMounts:
-          backrest:
-            app:
-            - path: /data
-              subPath: data
-            - path: /config
-              subPath: config
+        globalMounts:
+          - path: /data
+            subPath: data
+          - path: /config
+            subPath: config
         path: ${NFS_PATH}/backrest
         server: ${NFS_HOST}
         type: nfs
       storage:
-        advancedMounts:
-          backrest:
-            app:
-            - path: /btrfs_snapshots
+        globalMounts:
+          - path: /btrfs_snapshots
         path: ${NFS_PATH}
         server: ${NFS_HOST}
         type: nfs
