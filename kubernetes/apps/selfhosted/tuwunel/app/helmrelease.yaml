@@ -23,6 +23,8 @@ spec:
               value: /data/db
             - name: TUWUNEL_ADDRESS
               value: 0.0.0.0
+            - name: TUWUNEL_PORT
+              value: "8080"
             - name: RUST_LOG
               value: debug
             - name: TUWUNEL_ALLOW_FEDERATION
@@ -49,39 +51,43 @@ spec:
         existingClaim: "{{ .Release.Name }}"
     podAnnotations:
       configmap.reloader.stakater.com/reload: tuwunel
-    route:
-      app:
-        hostnames: [ "tuwunel.${ROOT_DOMAIN}" ]
-        forceRename: *app
-        parentRefs:
-          - name: envoy-internal
-            namespace: network
-        rules:
-          - matches:
-              - path:
-                  type: PathPrefix
-                  value: /
-            backendRefs:
-              - identifier: app
-                port: 8008
-
-      well-known:
-        hostnames: [ "${ROOT_DOMAIN}" ]
-        parentRefs:
-          - name: envoy-internal
-            namespace: network
-        rules:
-          - matches:
-              - path:
-                  type: PathPrefix
-                  value: /.well-known/matrix/
-            backendRefs:
-              - identifier: app
-                port: 8008
     service:
-      app:
+      main:
         ports:
           http:
-            port: *port
+            port: &port 80
             protocol: TCP
-            targetPort: 8008
+            targetPort: 8080
+    route:
+      matrix:
+        annotations: {}
+        labels: {}
+        hostnames:
+          - "tuwunel.${ROOT_DOMAIN}"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+        rules:
+          - matches:
+              - path:
+                  type: PathPrefix
+                  value: /_matrix
+            backendRefs:
+              - identifier: main
+                port: *port
+      app:
+        annotations: {}
+        labels: {}
+        hostnames:
+          - "${ROOT_DOMAIN}"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+        rules:
+          - matches:
+              - path:
+                  type: PathPrefix
+                  value: /.well-known/matrix
+            backendRefs:
+              - identifier: main
+                port: *port
