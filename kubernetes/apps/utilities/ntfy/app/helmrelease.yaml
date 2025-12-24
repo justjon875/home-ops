@@ -53,11 +53,12 @@ spec:
             runAsNonRoot: false
             runAsUser: 1000
     persistence:
-      config:
+      config-file:
+        globalMounts:
+          - path: /etc/ntfy/server.yml
+            subPath: server.yml
         name: ntfy-configmap
         type: configMap
-        globalMounts:
-          - path: /etc/ntfy
       data:
         existingClaim: *app
       cache:

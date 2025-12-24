@@ -3,6 +3,7 @@ behind-proxy: true
 
 auth-default-access: deny-all
 auth-file: /data/user.db
+enable-login: true
 
 attachment-cache-dir: /cache/attachments
 cache-file: /cache/cache.db
