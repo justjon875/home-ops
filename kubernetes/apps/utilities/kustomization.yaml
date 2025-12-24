@@ -15,7 +15,6 @@ resources:
   - ./goldilocks/ks.yaml
   - ./homepage/ks.yaml
   - ./kite/ks.yaml
-  - ./ntfy/ks.yaml
   # - ./pgadmin/ks.yaml
   - ./pocket-id/ks.yaml
   - ./reloader/ks.yaml
