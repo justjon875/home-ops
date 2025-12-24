@@ -2,7 +2,7 @@
 connectivity:
   checker:
     target: 192.168.1.1:53
-    interval: 5s
+    interval: 1m
 
 metrics: true
 
