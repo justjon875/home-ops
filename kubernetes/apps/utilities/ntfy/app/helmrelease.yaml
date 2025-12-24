@@ -25,11 +25,6 @@ spec:
               - serve
             env:
               TZ: ${TIMEZONE}
-              NTFY_BASE_URL: https://ntfy.${ROOT_DOMAIN}
-              NTFY_BEHIND_PROXY: "true"
-              NTFY_ENABLE_LOGIN: "true"
-              NTFY_ENABLE_SIGNUP: "true"
-              NTFY_ENABLE_RESERVATIONS: "true"
             image:
               repository: binwiederhier/ntfy
               tag: v2.15.0@sha256:aa10e84da624f65be107f9317dbf6e212fa812e0ebf62e74d032d0762eccc930
@@ -56,14 +51,17 @@ spec:
               limits:
                 memory: 256Mi
     persistence:
+      config:
+        enabled: true
+        name: ntfy-configmap # overriden by kustomizeconfig
+        type: configMap
+        globalMounts:
+          - path: /etc/ntfy/server.yml
+            subPath: server.yaml
+      data:
+        existingClaim: *app
       cache:
         type: emptyDir
-        globalMounts:
-          - path: /var/cache/ntfy
-      config:
-        existingClaim: *app
-        globalMounts:
-          - path: /etc/ntfy
     route:
       app:
         hostnames:

@@ -5,3 +5,9 @@ kind: Kustomization
 resources:
   - ./helmrelease.yaml
   - ./ocirepository.yaml
+configMapGenerator:
+  - name: ntfy-configmap
+    files:
+      - config.yml=./resources/server.yaml
+generatorOptions:
+  disableNameSuffixHash: true
