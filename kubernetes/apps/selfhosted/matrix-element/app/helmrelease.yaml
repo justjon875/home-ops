@@ -40,7 +40,7 @@ spec:
     route:
       app:
         hostnames:
-        - '{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}'
+        - 'element.${SHORT_ROOT_DOMAIN}'
         parentRefs:
         - name: envoy-internal
           namespace: network

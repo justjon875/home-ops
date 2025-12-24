@@ -1,11 +1,11 @@
 {
     "default_server_config": {
         "m.homeserver": {
-            "base_url": "https://tuwunel.${ROOT_DOMAIN}",
-            "server_name": "tuwunel.${ROOT_DOMAIN}"
+            "base_url": "https://matrix.${ROOT_DOMAIN}",
+            "server_name": "matrix.${ROOT_DOMAIN}"
         },
         "m.identity_server": {
-            "base_url": "https://tuwunel.${ROOT_DOMAIN}"
+            "base_url": "https://matrix.${ROOT_DOMAIN}"
         }
     },
     "disable_custom_urls": false,
