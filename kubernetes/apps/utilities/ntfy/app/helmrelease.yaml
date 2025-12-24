@@ -12,13 +12,8 @@ spec:
   values:
     controllers:
       ntfy:
-        pod:
-          securityContext:
-            fsGroup: 1000
-            fsGroupChangePolicy: OnRootMismatch
-            runAsGroup: 1000
-            runAsNonRoot: false
-            runAsUser: 1000
+        annotations:
+          reloader.stakater.com/auto: "true"
         containers:
           app:
             args:
@@ -50,6 +45,13 @@ spec:
                 cpu: 10m
               limits:
                 memory: 256Mi
+        pod:
+          securityContext:
+            fsGroup: 1000
+            fsGroupChangePolicy: OnRootMismatch
+            runAsGroup: 1000
+            runAsNonRoot: false
+            runAsUser: 1000
     persistence:
       config:
         enabled: true
