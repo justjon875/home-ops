@@ -154,12 +154,15 @@
         url: https://sonarr.${ROOT_DOMAIN}
         key: "{{HOMEPAGE_VAR_SONARR_API_KEY}}"
 - Selfhosted:
+    - BentoPDF:
+        href: https://bentopdf.${ROOT_DOMAIN}
+        icon: bentopdf.png
     - FileBrowser:
         href: https://filebrowser.${ROOT_DOMAIN}
         icon: filebrowser.png
     - Linkwarden:
         href: https://linkwarden.${ROOT_DOMAIN}
-        icon: /icons/linkwarden.png
+        icon: linkwarden.png
         widget:
           type: linkwarden
           url: https://linkwarden.${ROOT_DOMAIN}
@@ -172,16 +175,16 @@
         icon: openspeedtest.png
     - Paperless-ngx:
         href: https://paperless-ngx.${ROOT_DOMAIN}
-        icon: /icons/paperless-ngx.svg
+        icon: paperless-ngx.svg
     - PairDrop:
         href: https://pairdrop.${ROOT_DOMAIN}
-        icon: /icons/pairdrop.png
+        icon: pairdrop.png
     - Redlib:
         href: https://redlib.${ROOT_DOMAIN}
         icon: reddit.png
-    - Stirling-PDF:
-        href: https://stirling-pdf.${ROOT_DOMAIN}
-        icon: /icons/stirling.png
+    - Searxng:
+        href: https://searxng.${ROOT_DOMAIN}
+        icon: searxng.png
     - Vaultwarden:
         href: https://vaultwarden.${ROOT_DOMAIN}
         icon: bitwarden.png
@@ -210,6 +213,9 @@
     - Grafana:
         href: https://grafana.${ROOT_DOMAIN}
         icon: grafana.png
+    - Zerobyte:
+        href: https://zerobyte.${ROOT_DOMAIN}
+        icon: zerobyte.png
 - VolsyncSystem:
     - Kopia:
         href: https://kopia.${ROOT_DOMAIN}
