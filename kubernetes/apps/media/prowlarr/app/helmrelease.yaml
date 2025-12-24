@@ -40,14 +40,14 @@ spec:
       tmp:
         type: emptyDir
     route:
-      annotations:
-        gatus.home-operations.com/endpoint: |
-          interval: 30s
-          alerts:
-            - type: matrix
       app:
+        annotations:
+          gatus.home-operations.com/endpoint: |
+            interval: 30s
+            alerts:
+              - type: matrix
         hostnames:
-        - '{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}'
+        - '{{ .Release.Name }}.${ROOT_DOMAIN}'
         parentRefs:
         - name: envoy-internal
           namespace: network
