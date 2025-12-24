@@ -114,6 +114,9 @@ spec:
                 subPath: meta
     route:
       app:
+        annotations:
+          gatus.home-operations.com/endpoint: |-
+            conditions: ["[STATUS] == 403"]
         hostnames:
           - s3.${ROOT_DOMAIN}
         parentRefs:
