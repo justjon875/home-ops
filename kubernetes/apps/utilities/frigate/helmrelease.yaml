@@ -35,7 +35,7 @@ spec:
                   name: frigate-secret
             image:
               repository: ghcr.io/blakeblackshear/frigate
-              tag: 0.15.0-rc1@sha256:c5e6c8e56cc76aa03fb6a2211b1dfdcb28065da82097401c45d0934799cc5dc4
+              tag: 0.16.0-rc1@sha256:994bdb674fcb665e259a5f74d17c9f357c0d31e3fd2f2a48da361df93d2b522a
             probes:
               liveness: &probes
                 enabled: false
