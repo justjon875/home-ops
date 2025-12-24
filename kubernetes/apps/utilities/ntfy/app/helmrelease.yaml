@@ -53,10 +53,10 @@ spec:
     persistence:
       config:
         enabled: true
-        name: ntfy-configmap # overriden by kustomizeconfig
+        name: ntfy-configmap
         type: configMap
         globalMounts:
-          - path: /etc/ntfy/server.yml
+          - path: /etc/ntfy/server.yaml
             subPath: server.yaml
       data:
         existingClaim: *app
