@@ -26,12 +26,13 @@ spec:
             image:
               repository: ghcr.io/nicotsx/zerobyte
               tag: v0.19
-            resources:
-              requests:
-                cpu: 50m
-                memory: 100Mi
-              limits:
-                memory: 500Mi
+              resources:
+                requests:
+                  cpu: 15m
+                  memory: 188M
+                limits:
+                  cpu: 19088m
+                  memory: 56G
     persistence:
       config:
         existingClaim: *app
