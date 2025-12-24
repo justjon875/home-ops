@@ -9,8 +9,9 @@ components:
 resources:
   - ./namespace.yaml
   - ./atuin/ks.yaml
+  - ./bentopdf/ks.yaml
   - ./continuwuity/ks.yaml
-  # - ./eddrit/ks.yaml
+  - ./eddrit/ks.yaml
   - ./filebrowser/ks.yaml
   # - ./linkwarden/ks.yaml
   - ./matrix-element/ks.yaml
@@ -21,6 +22,5 @@ resources:
   - ./planka/ks.yaml
   - ./redlib/ks.yaml
   - ./searxng/ks.yaml
-  # - ./stirling-pdf/ks.yaml
   - ./vaultwarden/ks.yaml
   - ./whoogle/ks.yaml

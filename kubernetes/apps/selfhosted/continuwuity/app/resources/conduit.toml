@@ -3,7 +3,7 @@ server_name = "${ROOT_DOMAIN}"
 address = ["::"]
 port = 8008
 
-log = "info"
+log = "debug"
 
 database_path = "/data"
 database_backup_path = "/backups"
