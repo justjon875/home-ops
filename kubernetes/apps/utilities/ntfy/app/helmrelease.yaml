@@ -35,7 +35,7 @@ spec:
                 spec:
                   httpGet:
                     path: /v1/health
-                    port: &port 80
+                    port: &port 8080
                   initialDelaySeconds: 0
                   periodSeconds: 10
                   timeoutSeconds: 1
@@ -73,4 +73,4 @@ spec:
       app:
         ports:
           http:
-            port: 80
+            port: *port
