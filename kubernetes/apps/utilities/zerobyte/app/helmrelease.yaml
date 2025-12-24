@@ -11,7 +11,7 @@ spec:
     name: *app
   values:
     controllers:
-      pgadmin:
+      zerobyte:
         pod:
           securityContext:
             fsGroup: 1000
@@ -21,6 +21,8 @@ spec:
             runAsUser: 1000
         containers:
           app:
+            env:
+              LOG_LEVEL: debug 
             image:
               repository: ghcr.io/nicotsx/zerobyte
               tag: v0.19
