@@ -11,7 +11,7 @@ spec:
     - name: rook-ceph-cluster
       namespace: rook-ceph
   interval: 1h
-  path: ./kubernetes/apps/utilities/pgadmin/app
+  path: ./kubernetes/apps/utilities/zerobyte/app
   postBuild:
     substitute:
       APP: *app
