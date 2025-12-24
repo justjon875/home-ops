@@ -1,0 +1,58 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app zerobyte
+spec:
+  interval: 30m
+  chartRef:
+    kind: OCIRepository
+    name: *app
+  values:
+    controllers:
+      zerobyte:
+        pod:
+          securityContext:
+            fsGroup: 1000
+            fsGroupChangePolicy: OnRootMismatch
+            runAsGroup: 1000
+            runAsNonRoot: false
+            runAsUser: 1000
+        containers:
+          app:
+            env:
+              LOG_LEVEL: debug 
+            image:
+              repository: ghcr.io/nicotsx/zerobyte
+              tag: v0.19
+            resources:
+              requests:
+                cpu: 15m
+                memory: 188M
+              limits:
+                cpu: 19088m
+                memory: 56G
+    persistence:
+      config:
+        existingClaim: *app
+        globalMounts:
+          - path: /var/lib/zerobyte
+      nfs:
+        globalMounts:
+          - path: /nfs
+        path: ${NFS_PATH}
+        server: ${NFS_HOST}
+        type: nfs
+    route:
+      app:
+        hostnames:
+          - '{{ .Release.Name }}.${ROOT_DOMAIN}'
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+    service:
+      app:
+        ports:
+          http:
+            port: 4096
