@@ -40,6 +40,11 @@ spec:
       tmp:
         type: emptyDir
     route:
+      annotations:
+        gatus.home-operations.com/endpoint: |
+          interval: 30s
+          alerts:
+            - type: matrix
       app:
         hostnames:
         - '{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}'
