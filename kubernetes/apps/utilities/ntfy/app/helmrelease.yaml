@@ -57,8 +57,7 @@ spec:
         name: ntfy-configmap
         type: configMap
         globalMounts:
-          - path: /etc/ntfy/server.yml
-            subPath: server.yml
+          - path: /etc/ntfy
       data:
         existingClaim: *app
       cache:
