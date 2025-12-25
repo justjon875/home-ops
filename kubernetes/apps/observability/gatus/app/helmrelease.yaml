@@ -23,6 +23,9 @@ spec:
               - --auto-httproute
               - --enable-httproute
               - --enable-service
+            envFrom: &envFrom
+              - secretRef:
+                  name: gatus-secret
             resources:
               requests:
                 cpu: 10m
@@ -45,9 +48,7 @@ spec:
                   secretKeyRef:
                     name: &pg "{{ .Release.Name }}-pguser-secret"
                     key: uri
-            envFrom: &envFrom
-              - secretRef:
-                  name: gatus-secret
+            envFrom: *envFrom
             probes:
               liveness: &probes
                 enabled: true
