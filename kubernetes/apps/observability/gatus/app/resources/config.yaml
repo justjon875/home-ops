@@ -8,8 +8,8 @@ alerting:
       send-on-resolved: true
       success-threshold: 3
     server-url: https://matrix.${ROOT_DOMAIN}
-    access-token: "$ACCESS_TOKEN"
-    internal-room-id: "$INTERNAL_ROOM_ID"
+    access-token: "$${ACCESS_TOKEN}"
+    internal-room-id: "!${{INTERNAL_ROOM_ID}}:${ROOT_DOMAIN}"
 
 connectivity:
   checker:
@@ -25,7 +25,7 @@ ui:
 
 storage:
   type: postgres
-  path: "$POSTGRES_URI"
+  path: "$${POSTGRES_URI}"
   caching: true
 
 web:
