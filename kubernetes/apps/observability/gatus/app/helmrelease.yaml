@@ -45,6 +45,9 @@ spec:
                   secretKeyRef:
                     name: &pg "{{ .Release.Name }}-pguser-secret"
                     key: uri
+            envFrom: &envFrom
+              - secretRef:
+                  name: gatus-secret
             probes:
               liveness: &probes
                 enabled: true
