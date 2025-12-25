@@ -43,7 +43,7 @@ spec:
       app:
         annotations:
           gatus.home-operations.com/endpoint: |
-            interval: 5s
+            interval: 30s
             alerts:
               - type: matrix
         hostnames:
