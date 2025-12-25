@@ -15,6 +15,13 @@ spec:
         annotations:
           reloader.stakater.com/auto: "true"
         initContainers:
+          01-init-db:
+            image:
+              repository: ghcr.io/home-operations/postgres-init
+              tag: "18"
+            envFrom:
+              - secretRef:
+                  name: "{ .Release.Name }-initdb-secret"
           gatus-sidecar:
             image:
               repository: ghcr.io/home-operations/gatus-sidecar
@@ -24,7 +31,7 @@ spec:
               - --enable-httproute
               - --enable-service
             env:
-              POSTGRES_URI:
+              POSTGRES_URI: &pguri
                 valueFrom:
                   secretKeyRef:
                     name: &pg "{{ .Release.Name }}-pguser-secret"
@@ -49,11 +56,7 @@ spec:
               GATUS_WEB_PORT: &port 80
               GATUS_LOG_LEVEL: DEBUG
               TZ: ${TIMEZONE}
-              POSTGRES_URI:
-                valueFrom:
-                  secretKeyRef:
-                    name: &pg "{{ .Release.Name }}-pguser-secret"
-                    key: uri
+              POSTGRES_URI: *pguri
             envFrom: *envFrom
             probes:
               liveness: &probes
@@ -83,12 +86,6 @@ spec:
         runAsUser: 1000
         runAsGroup: 1000
     persistence:
-      alerts-file:
-        type: secret
-        name: "{{ .Release.Name }}-alerts-secret"
-        globalMounts:
-          - path: /config/alerts.yaml
-            subPath: alerts.yaml
       config:
         type: emptyDir
       config-file:
@@ -97,6 +94,8 @@ spec:
         globalMounts:
           - path: /config/config.yaml
             subPath: config.yaml
+          - path: /config/alerts.yaml
+            subPath: alerts.yaml
     rbac:
       roles:
         gatus:
