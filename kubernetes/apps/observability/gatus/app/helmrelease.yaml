@@ -94,8 +94,6 @@ spec:
         globalMounts:
           - path: /config/config.yaml
             subPath: config.yaml
-          - path: /config/alerts.yaml
-            subPath: alerts.yaml
     rbac:
       roles:
         gatus:

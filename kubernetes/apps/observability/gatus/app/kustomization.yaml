@@ -11,7 +11,6 @@ resources:
 configMapGenerator:
   - name: gatus-configmap
     files:
-      - alerts.yaml=./resources/alerts.yaml
       - config.yaml=./resources/config.yaml
 generatorOptions:
   disableNameSuffixHash: true
