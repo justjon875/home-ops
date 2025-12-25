@@ -83,12 +83,12 @@ spec:
         runAsUser: 1000
         runAsGroup: 1000
     persistence:
-      # alerts-file:
-      #   type: secret
-      #   name: "{{ .Release.Name }}-alerts-secret"
-      #   globalMounts:
-      #     - path: /config/alerts.yaml
-      #       subPath: alerts.yaml
+      alerts-file:
+        type: secret
+        name: "{{ .Release.Name }}-alerts-secret"
+        globalMounts:
+          - path: /config/alerts.yaml
+            subPath: alerts.yaml
       config:
         type: emptyDir
       config-file:
