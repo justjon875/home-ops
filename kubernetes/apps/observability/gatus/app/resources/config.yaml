@@ -23,10 +23,10 @@ ui:
   header: Status
   link: https://forgejo.lithium.${ROOT_DOMAIN}
 
-# storage:
-#   type: postgres
-#   path: "$${POSTGRES_URI}"
-#   caching: true
+storage:
+  type: postgres
+  path: "$${POSTGRES_URI}"
+  caching: true
 
 web:
   port: 80
