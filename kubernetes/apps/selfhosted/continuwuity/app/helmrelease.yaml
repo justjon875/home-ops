@@ -96,10 +96,9 @@ spec:
                 port: 80
       well-known:
         annotations:
+          external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
           gatus.home-operations.com/enabled: "false"
         hostnames: [ "${ROOT_DOMAIN}" ]
-        annotations:
-          external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
         parentRefs:
           - name: envoy-internal
             namespace: network
