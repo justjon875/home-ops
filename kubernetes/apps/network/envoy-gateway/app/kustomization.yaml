@@ -7,4 +7,5 @@ resources:
   - ./grafanadashboard.yaml
   - ./helmrelease.yaml
   - ./ocirepository.yaml
+  - ./old-certificate.yaml
   - ./podmonitor.yaml
