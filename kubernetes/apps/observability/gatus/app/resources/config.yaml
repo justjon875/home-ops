@@ -1,16 +1,3 @@
----
-alerting:
-  matrix:
-    default-alert:
-      description: health-check failed
-      failure-threshold: 5
-      minimum-reminder-interval: 1h
-      send-on-resolved: true
-      success-threshold: 3
-    server-url: https://matrix.${ROOT_DOMAIN}
-    access-token: "$${ACCESS_TOKEN}"
-    internal-room-id: "'!$${INTERNAL_ROOM_ID}:${ROOT_DOMAIN}'"
-
 connectivity:
   checker:
     target: 192.168.1.1:53
