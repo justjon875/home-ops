@@ -34,11 +34,6 @@ spec:
                 memory: 100Mi
               limits:
                 memory: 500Mi
-    persistence:
-      config:
-        existingClaim: *app
-        globalMounts:
-          - path: /var/lib/shoutrrr
     route:
       app:
         hostnames:
