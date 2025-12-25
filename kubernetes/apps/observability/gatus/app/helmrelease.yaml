@@ -40,9 +40,6 @@ spec:
               GATUS_WEB_PORT: &port 80
               GATUS_LOG_LEVEL: DEBUG
               TZ: ${TIMEZONE}
-            envFrom:
-              - secretRef:
-                  name: gatus-alerts-secret
             probes:
               liveness: &probes
                 enabled: true
@@ -71,14 +68,18 @@ spec:
         runAsUser: 1000
         runAsGroup: 1000
     persistence:
+      alerts-file:
+        type: secret
+        name: "{{ .Release.Name }}-alerts-secret"
+        globalMounts:
+          - path: /config/alerts.yaml
+            subPath: alerts.yaml
       config:
         type: emptyDir
       config-file:
         type: configMap
         name: "{{ .Release.Name }}-configmap"
         globalMounts:
-          - path: /config/alerts.yaml
-            subPath: alerts.yaml
           - path: /config/config.yaml
             subPath: config.yaml
     rbac:
