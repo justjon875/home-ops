@@ -279,6 +279,8 @@ spec:
         annotations:
           gatus.home-operations.com/endpoint: |
             url: "https://wopi.${ROOT_DOMAIN}/wopi"
+            conditions:
+              - "[STATUS] == 418"
         hostnames:
           - wopi.${ROOT_DOMAIN}
         parentRefs:
