@@ -23,6 +23,12 @@ spec:
               - --auto-httproute
               - --enable-httproute
               - --enable-service
+            env:
+              POSTGRES_URI: |
+                valueFrom:
+                  secretKeyRef:
+                    name: &pg "{{ .Release.Name }}-pguser-secret"
+                    key: uri
             envFrom: &envFrom
               - secretRef:
                   name: gatus-secret
