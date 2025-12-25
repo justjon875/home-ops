@@ -23,6 +23,7 @@ spec:
           app:
             env:
               LOG_LEVEL: debug 
+              TZ: ${TIMEZONE}
             image:
               repository: ghcr.io/nicotsx/zerobyte
               tag: v0.19
