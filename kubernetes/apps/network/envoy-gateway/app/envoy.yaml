@@ -80,6 +80,7 @@ metadata:
   annotations:
     external-dns.alpha.kubernetes.io/target: internal.${ROOT_DOMAIN}
     gatus.home-operations.com/endpoint: |
+      interval: 5s
       alerts:
         - type: matrix
 spec:
@@ -164,9 +165,9 @@ metadata:
     external-dns.alpha.kubernetes.io/controller: none
 spec:
   parentRefs:
-    # - name: envoy-external
-    #   namespace: network
-    #   sectionName: http
+    - name: envoy-external
+      namespace: network
+      sectionName: http
     - name: envoy-internal
       namespace: network
       sectionName: http
