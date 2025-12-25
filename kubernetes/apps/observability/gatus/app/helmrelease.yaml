@@ -42,7 +42,7 @@ spec:
               TZ: ${TIMEZONE}
             envFrom:
               - secretRef:
-                  name: gatus-secret
+                  name: gatus-alerts-secret
             probes:
               liveness: &probes
                 enabled: true

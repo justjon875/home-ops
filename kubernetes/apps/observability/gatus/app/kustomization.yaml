@@ -8,10 +8,10 @@ resources:
   - ./helmrelease.yaml
   - ./ocirepository.yaml
   - ./prometheusrule.yaml
+  - ./resources/alerts.sops.yaml
 configMapGenerator:
   - name: gatus-configmap
     files:
-      - alerts.yaml=./resources/alerts.yaml
       - config.yaml=./resources/config.yaml
 generatorOptions:
   disableNameSuffixHash: true
