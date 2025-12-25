@@ -13,7 +13,7 @@ ui:
 
 storage:
   type: postgres
-  path: $POSTGRES_URI
+  path: ${POSTGRES_URI}
   caching: true
 
 web:
