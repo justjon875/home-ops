@@ -5,6 +5,11 @@ kind: Kustomization
 metadata:
   name: gatus
 spec:
+  components:
+    - ../../../../components/cnpg
+  dependsOn:
+    - name: cloudnative-pg
+      namespace: database
   interval: 1h
   path: ./kubernetes/apps/observability/gatus/app
   postBuild:

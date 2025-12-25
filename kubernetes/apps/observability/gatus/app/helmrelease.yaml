@@ -40,6 +40,11 @@ spec:
               GATUS_WEB_PORT: &port 80
               GATUS_LOG_LEVEL: DEBUG
               TZ: ${TIMEZONE}
+              POSTGRES_URI:
+                valueFrom:
+                  secretKeyRef:
+                    name: &pg "{{ .Release.Name }}-pguser-secret"
+                    key: uri
             probes:
               liveness: &probes
                 enabled: true

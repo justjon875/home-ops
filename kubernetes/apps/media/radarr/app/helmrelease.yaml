@@ -32,7 +32,7 @@ spec:
               RADARR__POSTGRES__PASSWORD:
                 valueFrom:
                   secretKeyRef:
-                    name: &pg "{{ .Release.Name }}-pguser-secret"
+                    name: *pg
                     key: password
               RADARR__POSTGRES__PORT: 5432
               RADARR__POSTGRES__USER: *app
