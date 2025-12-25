@@ -21,7 +21,7 @@ spec:
               tag: "18"
             envFrom:
               - secretRef:
-                  name: "{ .Release.Name }-initdb-secret"
+                  name: "{{ .Release.Name }}-initdb-secret"
           gatus-sidecar:
             image:
               repository: ghcr.io/home-operations/gatus-sidecar
