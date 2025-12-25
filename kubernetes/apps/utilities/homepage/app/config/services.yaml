@@ -182,8 +182,8 @@
     - Redlib:
         href: https://redlib.${ROOT_DOMAIN}
         icon: reddit.png
-    - Searxng:
-        href: https://searxng.${ROOT_DOMAIN}
+    - SearXNG:
+        href: https://search.${ROOT_DOMAIN}
         icon: searxng.png
     - Vaultwarden:
         href: https://vaultwarden.${ROOT_DOMAIN}
