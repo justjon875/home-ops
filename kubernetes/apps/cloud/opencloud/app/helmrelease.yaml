@@ -276,6 +276,9 @@ spec:
             - identifier: *app
               port: *port
       wopi:
+        annotations:
+          gatus.home-operations.com/endpoint: |
+            url: "https://wopi.${ROOT_DOMAIN}/wopi"
         hostnames:
           - wopi.${ROOT_DOMAIN}
         parentRefs:
