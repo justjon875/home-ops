@@ -26,7 +26,7 @@ gitea:
       existingSecret: forgejo-admin-secret
       groupClaimName: groups
       iconUrl: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/pocket-id-light.svg
-      name: ID
+      name: PocketID
       provider: openidConnect
       scopes: openid profile email
 
