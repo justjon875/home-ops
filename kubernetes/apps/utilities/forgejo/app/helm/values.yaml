@@ -3,9 +3,8 @@ httpRoute:
   enabled: true
   hostnames: [ "git.${ROOT_DOMAIN}" ]
   parentRefs:
-    - name: internal
+    - name: envoy-internal
       namespace: network
-      sectionName: https
 
 image:
   rootless: true
