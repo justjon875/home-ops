@@ -30,10 +30,9 @@ gitea:
     database:
       DB_TYPE: postgres
 
-      HOST: cluster-18-rw.database.svc.cluster.internal:5432
+      HOST: cluster-18-rw.database.svc.cluster.local:5432
       USER: forgejo
       NAME: forgejo
-      SSL_MODE: verify-full
 
     server:
       APP_DATA_PATH: /data/gitea
