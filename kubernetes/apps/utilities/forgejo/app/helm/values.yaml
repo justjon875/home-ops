@@ -105,20 +105,9 @@ extraVolumes:
     secret:
       secretName: forgejo-ssh
 
-extraInitVolumeMounts:
-  - name: postgres-forgejo
-    mountPath: "/var/run/secrets/postgresql"
-  - name: root-ca
-    mountPath: "/var/run/secrets/root-ca"
-
 extraContainerVolumeMounts:
   - name: git
     mountPath: "/data/git/"
-
-  - name: postgres-forgejo
-    mountPath: "/var/run/secrets/postgresql"
-  - name: root-ca
-    mountPath: "/var/run/secrets/root-ca"
 
   - name: forgejo-ssh
     mountPath: "/data/gitea/ssh/ssh_host_ed25519_key"
