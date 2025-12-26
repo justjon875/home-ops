@@ -21,7 +21,7 @@ gitea:
 
   oauth:
     - adminGroup: admin
-      autoDiscoverUrl: https://id.${ROOT_DOMAIN}/application/o/forgejo/.well-known/openid-configuration
+      autoDiscoverUrl: https://id.${ROOT_DOMAIN}/.well-known/openid-configuration
       existingSecret: forgejo-admin-secret
       iconUrl: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/pocket-id-light.svg
       name: PocketID
