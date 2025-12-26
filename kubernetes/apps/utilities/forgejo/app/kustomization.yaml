@@ -1,12 +1,16 @@
+---
 # yaml-language-server: $schema=https://json.schemastore.org/kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: utilities
 resources:
   - ./helmrelease.yaml
+  - ./ocirepository.yaml
+  - ./pvc.yaml
   - ./secret.sops.yaml
-  - ./volumes.yaml
-labels:
-  - pairs:
-      app.kubernetes.io/name: forgejo
-      app.kubernetes.io/instance: forgejo
+  - ./tcproute.yaml
+configMapGenerator:
+  - name: forgejo-values
+    files:
+      - ./helm/values.yaml
+configurations:
+  - ./helm/kustomizeconfig.yaml

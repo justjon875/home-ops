@@ -106,6 +106,14 @@ spec:
         certificateRefs:
           - kind: Secret
             name: ${ROOT_DOMAIN/./-}-prod-tls
+    - name: ssh
+      protocol: TCP
+      port: 22
+      allowedRoutes:
+        namespaces:
+          from: All
+        kinds:
+          - kind: TCPRoute
 ---
 apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: BackendTrafficPolicy
