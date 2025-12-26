@@ -17,14 +17,12 @@ image:
 
 gitea:
   admin:
-      username: ""
-  #    existingSecret: forgejo-admin-secret
-  #    email: "admin@ROOT_DOMAIN"
+    existingSecret: forgejo-admin-secret
+
   oauth:
-    - adminGroup: admins
+    - adminGroup: admin
       autoDiscoverUrl: https://id.${ROOT_DOMAIN}/application/o/forgejo/.well-known/openid-configuration
       existingSecret: forgejo-admin-secret
-      groupClaimName: groups
       iconUrl: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/pocket-id-light.svg
       name: PocketID
       provider: openidConnect
