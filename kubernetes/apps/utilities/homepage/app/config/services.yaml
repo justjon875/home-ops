@@ -38,6 +38,37 @@
           url: https://oxygen.${OLD_DOMAIN}
           username: {{HOMEPAGE_VAR_OPNSENSE_USERNAME}}
           password: {{HOMEPAGE_VAR_OPNSENSE_PASSWORD}}
+- Virtualisation:
+  - Hydrogen:
+      icon: proxmox.jpg
+      widget:
+        type: proxmox
+        url: https://hydrogen.${ROOT_DOMAIN}
+        username: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
+        password: {{HOMEPAGE_VAR_PROXMOX_HYDROGEN}}
+  - Iron:
+      icon: proxmox.jpg
+      widget:
+        type: proxmox
+        url: https://iron.${ROOT_DOMAIN}
+        username: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
+        password: {{HOMEPAGE_VAR_PROXMOX_IRON}}
+  - Neon:
+      icon: proxmox.jpg
+      widget:
+        type: proxmox
+        url: https://neon.${ROOT_DOMAIN}
+        username: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
+        password: {{HOMEPAGE_VAR_PROXMOX_NEON}}
+- Storage:
+  - Cobalt:
+      icon: openmediavault.jpg
+      widget:
+        type: openmediavault
+        url: https://cobalt.${ROOT_DOMAIN}
+        username: {{HOMEPAGE_VAR_OMV_USERNAME}}
+        password: {{HOMEPAGE_VAR_OMV_PASSWORD}}
+        method: services.getStatus # required
 - Lithium:
     - Dozzle lithium:
         href: https://dozzle.lithium.${OLD_DOMAIN}

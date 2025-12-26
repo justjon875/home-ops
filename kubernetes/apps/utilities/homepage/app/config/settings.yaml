@@ -11,6 +11,14 @@ layout:
     style: row
     columns: 2
     icon: mdi-chip
+  Virtualisation:
+    style: row
+    columns: 3
+    icon: mdi-cpu-64-bit
+  Storage:
+    style: row
+    columns: 1
+    icon: mdi-nas
   Lithium:
     style: row
     columns: 4

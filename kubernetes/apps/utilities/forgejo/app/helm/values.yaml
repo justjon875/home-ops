@@ -3,8 +3,9 @@ httpRoute:
   enabled: true
   hostnames: [ "git.${ROOT_DOMAIN}" ]
   parentRefs:
-    - name: envoy-internal
+    - name: internal
       namespace: network
+      sectionName: https
 
 image:
   rootless: true
@@ -13,9 +14,21 @@ image:
   tag: 13.0.3-rootless
   digest: sha256:a704cc203d78a854e0887e08fcbd7a45f9bc2b5fd8551c88b914b044792c4b1b
 
+oauth:
+  - adminGroup: admins
+    autoDiscoverUrl: https://id.${ROOT_DOMAIN}/application/o/forgejo/.well-known/openid-configuration
+    existingSecret: forgejo-oauth-secret
+    groupClaimName: groups
+    iconUrl: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/authentik.png
+    name: Authentik
+    provider: openidConnect
+    scopes: openid profile email
+
 gitea:
   admin:
-    existingSecret: forgejo-admin-secret
+      username: ""
+  #    existingSecret: forgejo-admin-secret
+  #    email: "admin@ROOT_DOMAIN"
 
   # oauth:
   #   - name: kanidm
@@ -27,6 +40,7 @@ gitea:
     database:
       DB_TYPE: postgres
 
+      HOST: cluster-18-rw.database.svc.cluster.local:5432
       USER: forgejo
       NAME: forgejo
       SSL_MODE: disable
@@ -55,9 +69,9 @@ gitea:
       REPO_INDEXER_ENABLED: true
     service:
       ALLOW_ONLY_EXTERNAL_REGISTRATION: true
-      ENABLE_INTERNAL_SIGNIN: true
-      SHOW_REGISTRATION_BUTTON: true
-      ENABLE_PASSWORD_SIGNIN_FORM: true
+      ENABLE_INTERNAL_SIGNIN: false
+      SHOW_REGISTRATION_BUTTON: false
+      ENABLE_PASSWORD_SIGNIN_FORM: false
       ENABLE_NOTIFY_MAIL: true
     openid:
       ENABLE_OPENID_SIGNIN: false
@@ -80,11 +94,6 @@ gitea:
       USER: forgejo@${ROOT_DOMAIN}
 
   additionalConfigFromEnvs:
-    - name: GITEA__DATABASE__HOST
-      valueFrom:
-        secretKeyRef:
-          name: forgejo-pguser-secret
-          key: host
     - name: GITEA__DATABASE__PASSWD
       valueFrom:
         secretKeyRef:
