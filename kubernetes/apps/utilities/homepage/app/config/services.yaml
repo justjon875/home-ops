@@ -40,29 +40,32 @@
           password: {{HOMEPAGE_VAR_OPNSENSE_PASSWORD}}
 - Virtualisation:
   - Hydrogen:
-      icon: proxmox.jpg
+      icon: sh-proxmox
       widget:
         type: proxmox
         url: https://hydrogen.${ROOT_DOMAIN}
         username: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
         password: {{HOMEPAGE_VAR_PROXMOX_HYDROGEN}}
+        node: hydrogen
   - Iron:
-      icon: proxmox.jpg
+      icon: sh-proxmox
       widget:
         type: proxmox
         url: https://iron.${ROOT_DOMAIN}
         username: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
         password: {{HOMEPAGE_VAR_PROXMOX_IRON}}
+        node: iron
   - Neon:
-      icon: proxmox.jpg
+      icon: sh-proxmox
       widget:
         type: proxmox
         url: https://neon.${ROOT_DOMAIN}
         username: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
         password: {{HOMEPAGE_VAR_PROXMOX_NEON}}
+        node: neon
 - Storage:
   - Cobalt:
-      icon: openmediavault.jpg
+      icon: sh-openmediavault
       widget:
         type: openmediavault
         url: https://cobalt.${ROOT_DOMAIN}
