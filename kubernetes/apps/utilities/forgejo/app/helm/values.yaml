@@ -33,6 +33,7 @@ gitea:
       HOST: cluster-18-rw.database.svc.cluster.local:5432
       USER: forgejo
       NAME: forgejo
+      SSL_MODE: disable
 
     server:
       APP_DATA_PATH: /data/gitea
