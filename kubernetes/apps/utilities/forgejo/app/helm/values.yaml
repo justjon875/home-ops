@@ -83,6 +83,13 @@ gitea:
       SMTP_ADDR: smtp-relay.default.svc.cluster.local
       USER: forgejo@${ROOT_DOMAIN}
 
+    additionalConfigFromEnvs:
+      - name: GITEA__DATABASE__PASSWD
+        valueFrom:
+          secretKeyRef:
+            name: forgejo-pguser-secret
+            key: password
+
 # service:
 #   ssh:
 #     clusterIP: 2001:cafe:43::ef37
