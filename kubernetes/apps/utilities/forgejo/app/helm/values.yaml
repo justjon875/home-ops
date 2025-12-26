@@ -101,15 +101,6 @@ extraVolumes:
     persistentVolumeClaim:
       claimName: git
 
-  - name: postgres-forgejo
-    secret:
-      defaultMode: 0600
-      secretName: postgres-forgejo-cert
-  - name: root-ca
-    secret:
-      defaultMode: 0600
-      secretName: root-ca
-
   - name: forgejo-ssh
     secret:
       secretName: forgejo-ssh
