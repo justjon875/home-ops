@@ -14,21 +14,9 @@ image:
   tag: 13.0.3-rootless
   digest: sha256:a704cc203d78a854e0887e08fcbd7a45f9bc2b5fd8551c88b914b044792c4b1b
 
-
-initContainers:
-  01-init-db:
-    image:
-      repository: ghcr.io/home-operations/postgres-init
-      tag: "18"
-    envFrom:
-      - secretRef:
-          name: "{{ .Release.Name }}-initdb-secret"
-
 gitea:
   admin:
-      username: ""
-  #    existingSecret: forgejo-admin-secret
-  #    email: "admin@ROOT_DOMAIN"
+    existingSecret: forgejo-admin-secret
 
   # oauth:
   #   - name: kanidm
@@ -40,7 +28,6 @@ gitea:
     database:
       DB_TYPE: postgres
 
-      HOST: cluster-18-rw.database.svc.cluster.local:5432
       USER: forgejo
       NAME: forgejo
       SSL_MODE: disable
@@ -94,6 +81,11 @@ gitea:
       USER: forgejo@${ROOT_DOMAIN}
 
   additionalConfigFromEnvs:
+    - name: GITEA__DATABASE__HOST
+      valueFrom:
+        secretKeyRef:
+          name: forgejo-pguser-secret
+          key: host
     - name: GITEA__DATABASE__PASSWD
       valueFrom:
         secretKeyRef:
