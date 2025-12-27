@@ -16,7 +16,7 @@ resources:
   # - flaresolverr
   # - flood
   - ./jellyfin/ks.yaml
-  # - jellyseerr
+  - ./jellyseerr/ks.yaml
   # - ./listenarr/ks.yaml
   - ./metube/ks.yaml
   - ./navidrome/ks.yaml

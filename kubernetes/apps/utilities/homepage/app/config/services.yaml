@@ -123,11 +123,10 @@
           url: https://immich.${ROOT_DOMAIN}
           key: {{HOMEPAGE_VAR_IMMICH_KEY}}
           version: 2
-    - Minio:
-        href: https://minio.${ROOT_DOMAIN}
-        icon: minio.png
+    - Garage:
+        href: https://garage.${ROOT_DOMAIN}
+        icon: garage.png
         namespace: cloud
-        app: minio
     - OpenCloud:
         href: https://opencloud.${ROOT_DOMAIN}
         icon: sh-opencloud.svg
