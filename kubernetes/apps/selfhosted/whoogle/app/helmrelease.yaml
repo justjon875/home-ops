@@ -32,6 +32,13 @@ spec:
             image:
               repository: ghcr.io/benbusby/whoogle-search
               tag: latest@sha256:337ee555ab272db01cafd152636fc01fcddbd7eab0079abbade2c14992d53378
+            resources:
+              requests:
+                cpu: 15m
+                memory: 145M
+              limits:
+                cpu: 15m
+                memory: 223M
     route:
       app:
         hostnames:

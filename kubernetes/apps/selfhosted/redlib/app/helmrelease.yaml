@@ -21,6 +21,13 @@ spec:
             image:
               repository: quay.io/redlib/redlib
               tag: latest
+            resources:
+              requests:
+                cpu: 10m
+                memory: 53M
+              limits:
+                cpu: 13m
+                memory: 177M
           # Configure the gluetun sidecar
           gluetun:
             image:
@@ -36,6 +43,13 @@ spec:
             envFrom:
               - secretRef:
                   name: redlib-secret
+            resources:
+              requests:
+                cpu: 10m
+                memory: 381M
+              limits:
+                cpu: 13m
+                memory: 716M
             securityContext:
               capabilities:
                 add:

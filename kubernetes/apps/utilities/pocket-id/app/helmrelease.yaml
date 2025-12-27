@@ -50,10 +50,11 @@ spec:
                   periodSeconds: 5
             resources:
               requests:
-                memory: 250M
-                cpu: 10m
+                cpu: 15m
+                memory: 105M
               limits:
-                memory: 400M
+                cpu: 15m
+                memory: 105M
             securityContext:
               allowPrivilegeEscalation: false
               capabilities: { drop: ["ALL"] }

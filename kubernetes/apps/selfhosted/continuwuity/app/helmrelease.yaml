@@ -51,12 +51,12 @@ spec:
                   failureThreshold: 3
               readiness: *probe
             resources:
-              limits:
-                #                cpu: 50M
-                memory: 1Gi
               requests:
-                cpu: 2
-                memory: 512Mi
+                cpu: 15m
+                memory: 110M
+              limits:
+                cpu: 15m
+                memory: 163M
             securityContext:
               capabilities:
                 drop:

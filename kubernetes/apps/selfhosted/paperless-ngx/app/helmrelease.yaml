@@ -32,6 +32,13 @@ spec:
             image:
               repository: quay.io/11notes/paperless-ngx
               tag: 2.20.3@sha256:f6fb81106d797f6ff93f268ef72001336c6aa26db1db3af5ccbf9d8a19d131e1
+            resources:
+              requests:
+                cpu: 15m
+                memory: 764M
+              limits:
+                cpu: 15m
+                memory: 930M
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
