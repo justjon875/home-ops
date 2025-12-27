@@ -44,6 +44,8 @@ gitea:
       SSH_SERVER_HOST_KEYS: ssh/ssh_host_ed25519_key
     lfs:
       PATH: /data/git/lfs
+    migration:
+      ALLOWED_DOMAINS: forgejo.lithium.${OLD_DOMAIN}
     repository:
       ROOT: /data/git/repositories
     # repository.signing:
