@@ -85,6 +85,8 @@ gitea:
       PROTOCOL: smtp
       SMTP_ADDR: smtp-relay.default.svc.cluster.local
       USER: forgejo@${ROOT_DOMAIN}
+    webhook:
+      ALLOWED_HOST_LIST: matrix.${ROOT_DOMAIN}
 
   additionalConfigFromEnvs:
     - name: GITEA__DATABASE__PASSWD
