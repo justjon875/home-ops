@@ -79,6 +79,7 @@ controlPlane:
       systemExtensions:
         officialExtensions:
           - siderolabs/nfsrahead # NFS Performance
+          - siderolabs/gasket-driver
   userVolumes:
     - name: EPHEMERAL
       provisioning:
