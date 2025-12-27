@@ -40,9 +40,7 @@ spec:
                 memory: 42M
             securityContext:
               allowPrivilegeEscalation: false
-              capabilities:
-                drop:
-                - ALL
+              capabilities: { drop: ["ALL"] }
               readOnlyRootFilesystem: true
         pod:
           securityContext:

@@ -26,9 +26,10 @@ spec:
               repository: databasus/databasus
               tag: v2.16.3@sha256:0c17209626b0a24b9c20cfa6155979fa9631f96edced0c62f7fe9742cb26cb9e
             securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: {drop: ["ALL"]}
+              readOnlyRootFilesystem: false
+              capabilities:
+                add:
+                  - CHOWN
         type: statefulset
     service:
       app:

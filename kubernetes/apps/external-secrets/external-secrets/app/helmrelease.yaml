@@ -19,9 +19,7 @@ spec:
         runAsGroup: 1000
         fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
-        capabilities:
-          drop:
-            - ALL
+        capabilities: { drop: ["ALL"] }
       serviceMonitor:
         enabled: true
         interval: 1m

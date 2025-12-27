@@ -58,9 +58,7 @@ spec:
                 cpu: 15m
                 memory: 163M
             securityContext:
-              capabilities:
-                drop:
-                  - ALL
+              capabilities: { drop: ["ALL"] }
     service:
       app:
         controller: *app
