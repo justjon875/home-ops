@@ -21,13 +21,13 @@ spec:
             image:
               repository: quay.io/redlib/redlib
               tag: latest
-            resources:
-              requests:
-                cpu: 10m
-                memory: 53M
-              limits:
-                cpu: 13m
-                memory: 177M
+          resources:
+            requests:
+              cpu: 10m
+              memory: 53M
+            limits:
+              cpu: 13m
+              memory: 177M
           # Configure the gluetun sidecar
           gluetun:
             image:
@@ -36,7 +36,7 @@ spec:
             env:
               FIREWALL_DEBUG: "on"
               FIREWALL_INPUT_PORTS: "8080"
-              SERVER_COUNTRIES: Germany
+              SERVER_COUNTRIES: Sweden
               VPN_INTERFACE: wg0
               VPN_SERVICE_PROVIDER: protonvpn
               VPN_TYPE: wireguard
