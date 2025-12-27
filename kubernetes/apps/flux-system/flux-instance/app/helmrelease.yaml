@@ -23,7 +23,7 @@ spec:
         - notification-controller
       sync:
         kind: GitRepository
-        url: ssh://git@git.habjam.xyz/beans/home-ops.git
+        url: ssh://git@forgejo.lithium.habanerojam.xyz:2223/forgejo_admin/dev-ops.git
         pullSecret: git-deploy-key
         ref: refs/heads/main
         path: kubernetes/flux/cluster
