@@ -11,6 +11,10 @@ layout:
     style: row
     columns: 2
     icon: mdi-chip
+  Observability:
+    style: row
+    columns: 1
+    icon: mdi-binoculars
   Virtualisation:
     style: row
     columns: 3

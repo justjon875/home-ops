@@ -40,6 +40,7 @@
           password: {{HOMEPAGE_VAR_OPNSENSE_PASSWORD}}
 - Virtualisation:
   - Hydrogen:
+      href: https://hydrogen.${ROOT_DOMAIN}
       icon: sh-proxmox
       widget:
         type: proxmox
@@ -48,6 +49,7 @@
         password: {{HOMEPAGE_VAR_PROXMOX_HYDROGEN}}
         node: hydrogen
   - Iron:
+      href: https://iron.${ROOT_DOMAIN}
       icon: sh-proxmox
       widget:
         type: proxmox
@@ -56,6 +58,7 @@
         password: {{HOMEPAGE_VAR_PROXMOX_IRON}}
         node: iron
   - Neon:
+      href: https://neon.${ROOT_DOMAIN}
       icon: sh-proxmox
       widget:
         type: proxmox
@@ -65,6 +68,7 @@
         node: neon
 - Storage:
   - Cobalt:
+      href: https://cobalt.${ROOT_DOMAIN}
       icon: sh-openmediavault
       widget:
         type: openmediavault
@@ -72,6 +76,13 @@
         username: {{HOMEPAGE_VAR_OMV_USERNAME}}
         password: {{HOMEPAGE_VAR_OMV_PASSWORD}}
         method: services.getStatus # required
+- Observability:
+  - Gatus:
+      href: https://gatus.${ROOT_DOMAIN}
+      icon: sh-gatus
+      widget:
+        type: gatus
+        url: https://gatus.${ROOT_DOMAIN}
 - Lithium:
     - Dozzle lithium:
         href: https://dozzle.lithium.${OLD_DOMAIN}
