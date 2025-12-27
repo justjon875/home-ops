@@ -13,10 +13,7 @@ spec:
   path: ./kubernetes/apps/utilities/busybox/app
   postBuild:
     substitute:
-      APP: pgadmin
-      VOLSYNC_CAPACITY: 1Gi
-      VOLSYNC_GID: "5050"
-      VOLSYNC_UID: "5050"
+      APP: forgejo
     substituteFrom:
       - name: cluster-secrets
         kind: Secret
