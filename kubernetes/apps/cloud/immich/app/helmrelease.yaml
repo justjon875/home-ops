@@ -23,12 +23,11 @@ spec:
               repository: ghcr.io/immich-app/immich-machine-learning
               tag: v2.4.1@sha256:b3deefd1826f113824e9d7bc30d905e7f823535887d03f869330946b6db3b44a
             resources:
-              requests:
-                cpu: 15m
-                memory: 1470M
               limits:
-                cpu: 15m
-                memory: 1897M
+                memory: 5000Mi
+              requests:
+                cpu: 100m
+                memory: 800Mi
       server:
         annotations:
           reloader.stakater.com/auto: "true"
@@ -44,11 +43,8 @@ spec:
               tag: v2.4.1@sha256:e6a6298e67ae077808fdb7d8d5565955f60b0708191576143fc02d30ab1389d1
             resources:
               requests:
-                cpu: 15m
-                memory: 2281M
-              limits:
-                cpu: 15m
-                memory: 3093M
+                cpu: 10m
+                memory: 100Mi
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
