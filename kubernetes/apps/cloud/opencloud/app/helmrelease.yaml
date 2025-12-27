@@ -137,6 +137,13 @@ spec:
               MICRO_REGISTRY_ADDRESS: opencloud:9233
               MICRO_REGISTRY: nats-js-kv
               OC_URL: *url
+            resources:
+              requests:
+                cpu: 15m
+                memory: 105M
+              limits:
+                cpu: 15m
+                memory: 105M
             securityContext: *sec
       collabora:
         strategy: RollingUpdate
@@ -174,6 +181,13 @@ spec:
                   secretKeyRef:
                     name: opencloud-secret
                     key: COLLABORA_ADMIN_PASS
+            resources:
+              requests:
+                cpu: 15m
+                memory: 588M
+              limits:
+                cpu: 15m
+                memory: 716M
             securityContext:
               <<: *sec
               capabilities:
@@ -201,13 +215,14 @@ spec:
               tag: 3.2.3.0-full@sha256:21d8052de04e491ccf66e8680ade4da6f3d453a56d59f740b4167e54167219b7
             env:
               JAVA_OPTS: "-Xmx3g"
-            securityContext: *sec
             resources:
               requests:
-                cpu: 200m
-                memory: 500Mi
+                cpu: 15m
+                memory: 298M
               limits:
-                memory: 5Gi
+                cpu: 15m
+                memory: 463M
+            securityContext: *sec
     defaultPodOptionsStrategy: merge
     defaultPodOptions:
       securityContext:

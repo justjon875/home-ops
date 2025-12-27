@@ -31,7 +31,11 @@ spec:
               tag: 10.11.5@sha256:cd7e4cb71812dd76988a725da615e37c6d0d24c200be904ad5d183e51f1dc6ed
             resources:
               requests:
-                cpu: 100m
+                cpu: 15m
+                memory: 717M
+              limits:
+                cpu: 15m
+                memory: 1342M
         pod:
           securityContext:
             fsGroup: 1000
