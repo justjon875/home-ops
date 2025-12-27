@@ -11,9 +11,9 @@ spec:
     name: *app
   values:
     controllers:
+      annotations:
+        reloader.stakater.com/auto: "true"
       databasus:
-        annotations:
-          reloader.stakater.com/auto: "true"
         containers:
           app:
             image:
@@ -23,7 +23,7 @@ spec:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
               capabilities: {drop: ["ALL"]}
-            type: statefulset
+      type: statefulset
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
