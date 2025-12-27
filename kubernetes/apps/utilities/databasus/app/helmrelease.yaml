@@ -31,10 +31,6 @@ spec:
                 add:
                   - CHOWN
         type: statefulset
-    service:
-      app:
-        enabled: false
-        controller: *app
     persistence:
       databasus-data:
         existingClaim: *app
