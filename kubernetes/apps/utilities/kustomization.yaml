@@ -11,6 +11,7 @@ components:
 resources:
   - ./namespace.yaml
   # - ./busybox/ks.yaml
+  - ./databasus/ks.yaml
   - ./dozzle/ks.yaml
   - ./forgejo/ks.yaml
   - ./goldilocks/ks.yaml
