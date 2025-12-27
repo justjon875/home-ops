@@ -5,7 +5,7 @@ metadata:
   name: forgejo-ssh
 spec:
   parentRefs:
-    - name: internal
+    - name: envoy-internal
       namespace: network
       sectionName: ssh
   rules:
