@@ -23,7 +23,7 @@ spec:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
               capabilities: {drop: ["ALL"]}
-      type: statefulset
+        type: statefulset
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
