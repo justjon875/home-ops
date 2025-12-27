@@ -45,7 +45,7 @@ gitea:
     lfs:
       PATH: /data/git/lfs
     migration:
-      ALLOWED_DOMAINS: forgejo.lithium.${OLD_DOMAIN}
+      ALLOWED_DOMAINS: "*.lithium.${OLD_DOMAIN}"
     repository:
       ROOT: /data/git/repositories
     # repository.signing:
