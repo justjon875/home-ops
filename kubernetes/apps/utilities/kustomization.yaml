@@ -10,9 +10,9 @@ components:
 
 resources:
   - ./namespace.yaml
-  - ./busybox/ks.yaml
+  # - ./busybox/ks.yaml
   - ./dozzle/ks.yaml
-  # - ./forgejo/ks.yaml
+  - ./forgejo/ks.yaml
   - ./goldilocks/ks.yaml
   - ./homepage/ks.yaml
   - ./kite/ks.yaml
