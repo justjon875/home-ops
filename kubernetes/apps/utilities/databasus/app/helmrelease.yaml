@@ -38,3 +38,15 @@ spec:
     persistence:
       databasus-data:
         existingClaim: *app
+    route:
+      app:
+        hostnames:
+        - '{{ .Release.Name }}.${ROOT_DOMAIN}'
+        parentRefs:
+        - name: envoy-internal
+          namespace: network
+    service:
+      app:
+        ports:
+          http:
+            port: 4005
