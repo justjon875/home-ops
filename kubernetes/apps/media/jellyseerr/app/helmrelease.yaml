@@ -23,8 +23,23 @@ spec:
         containers:
           app:
             env:
-              TZ: ${TIMEZONE}
+              DB_TYPE: postgres
+              DB_HOST:
+                valueFrom:
+                  secretKeyRef:
+                    name: &pg "{{ .Release.Name }}-pguser-secret"
+                    key: host
+              DB_PORT: "5432"
+              DB_USER: "jellyseerr"
+              DB_PASS: 
+                valueFrom:
+                  secretKeyRef:
+                    name: &pg "{{ .Release.Name }}-pguser-secret"
+                    key: password
+              DB_NAME: "jellyseerr"
+              DB_LOG_QUERIES: "false"
               LOG_LEVEL: "info"
+              TZ: ${TIMEZONE}
             probes:
               liveness: &probes
                 enabled: true
