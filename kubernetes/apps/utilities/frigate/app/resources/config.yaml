@@ -1,10 +1,4 @@
 ---
-mqtt:
-  host: mosquitto.utilities.svc.cluster.local
-  topic_prefix: frigate
-  user: "{FRIGATE_MQTT_USERNAME}"
-  password: "{FRIGATE_MQTT_PASSWORD}"
-
 ffmpeg:
   global_args: ["-hide_banner", "-loglevel", "info"]
 
@@ -13,6 +7,10 @@ logger:
 
 database:
   path: /data/frigate.db
+
+  
+detect:
+  enabled: true
 
 detectors:
   coral:
@@ -46,7 +44,7 @@ snapshots:
 go2rtc:
   streams:
     lounge_hq:
-      - rtsp://${FRIGATE_RTSP_USERNAME}:${FRIGATE_RTSP_PASSWORD}@lounge.cams.${ROOT_DOMAIN}:554/stream1
+      - rtsp://${FRIGATE_RTSP_USERNAME}:${FRIGATE_RTSP_PASSWORD}@lounge.cams.${OLD_DOMAIN}:554/stream1
       - "ffmpeg:lounge_hq#audio=aac"
     lounge_lq:
       - rtsp://${FRIGATE_RTSP_USERNAME}:${FRIGATE_RTSP_PASSWORD}@lounge.cams.${OLD_DOMAIN}:554/stream2
