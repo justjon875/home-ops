@@ -24,6 +24,5 @@ spec:
                 - pciId:
                     class: ["0880"]
                     vendor: ["1ac1"]
-                    device: ["089a"]
     prometheus:
       enable: true
