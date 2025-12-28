@@ -6,14 +6,14 @@ metadata:
   name: &app eddrit
 spec:
   components:
-    - ../../../../components/gatus/internal
+    - ../../../../components/gatus/group
   interval: 1h
   path: ./kubernetes/apps/selfhosted/eddrit/app
   postBuild:
   postBuild:
     substitute:
       APP: eddrit
-      GATUS_SUBDOMAIN: eddrit
+      GROUP: &namespace selfhosted
     substituteFrom:
       - name: cluster-secrets
         kind: Secret
@@ -24,5 +24,5 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  targetNamespace: selfhosted
+  targetNamespace: *selfhosted
   wait: false

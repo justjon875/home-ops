@@ -5,9 +5,13 @@ kind: Kustomization
 metadata:
   name: &app whoogle
 spec:
+  components:
+    - ../../../../components/gatus/group
   interval: 1h
   path: ./kubernetes/apps/selfhosted/whoogle/app
   postBuild:
+    substitute:
+      GROUP: &namespace selfhosted
     substituteFrom:
       - name: cluster-secrets
         kind: Secret
@@ -18,5 +22,5 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  targetNamespace: selfhosted
+  targetNamespace: *namespace
   wait: false
