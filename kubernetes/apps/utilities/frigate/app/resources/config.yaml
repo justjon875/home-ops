@@ -11,7 +11,6 @@ logger:
 database:
   path: /data/frigate.db
 
-  
 detect:
   enabled: true
 
@@ -19,6 +18,11 @@ detectors:
   coral:
     type: edgetpu
     device: pci
+
+notifications:
+  enabled: True
+  email: "frigate@${ROOT_DOMAIN}"
+  cooldown: 10 # wait 10 seconds before sending another notification from any camera
 
 objects:
   track:
