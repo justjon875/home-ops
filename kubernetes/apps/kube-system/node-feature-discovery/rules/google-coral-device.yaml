@@ -9,6 +9,6 @@ spec:
       labels:
         google.feature.node.kubernetes.io/coral: "true"
       matchFeatures:
-        - feature: usb.device
+        - feature: .device
           matchExpressions:
             vendor: { op: In, value: ["1ac1"] }
