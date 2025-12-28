@@ -50,7 +50,7 @@ spec:
                 true
         pod:
           nodeSelector:
-            google.feature.node.kubernetes.io/coral: true
+            google.feature.node.kubernetes.io/coral: "true"
     persistence:
       cache:
         enabled: true
