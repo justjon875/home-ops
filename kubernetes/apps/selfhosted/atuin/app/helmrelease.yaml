@@ -54,7 +54,7 @@ spec:
         existingClaim: "{{ .Release.Name }}"
     route:
       app:
-        annotatins:
+        annotations:
           gatus.home-operations.com/endpoint: |
             group: selfhosted
         hostnames:
