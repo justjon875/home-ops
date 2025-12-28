@@ -9,6 +9,7 @@ spec:
       labels:
         google.feature.node.kubernetes.io/coral: "true"
       matchFeatures:
-        - feature: .device
+        - feature: pci.device
           matchExpressions:
             vendor: { op: In, value: ["1ac1"] }
+            class: { op: In, value: ["0880"] }
