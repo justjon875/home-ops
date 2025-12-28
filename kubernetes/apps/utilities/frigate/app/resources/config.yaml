@@ -1,4 +1,7 @@
 ---
+mqtt:
+  enabled: false
+
 ffmpeg:
   global_args: ["-hide_banner", "-loglevel", "info"]
 
