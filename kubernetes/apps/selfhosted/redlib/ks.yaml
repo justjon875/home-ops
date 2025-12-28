@@ -5,13 +5,9 @@ kind: Kustomization
 metadata:
   name: &app redlib
 spec:
-  components:
-    - ../../../../components/gatus/group
   interval: 1h
   path: ./kubernetes/apps/selfhosted/redlib/app
   postBuild:
-    substitute:
-      GROUP: &namespace selfhosted
     substituteFrom:
       - name: cluster-secrets
         kind: Secret
@@ -20,5 +16,5 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  targetNamespace: *namespace
+  targetNamespace: selfhosted
   wait: false

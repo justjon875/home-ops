@@ -6,7 +6,6 @@ metadata:
   name: &app linkwarden
 spec:
   components:
-    - ../../../../components/gatus/group
     - ../../../../components/volsync
   dependsOn:
     - name: rook-ceph-cluster
@@ -16,7 +15,6 @@ spec:
   postBuild:
     substitute:
       APP: *app
-      GROUP: &namespace selfhosted
       VOLSYNC_CAPACITY: 2Gi
     substituteFrom:
       - name: cluster-secrets
@@ -28,5 +26,5 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  targetNamespace: *namespace
+  targetNamespace: selfhosted
   wait: false

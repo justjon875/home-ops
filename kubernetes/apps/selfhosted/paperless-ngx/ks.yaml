@@ -6,7 +6,6 @@ metadata:
   name: &app paperless-ngx
 spec:
   components:
-    - ../../../../components/gatus/group
     - ../../../../components/volsync
   dependsOn:
     - name: rook-ceph-cluster
@@ -16,7 +15,6 @@ spec:
   postBuild:
     substitute:
       APP: *app
-      GROUP: &namespace selfhosted
     substituteFrom:
       - name: cluster-secrets
         kind: Secret
@@ -27,5 +25,5 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  targetNamespace: *namespace
+  targetNamespace: selfhosted
   wait: false
