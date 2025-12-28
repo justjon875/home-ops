@@ -48,9 +48,9 @@ spec:
             securityContext:
               privileged:
                 true
-          pod:
-            nodeSelector:
-              feature.node.kubernetes.io/custom-google-coral: "true"
+        pod:
+          nodeSelector:
+            feature.node.kubernetes.io/custom-google-coral: "true"
     persistence:
       cache:
         enabled: true
