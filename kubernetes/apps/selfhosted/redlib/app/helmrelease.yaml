@@ -42,6 +42,8 @@ spec:
           #         - NET_ADMIN
     route:
       app:
+        annotations:
+          gatus.home-operations.com/enabled: "false"
         hostnames: ["{{ .Release.Name }}.${ROOT_DOMAIN}"]
         parentRefs:
           - name: envoy-internal
