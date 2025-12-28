@@ -68,6 +68,9 @@ spec:
             targetPort: *port
     route:
       app:
+        annotations:
+          gatus.home-operations.com/endpoint: |
+            group: selfhosted
         hostnames: [ "matrix.${ROOT_DOMAIN}" ]
         forceRename: *app
         parentRefs:

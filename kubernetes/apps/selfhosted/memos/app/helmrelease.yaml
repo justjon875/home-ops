@@ -24,6 +24,9 @@ spec:
         - path: /var/opt/memos
     route:
       app:
+        annotations:
+          gatus.home-operations.com/endpoint: |
+            group: selfhosted
         hostnames:
         - '{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}'
         parentRefs:

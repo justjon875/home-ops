@@ -48,6 +48,9 @@ spec:
         type: emptyDir
     route:
       app:
+        annotations:
+          gatus.home-operations.com/endpoint: |
+            group: selfhosted
         hostnames:
         - '{{ .Release.Name }}.${ROOT_DOMAIN}'
         parentRefs:
