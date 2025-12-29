@@ -1,0 +1,28 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app node-feature-discovery
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: *app
+  interval: 1h
+  values:
+    worker:
+      config:
+        core:
+          sources:
+            - custom
+            - pci
+            - usb
+        sources:
+          custom:
+            - name: coral-tpu
+              matchOn:
+                - pciId:
+                    class: ["0880"]
+                    vendor: ["1ac1"]
+    prometheus:
+      enable: true

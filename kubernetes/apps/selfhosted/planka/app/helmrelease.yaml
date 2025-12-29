@@ -45,7 +45,7 @@ spec:
           gatus.home-operations.com/endpoint: |
             group: selfhosted
         hostnames:
-        - '{{ .Release.Name }}.${ROOT_DOMAIN}'
+          - '{{ .Release.Name }}.${ROOT_DOMAIN}'
         parentRefs:
         - name: envoy-internal
           namespace: network
