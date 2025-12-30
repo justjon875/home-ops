@@ -4,6 +4,7 @@ backgroundOpacity: 0.5
 color: slate
 headerStyle: clean
 iconStyle: theme
+theme: dark
 target: _self
 title: Dashboard
 layout:

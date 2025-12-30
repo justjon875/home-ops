@@ -1,7 +1,7 @@
 ---
 - Cluster:
     - Cluster:
-        icon: sh-talos.svg
+        icon: talos.png
         widget:
           type: prometheusmetric
           url: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:9090
@@ -105,10 +105,10 @@
           showStacks: true
     - Unifi:
         href: https://unifi.lithium.${OLD_DOMAIN}
-        icon: sh-unifi.svg
+        icon: sh-ubiquiti-unifi.svg
     - Whoogle lithium:
         href: https://whoogle.lithium.${OLD_DOMAIN}
-        icon: sh-whoogle.svg
+        icon: sh-whoogle.png
     - Zerobyte:
         href: https://zerobyte.lithium.${OLD_DOMAIN}
         icon: sh-zerobyte.svg
@@ -203,7 +203,7 @@
         icon: sh-bentopdf.svg
     - FileBrowser:
         href: https://filebrowser.${ROOT_DOMAIN}
-        icon: sh-filebrowser.svg
+        icon: sh-file-browser.svg
     - Linkwarden:
         href: https://linkwarden.${ROOT_DOMAIN}
         icon: sh-linkwarden.svg
@@ -234,7 +234,7 @@
         icon: sh-bitwarden.svg
     - Whoogle:
         href: https://whoogle.${ROOT_DOMAIN}
-        icon: sh-whoogle.svg
+        icon: sh-whoogle.png
 - Utilities:
     - Dozzle:
         href: https://dozzle.${ROOT_DOMAIN}
@@ -250,10 +250,16 @@
         icon: sh-forgejo.svg
     - Goldilocks:
         href: https://goldilocks.${ROOT_DOMAIN}
-        icon: sh-https://raw.githubusercontent.com/FairwindsOps/goldilocks/master/img/goldilocks.svg
+        icon: https://raw.githubusercontent.com/FairwindsOps/goldilocks/master/img/goldilocks.svg
     - Grafana:
         href: https://grafana.${ROOT_DOMAIN}
         icon: sh-grafana.svg
+    - Pocket-ID:
+        href: https://id.${ROOT_DOMAIN}
+        icon: sh-pocket-id.svg
+    - Kite:
+        href: https://kite.${ROOT_DOMAIN}
+        icon: sh-kite.svg
     - Victoria Logs:
         href: https://victoria-logs.${ROOT_DOMAIN}
         icon: sh-victoriametrics.svg
