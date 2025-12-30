@@ -236,9 +236,6 @@
         href: https://whoogle.${ROOT_DOMAIN}
         icon: whoogle.png
 - Utilities:
-    - Checkmate:
-        href: https://checkmate.${ROOT_DOMAIN}
-        icon: sh-checkmate.png
     - Dozzle:
         href: https://dozzle.${ROOT_DOMAIN}
         icon: dozzle.png
@@ -249,7 +246,7 @@
         href: https://frigate.${ROOT_DOMAIN}
         icon: frigate.png
     - Forgejo:
-        href: https://forgejo.${ROOT_DOMAIN}
+        href: https://git.${ROOT_DOMAIN}
         icon: forgejo.png
     - Goldilocks:
         href: https://goldilocks.${ROOT_DOMAIN}
@@ -257,6 +254,9 @@
     - Grafana:
         href: https://grafana.${ROOT_DOMAIN}
         icon: grafana.png
+    - Victoria Logs:
+        href: https://victoria-logs.${ROOT_DOMAIN}
+        icon: sh-victoriametrics.png
     - Zerobyte:
         href: https://zerobyte.${ROOT_DOMAIN}
         icon: zerobyte.png
