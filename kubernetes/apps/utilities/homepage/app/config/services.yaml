@@ -1,7 +1,7 @@
 ---
 - Cluster:
     - Cluster:
-        icon: talos.svg
+        icon: sh-talos.svg
         widget:
           type: prometheusmetric
           url: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:9090
@@ -32,7 +32,7 @@
                 type: number
     - OPNSense:
         href: https://oxygen.${OLD_DOMAIN}
-        icon: opnsense.png
+        icon: sh-opnsense.svg
         widget:
           type: opnsense
           url: https://oxygen.${OLD_DOMAIN}
@@ -41,7 +41,7 @@
 - Virtualisation:
   - Hydrogen:
       href: https://hydrogen.${ROOT_DOMAIN}
-      icon: sh-proxmox
+      icon: sh-proxmox.svg
       widget:
         type: proxmox
         url: https://hydrogen.${ROOT_DOMAIN}
@@ -50,7 +50,7 @@
         node: hydrogen
   - Iron:
       href: https://iron.${ROOT_DOMAIN}
-      icon: sh-proxmox
+      icon: sh-proxmox.svg
       widget:
         type: proxmox
         url: https://iron.${ROOT_DOMAIN}
@@ -59,7 +59,7 @@
         node: iron
   - Neon:
       href: https://neon.${ROOT_DOMAIN}
-      icon: sh-proxmox
+      icon: sh-proxmox.svg
       widget:
         type: proxmox
         url: https://neon.${ROOT_DOMAIN}
@@ -69,7 +69,7 @@
 - Storage:
   - Cobalt:
       href: https://cobalt.${ROOT_DOMAIN}
-      icon: sh-openmediavault
+      icon: sh-openmediavault.svg
       widget:
         type: openmediavault
         url: https://cobalt.${ROOT_DOMAIN}
@@ -79,23 +79,23 @@
 - Observability:
   - Gatus:
       href: https://gatus.${ROOT_DOMAIN}
-      icon: sh-gatus
+      icon: sh-gatus.svg
       widget:
         type: gatus
         url: https://gatus.${ROOT_DOMAIN}
 - Lithium:
     - Dozzle lithium:
         href: https://dozzle.lithium.${OLD_DOMAIN}
-        icon: dozzle.png
+        icon: sh-dozzle.svg
     - Forgejo lithium:
         href: https://forgejo.lithium.${OLD_DOMAIN}
-        icon: forgejo.png
+        icon: sh-forgejo.svg
     - Pocket-ID:
         href: https://pocketid.lithium.${OLD_DOMAIN}
-        icon: pocket-id.png
+        icon: sh-pocket-id.svg
     - Komodo:
         href: https://komodo.lithium.${OLD_DOMAIN}
-        icon: komodo.png
+        icon: sh-komodo.svg
         widget:
           type: komodo
           url: https://komodo.lithium.${OLD_DOMAIN}
@@ -105,17 +105,17 @@
           showStacks: true
     - Unifi:
         href: https://unifi.lithium.${OLD_DOMAIN}
-        icon: unifi.png
+        icon: sh-unifi.svg
     - Whoogle lithium:
         href: https://whoogle.lithium.${OLD_DOMAIN}
-        icon: whoogle.png
+        icon: sh-whoogle.svg
     - Zerobyte:
         href: https://zerobyte.lithium.${OLD_DOMAIN}
-        icon: zerobyte.png
+        icon: sh-zerobyte.svg
 - Cloud:
     - Immich:
         href: https://immich.${ROOT_DOMAIN}
-        icon: immich.png
+        icon: sh-immich.svg
         namespace: cloud
         app: immich
         widget:
@@ -125,7 +125,7 @@
           version: 2
     - Garage:
         href: https://garage.${ROOT_DOMAIN}
-        icon: garage.png
+        icon: sh-garage.svg
         namespace: cloud
     - OpenCloud:
         href: https://opencloud.${ROOT_DOMAIN}
@@ -135,20 +135,20 @@
 - Media:
     - Calibre:
         href: https://calibre.${ROOT_DOMAIN}
-        icon: calibre.png
+        icon: sh-calibre.svg
     - Invidious:
         href: https://invidious.${ROOT_DOMAIN}
-        icon: invidious.png
+        icon: sh-invidious.svg
     - Jellyfin:
         href: https://jellyfin.${ROOT_DOMAIN}
-        icon: jellyfin.png
+        icon: sh-jellyfin.svg
         widget:
           type: jellyfin
           url: https://jellyfin.${ROOT_DOMAIN}
           key: {{HOMEPAGE_VAR_JELLYFIN_KEY}}
     - Navidrome:
         href: https://navidrome.${ROOT_DOMAIN}
-        icon: navidrome.png
+        icon: sh-navidrome.svg
         widget:
           type: navidrome
           url: https://navidrome.${ROOT_DOMAIN}
@@ -157,42 +157,42 @@
           token: {{HOMEPAGE_VAR_NAVIDROME_TOKEN}}
     - Piped:
         href: https://piped.${ROOT_DOMAIN}
-        icon: piped.png
+        icon: sh-piped.svg
 - Media Management:
   - Jellyseerr:
       href: https://jellyseerr.${ROOT_DOMAIN}
-      icon: jellyseerr.png
+      icon: sh-jellyseerr.svg
       widget:
         type: jellyseerr
         url: https://jellyseerr.${ROOT_DOMAIN}
         key: {{HOMEPAGE_VAR__JELLYSEERR_KEY}}
   - Metube:
       href: https://metube.${ROOT_DOMAIN}
-      icon: metube.png
+      icon: sh-metube.svg
   - Prowlarr:
       href: https://prowlarr.${ROOT_DOMAIN}
-      icon: prowlarr.png
+      icon: sh-prowlarr.svg
       widget:
         type: prowlarr
         url: https://prowlarr.${ROOT_DOMAIN}
         key: {{HOMEPAGE_VAR_PROWLARR_API_KEY}}
   - Radarr:
       href: https://radarr.${ROOT_DOMAIN}
-      icon: radarr.png
+      icon: sh-radarr.svg
       widget:
         type: radarr
         url: https://radarr.${ROOT_DOMAIN}
         key: "{{HOMEPAGE_VAR_RADARR_API_KEY}}"
   - SABnzbd:
       href: https://sabnzbd.${ROOT_DOMAIN}
-      icon: sabnzbd.png
+      icon: sh-sabnzbd.svg
       widget:
         type: sabnzbd
         url: https://sabnzbd.${ROOT_DOMAIN}
         key: {{HOMEPAGE_VAR_SABNZBD__API_KEY}}
   - Sonarr:
       href: https://sonarr.${ROOT_DOMAIN}
-      icon: sonarr.png
+      icon: sh-sonarr.svg
       widget:
         type: sonarr
         url: https://sonarr.${ROOT_DOMAIN}
@@ -200,70 +200,70 @@
 - Selfhosted:
     - BentoPDF:
         href: https://bentopdf.${ROOT_DOMAIN}
-        icon: bentopdf.png
+        icon: sh-bentopdf.svg
     - FileBrowser:
         href: https://filebrowser.${ROOT_DOMAIN}
-        icon: filebrowser.png
+        icon: sh-filebrowser.svg
     - Linkwarden:
         href: https://linkwarden.${ROOT_DOMAIN}
-        icon: linkwarden.png
+        icon: sh-linkwarden.svg
         widget:
           type: linkwarden
           url: https://linkwarden.${ROOT_DOMAIN}
           key: ${SECRET_LINKWARDEN}
     - Memos:
         href: https://memos.${ROOT_DOMAIN}
-        icon: memos.png
+        icon: sh-memos.svg
     - OpenSpeedTest:
         href: https://openspeedtest.${ROOT_DOMAIN}
-        icon: openspeedtest.png
+        icon: sh-openspeedtest.svg
     - Paperless-ngx:
         href: https://paperless-ngx.${ROOT_DOMAIN}
-        icon: paperless-ngx.svg
+        icon: sh-paperless-ngx.svg
     - PairDrop:
         href: https://pairdrop.${ROOT_DOMAIN}
-        icon: pairdrop.png
+        icon: sh-pairdrop.svg
     - Redlib:
         href: https://redlib.${ROOT_DOMAIN}
-        icon: reddit.png
+        icon: sh-reddit.svg
     - SearXNG:
         href: https://search.${ROOT_DOMAIN}
-        icon: searxng.png
+        icon: sh-searxng.svg
     - Vaultwarden:
         href: https://vaultwarden.${ROOT_DOMAIN}
-        icon: bitwarden.png
+        icon: sh-bitwarden.svg
     - Whoogle:
         href: https://whoogle.${ROOT_DOMAIN}
-        icon: whoogle.png
+        icon: sh-whoogle.svg
 - Utilities:
     - Dozzle:
         href: https://dozzle.${ROOT_DOMAIN}
-        icon: dozzle.png
+        icon: sh-dozzle.svg
     - Element Web:
         href: https://element.${ROOT_DOMAIN}
-        icon: element.png
+        icon: sh-element.svg
     - Frigate:
         href: https://frigate.${ROOT_DOMAIN}
-        icon: frigate.png
+        icon: sh-frigate.svg
     - Forgejo:
         href: https://git.${ROOT_DOMAIN}
-        icon: forgejo.png
+        icon: sh-forgejo.svg
     - Goldilocks:
         href: https://goldilocks.${ROOT_DOMAIN}
-        icon: https://raw.githubusercontent.com/FairwindsOps/goldilocks/master/img/goldilocks.svg
+        icon: sh-https://raw.githubusercontent.com/FairwindsOps/goldilocks/master/img/goldilocks.svg
     - Grafana:
         href: https://grafana.${ROOT_DOMAIN}
-        icon: grafana.png
+        icon: sh-grafana.svg
     - Victoria Logs:
         href: https://victoria-logs.${ROOT_DOMAIN}
-        icon: sh-victoriametrics.png
+        icon: sh-victoriametrics.svg
     - Zerobyte:
         href: https://zerobyte.${ROOT_DOMAIN}
-        icon: zerobyte.png
+        icon: sh-zerobyte.svg
 - VolsyncSystem:
     - Kopia:
         href: https://kopia.${ROOT_DOMAIN}
-        icon: kopia.png
+        icon: sh-kopia.svg
         widget:
           type: kopia
           url: https://kopia.${ROOT_DOMAIN}
