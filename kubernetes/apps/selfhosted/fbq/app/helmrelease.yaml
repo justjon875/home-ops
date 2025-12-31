@@ -47,7 +47,7 @@ spec:
                 oidc:
                   enabled: true
                   clientId: fbq
-                  issuerUrl: https://id.${ROOT_DOMAIN}/
+                  issuerUrl: https://id.${ROOT_DOMAIN}
                   scopes: "email openid profile groups"
                   userIdentifier: "preferred_username"
                   createUser: true
