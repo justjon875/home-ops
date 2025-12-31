@@ -45,7 +45,7 @@ spec:
         identifier: config
         globalMounts:
           - path: /data/config.yaml
-            subPath: /data/config.yaml
+            subPath: config.yaml
       nfs:
         globalMounts:
         - path: /mnt/nfs

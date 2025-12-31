@@ -213,7 +213,7 @@
           key: ${SECRET_LINKWARDEN}
     - Memos:
         href: https://memos.${ROOT_DOMAIN}
-        icon: sh-memos.svg
+        icon: memos.png
     - OpenSpeedTest:
         href: https://openspeedtest.${ROOT_DOMAIN}
         icon: sh-openspeedtest.svg
@@ -259,7 +259,7 @@
         icon: sh-pocket-id.svg
     - Kite:
         href: https://kite.${ROOT_DOMAIN}
-        icon: sh-kite.svg
+        icon: sh-kite-kubernetes.svg
     - Victoria Logs:
         href: https://victoria-logs.${ROOT_DOMAIN}
         icon: sh-victoriametrics.svg
