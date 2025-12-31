@@ -1,0 +1,76 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app fbq
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: *app
+  interval: 1h
+  values:
+    controllers:
+      fbq:
+        containers:
+          app:
+            env:
+              FILEBROWSER_CONFIG: "/data/config.yaml"
+            image:
+              repository: gtstef/filebrowser
+              tag: 1.1.0-stable-slim@sha256:a4158c454c5aa90f916e0b807e2354734b6b7d367b31361b37b83656af948c11 
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities: { drop: ["ALL"] }
+        pod:
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+            runAsNonRoot: true
+            fsGroup: 1000
+            fsGroupChangePolicy: OnRootMismatch
+    configMaps:
+      config:
+        data:
+          config.yaml: |-
+            server:
+              sources:
+                - path: /mnt/nfs
+                  config:
+                    defaultEnabled: true
+                - path: /mnt/nfsBackup
+                  config:
+                    defaultEnabled: true
+    persistence:
+      config-file:
+        type: configMap
+        identifier: config
+        globalMounts:
+          - path: /data/config.yaml
+            subPath: /data/config.yaml
+    persistence:
+      nfs:
+        globalMounts:
+        - path: /mnt/nfs
+        path: ${NFS_PATH}
+        server: ${NFS_HOST}
+        type: nfs
+      nfs-backup:
+        globalMounts:
+        - path: /mnt/nfsBackup
+        path: /nfsBackup
+        server: ${NFS_HOST}
+        type: nfs
+    route:
+      app:
+        annotations:
+          gatus.home-operations.com/endpoint: |
+            group: selfhosted
+        hostnames:
+        - '{{ .Release.Name }}.${ROOT_DOMAIN}'
+        parentRefs:
+        - name: envoy-internal
+          namespace: network
+    service:
+      app:
+        ports:
+          http:
+            port: 80
