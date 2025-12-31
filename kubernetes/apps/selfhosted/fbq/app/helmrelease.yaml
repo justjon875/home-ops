@@ -46,7 +46,6 @@ spec:
         globalMounts:
           - path: /data/config.yaml
             subPath: /data/config.yaml
-    persistence:
       nfs:
         globalMounts:
         - path: /mnt/nfs
