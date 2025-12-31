@@ -14,6 +14,9 @@ spec:
           app:
             env:
               FILEBROWSER_CONFIG: "/data/config.yaml"
+            envFrom:
+              - secretRef:
+                  name: "{{ .Release.Name }}-secret"
             image:
               repository: gtstef/filebrowser
               tag: 1.1.0-stable-slim@sha256:a4158c454c5aa90f916e0b807e2354734b6b7d367b31361b37b83656af948c11 
@@ -39,6 +42,15 @@ spec:
                 - path: /mnt/nfsBackup
                   config:
                     defaultEnabled: true
+            auth:
+              methods:
+                oidc:
+                  enabled: true
+                  clientId: fbq
+                  issuerUrl: https://id.${ROOT_DOMAIN}/
+                  scopes: "email openid profile groups"
+                  userIdentifier: "preferred_username"
+                  createUser: true
     persistence:
       config-file:
         type: configMap
