@@ -43,7 +43,6 @@ spec:
     route:
       app:
         annotations:
-          external-dns.alpha.kubernetes.io/target: external.${ROOT_DOMAIN}
           gatus.home-operations.com/endpoint: |
             group: selfhosted
         hostnames: ["{{ .Release.Name }}.${ROOT_DOMAIN}"]
