@@ -45,7 +45,7 @@ spec:
           initialDelaySeconds: 10
           timeoutSeconds: 5
     triggerLoopOnEvent: true
-    # logLevel: debug
+    logLevel: debug
     policy: sync
     extraArgs:
       - --gateway-name=envoy-internal
