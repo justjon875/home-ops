@@ -5,11 +5,11 @@ kind: Kustomization
 metadata:
   name: opnsense-unbound-dns
 spec:
-  healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2
-      kind: HelmRelease
-      name: opnsense-unbound-dns
-      namespace: network
+  # healthChecks:
+  #   - apiVersion: helm.toolkit.fluxcd.io/v2
+  #     kind: HelmRelease
+  #     name: opnsense-unbound-dns
+  #     namespace: network
   interval: 1h
   path: ./kubernetes/apps/network/opnsense-unbound-dns/app
   postBuild:
