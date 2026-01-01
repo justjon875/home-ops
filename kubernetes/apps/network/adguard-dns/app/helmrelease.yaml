@@ -44,7 +44,7 @@ spec:
       - --webhook-provider-url=http://localhost:8888
       - --gateway-name=envoy-internal
       # - --gateway-label-filter=dns-provider=internal
-      - --annotation-filter=external-dns.alpha.kubernetes.io/exclude notin (true)
+      - --annotation-filter=external-dns.alpha.kubernetes.io/exclude notin (external,true)
     podAnnotations:
       secret.reloader.stakater.com/reload: *secret
     logLevel: debug
