@@ -39,7 +39,7 @@ spec:
     triggerLoopOnEvent: true
     policy: sync
     registry: noop
-    sources: ["gateway-httproute"]
+    sources: ["gateway-httproute", "gateway-tcproute"]
     extraArgs:
       - --webhook-provider-url=http://localhost:8888
       - --gateway-name=envoy-internal

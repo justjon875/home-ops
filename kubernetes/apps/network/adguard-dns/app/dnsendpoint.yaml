@@ -1,0 +1,23 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/externaldns.k8s.io/dnsendpoint_v1alpha1.json
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: adguard
+spec:
+  endpoints:
+    - dnsName: cluster.${ROOT_DOMAIN}
+      recordType: CNAME
+      targets: ["192.168.3.206", "192.168.3.211", "192.168.3.212"]
+    - dnsName: cobalt.${ROOT_DOMAIN}
+      recordType: CNAME
+      targets: ["192.168.1.215"]
+    - dnsName: hydrogen.${ROOT_DOMAIN}
+      recordType: CNAME
+      targets: ["192.168.1.215"]
+    - dnsName: neon.${ROOT_DOMAIN}
+      recordType: CNAME
+      targets: ["192.168.1.215"]
+    - dnsName: iron.${ROOT_DOMAIN}
+      recordType: CNAME
+      targets: ["192.168.1.215"]
