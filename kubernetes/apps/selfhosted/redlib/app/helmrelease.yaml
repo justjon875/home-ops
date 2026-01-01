@@ -49,9 +49,12 @@ spec:
         parentRefs:
           - name: envoy-external
             namespace: network
-            sectionName: https
+        rules:
+        - backendRefs:
+          - name: *app
+            port: &port 8080
     service:
       app:
         ports:
           http:
-            port: 8080
+            port: *port
