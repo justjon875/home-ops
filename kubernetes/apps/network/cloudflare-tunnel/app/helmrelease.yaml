@@ -60,6 +60,8 @@ spec:
         runAsNonRoot: true
         runAsUser: 1000
         runAsGroup: 1000
+    extraArgs:
+      - --annotation-filter=external-dns.alpha.kubernetes.io/exclude in (internal)
     service:
       app:
         ports:

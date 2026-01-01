@@ -4,6 +4,8 @@ apiVersion: externaldns.k8s.io/v1alpha1
 kind: DNSEndpoint
 metadata:
   name: adguard
+  annotations:
+    external-dns.alpha.kubernetes.io/exclude: internal
 spec:
   endpoints:
     - dnsName: cluster.${ROOT_DOMAIN}
