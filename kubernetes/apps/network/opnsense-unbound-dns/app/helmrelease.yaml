@@ -18,6 +18,8 @@ spec:
           repository: ghcr.io/crutonjohn/external-dns-opnsense-webhook
           tag:  v1.0.0@sha256:0bf02fe18db4fe3a86fe5f561313ee434a203f4dcee7d19e770f67df854f3cff 
         env:
+          - name: OPNSENSE_HOST
+            value: oxygen.${OLD_DOMAIN}
           - name: OPNSENSE_API_SECRET
             valueFrom:
               secretKeyRef:
@@ -28,7 +30,6 @@ spec:
               secretKeyRef:
                 name: opnsense-unbound-dns-secret
                 key: OPNSENSE_API_KEY
-          - OPNSENSE_HOST: oxygen.${OLD_DOMAIN}
         securityContext:
           readOnlyRootFilesystem: true
         livenessProbe:
