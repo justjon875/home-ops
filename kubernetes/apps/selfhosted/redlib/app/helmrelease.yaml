@@ -47,7 +47,7 @@ spec:
             group: selfhosted
         hostnames: ["{{ .Release.Name }}.${ROOT_DOMAIN}"]
         parentRefs:
-          - name: envoy-internal
+          - name: envoy-external
             namespace: network
     service:
       app:
