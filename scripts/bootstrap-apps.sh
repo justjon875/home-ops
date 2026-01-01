@@ -57,7 +57,8 @@ function apply_sops_secrets() {
 
   local -r secrets=(
     # "${ROOT_DIR}/bootstrap/git-deploy-key.sops.yaml"
-    "${ROOT_DIR}/bootstrap/sops-age.sops.yaml"
+    # "${ROOT_DIR}/bootstrap/sops-age.sops.yaml"
+    "${ROOT_DIR}/bootstrap/cloudflare-id-secret.sops.yaml"
     # "${ROOT_DIR}/kubernetes/components/sops/cluster-secrets.sops.yaml"
   )
 
@@ -132,9 +133,9 @@ function main() {
   # Apply resources and Helm releases
   # wait_for_nodes
   # apply_namespaces
-  # apply_sops_secrets
+  apply_sops_secrets
   # apply_crds
-  sync_helm_releases
+  # sync_helm_releases
 
   log info "Congrats! The cluster is bootstrapped and Flux is syncing the Git repository"
 }
