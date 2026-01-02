@@ -5,7 +5,7 @@ kind: DNSEndpoint
 metadata:
   name: adguard
   annotations:
-    external-dns.alpha.kubernetes.io/exclude: internal
+    external-dns.alpha.kubernetes.io/internal: true
 spec:
   endpoints:
     - dnsName: cluster.${ROOT_DOMAIN}
