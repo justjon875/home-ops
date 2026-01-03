@@ -43,8 +43,6 @@ spec:
     extraArgs:
       - --webhook-provider-url=http://localhost:8888
       - --gateway-name=envoy-internal
-      # - --gateway-label-filter=dns-provider=internal
-      - --annotation-filter=external-dns.alpha.kubernetes.io/external in (true)
     podAnnotations:
       secret.reloader.stakater.com/reload: *secret
     logLevel: debug
