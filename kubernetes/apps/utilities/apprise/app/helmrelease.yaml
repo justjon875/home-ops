@@ -1,0 +1,56 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app apprise
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: *app
+  values:
+    controllers:
+      apprise:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: ghcr.io/caronc/apprise
+              tag: 1.2.6@sha256:a92f836b0c2c53523465b670f290615a0ac5c863b0ff72e48fac91c1dac795de
+            env:
+              TZ: ${TIMEZONE}
+              APPRISE_WORKER_COUNT: 4
+              IPV4_ONLY: true
+            resources:
+              requests:
+                cpu: 10m
+                memory: 100Mi
+              limits:
+                memory: 500Mi
+    service:
+      app:
+        ports:
+          http:
+            port: 8000
+    persistence:
+      config:
+        existingClaim: *app
+        advancedMounts:
+          apprise:
+            app:
+              - path: /config
+                subPath: config
+              - path: /plugin
+                subPath: plugin
+      tmpfs:
+        type: emptyDir
+        advancedMounts:
+          apprise:
+            app:
+              - path: /attach
+                subPath: attach
+              - path: /tmp
+                subPath: tmp
+
+

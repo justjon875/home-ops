@@ -10,6 +10,7 @@ components:
 
 resources:
   - ./namespace.yaml
+  - ./apprise/ks.yaml
   # - ./busybox/ks.yaml
   - ./databasus/ks.yaml
   - ./dozzle/ks.yaml
