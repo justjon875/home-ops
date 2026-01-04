@@ -29,8 +29,6 @@ spec:
       - --annotation-prefix=external.company.io/
       - --cloudflare-dns-records-per-page=1000
       - --cloudflare-proxied
-      - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
-      - --crd-source-kind=DNSEndpoint
       - --gateway-name=envoy-external
       - --zone-id-filter=$(CF_ZONE_ID)
     triggerLoopOnEvent: true
