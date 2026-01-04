@@ -5,7 +5,7 @@ kind: DNSEndpoint
 metadata:
   name: cloudflared
   annotations:
-    external-dns.alpha.kubernetes.io/external: true
+    external-dns.custom/type: public
 spec:
   endpoints:
     - dnsName: external.${ROOT_DOMAIN}
