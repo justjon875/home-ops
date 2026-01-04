@@ -35,6 +35,7 @@ spec:
           "dependencyDashboard": true,
           "printConfig": true,
           "repositories": [
-              "beans/home-ops"
+              "beans/home-ops",
+              "beans/docker-services"
           ],
         }
