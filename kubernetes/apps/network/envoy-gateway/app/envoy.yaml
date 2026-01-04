@@ -48,20 +48,13 @@ kind: Gateway
 metadata:
   name: envoy-external
   annotations:
-    external.company.io/target: ${CLOUDFLARE_TUNNEL_ID}.cfargotunnel.com
-    external-dns.alpha.kubernetes.io/target: &external-lb 172.16.0.11
-
-    gatus.home-operations.com/endpoint: |-
-      client:
-        dns-resolver: tcp://1.1.1.1:53
-      group: external
+    external-dns.alpha.kubernetes.io/target: external.${ROOT_DOMAIN}
 spec:
   gatewayClassName: envoy
   infrastructure:
     annotations:
-      external.company.io/hostname: external.${ROOT_DOMAIN}
       external-dns.alpha.kubernetes.io/hostname: external.${ROOT_DOMAIN}
-      lbipam.cilium.io/ips: *external-lb
+      lbipam.cilium.io/ips: 172.16.0.11
   listeners:
     - name: http
       protocol: HTTP
