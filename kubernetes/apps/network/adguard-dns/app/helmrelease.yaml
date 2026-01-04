@@ -41,9 +41,8 @@ spec:
     registry: noop
     sources: ["gateway-httproute", "gateway-tcproute", "crd"]
     extraArgs:
-      - --annotation-filter=external-dns.custom/type in (private)
       - --webhook-provider-url=http://localhost:8888
-      - --gateway-name=envoy-internal
+      # - --gateway-name=envoy-internal
     podAnnotations:
       secret.reloader.stakater.com/reload: *secret
     logLevel: debug

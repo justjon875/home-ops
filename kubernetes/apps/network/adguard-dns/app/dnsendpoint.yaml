@@ -4,8 +4,6 @@ apiVersion: externaldns.k8s.io/v1alpha1
 kind: DNSEndpoint
 metadata:
   name: adguard
-  annotations:
-    external-dns.custom/type: private
 spec:
   endpoints:
     - dnsName: cluster.${ROOT_DOMAIN}
