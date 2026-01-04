@@ -23,8 +23,6 @@ spec:
       config:
         existingClaim: "{{ .Release.Name }}"
       cwa-book-ingest:
-        globalMounts:
-          - path: /data
         path: /media/books/auto
         server: ${NFS_HOST}
         type: nfs
