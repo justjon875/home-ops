@@ -58,6 +58,12 @@ spec:
         globalMounts:
           - path: /data/config.yaml
             subPath: config.yaml
+      media:
+        globalMounts:
+        - path: /mnt/media
+        path: /media
+        server: ${NFS_HOST}
+        type: nfs
       nfs:
         globalMounts:
         - path: /mnt/nfs
