@@ -36,6 +36,9 @@ spec:
           config.yaml: |-
             server:
               sources:
+                - path: /mnt/media
+                  config:
+                    defaultEnabled: true
                 - path: /mnt/nfs
                   config:
                     defaultEnabled: true
