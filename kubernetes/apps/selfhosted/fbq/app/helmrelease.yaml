@@ -36,6 +36,9 @@ spec:
           config.yaml: |-
             server:
               sources:
+                - path: /mnt/media
+                  config:
+                    defaultEnabled: true
                 - path: /mnt/nfs
                   config:
                     defaultEnabled: true
@@ -58,6 +61,12 @@ spec:
         globalMounts:
           - path: /data/config.yaml
             subPath: config.yaml
+      media:
+        globalMounts:
+        - path: /mnt/media
+        path: /media
+        server: ${NFS_HOST}
+        type: nfs
       nfs:
         globalMounts:
         - path: /mnt/nfs
