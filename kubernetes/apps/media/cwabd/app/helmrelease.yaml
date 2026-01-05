@@ -13,8 +13,6 @@ spec:
         containers:
           app:
             env:
-              PGID: 1000
-              PUID: 1000
               TZ: ${TIMEZONE}
             image:
               repository: ghcr.io/calibrain/calibre-web-automated-book-downloader
