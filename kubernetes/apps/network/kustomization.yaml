@@ -12,5 +12,6 @@ resources:
   - ./envoy-gateway/ks.yaml
   - ./cloudflare-dns/ks.yaml
   - ./adguard-dns/ks.yaml
+  - ./bind-dns/ks.yaml
   # - ./k8s-gateway/ks.yaml
 
