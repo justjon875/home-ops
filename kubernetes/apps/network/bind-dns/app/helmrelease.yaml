@@ -18,7 +18,7 @@ spec:
         valueFrom:
           secretKeyRef:
             name: &secret bind-dns-secret
-            key: rfc2136_tsig_secret
+            key: RFC2136_TSIG_SECRET
     extraArgs:
       - --rfc2136-host=192.168.1.200
       - --rfc2136-port=5553
