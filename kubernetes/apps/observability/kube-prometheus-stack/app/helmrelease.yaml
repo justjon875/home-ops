@@ -69,6 +69,20 @@ spec:
         folder: observability
         matchLabels:
           grafana.internal/instance: grafana
+    additionalScrapeConfigs:
+      - job_name: bind-exporter-remote
+        static_configs:
+          - targets:
+            - 192.168.1.200:9119
+        metrics_path: /metrics
+        scheme: http
+        scrape_interval: 30s
+        scrape_timeout: 10s
+        relabel_configs:
+          # (optional) add a label so you can filter in Grafana/alerts
+          - source_labels: [__address__]
+            target_label: instance
+            replacement: bind-exporter
     additionalPrometheusRulesMap:
       dockerhub-rules:
         groups:
