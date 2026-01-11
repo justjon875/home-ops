@@ -11,7 +11,7 @@ resources:
   - ./atuin/ks.yaml
   - ./bentopdf/ks.yaml
   - ./continuwuity/ks.yaml
-  - ./eddrit/ks.yaml
+  # - ./eddrit/ks.yaml
   - ./fbq/ks.yaml
   - ./filebrowser/ks.yaml
   # - ./linkwarden/ks.yaml
