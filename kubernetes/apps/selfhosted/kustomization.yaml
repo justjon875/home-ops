@@ -24,4 +24,5 @@ resources:
   - ./redlib/ks.yaml
   - ./searxng/ks.yaml
   - ./vaultwarden/ks.yaml
+  - ./termix/ks.yaml
   - ./whoogle/ks.yaml
