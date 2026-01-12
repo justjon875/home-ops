@@ -51,6 +51,10 @@ spec:
             - path: /sonarr/etc
         existingClaim: "{{ .Release.Name }}"
       media:
+        advancedMounts:
+          sonarr:
+            app:
+            - path: /media/qbittorrent/downloads
         enabled: true
         path: /media/qbittorrent/downloads
         server: ${NFS_HOST}
