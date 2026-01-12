@@ -23,7 +23,7 @@ resources:
   - ./navidrome/ks.yaml
   - ./piped/ks.yaml
   - ./prowlarr/ks.yaml
-  # - qbittorrent
+  - ./qbittorrent/ks.yaml
   - ./radarr/ks.yaml
   - ./sabnzbd/ks.yaml
   - ./sonarr/ks.yaml
