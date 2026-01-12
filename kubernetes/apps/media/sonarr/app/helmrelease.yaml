@@ -51,6 +51,10 @@ spec:
             - path: /sonarr/etc
         existingClaim: "{{ .Release.Name }}"
       media:
+        advancedMounts:
+          sonarr:
+            app:
+            - path: /media/qbittorrent/downloads
         enabled: true
         path: /media/qbittorrent/downloads
         server: ${NFS_HOST}
@@ -62,6 +66,15 @@ spec:
             - path: /mnt/sabdnzb
         enabled: true
         path: /media/sabnzbd/downloads
+        server: ${NFS_HOST}
+        type: nfs
+      tv:
+        advancedMounts:
+          sonarr:
+            app:
+            - path: /media/tv
+        enabled: true
+        path: /media/qbittorrent/downloads/tv
         server: ${NFS_HOST}
         type: nfs
       tmpfs:
