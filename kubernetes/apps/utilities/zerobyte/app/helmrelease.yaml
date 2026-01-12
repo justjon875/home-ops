@@ -26,7 +26,7 @@ spec:
               TZ: ${TIMEZONE}
             image:
               repository: ghcr.io/nicotsx/zerobyte
-              tag: v0.21
+              tag: v0.22
             resources:
               requests:
                 cpu: 15m
