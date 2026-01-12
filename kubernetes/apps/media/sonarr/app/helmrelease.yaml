@@ -69,6 +69,10 @@ spec:
         server: ${NFS_HOST}
         type: nfs
       tv:
+        advancedMounts:
+          sonarr:
+            app:
+            - path: /media/tv
         enabled: true
         path: /media/qbittorrent/downloads/tv
         server: ${NFS_HOST}
