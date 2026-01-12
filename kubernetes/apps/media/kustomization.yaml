@@ -14,7 +14,7 @@ resources:
   - ./calibre/ks.yaml
   - ./cwabd/ks.yaml
   # - calibre-web-automated
-  # - flaresolverr
+  - ./flaresolverr/ks.yaml
   # - flood
   - ./jellyfin/ks.yaml
   - ./jellyseerr/ks.yaml
