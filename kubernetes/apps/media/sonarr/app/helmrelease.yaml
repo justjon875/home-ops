@@ -68,6 +68,11 @@ spec:
         path: /media/sabnzbd/downloads
         server: ${NFS_HOST}
         type: nfs
+      tv:
+        enabled: true
+        path: /media/qbittorrent/downloads/tv
+        server: ${NFS_HOST}
+        type: nfs
       tmpfs:
         type: emptyDir
         advancedMounts:
