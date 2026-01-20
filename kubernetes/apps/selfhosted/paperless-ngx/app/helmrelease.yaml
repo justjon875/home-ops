@@ -31,7 +31,7 @@ spec:
                 name: paperless-ngx
             image:
               repository: quay.io/11notes/paperless-ngx
-              tag: 2.20.4@sha256:14f65dd1c2f08c33845fe50a38406c6b20651a187473e47019fc3a9e1c5406ed
+              tag: 2.20.5@sha256:63173b4e1136b14e2483eaf51f9070852e2e07542556af6910f572db66f975ba
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
