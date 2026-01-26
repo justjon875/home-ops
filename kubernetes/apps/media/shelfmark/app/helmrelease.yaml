@@ -1,7 +1,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &app cwabd
+  name: &app shelfmark
 spec:
   chartRef:
     kind: OCIRepository
@@ -9,7 +9,7 @@ spec:
   interval: 1h
   values:
     controllers:
-      cwabd:
+      shelfmark:
         containers:
           app:
             env:
