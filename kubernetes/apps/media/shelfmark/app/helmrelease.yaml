@@ -20,7 +20,7 @@ spec:
     persistence:
       config:
         existingClaim: "{{ .Release.Name }}"
-      cwa-book-ingest:
+      books:
         path: /media/books/auto
         server: ${NFS_HOST}
         type: nfs
