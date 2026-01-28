@@ -25,6 +25,9 @@ spec:
               BASE_URL: '{{ .Release.Name }}.${ROOT_DOMAIN}'
               LOG_LEVEL: debug 
               TZ: ${TIMEZONE}
+            envFrom:
+              - secretRef:
+                  name: "{{ .Release.Name }}-secret"
             image:
               repository: ghcr.io/nicotsx/zerobyte
               tag: v0.24
