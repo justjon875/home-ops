@@ -16,8 +16,8 @@ resources:
   - ./filebrowser/ks.yaml
   # - ./linkwarden/ks.yaml
   - ./matrix-element/ks.yaml
-  # - ./memos/ks.yaml
-  # - ./openspeedtest/ks.yaml
+  - ./memos/ks.yaml
+  - ./openspeedtest/ks.yaml
   - ./pairdrop/ks.yaml
   - ./paperless-ngx/ks.yaml
   - ./planka/ks.yaml

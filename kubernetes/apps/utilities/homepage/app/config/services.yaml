@@ -93,25 +93,15 @@
     - Pocket-ID:
         href: https://pocketid.lithium.${OLD_DOMAIN}
         icon: sh-pocket-id.svg
-    - Komodo:
-        href: https://komodo.lithium.${OLD_DOMAIN}
-        icon: sh-komodo.svg
-        widget:
-          type: komodo
-          url: https://komodo.lithium.${OLD_DOMAIN}
-          key: "{{HOMEPAGE_VAR_KOMODO_KEY}}"
-          secret: "{{HOMEPAGE_VAR_KOMODO_SECRET}}"
-          showSummary: true
-          showStacks: true
+    - Dockhand:
+        href: https://dockhand.lithium.${OLD_DOMAIN}
+        icon: sh-dockhand.svg
     - Unifi:
         href: https://unifi.lithium.${OLD_DOMAIN}
         icon: sh-ubiquiti-unifi.svg
     - Whoogle lithium:
         href: https://whoogle.lithium.${OLD_DOMAIN}
         icon: sh-whoogle.png
-    - Zerobyte:
-        href: https://zerobyte.lithium.${OLD_DOMAIN}
-        icon: sh-zerobyte.svg
 - Cloud:
     - Immich:
         href: https://immich.${ROOT_DOMAIN}
@@ -204,6 +194,9 @@
     - FileBrowser:
         href: https://filebrowser.${ROOT_DOMAIN}
         icon: sh-file-browser.svg
+    - FileBrowserQuantum:
+        href: https://fbp.${ROOT_DOMAIN}
+        icon: sh-filebrowser-quatum.svg
     - Linkwarden:
         href: https://linkwarden.${ROOT_DOMAIN}
         icon: sh-linkwarden.svg
