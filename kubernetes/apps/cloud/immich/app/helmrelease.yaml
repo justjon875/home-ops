@@ -81,6 +81,8 @@ spec:
         hostnames:
           - "{{ .Release.Name }}.${ROOT_DOMAIN}"
         parentRefs:
+          - name: envoy-external
+            namespace: network
           - name: envoy-internal
             namespace: network
         rules:
