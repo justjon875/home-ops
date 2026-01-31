@@ -18,7 +18,7 @@ spec:
     monitoring:
       podMonitorEnabled: false
       grafanaDashboard:
-        create: true
+        create: false
     resources:
       requests:
         cpu: 15m
