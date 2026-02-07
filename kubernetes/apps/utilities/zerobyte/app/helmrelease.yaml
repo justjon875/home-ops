@@ -50,10 +50,7 @@ spec:
         server: ${NFS_HOST}
         type: nfs
       restic-cache:
-        type: persistentVolumeClaim
-        storageClass: openebs-hostpath
-        accessMode: ReadWriteOnce
-        size: 25Gi
+        existingClaim: zerobyte-restic-cache
         globalMounts:
           - path: /var/lib/zerobyte/restic/cache
     route:
