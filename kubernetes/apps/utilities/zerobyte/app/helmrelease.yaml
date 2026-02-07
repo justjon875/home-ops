@@ -39,13 +39,6 @@ spec:
                 cpu: 19088m
                 memory: 56G
     persistence:
-      cache:
-        type: persistentVolumeClaim
-        storageClass: openebs-hostpath
-        accessMode: ReadWriteOnce
-        size: 25Gi
-        globalMounts:
-          - path: /var/lib/zerobyte/restic/cache
       config:
         existingClaim: *app
         globalMounts:
@@ -56,6 +49,13 @@ spec:
         path: ${NFS_PATH}
         server: ${NFS_HOST}
         type: nfs
+      restic-cache:
+        type: persistentVolumeClaim
+        storageClass: openebs-hostpath
+        accessMode: ReadWriteOnce
+        size: 25Gi
+        globalMounts:
+          - path: /var/lib/zerobyte/restic/cache
     route:
       app:
         hostnames:
