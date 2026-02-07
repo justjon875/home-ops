@@ -22,8 +22,8 @@ spec:
         containers:
           app:
             env:
-              BASE_URL: 'https://{{ .Release.Name }}.${ROOT_DOMAIN}'
-              LOG_LEVEL: debug 
+              BASE_URL: "https://{{ .Release.Name }}.${ROOT_DOMAIN}"
+              LOG_LEVEL: debug
               TZ: ${TIMEZONE}
             envFrom:
               - secretRef:
@@ -39,6 +39,13 @@ spec:
                 cpu: 19088m
                 memory: 56G
     persistence:
+      cache:
+        type: persistentVolumeClaim
+        storageClass: openebs-hostpath
+        accessMode: ReadWriteOnce
+        size: 25Gi
+        globalMounts:
+          - path: /var/lib/zerobyte/restic/cache
       config:
         existingClaim: *app
         globalMounts:
@@ -52,7 +59,7 @@ spec:
     route:
       app:
         hostnames:
-          - '{{ .Release.Name }}.${ROOT_DOMAIN}'
+          - "{{ .Release.Name }}.${ROOT_DOMAIN}"
         parentRefs:
           - name: envoy-internal
             namespace: network
