@@ -13,16 +13,6 @@ spec:
         annotations:
           reloader.stakater.com/auto: "true"
         initContainers:
-          init-cp:
-            image:
-              repository: busybox
-              tag: 1.37
-            command:
-              [
-                "sh",
-                "-c",
-                "cp -av /app/public/project-background-images/. /app/public/background-images && chown -R node:node /app/public/background-images",
-              ]
           init-npm:
             image:
               repository: busybox
@@ -46,17 +36,8 @@ spec:
     persistence:
       data:
         existingClaim: *app
-        advancedMounts:
-          planka:
-            app:
-              - path: /app/public/user-avatars
-                subPath: user-avatars
-              - path: /app/private/attachments
-                subPath: attachments
-              - path: /app/public/project-background-images
-                subPath: project-background-images
-              - path: /app/public/background-images
-                subPath: background-images
+        globalMounts:
+          - path: /app/data
     route:
       app:
         annotations:
