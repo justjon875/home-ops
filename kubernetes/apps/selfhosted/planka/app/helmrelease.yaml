@@ -15,8 +15,8 @@ spec:
         initContainers:
           init-npm:
             image:
-              repository: busybox
-              tag: 1.37
+              repository: ghcr.io/plankanban/planka
+              tag: 2.0.0@sha256:f82726333b953bd0d11184fa95a4fe4b068bab0e43e49254cf2963ad91b7c21a
             command: ["sh", "-c", "npm run db:upgrade"]
         containers:
           app:
