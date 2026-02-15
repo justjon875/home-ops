@@ -1,11 +1,18 @@
 ---
 httpRoute:
   enabled: true
-  hostnames: [ "git.${ROOT_DOMAIN}" ]
+  hostnames: ["git.${ROOT_DOMAIN}"]
   parentRefs:
     - name: envoy-internal
       namespace: network
       sectionName: https
+tcpRoute:
+  enabled: true
+  parentRefs:
+    - name: envoy-internal
+      namespace: network
+      sectionName: https
+  port: 22
 
 image:
   rootless: true
@@ -13,7 +20,6 @@ image:
   repository: forgejo/forgejo
   tag: 14.0.2-rootless
   digest: sha256:a704cc203d78a854e0887e08fcbd7a45f9bc2b5fd8551c88b914b044792c4b1b
-
 
 gitea:
   admin:
