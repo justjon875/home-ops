@@ -11,7 +11,7 @@ tcpRoute:
   parentRefs:
     - name: envoy-internal
       namespace: network
-      sectionName: https
+      sectionName: ssh
   port: 22
 
 image:
