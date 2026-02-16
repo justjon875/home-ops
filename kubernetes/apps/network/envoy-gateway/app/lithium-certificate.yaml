@@ -9,4 +9,4 @@ spec:
     name: letsencrypt-prod-clusterissuer
     kind: ClusterIssuer
   commonName: "lithium.${OLD_DOMAIN}"
-  dnsNames: ["*.lithium.${OLD_DOMAIN}"]
+  dnsNames: ["lithium.${OLD_DOMAIN}", "*.lithium.${OLD_DOMAIN}"]
