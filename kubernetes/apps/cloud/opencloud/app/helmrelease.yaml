@@ -17,7 +17,7 @@ spec:
           opencloud:
             image: &img
               repository: docker.io/opencloudeu/opencloud-rolling
-              tag: 5.0.2@sha256:05db0550a9b6e9590ea52830b5b0003a0f15a2326b38b4aee52629c1a005f2d5
+              tag: 5.1.0@sha256:6229e937e32e5e114ddac81af7e851fb9346a818c58a36b784529d5503530f93
             command:
               - "/bin/sh"
               - "-c"
@@ -146,7 +146,7 @@ spec:
           collabora:
             image:
               repository: docker.io/collabora/code
-              tag: 25.04.8.3.1@sha256:fa876e9fc1fdeb9aabac545e9fced19360e3a0492879432d857c17be4e4ea025
+              tag: 25.04.9.1.1@sha256:1709b3ba91e8486318f5480250358ead10b3ca8f36a2ae1d3a53c13b49466dee
             env:
               aliasgroup1: *wopi
               DONT_GEN_SSL_CERT: "YES"
