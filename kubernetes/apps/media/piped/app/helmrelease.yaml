@@ -25,8 +25,8 @@ spec:
       env:
         BACKEND_HOSTNAME: piped-api.${ROOT_DOMAIN}
       image:
-        repository: docker.io/1337kavin/piped-frontend
-        pullPolicy: "Always"
+        repository: ghcr.io/bjw-s-labs/piped-frontend
+        tag: 2025.3.17@sha256:8ed05c7df0bc8899e54a3952a99b63d55cdc7669d759beeb9370fbb32330468b
     backend:
       config:
         PORT: 8080
@@ -36,13 +36,13 @@ spec:
           connection_url: jdbc:postgresql://${POSTGRESQL_HOST}:5432/piped
           driver_class: org.postgresql.Driver
           dialect: org.hibernate.dialect.PostgreSQLDialect
-      image:
-        repository: docker.io/1337kavin/piped
-        tag: latest@sha256:9ad2ed9ff568c40bfa50ea4bf07957f7bc2ae0768ce1f494f9fa99598f8c368b
+        image:
+          repository: 1337kavin/piped
+          tag: latest@sha256:9ad2ed9ff568c40bfa50ea4bf07957f7bc2ae0768ce1f494f9fa99598f8c368b
     ytproxy:
       image:
-        repository: "docker.io/1337kavin/piped-proxy"
-        pullPolicy: "Always"
+        repository: 1337kavin/piped-proxy
+        tag: latest@sha256:553e9c131dd463ba1bf92159553c9d69a1c33a2479dfa3c9e66a007b9d6d0d5d
   valuesFrom:
     - kind: Secret
       name: *app
