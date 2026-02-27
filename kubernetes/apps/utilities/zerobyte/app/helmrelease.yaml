@@ -30,7 +30,7 @@ spec:
                   name: "{{ .Release.Name }}-secret"
             image:
               repository: ghcr.io/nicotsx/zerobyte
-              tag: v0.28
+              tag: v0.29
             resources:
               requests:
                 cpu: 15m
