@@ -87,7 +87,7 @@ spec:
               limits:
                 memory: 1Gi
     route:
-      app:
+      invidious:
         hostnames:
           - "{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}"
         parentRefs:
