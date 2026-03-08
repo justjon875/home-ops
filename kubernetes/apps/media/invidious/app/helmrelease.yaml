@@ -33,7 +33,7 @@ spec:
                   name: *app
             image:
               repository: quay.io/invidious/invidious
-              tag: 2025.10.17-5cfe294@sha256:befb6db9d38a5e7aa4b3db2652702714e445c80c93ce12d178006f70ad6a4046
+              tag: 2026.02.24-21d0d10@sha256:eae2227bd1609692930dab504c6abfb4f45212b44679b1a2516b75746ad4e97b
             env:
               TZ: "${TIMEZONE}"
               INVIDIOUS_PORT: "3000" # https://github.com/iv-org/invidious/issues/2970
@@ -44,7 +44,7 @@ spec:
                 custom: true
                 spec:
                   httpGet:
-                    path: /api/v1/trending
+                    path: /api/v1/stats
                     port: &port 3000
                   initialDelaySeconds: 5
                   periodSeconds: 30
