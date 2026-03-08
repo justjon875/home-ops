@@ -63,29 +63,29 @@ spec:
                 memory: 200Mi
               limits:
                 memory: 400Mi
-        companion:
-          strategy: RollingUpdate
-          replicas: 1
-          annotations:
-            reloader.stakater.com/auto: "true"
-          containers:
-            companion:
-              envFrom:
-                - secretRef:
-                    name: *app
-              image:
-                repository: quay.io/invidious/invidious-companion
-                tag: master-6267af7@sha256:4320469a01fd3e7f554c8a7ad8d0fd388f325b27cc39a760c64edb36914f06ea
-              securityContext:
-                allowPrivilegeEscalation: false
-                readOnlyRootFilesystem: true
-                capabilities: { drop: ["ALL"] }
-              resources:
-                requests:
-                  cpu: 10m
-                  memory: 500Mi
-                limits:
-                  memory: 1Gi
+      companion:
+        strategy: RollingUpdate
+        replicas: 1
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          companion:
+            envFrom:
+              - secretRef:
+                  name: *app
+            image:
+              repository: quay.io/invidious/invidious-companion
+              tag: master-6267af7@sha256:4320469a01fd3e7f554c8a7ad8d0fd388f325b27cc39a760c64edb36914f06ea
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 10m
+                memory: 500Mi
+              limits:
+                memory: 1Gi
     route:
       app:
         hostnames:
@@ -93,12 +93,16 @@ spec:
         parentRefs:
           - name: envoy-internal
             namespace: network
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: *port
     service:
       invidious:
         controller: *app
         ports:
           http:
-            port: 3000
+            port: *port
       companion:
         controller: companion
         ports:
