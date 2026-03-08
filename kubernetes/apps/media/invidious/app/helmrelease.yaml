@@ -38,21 +38,21 @@ spec:
               TZ: "${TIMEZONE}"
               INVIDIOUS_PORT: "3000" # https://github.com/iv-org/invidious/issues/2970
               INVIDIOUS_QUALITY: dash
-              # probes:
-              #   liveness: &probes
-              #     enabled: true
-              #     custom: true
-              #     spec:
-              #       httpGet:
-              #         path: /api/v1/stats
-              #         port: &port 3000
-              #       initialDelaySeconds: 5
-              #       periodSeconds: 30
-              #       timeoutSeconds: 5
-              #       failureThreshold: 3
-              #   readiness: *probes
-              startup:
-                enabled: false
+            # probes:
+            #   liveness: &probes
+            #     enabled: true
+            #     custom: true
+            #     spec:
+            #       httpGet:
+            #         path: /api/v1/stats
+            #         port: &port 3000
+            #       initialDelaySeconds: 5
+            #       periodSeconds: 30
+            #       timeoutSeconds: 5
+            #       failureThreshold: 3
+            #   readiness: *probes
+            #   startup:
+            #     enabled: false
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
