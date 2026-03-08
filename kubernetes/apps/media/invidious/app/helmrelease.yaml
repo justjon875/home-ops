@@ -75,7 +75,7 @@ spec:
                   name: *app
             image:
               repository: quay.io/invidious/invidious-companion
-              tag: master-6267af7@sha256:4320469a01fd3e7f554c8a7ad8d0fd388f325b27cc39a760c64edb36914f06ea
+              tag: master-1786e15@sha256:4a0632627578262e539253d5caa592e19b167768969c3bfc92f9db9d2c76aef1
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
