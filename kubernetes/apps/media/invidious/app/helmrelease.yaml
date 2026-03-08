@@ -63,23 +63,23 @@ spec:
                 memory: 200Mi
               limits:
                 memory: 400Mi
-            companion:
-              envFrom:
-                - secretRef:
-                    name: *app
-              image:
-                repository: quay.io/invidious/invidious-companion
-                tag: master-1786e15@sha256:4a0632627578262e539253d5caa592e19b167768969c3bfc92f9db9d2c76aef1
-              securityContext:
-                allowPrivilegeEscalation: false
-                readOnlyRootFilesystem: true
-                capabilities: { drop: ["ALL"] }
-              resources:
-                requests:
-                  cpu: 10m
-                  memory: 500Mi
-                limits:
-                  memory: 1Gi
+          companion:
+            envFrom:
+              - secretRef:
+                  name: *app
+            image:
+              repository: quay.io/invidious/invidious-companion
+              tag: master-1786e15@sha256:4a0632627578262e539253d5caa592e19b167768969c3bfc92f9db9d2c76aef1
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 10m
+                memory: 500Mi
+              limits:
+                memory: 1Gi
     route:
       invidious:
         hostnames:
