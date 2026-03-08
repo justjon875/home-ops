@@ -7,7 +7,7 @@ spec:
   chart:
     spec:
       chart: piped
-      version: 8.1.9
+      version: 8.0.26
       sourceRef:
         kind: HelmRepository
         name: teampiped
@@ -25,8 +25,8 @@ spec:
       env:
         BACKEND_HOSTNAME: piped-api.${ROOT_DOMAIN}
       image:
-        repository: ghcr.io/bjw-s-labs/piped-frontend
-        tag: 2025.3.17@sha256:8ed05c7df0bc8899e54a3952a99b63d55cdc7669d759beeb9370fbb32330468b
+        repository: 1337kavin/piped-frontend
+        tag: latest@sha256:8cb104f54608315b3e254c9487a005eaec6cd437359ef90be3b30556cc953a47
     backend:
       config:
         PORT: 8080
@@ -42,7 +42,7 @@ spec:
     ytproxy:
       image:
         repository: 1337kavin/piped-proxy
-        tag: latest@sha256:19a58c65a7aae466e5287153f4162bb12a1e41fb22f53b24d55f7e1e79e4358
+        tag: latest@sha256:19a58c65a7aae466e5287153f4162bb12a1e41fb22f53b24d55f7e1e79e4358d
   valuesFrom:
     - kind: Secret
       name: *app
