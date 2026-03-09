@@ -64,22 +64,26 @@ spec:
               limits:
                 memory: 400Mi
           companion:
-            envFrom:
-              - secretRef:
-                  name: *app
-            image:
-              repository: quay.io/invidious/invidious-companion
-              tag: master-1786e15@sha256:4a0632627578262e539253d5caa592e19b167768969c3bfc92f9db9d2c76aef1
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
-            resources:
-              requests:
-                cpu: 10m
-                memory: 500Mi
-              limits:
-                memory: 1Gi
+            annotations:
+              reloader.stakater.com/auto: "true"
+            containers:
+              companion:
+                envFrom:
+                  - secretRef:
+                      name: *app
+                image:
+                  repository: quay.io/invidious/invidious-companion
+                  tag: master-1786e15@sha256:4a0632627578262e539253d5caa592e19b167768969c3bfc92f9db9d2c76aef1
+                securityContext:
+                  allowPrivilegeEscalation: false
+                  readOnlyRootFilesystem: true
+                  capabilities: { drop: ["ALL"] }
+                resources:
+                  requests:
+                    cpu: 10m
+                    memory: 500Mi
+                  limits:
+                    memory: 1Gi
     route:
       invidious:
         hostnames:
@@ -97,5 +101,8 @@ spec:
         ports:
           http:
             port: 3000
-          companion:
+      companion:
+        controller: companion
+        ports:
+          http:
             port: 8282
