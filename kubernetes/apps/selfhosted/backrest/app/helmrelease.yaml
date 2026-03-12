@@ -20,7 +20,7 @@ spec:
               TZ: ${TIMEZONE}
             image:
               repository: garethgeorge/backrest
-              tag: v1.12.0-scratch@sha256:9d356b3dea4409fb2d6e28a4d4a64b27db63d1ef687fb27b2756ece8d6d4b4c1
+              tag: v1.12.1-scratch@sha256:ab9cf837d181fc4e8fed2050787fe7702edd8ebfc99ef859e917693f0a7f036e
             probes:
               liveness:
                 enabled: true
