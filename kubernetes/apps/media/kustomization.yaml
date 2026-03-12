@@ -17,7 +17,7 @@ resources:
   # - flood
   - ./invidious/ks.yaml
   - ./jellyfin/ks.yaml
-  - ./jellyseerr/ks.yaml
+  - ./seerr/ks.yaml
   - ./kavita/ks.yaml
   # - ./listenarr/ks.yaml
   - ./metube/ks.yaml
