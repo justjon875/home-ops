@@ -1,7 +1,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &app jellyseerr
+  name: &app seerr
 spec:
   chartRef:
     kind: OCIRepository
@@ -9,7 +9,7 @@ spec:
   interval: 1h
   values:
     controllers:
-      jellyseerr:
+      seerr:
         annotations:
           reloader.stakater.com/auto: "true"
         initContainers:
@@ -27,16 +27,16 @@ spec:
               DB_HOST:
                 valueFrom:
                   secretKeyRef:
-                    name: &pg "{{ .Release.Name }}-pguser-secret"
+                    name: "{{ .Release.Name }}-pguser-secret"
                     key: host
               DB_PORT: "5432"
-              DB_USER: "jellyseerr"
-              DB_PASS: 
+              DB_USER: "seerr"
+              DB_PASS:
                 valueFrom:
                   secretKeyRef:
-                    name: &pg "{{ .Release.Name }}-pguser-secret"
+                    name: "{{ .Release.Name }}-pguser-secret"
                     key: password
-              DB_NAME: "jellyseerr"
+              DB_NAME: "seerr"
               DB_LOG_QUERIES: "false"
               LOG_LEVEL: "info"
               TZ: ${TIMEZONE}
@@ -54,12 +54,12 @@ spec:
                   failureThreshold: 3
               readiness: *probes
             image:
-              repository: fallenbagel/jellyseerr
-              tag: 2.7.3@sha256:4538137bc5af902dece165f2bf73776d9cf4eafb6dd714670724af8f3eb77764
+              repository: ghcr.io/seerr-team/seerr
+              tag: v3.1.0@sha256:b35ba0461c4a1033d117ac1e5968fd4cbe777899e4cbfbdeaf3d10a42a0eb7e9
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
-              capabilities: {drop: ["ALL"]}
+              capabilities: { drop: ["ALL"] }
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
