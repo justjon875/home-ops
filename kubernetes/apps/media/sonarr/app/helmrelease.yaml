@@ -31,7 +31,7 @@ spec:
                   name: sonarr-secret
             image:
               repository: quay.io/11notes/sonarr
-              tag: 4.0.16@sha256:c8f72e7f34015d99f49eaacb31d6cceeb6306960cf5115505bdecb66e2b7c2ec
+              tag: 4.0.17@sha256:633e1ed7c43c39e2424d2a34f4627b8c2c2cd6fcac3efdac750bc8443b9f85c3
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
