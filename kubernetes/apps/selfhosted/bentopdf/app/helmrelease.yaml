@@ -29,31 +29,31 @@ spec:
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
-              capabilities: {drop: ["ALL"]}
-    defaultPodOptions:
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 1000
-        runAsGroup: 1000
-        seccompProfile: {type: RuntimeDefault}
+              capabilities: { drop: ["ALL"] }
+        pod:
+          securityContext:
+            runAsUser: 65534
+            runAsGroup: 65534
+            fsGroup: 65534
+            fsGroupChangePolicy: "OnRootMismatch"
     persistence:
       tmpfs:
-        type: emptyDir
         globalMounts:
           - path: /var/cache/nginx
             subPath: cache
           - path: /etc/nginx/tmp
             subPath: tmp
+        type: emptyDir
     route:
       app:
         annotations:
           gatus.home-operations.com/endpoint: |
             group: selfhosted
         hostnames:
-        - '{{ .Release.Name }}.${ROOT_DOMAIN}'
+          - "{{ .Release.Name }}.${ROOT_DOMAIN}"
         parentRefs:
-        - name: envoy-internal
-          namespace: network
+          - name: envoy-internal
+            namespace: network
     service:
       app:
         ports:
