@@ -31,7 +31,7 @@ spec:
       config: |
         {
           "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-          "platform": "gitea",
+          "platform": "forgejo",
           "dependencyDashboard": true,
           "printConfig": true,
           "repositories": [
