@@ -9,6 +9,8 @@ spec:
     - ../../../../components/cnpg
     - ../../../../components/volsync
   dependsOn:
+    - name: cloudnative-pg
+      namespace: database
     - name: volsync
       namespace: volsync-system
   interval: 1h
