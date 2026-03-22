@@ -23,6 +23,7 @@ resources:
   - ./metube/ks.yaml
   - ./navidrome/ks.yaml
   - ./piped/ks.yaml
+  - ./podfetch/ks.yaml
   - ./prowlarr/ks.yaml
   - ./qbittorrent/ks.yaml
   - ./qui/ks.yaml
