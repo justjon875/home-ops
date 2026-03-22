@@ -25,12 +25,17 @@ spec:
             image:
               repository: ghcr.io/samtv12345/podfetch
               tag: v5.0.1@sha256:b669e66736f7451cabc0f3d2e1773f789da5687e7014a6f51ba1c19234b75c36
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
             resources:
               requests:
                 cpu: 100m
                 memory: 150Mi
               limits:
                 memory: 300Mi
+            workingDir: /app
     persistence:
       app:
         existingClaim: "{{ .Release.Name }}"
