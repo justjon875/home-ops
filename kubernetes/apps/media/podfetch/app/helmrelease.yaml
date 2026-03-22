@@ -41,7 +41,7 @@ spec:
       media:
         type: nfs
         server: ${NFS_HOST}
-        path: ${NFS_PATH}/media/podcasts
+        path: /media/podcasts
         globalMounts:
           - path: /app/podcasts
     route:
