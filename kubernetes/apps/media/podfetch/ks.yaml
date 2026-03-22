@@ -6,7 +6,6 @@ metadata:
   name: &app podfetch
 spec:
   components:
-    - ../../../../components/cnpg
     - ../../../../components/volsync
   dependsOn:
     - name: volsync
