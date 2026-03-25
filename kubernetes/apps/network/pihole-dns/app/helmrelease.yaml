@@ -28,7 +28,7 @@ spec:
     sources: ["gateway-httproute", "gateway-tcproute", "crd"]
     extraArgs:
       - --pihole-api-version=6
-      - --pihole-server=https://pihole.lithium.{OLD_DOMAIN}
+      - --pihole-server=https://pihole.lithium.${OLD_DOMAIN}
       - --gateway-name=envoy-internal
     podAnnotations:
       secret.reloader.stakater.com/reload: *secret
