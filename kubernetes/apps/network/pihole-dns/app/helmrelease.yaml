@@ -27,7 +27,6 @@ spec:
     registry: noop
     sources: ["gateway-httproute", "gateway-tcproute", "crd"]
     extraArgs:
-      - --pihole-api-version=6
       - --pihole-server=https://pihole.lithium.${OLD_DOMAIN}
       - --gateway-name=envoy-internal
     podAnnotations:
