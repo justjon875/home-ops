@@ -10,19 +10,16 @@ spec:
     name: *app
   interval: 1h
   values:
-    env:
-      - name: EXTERNAL_DNS_PIHOLE_PASSWORD
-        valueFrom:
-          secretKeyRef:
-            name: &secret pihole-dns-secret
-            key: PIHOLE_PASSWORD
+    envFrom:
+      - secretRef:
+          name: "{{ .Release.Name }}-secret"
     extraArgs:
       - --pihole-api-version=6
       - --pihole-server=https://pihole.lithium.${OLD_DOMAIN}
       - --gateway-name=envoy-internal
     interval: 1h
     podAnnotations:
-      secret.reloader.stakater.com/reload: *secret
+      secret.reloader.stakater.com/reload: pihole-dns-secret
     policy: sync
     provider:
       name: pihole
