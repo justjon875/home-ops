@@ -12,15 +12,11 @@ spec:
   values:
     provider:
       name: pihole
-      webhook:
-        env:
-          - name: EXTERNAL_DNS_PIHOLE_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: &secret pihole-dns-secret
-                key: PIHOLE_PASSWORD
-        securityContext:
-          readOnlyRootFilesystem: true
+      envFrom:
+        - secretRef:
+            name: &secret "{{ .Release.Name }}-secret"
+      securityContext:
+        readOnlyRootFilesystem: true
     interval: 1h
     triggerLoopOnEvent: true
     policy: sync
