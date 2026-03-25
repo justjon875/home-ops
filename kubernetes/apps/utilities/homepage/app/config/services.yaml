@@ -16,12 +16,12 @@
               query: round(avg(instance:node_memory_utilisation:ratio) * 100, 0.1)
               format:
                 type: number
-                suffix: '%'
+                suffix: "%"
             - label: Cluster CPU Usage
               query: round(avg(instance:node_cpu_utilisation:rate5m) * 100, 0.1)
               format:
                 type: number
-                suffix: '%'
+                suffix: "%"
             - label: Running Pods
               query: sum(kube_pod_status_phase{phase="Running"})
               format:
@@ -36,53 +36,53 @@
         widget:
           type: opnsense
           url: https://oxygen.${OLD_DOMAIN}
-          username: {{HOMEPAGE_VAR_OPNSENSE_USERNAME}}
-          password: {{HOMEPAGE_VAR_OPNSENSE_PASSWORD}}
+          username: { { HOMEPAGE_VAR_OPNSENSE_USERNAME } }
+          password: { { HOMEPAGE_VAR_OPNSENSE_PASSWORD } }
 - Virtualisation:
-  - Hydrogen:
-      href: https://hydrogen.${ROOT_DOMAIN}
-      icon: sh-proxmox.svg
-      widget:
-        type: proxmox
-        url: https://hydrogen.${ROOT_DOMAIN}
-        username: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
-        password: {{HOMEPAGE_VAR_PROXMOX_HYDROGEN}}
-        node: hydrogen
-  - Iron:
-      href: https://iron.${ROOT_DOMAIN}
-      icon: sh-proxmox.svg
-      widget:
-        type: proxmox
-        url: https://iron.${ROOT_DOMAIN}
-        username: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
-        password: {{HOMEPAGE_VAR_PROXMOX_IRON}}
-        node: iron
-  - Neon:
-      href: https://neon.${ROOT_DOMAIN}
-      icon: sh-proxmox.svg
-      widget:
-        type: proxmox
-        url: https://neon.${ROOT_DOMAIN}
-        username: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
-        password: {{HOMEPAGE_VAR_PROXMOX_NEON}}
-        node: neon
+    - Hydrogen:
+        href: https://hydrogen.${ROOT_DOMAIN}
+        icon: sh-proxmox.svg
+        widget:
+          type: proxmox
+          url: https://hydrogen.${ROOT_DOMAIN}
+          username: { { HOMEPAGE_VAR_PROXMOX_USERNAME } }
+          password: { { HOMEPAGE_VAR_PROXMOX_HYDROGEN } }
+          node: hydrogen
+    - Iron:
+        href: https://iron.${ROOT_DOMAIN}
+        icon: sh-proxmox.svg
+        widget:
+          type: proxmox
+          url: https://iron.${ROOT_DOMAIN}
+          username: { { HOMEPAGE_VAR_PROXMOX_USERNAME } }
+          password: { { HOMEPAGE_VAR_PROXMOX_IRON } }
+          node: iron
+    - Neon:
+        href: https://neon.${ROOT_DOMAIN}
+        icon: sh-proxmox.svg
+        widget:
+          type: proxmox
+          url: https://neon.${ROOT_DOMAIN}
+          username: { { HOMEPAGE_VAR_PROXMOX_USERNAME } }
+          password: { { HOMEPAGE_VAR_PROXMOX_NEON } }
+          node: neon
 - Storage:
-  - Cobalt:
-      href: https://cobalt.${ROOT_DOMAIN}
-      icon: sh-openmediavault.svg
-      widget:
-        type: openmediavault
-        url: https://cobalt.${ROOT_DOMAIN}
-        username: {{HOMEPAGE_VAR_OMV_USERNAME}}
-        password: {{HOMEPAGE_VAR_OMV_PASSWORD}}
-        method: services.getStatus # required
+    - Cobalt:
+        href: https://cobalt.${ROOT_DOMAIN}
+        icon: sh-openmediavault.svg
+        widget:
+          type: openmediavault
+          url: https://cobalt.${ROOT_DOMAIN}
+          username: { { HOMEPAGE_VAR_OMV_USERNAME } }
+          password: { { HOMEPAGE_VAR_OMV_PASSWORD } }
+          method: services.getStatus # required
 - Observability:
-  - Gatus:
-      href: https://gatus.${ROOT_DOMAIN}
-      icon: sh-gatus.svg
-      widget:
-        type: gatus
-        url: https://gatus.${ROOT_DOMAIN}
+    - Gatus:
+        href: https://gatus.${ROOT_DOMAIN}
+        icon: sh-gatus.svg
+        widget:
+          type: gatus
+          url: https://gatus.${ROOT_DOMAIN}
 - Lithium:
     - Dozzle lithium:
         href: https://dozzle.lithium.${OLD_DOMAIN}
@@ -96,6 +96,14 @@
     - Dockhand:
         href: https://dockhand.lithium.${OLD_DOMAIN}
         icon: sh-dockhand.svg
+    - PiHole:
+        href: https://pihole.lithium.${OLD_DOMAIN}
+        icon: sh-pihole.svg
+        widget:
+          type: pihole
+          url: https://pihole.lithium.${OLD_DOMAIN}
+          version: 6 # required if running v6 or higher, defaults to 5
+          key: { { HOMEPAGE_VAR_PIHOLE_PASSWORD } }
     - Unifi:
         href: https://unifi.lithium.${OLD_DOMAIN}
         icon: sh-ubiquiti-unifi.svg
@@ -111,7 +119,7 @@
         widget:
           type: immich
           url: https://immich.${ROOT_DOMAIN}
-          key: {{HOMEPAGE_VAR_IMMICH_KEY}}
+          key: { { HOMEPAGE_VAR_IMMICH_KEY } }
           version: 2
     - Garage:
         href: https://garage.${ROOT_DOMAIN}
@@ -135,7 +143,7 @@
         widget:
           type: jellyfin
           url: https://jellyfin.${ROOT_DOMAIN}
-          key: {{HOMEPAGE_VAR_JELLYFIN_KEY}}
+          key: { { HOMEPAGE_VAR_JELLYFIN_KEY } }
     - Navidrome:
         href: https://navidrome.${ROOT_DOMAIN}
         icon: sh-navidrome.svg
@@ -143,50 +151,50 @@
           type: navidrome
           url: https://navidrome.${ROOT_DOMAIN}
           user: ${USERNAME}
-          salt: {{HOMEPAGE_VAR_NAVIDROME_SALT}}
-          token: {{HOMEPAGE_VAR_NAVIDROME_TOKEN}}
+          salt: { { HOMEPAGE_VAR_NAVIDROME_SALT } }
+          token: { { HOMEPAGE_VAR_NAVIDROME_TOKEN } }
     - Piped:
         href: https://piped.${ROOT_DOMAIN}
         icon: sh-piped.svg
 - Media Management:
-  - Jellyseerr:
-      href: https://jellyseerr.${ROOT_DOMAIN}
-      icon: sh-jellyseerr.svg
-      widget:
-        type: jellyseerr
-        url: https://jellyseerr.${ROOT_DOMAIN}
-        key: {{HOMEPAGE_VAR__JELLYSEERR_KEY}}
-  - Metube:
-      href: https://metube.${ROOT_DOMAIN}
-      icon: sh-metube.svg
-  - Prowlarr:
-      href: https://prowlarr.${ROOT_DOMAIN}
-      icon: sh-prowlarr.svg
-      widget:
-        type: prowlarr
-        url: https://prowlarr.${ROOT_DOMAIN}
-        key: {{HOMEPAGE_VAR_PROWLARR_API_KEY}}
-  - Radarr:
-      href: https://radarr.${ROOT_DOMAIN}
-      icon: sh-radarr.svg
-      widget:
-        type: radarr
-        url: https://radarr.${ROOT_DOMAIN}
-        key: "{{HOMEPAGE_VAR_RADARR_API_KEY}}"
-  - SABnzbd:
-      href: https://sabnzbd.${ROOT_DOMAIN}
-      icon: sh-sabnzbd.svg
-      widget:
-        type: sabnzbd
-        url: https://sabnzbd.${ROOT_DOMAIN}
-        key: {{HOMEPAGE_VAR_SABNZBD__API_KEY}}
-  - Sonarr:
-      href: https://sonarr.${ROOT_DOMAIN}
-      icon: sh-sonarr.svg
-      widget:
-        type: sonarr
-        url: https://sonarr.${ROOT_DOMAIN}
-        key: "{{HOMEPAGE_VAR_SONARR_API_KEY}}"
+    - Jellyseerr:
+        href: https://jellyseerr.${ROOT_DOMAIN}
+        icon: sh-jellyseerr.svg
+        widget:
+          type: jellyseerr
+          url: https://jellyseerr.${ROOT_DOMAIN}
+          key: { { HOMEPAGE_VAR__JELLYSEERR_KEY } }
+    - Metube:
+        href: https://metube.${ROOT_DOMAIN}
+        icon: sh-metube.svg
+    - Prowlarr:
+        href: https://prowlarr.${ROOT_DOMAIN}
+        icon: sh-prowlarr.svg
+        widget:
+          type: prowlarr
+          url: https://prowlarr.${ROOT_DOMAIN}
+          key: { { HOMEPAGE_VAR_PROWLARR_API_KEY } }
+    - Radarr:
+        href: https://radarr.${ROOT_DOMAIN}
+        icon: sh-radarr.svg
+        widget:
+          type: radarr
+          url: https://radarr.${ROOT_DOMAIN}
+          key: "{{HOMEPAGE_VAR_RADARR_API_KEY}}"
+    - SABnzbd:
+        href: https://sabnzbd.${ROOT_DOMAIN}
+        icon: sh-sabnzbd.svg
+        widget:
+          type: sabnzbd
+          url: https://sabnzbd.${ROOT_DOMAIN}
+          key: { { HOMEPAGE_VAR_SABNZBD__API_KEY } }
+    - Sonarr:
+        href: https://sonarr.${ROOT_DOMAIN}
+        icon: sh-sonarr.svg
+        widget:
+          type: sonarr
+          url: https://sonarr.${ROOT_DOMAIN}
+          key: "{{HOMEPAGE_VAR_SONARR_API_KEY}}"
 - Selfhosted:
     - BentoPDF:
         href: https://bentopdf.${ROOT_DOMAIN}
