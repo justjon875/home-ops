@@ -10,9 +10,12 @@ spec:
     name: *app
   interval: 1h
   values:
-    envFrom:
-      - secretRef:
-          name: &secret pihole-dns-secret
+    env:
+      - name: EXTERNAL_DNS_PIHOLE_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: &secret pihole-dns-secret
+            key: PIHOLE_PASSWORD
     extraArgs:
       - --pihole-api-version=6
       - --pihole-server=https://pihole.lithium.${OLD_DOMAIN}
