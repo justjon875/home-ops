@@ -157,13 +157,13 @@
         href: https://piped.${ROOT_DOMAIN}
         icon: sh-piped.svg
 - Media Management:
-    - Jellyseerr:
-        href: https://jellyseerr.${ROOT_DOMAIN}
-        icon: sh-jellyseerr.svg
+    - Seerr:
+        href: https://seerr.${ROOT_DOMAIN}
+        icon: sh-seerr.svg
         widget:
-          type: jellyseerr
-          url: https://jellyseerr.${ROOT_DOMAIN}
-          key: { { HOMEPAGE_VAR__JELLYSEERR_KEY } }
+          type: seerr
+          url: https://seerr.${ROOT_DOMAIN}
+          key: { { HOMEPAGE_VAR_SEERR_KEY } }
     - Metube:
         href: https://metube.${ROOT_DOMAIN}
         icon: sh-metube.svg
