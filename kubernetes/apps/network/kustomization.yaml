@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: network
 
 components:
+  - ../../components/common
   - ../../components/sops
 
 resources:
