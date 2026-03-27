@@ -36,7 +36,7 @@ spec:
                 valueFrom:
                   secretKeyRef:
                     name: pihole-secret
-                    key: password
+                    key: PIHOLE_PASSWORD
             securityContext:
               allowPrivilegeEscalation: false
             resources:
