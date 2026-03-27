@@ -11,7 +11,7 @@ components:
 resources:
   - ./namespace.yaml
   - ./apprise/ks.yaml
-  # - ./busybox/ks.yaml
+  - ./busybox/ks.yaml
   - ./databasus/ks.yaml
   - ./dozzle/ks.yaml
   - ./forgejo/ks.yaml
@@ -26,9 +26,3 @@ resources:
   - ./smtp-relay/ks.yaml
   - ./zerobyte/ks.yaml
   # - ./theme-park/ks.yaml
-  #
-  # - forgejo
-  # - frigate
-  # - home-assistant
-  # - pgbackweb
-  # - uptime-kuma
