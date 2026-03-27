@@ -26,7 +26,7 @@ spec:
         BACKEND_HOSTNAME: piped-api.${ROOT_DOMAIN}
       image:
         repository: 1337kavin/piped-frontend
-        tag: latest@sha256:5a71ca1895abb595934dda8e429b3963789b2f7ccdb3cf7400560be14d3f4b80
+        tag: latest@sha256:1366af226f8c428e7060e30902b7b2bee1d5d96b9324bf184225742e65fe2238
     backend:
       config:
         PORT: 8080
