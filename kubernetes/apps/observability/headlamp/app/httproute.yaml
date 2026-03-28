@@ -7,7 +7,7 @@ metadata:
 spec:
   hostnames: ["headlamp.${ROOT_DOMAIN}"]
   parentRefs:
-    - name: internal
+    - name: envoy-internal
       namespace: network
       port: 443
   rules:
