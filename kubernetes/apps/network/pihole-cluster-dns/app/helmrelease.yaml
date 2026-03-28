@@ -26,7 +26,6 @@ spec:
     policy: upsert-only
     provider:
       name: pihole
-    registry: noop
     securityContext:
       readOnlyRootFilesystem: true
     sources: ["gateway-httproute", "gateway-tcproute", "crd"]
