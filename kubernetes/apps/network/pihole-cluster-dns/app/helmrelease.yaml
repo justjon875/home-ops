@@ -23,7 +23,7 @@ spec:
     interval: 1h
     podAnnotations:
       secret.reloader.stakater.com/reload: pihole-cluster-dns-secret
-    policy: upsert-only
+    policy: sync
     provider:
       name: pihole
     registry: noop
