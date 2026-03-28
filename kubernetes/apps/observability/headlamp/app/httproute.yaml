@@ -8,7 +8,7 @@ spec:
   hostnames: ["headlamp.${ROOT_DOMAIN}"]
   parentRefs:
     - name: internal
-      namespace: kube-system
+      namespace: network
       port: 443
   rules:
     - backendRefs:
