@@ -24,7 +24,7 @@ spec:
           app:
             image:
               repository: databasus/databasus
-              tag: v3.24.3@sha256:4b1c6edbf44e06ccf5845559c0c4d17f1ff15b11a0bd8d50d110e5edfa4c6a84
+              tag: v3.25.0@sha256:fff868d8d1cc6cde43e22055e21a764e5c91d961570720cd59e3714691b49013
             securityContext:
               readOnlyRootFilesystem: false
               capabilities:
