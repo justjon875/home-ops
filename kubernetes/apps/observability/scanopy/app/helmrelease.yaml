@@ -37,7 +37,7 @@ spec:
               capabilities: { drop: ["ALL"] }
           server:
             env:
-              SCANOPY_INTEGRATED_DAEMON_URL: http://127.0.0.1:60073
+              SCANOPY_INTEGRATED_DAEMON_URL: http://daemon:60073
               SCANOPY_WEB_EXTERNAL_PATH: /app/static
               SCANOPY_PUBLIC_URL: https://{{ .Release.Name }}.${ROOT_DOMAIN}
               SCANOPY_DATABASE_URL:
@@ -63,6 +63,10 @@ spec:
           - name: envoy-internal
             namespace: network
     service:
+      daemon:
+        ports:
+          http:
+            port: 60073
       server:
         ports:
           http:
