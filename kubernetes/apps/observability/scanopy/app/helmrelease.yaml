@@ -42,7 +42,6 @@ spec:
               tag: v0.15.3@sha256:bdad14bd39de3b427db7c755e75b839db08dd63146482d7109ff8a666d99baeb
             securityContext:
               allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
               capabilities: { drop: ["ALL"] }
           server:
             env:
