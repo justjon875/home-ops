@@ -26,6 +26,7 @@ spec:
           daemon:
             dependsOn: server
             env:
+              SCANOPY_LOG_LEVEL: debug
               SCANOPY_MODE: daemon_poll
               SCANOPY_NAME: scanopy-daemon-oxygen
               SCANOPY_SERVER_URL: "https://{{ .Release.Name }}.${ROOT_DOMAIN}"
@@ -40,6 +41,7 @@ spec:
               capabilities: { drop: ["ALL"] }
           server:
             env:
+              SCANOPY_LOG_LEVEL: debug
               SCANOPY_INTEGRATED_DAEMON_URL: http://scanopy-daemon:60073
               SCANOPY_WEB_EXTERNAL_PATH: /app/static
               SCANOPY_PUBLIC_URL: https://{{ .Release.Name }}.${ROOT_DOMAIN}
