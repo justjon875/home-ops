@@ -64,6 +64,10 @@ spec:
         parentRefs:
           - name: envoy-internal
             namespace: network
+        rules:
+          - backendRefs:
+              - identifier: server
+                port: 60072
     service:
       daemon:
         ports:
