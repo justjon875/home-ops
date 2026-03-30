@@ -12,4 +12,5 @@ resources:
   - ./grafana/ks.yaml
   - ./gatus/ks.yaml
   - ./kube-prometheus-stack/ks.yaml
+  - ./scanopy/ks.yaml
   - ./victoria-logs/ks.yaml
