@@ -25,7 +25,7 @@ spec:
             env:
               SCANOPY_MODE: daemon_poll
               SCANOPY_NAME: scanopy-daemon-oxygen
-              SCANOPY_SERVER_URL: http://127.0.0.1:60072
+              SCANOPY_SERVER_URL: "https://{{ .Release.Name }}.${ROOT_DOMAIN}"
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}-secret"
