@@ -10,9 +10,9 @@ resources:
 configMapGenerator:
   - name: root-hints
     files:
-      - config.yaml=./resources/root.hints
+      - root.hints=./resources/root.hints
   - name: unbound-configmap
     files:
-      - config.yaml=./resources/unbound.conf
+      - unbound.conf=./resources/unbound.conf
 generatorOptions:
   disableNameSuffixHash: true
