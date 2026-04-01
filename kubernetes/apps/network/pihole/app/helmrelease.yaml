@@ -12,77 +12,44 @@ spec:
   values:
     controllers:
       pihole:
-        replicas: 1
-        strategy: Recreate
         annotations:
           reloader.stakater.com/auto: "true"
-        pod:
-          securityContext:
-            fsGroup: 1000
-            fsGroupChangePolicy: OnRootMismatch
         containers:
-          app:
+          pihole:
             image:
-              repository: ghcr.io/sujiba/pihole-unbound-hyperlocal
-              tag: 2026.02.0
+              repository: ghcr.io/pi-hole/pihole
+              tag: 2026.02.0@sha256:ee348529cea9601df86ad94d62a39cad26117e1eac9e82d8876aa0ec7fe1ba27
             env:
+              TZ: ${TIMEZONE}
               FTLCONF_dns_listeningMode: all
-              FTLCONF_dns_dnssec: "false"
               FTLCONF_dns_upstreams: 127.0.0.1#5335
+              FTLCONF_dns_dnssec: true
               FTLCONF_misc_dnsmasq_lines: "server=/${OLD_DOMAIN}/#;address=/.lithium.${OLD_DOMAIN}/192.168.1.200"
               FTLCONF_webserver_interface_boxed: false
               FTLCONF_webserver_interface_theme: default-darker
               FTLCONF_webserver_port: &pihole-port 80
-              FTLCONF_webserver_api_password: &pihole-password
-                valueFrom:
-                  secretKeyRef:
-                    name: pihole-secret
-                    key: PIHOLE_PASSWORD
+            envFrom:
+              - secretRef:
+                  name: "{{ .Release.Name }}-secret"
             securityContext:
               allowPrivilegeEscalation: false
             resources:
               requests:
-                cpu: 10m
+                cpu: 100m
+              limits:
+                # looking at the query log can spike the memory usage very high
+                memory: 512Mi
+          unbound:
+            image:
+              repository: alpinelinux/unbound
+              tag: latest@sha256:04168630aaf08545cf84fb6ccd414951495aa5cdd96b63e8531c2eb30db698cc
+            securityContext:
+              allowPrivilegeEscalation: false
+            resources:
+              requests:
+                cpu: 100m
               limits:
                 memory: 512Mi
-          exporter:
-            image:
-              repository: docker.io/ekofr/pihole-exporter
-              tag: v1.2.0
-            env:
-              PIHOLE_HOSTNAME:
-                valueFrom:
-                  fieldRef:
-                    fieldPath: status.podIP
-              PIHOLE_PORT: *pihole-port
-              PIHOLE_PASSWORD: *pihole-password
-            resources:
-              requests:
-                cpu: 10m
-              limits:
-                memory: 32Mi
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
-              runAsNonRoot: true
-              runAsUser: 1000
-              runAsGroup: 1000
-            probes:
-              liveness: &exporter-probes
-                enabled: true
-                custom: true
-                spec:
-                  failureThreshold: 5
-                  initialDelaySeconds: 20
-                  periodSeconds: 20
-                  successThreshold: 1
-                  httpGet:
-                    path: /metrics
-                    port: &exporter-port 9617
-                  timeoutSeconds: 10
-              readiness: *exporter-probes
-
     service:
       app:
         forceRename: "{{ .Release.Name }}"
@@ -100,10 +67,6 @@ spec:
           dns-tcp:
             port: 53
             protocol: TCP
-          prometheus:
-            port: *exporter-port
-            protocol: HTTP
-
     serviceMonitor:
       app:
         forceRename: "{{ .Release.Name }}"
@@ -115,7 +78,6 @@ spec:
             path: /metrics
             interval: 1m
             scrapeTimeout: 1m
-
     route:
       app:
         annotations:
@@ -141,3 +103,19 @@ spec:
                 subPath: pihole
               - path: /final
                 subPath: init
+      unbound-config:
+        type: configMap
+        name: unbound-conf
+        advancedMounts:
+          pihole:
+            unbound:
+              - path: "/etc/unbound/unbound.conf"
+                subPath: "unbound.conf"
+      root-hints:
+        type: configMap
+        name: root-hints
+        advancedMounts:
+          pihole:
+            unbound:
+              - path: "/var/lib/unbound/root.hints"
+                subPath: "root.hints"
