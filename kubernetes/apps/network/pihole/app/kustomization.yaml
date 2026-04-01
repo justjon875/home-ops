@@ -8,11 +8,9 @@ resources:
   - ./helmrelease.yaml
   - ./ocirepository.yaml
 configMapGenerator:
-  - name: root-hints
-    files:
-      - root.hints=./resources/root.hints
   - name: unbound-configmap
     files:
       - unbound.conf=./resources/unbound.conf
+      - root.hints=./resources/root.hints
 generatorOptions:
   disableNameSuffixHash: true

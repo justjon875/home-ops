@@ -113,7 +113,7 @@ spec:
                 subPath: "unbound.conf"
       root-hints:
         type: configMap
-        name: root-hints
+        name: unbound-configmap
         advancedMounts:
           pihole:
             unbound:
