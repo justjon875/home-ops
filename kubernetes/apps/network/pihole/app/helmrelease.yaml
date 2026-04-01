@@ -105,7 +105,7 @@ spec:
                 subPath: init
       unbound-config:
         type: configMap
-        name: unbound-conf
+        name: unbound-configmap
         advancedMounts:
           pihole:
             unbound:
