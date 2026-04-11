@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/postgresql.cnpg.io/cluster_v1.json
+# yaml-language-server: $schema=https://k8s-schemas.m00nlit.dev/postgresql.cnpg.io/cluster_v1.json
 apiVersion: postgresql.cnpg.io/v1
 metadata:
   name: &currentServer immich-cluster
@@ -32,11 +32,13 @@ spec:
       isWALArchiver: true
       parameters:
         barmanObjectName: &store immich-store
-        serverName: immich-cluster-v3
+        serverName: immich-cluster-v4
   externalClusters:
     - name: source
       plugin:
         name: barman-cloud.cloudnative-pg.io
         parameters:
           barmanObjectName: *store
-          serverName: immich-cluster-v2
+          serverName: immich-cluster-v3
+      wal:
+        maxParallel: 8
