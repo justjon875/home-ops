@@ -68,7 +68,8 @@ gitea:
       ISSUE_INDEXER_TYPE: bleve
       REPO_INDEXER_ENABLED: true
     migrations:
-      ALLOWED_DOMAINS: "forgejo.lithium.${OLD_DOMAIN}"
+      ALLOWED_DOMAINS: "*"
+      BLOCKED_DOMAINS: ""
     service:
       ALLOW_ONLY_EXTERNAL_REGISTRATION: false
       ENABLE_INTERNAL_SIGNIN: true
