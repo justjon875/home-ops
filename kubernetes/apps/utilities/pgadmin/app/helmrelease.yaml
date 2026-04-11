@@ -38,9 +38,11 @@ spec:
                 memory: 500Mi
     persistence:
       config:
-        existingClaim: *app
         globalMounts:
           - path: /var/lib/pgadmin
+        path: ${NFS_PATH}/pgadmin
+        server: ${NFS_HOST}
+        type: nfs
     route:
       app:
         hostnames:
