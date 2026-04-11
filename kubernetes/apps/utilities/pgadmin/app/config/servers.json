@@ -3,7 +3,7 @@
     "1": {
       "Name": "immich",
       "Group": "Servers",
-      "Host": "immich-cluster-rw",
+      "Host": "immich-cluster-rw.cloud.svc.cluster.local",
       "Port": 5432,
       "MaintenanceDB": "postgres",
       "Username": "postgres",
