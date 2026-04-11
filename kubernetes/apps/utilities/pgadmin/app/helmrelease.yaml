@@ -37,6 +37,13 @@ spec:
         path: ${NFS_PATH}/pgadmin
         server: ${NFS_HOST}
         type: nfs
+      server-json:
+        enabled: true
+        type: configMap
+        name: servers-json
+        globalMounts:
+          - path: /pgadmin4/servers.json
+            subPath: servers.json
     route:
       app:
         hostnames:
