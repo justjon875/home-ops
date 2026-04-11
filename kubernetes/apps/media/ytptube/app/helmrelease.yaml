@@ -16,7 +16,7 @@ spec:
               TZ: ${TIMEZONE}
             image:
               repository: ghcr.io/arabcoders/ytptube
-              tag: v2.0.2@sha256:5ae4e893b67323a968beb42fe7dd874aa8c1566aa6d00f832cbccbf8c6449c45
+              tag: v2.0.5@sha256:0bc37100b6cc8c379ddce5c85316dc2ad7a32c781027e943b1526c4924b4a914
     defaultPodOptions:
       securityContext:
         fsGroup: 1000
