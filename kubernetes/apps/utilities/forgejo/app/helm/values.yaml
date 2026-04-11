@@ -74,7 +74,7 @@ gitea:
       ENABLE_PASSWORD_SIGNIN_FORM: true
       ENABLE_NOTIFY_MAIL: true
     time:
-      DEFAULT_UI_LOCATION: ${TZ}
+      DEFAULT_UI_LOCATION: ${TIMEZONE}
     webhook:
       ALLOWED_HOST_LIST: matrix.${ROOT_DOMAIN},*.lithium.${OLD_DOMAIN}
 
