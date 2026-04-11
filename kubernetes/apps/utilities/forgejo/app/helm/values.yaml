@@ -69,7 +69,6 @@ gitea:
       REPO_INDEXER_ENABLED: true
     migrations:
       ALLOWED_DOMAINS: "*"
-      BLOCKED_DOMAINS: ""
     service:
       ALLOW_ONLY_EXTERNAL_REGISTRATION: false
       ENABLE_INTERNAL_SIGNIN: true
