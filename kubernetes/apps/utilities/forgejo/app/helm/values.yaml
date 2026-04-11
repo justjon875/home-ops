@@ -25,6 +25,59 @@ gitea:
   admin:
     existingSecret: forgejo-admin-secret
 
+  config:
+    cache:
+      ENABLED: true
+      ADAPTER: redis
+      HOST: redis://valkey.default.svc:6379/14?pool_size=100&idle_timeout=180s
+    database:
+      DB_TYPE: postgres
+      HOST: cluster-18-rw.database.svc.cluster.local:5432
+      USER: forgejo
+      NAME: forgejo
+      SSL_MODE: disable
+    indexer:
+      ISSUE_INDEXER_TYPE: bleve
+      REPO_INDEXER_ENABLED: true
+    lfs:
+      PATH: /data/git/lfs
+    mailer:
+      ENABLED: true
+      FROM: Forgejo <forgejo@${ROOT_DOMAIN}>
+      PROTOCOL: smtp
+      SMTP_ADDR: smtp-relay.default.svc.cluster.local
+      USER: forgejo@${ROOT_DOMAIN}
+    migrations:
+      ALLOWED_DOMAINS: "*"
+    openid:
+      ENABLE_OPENID_SIGNIN: false
+      ENABLE_OPENID_SIGNUP: false
+    queue:
+      TYPE: redis
+      CONN_STR: redis://valkey.default.svc:6379/14?pool_size=100&idle_timeout=180s
+    repository:
+      ROOT: /data/git/repositories
+    session:
+      PROVIDER: redis
+      PROVIDER_CONFIG: redis://valkey.default.svc:6379/14?pool_size=100&idle_timeout=180s
+    server:
+      APP_DATA_PATH: /data/gitea
+      ROOT_URL: https://git.${ROOT_DOMAIN}
+      START_SSH_SERVER: true
+      SSH_DOMAIN: git.${ROOT_DOMAIN}
+      SSH_SERVER_HOST_KEYS: ssh/ssh_host_ed25519_key
+      SSH_LISTEN_PORT: 2222 # rootless image
+    service:
+      ALLOW_ONLY_EXTERNAL_REGISTRATION: false
+      ENABLE_INTERNAL_SIGNIN: true
+      SHOW_REGISTRATION_BUTTON: true
+      ENABLE_PASSWORD_SIGNIN_FORM: true
+      ENABLE_NOTIFY_MAIL: true
+    time:
+      DEFAULT_UI_LOCATION: ${TZ}
+    webhook:
+      ALLOWED_HOST_LIST: matrix.${ROOT_DOMAIN},*.lithium.${OLD_DOMAIN}
+
   oauth:
     - adminGroup: admin
       autoDiscoverUrl: https://id.${ROOT_DOMAIN}/.well-known/openid-configuration
@@ -33,70 +86,6 @@ gitea:
       name: PocketID
       provider: openidConnect
       scopes: openid profile email
-
-  config:
-    database:
-      DB_TYPE: postgres
-
-      HOST: cluster-18-rw.database.svc.cluster.local:5432
-      USER: forgejo
-      NAME: forgejo
-      SSL_MODE: disable
-
-    server:
-      APP_DATA_PATH: /data/gitea
-      ROOT_URL: https://git.${ROOT_DOMAIN}
-      START_SSH_SERVER: true
-      SSH_DOMAIN: git.${ROOT_DOMAIN}
-      SSH_SERVER_HOST_KEYS: ssh/ssh_host_ed25519_key
-      SSH_LISTEN_PORT: 2222 # rootless image
-    lfs:
-      PATH: /data/git/lfs
-    repository:
-      ROOT: /data/git/repositories
-    # repository.signing:
-    #   FORMAT: ssh
-    #   SIGNING_KEY: /data/ssh/id_ecdsa.pu
-    #   SIGNING_NAME: "Forgejo"
-    #   SIGNING_EMAIL: "forgejo@${ROOT_DOMAIN}"
-    #
-    #   INITIAL_COMMIT: pubkey
-    #   CRUD_ACTIONS: pubkey, parentsigned
-    #   WIKI: never
-    #   MERGES: pubkey, basesigned, commitssigned
-    indexer:
-      ISSUE_INDEXER_TYPE: bleve
-      REPO_INDEXER_ENABLED: true
-    migrations:
-      ALLOWED_DOMAINS: "*"
-    service:
-      ALLOW_ONLY_EXTERNAL_REGISTRATION: false
-      ENABLE_INTERNAL_SIGNIN: true
-      SHOW_REGISTRATION_BUTTON: true
-      ENABLE_PASSWORD_SIGNIN_FORM: true
-      ENABLE_NOTIFY_MAIL: true
-    openid:
-      ENABLE_OPENID_SIGNIN: false
-      ENABLE_OPENID_SIGNUP: false
-    queue:
-      TYPE: redis
-      CONN_STR: redis://valkey.default.svc:6379/14?pool_size=100&idle_timeout=180s
-    session:
-      PROVIDER: redis
-      PROVIDER_CONFIG: redis://valkey.default.svc:6379/14?pool_size=100&idle_timeout=180s
-    cache:
-      ENABLED: true
-      ADAPTER: redis
-      HOST: redis://valkey.default.svc:6379/14?pool_size=100&idle_timeout=180s
-    mailer:
-      ENABLED: true
-      FROM: Forgejo <forgejo@${ROOT_DOMAIN}>
-      PROTOCOL: smtp
-      SMTP_ADDR: smtp-relay.default.svc.cluster.local
-      USER: forgejo@${ROOT_DOMAIN}
-    webhook:
-      ALLOWED_HOST_LIST: matrix.${ROOT_DOMAIN},*.lithium.${OLD_DOMAIN}
-
   additionalConfigFromEnvs:
     - name: GITEA__DATABASE__PASSWD
       valueFrom:
