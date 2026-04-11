@@ -40,5 +40,3 @@ spec:
         parameters:
           barmanObjectName: *store
           serverName: immich-cluster-v3
-        wal:
-          maxParallel: 8
