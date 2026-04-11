@@ -26,7 +26,7 @@ spec:
     recovery:
       source: source
       recoveryTarget:
-        targetTime: "2025-12-22 02:37:02"
+        targetTime: "2026-04-11 02:37:01"
   plugins:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true
@@ -38,5 +38,5 @@ spec:
       plugin:
         name: barman-cloud.cloudnative-pg.io
         parameters:
-          barmanObjectName: *store 
+          barmanObjectName: *store
           serverName: immich-cluster-v2
