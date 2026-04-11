@@ -20,8 +20,6 @@ spec:
     remediation:
       retries: 5
   values:
-    env:
-      LOG_LEVEL: debug
     existingSecret: renovate-env
     image:
       pullPolicy: IfNotPresent
@@ -36,6 +34,5 @@ spec:
           "printConfig": true,
           "repositories": [
               "beans/home-ops",
-              "beans/docker-services"
           ],
         }
