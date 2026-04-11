@@ -15,6 +15,7 @@ spec:
             env:
               AUDIO_DOWNLOAD_DIR: /audio
               TZ: ${TIMEZONE}
+              YTP_BROWSER_CONTROL_ENABLED: true
             image:
               repository: ghcr.io/arabcoders/ytptube
               tag: v2.0.5@sha256:0bc37100b6cc8c379ddce5c85316dc2ad7a32c781027e943b1526c4924b4a914
