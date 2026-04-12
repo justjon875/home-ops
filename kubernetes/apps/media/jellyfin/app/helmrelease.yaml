@@ -52,11 +52,11 @@ spec:
         path: /media/metube
         server: ${NFS_HOST}
         type: nfs
-      youtube:
+      ytptube:
         enabled: true
         globalMounts:
-          - path: /mnt/youtube
-        path: /media/youtube
+          - path: /mnt/ytptube
+        path: /media/ytptube
         server: ${NFS_HOST}
         type: nfs
       transcodes:
