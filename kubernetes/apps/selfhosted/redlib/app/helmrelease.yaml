@@ -18,9 +18,35 @@ spec:
             env:
               REDLIB_DEFAULT_THEME: dark
               REDLIB_DEFAULT_SUBSCRIPTIONS: "ergomechkeyboards+linux+patientgamers+privacy+Piracy+selfhosted+sffpc+olkb+unixporn+singapore"
+              REDLIB_ARTI_PATH: /tmp/arti
             image:
-              repository: quay.io/redlib/redlib
-              tag: latest
+              repository: git.ptr.moe/baalajimaestro/redlib
+              tag: latest@sha256:06c18c3ae581016e7ba444a9b07e69532fa10aed5c6f04c0c5766dffdffb75e7
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /settings
+                    port: &port 8080
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: false
+            resources:
+              requests:
+                cpu: 5m
+                memory: 256M
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities:
+                drop:
+                  - ALL
           # Configure the gluetun sidecar
           # gluetun:
           #   image:
@@ -40,6 +66,11 @@ spec:
           #     capabilities:
           #       add:
           #         - NET_ADMIN
+    persistence:
+      tmpfs:
+        type: emptyDir
+        globalMounts:
+          - path: /tmp/arti
     route:
       app:
         annotations:
@@ -55,4 +86,4 @@ spec:
       app:
         ports:
           http:
-            port: 8080
+            port: *port
