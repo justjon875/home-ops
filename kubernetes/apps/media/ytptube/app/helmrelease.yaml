@@ -31,6 +31,8 @@ spec:
         path: ${NFS_PATH}/navidrome/media/ytdl
         server: ${NFS_HOST}
         type: nfs
+      config:
+        existingClaim: *app
       downloads:
         enabled: true
         path: /media/ytptube
