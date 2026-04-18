@@ -26,7 +26,7 @@ spec:
         BACKEND_HOSTNAME: piped-api.${ROOT_DOMAIN}
       image:
         repository: 1337kavin/piped-frontend
-        tag: latest@sha256:fca228ff680c2aeff38d7642e2eeb1913723dbf4a5a8ac1d1bce3e647f53e8a7
+        tag: latest@sha256:2c9d0ba4dc3e6dbca5252d03ea30aa230df8341fc316a51a97d7ead142996957
     backend:
       config:
         PORT: 8080
@@ -42,7 +42,7 @@ spec:
     ytproxy:
       image:
         repository: 1337kavin/piped-proxy
-        tag: latest@sha256:09977ec6246af17ca6eb0c194344d43db760b8466224162da32d4299e292fd7c
+        tag: latest@sha256:64b8a4822fd88f2bcb015c9c5effeff0b1086d262091398814814a31166e0067
   valuesFrom:
     - kind: Secret
       name: *app
