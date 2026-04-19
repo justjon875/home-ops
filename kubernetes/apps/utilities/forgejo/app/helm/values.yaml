@@ -44,7 +44,7 @@ gitea:
       ENABLED: true
       FROM: Forgejo <forgejo@${ROOT_DOMAIN}>
       PROTOCOL: smtp
-      SMTP_ADDR: smtp-relay.default.svc.cluster.local
+      SMTP_ADDR: smtp-relay.${ROOT_DOMAIN}
       USER: forgejo@${ROOT_DOMAIN}
     migrations:
       ALLOWED_DOMAINS: "*"
