@@ -24,3 +24,9 @@ spec:
     - dnsName: iron.${ROOT_DOMAIN}
       recordType: A
       targets: ["192.168.1.215"]
+    - dnsName: lithium.internal
+      recordType: A
+      targets: ["192.168.1.200"]
+    - dnsName: talosctl.internal
+      recordType: A
+      targets: ["192.168.1.215"]
