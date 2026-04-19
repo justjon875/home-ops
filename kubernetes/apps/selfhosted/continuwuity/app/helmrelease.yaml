@@ -35,8 +35,8 @@ spec:
               CONDUWUIT_CONFIG: "/config/conduit.toml"
               CONDUWUIT_PORT: &port 8008
             envFrom:
-            - secretRef:
-                name: continuwuity-secret
+              - secretRef:
+                  name: continuwuity-secret
             probes:
               liveness: &probe
                 enabled: true
@@ -54,9 +54,6 @@ spec:
               requests:
                 cpu: 15m
                 memory: 110M
-              limits:
-                cpu: 15m
-                memory: 163M
             securityContext:
               capabilities: { drop: ["ALL"] }
     service:
@@ -71,7 +68,7 @@ spec:
         annotations:
           gatus.home-operations.com/endpoint: |
             group: selfhosted
-        hostnames: [ "matrix.${ROOT_DOMAIN}" ]
+        hostnames: ["matrix.${ROOT_DOMAIN}"]
         forceRename: *app
         parentRefs:
           - name: envoy-internal
@@ -87,7 +84,7 @@ spec:
       federation:
         annotations:
           gatus.home-operations.com/enabled: "false"
-        hostnames: [ "matrix-fed.${ROOT_DOMAIN}" ]
+        hostnames: ["matrix-fed.${ROOT_DOMAIN}"]
         parentRefs:
           - name: envoy-internal
             namespace: network
@@ -99,7 +96,7 @@ spec:
         annotations:
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
           gatus.home-operations.com/enabled: "false"
-        hostnames: [ "${ROOT_DOMAIN}" ]
+        hostnames: ["${ROOT_DOMAIN}"]
         parentRefs:
           - name: envoy-internal
             namespace: network
