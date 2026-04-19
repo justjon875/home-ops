@@ -10,58 +10,48 @@ spec:
     name: *app
   interval: 1h
   values:
-    affinity:
-      nodeAffinity:
-        preferredDuringSchedulingIgnoredDuringExecution:
-        - weight: 100          # max weight = 100
-          preference:
-            matchExpressions:
-            - key: cpu
-              operator: In
-              values:
-              - high
     controllers:
       searxng:
         annotations:
-          reloader.stakater.com/auto: 'true'
+          reloader.stakater.com/auto: "true"
         containers:
           app:
             image:
-              repository: docker.io/searxng/searxng
-              tag: 2025.11.7-b9b46431b@sha256:5a5d0e69819757e3fa23392a687c63851250bc13d2486a1f1711804b1691dc12
+              repository: ghcr.io/searxng/searxng
+              tag: 2026.4.17-e8299a4c3@sha256:0bbe85fb9bebe413a26c0e385c76309d15c91fdb9dc8a6bf01b35b714d0ece43
             env:
               TZ: ${TIMEZONE}
               SEARXNG_BASE_URL: https://search.${ROOT_DOMAIN}
               SEARXNG_VALKEY_URL: redis://valkey.default.svc.cluster.local:6379
               SEARXNG_URL: https://search.${ROOT_DOMAIN}
             envFrom:
-            - secretRef:
-                name: searxng-secret
+              - secretRef:
+                  name: searxng-secret
     persistence:
       config:
         type: configMap
         name: searxng-configmap
         globalMounts:
-        - path: /etc/searxng/settings.yml
-          subPath: settings.yml
-          readOnly: true
-        - path: /etc/searxng/limiter.toml
-          subPath: limiter.toml
-          readOnly: true
+          - path: /etc/searxng/settings.yml
+            subPath: settings.yml
+            readOnly: true
+          - path: /etc/searxng/limiter.toml
+            subPath: limiter.toml
+            readOnly: true
       tmp:
         type: emptyDir
         globalMounts:
-        - path: /etc/searxng
+          - path: /etc/searxng
     route:
       app:
         annotations:
           gatus.home-operations.com/endpoint: |
             group: selfhosted
         hostnames:
-        - 'search.${ROOT_DOMAIN}'
+          - "search.${ROOT_DOMAIN}"
         parentRefs:
-        - name: envoy-internal
-          namespace: network
+          - name: envoy-internal
+            namespace: network
     service:
       app:
         ports:
