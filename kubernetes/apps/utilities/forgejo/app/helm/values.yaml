@@ -19,7 +19,6 @@ image:
   registry: code.forgejo.org
   repository: forgejo/forgejo
   tag: 15.0.0-rootless
-  digest: sha256:a704cc203d78a854e0887e08fcbd7a45f9bc2b5fd8551c88b914b044792c4b1b
 
 gitea:
   admin:
@@ -45,7 +44,7 @@ gitea:
       ENABLED: true
       FROM: Forgejo <forgejo@${ROOT_DOMAIN}>
       PROTOCOL: smtp
-      SMTP_ADDR: smtp-relay.default.svc.cluster.local
+      SMTP_ADDR: smtp-relay.${ROOT_DOMAIN}
       USER: forgejo@${ROOT_DOMAIN}
     migrations:
       ALLOWED_DOMAINS: "*"
