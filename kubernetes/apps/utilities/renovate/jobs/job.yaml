@@ -32,7 +32,7 @@ spec:
     forgejo:
       sync:
         enabled: true
-        webhookURL: https://git.{ROOT_DOMAIN}/webhook/v1/forgejo
+        webhookURL: https://git.${ROOT_DOMAIN}/webhook/v1/forgejo
         topic: renovate
         tokenSecretRef:
           name: renovate-secret
