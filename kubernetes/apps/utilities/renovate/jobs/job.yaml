@@ -4,10 +4,7 @@ apiVersion: renovate-operator.mogenius.com/v1alpha1
 kind: RenovateJob
 metadata:
   name: forgejo
-  namespace: utilities
 spec:
-  discoveryFilters:
-    - beans/home-ops
   extraEnv:
     - name: LOG_LEVEL
       value: debug
