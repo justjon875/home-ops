@@ -29,3 +29,14 @@ spec:
       secretRef:
         name: renovate-secret
         key: RENOVATE_TOKEN
+    forgejo:
+      sync:
+        enabled: true
+        webhookURL: https://git.{ROOT_DOMAIN}/webhook/v1/forgejo
+        topic: renovate
+        tokenSecretRef:
+          name: forgejo-secret
+          key: RENOVATE_TOKEN
+        authTokenSecretRef:
+          name: forgejo-secret
+          key: RENOVATE_TOKEN
