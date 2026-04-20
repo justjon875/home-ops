@@ -12,7 +12,7 @@ spec:
       kind: HelmRelease
       name: *app
   interval: 1h
-  path: ./kubernetes/apps/utilities/renovate/app
+  path: ./kubernetes/apps/utilities/renovate/operator
   postBuild:
     substituteFrom:
       - name: cluster-secrets
