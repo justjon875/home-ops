@@ -2,13 +2,16 @@
   $schema: "https://docs.renovatebot.com/renovate-schema.json",
   packageRules: [
     {
-      description: "Auto-merge trusted container digests",
+      description: "Auto merge container digests",
       matchDatasources: ["docker"],
       automerge: true,
-      automergeType: "pr",
       matchUpdateTypes: ["digest"],
-      matchPackageNames: ["/home-operations/"],
-      ignoreTests: false,
+      matchPackagePrefixes: [
+        "ghcr.io/home-operations",
+        "ghcr.io/onedr0p",
+        "ghcr.io/bjw-s",
+        "ghcr.io/bjw-s-labs",
+      ],
     },
     {
       description: "Auto-merge OCI Charts",
@@ -29,19 +32,6 @@
       ignoreTests: true,
     },
     {
-      description: "Auto-merge trusted GitHub Actions",
-      matchManagers: ["github-actions"],
-      matchPackageNames: [
-        "/^actions\//",
-        "/^renovatebot\//",
-      ],
-      automerge: true,
-      automergeType: "branch",
-      matchUpdateTypes: ["minor", "patch", "digest"],
-      minimumReleaseAge: "1 minute",
-      ignoreTests: true,
-    },
-    {
       description: "Auto-merge GitHub Releases",
       matchDatasources: ["github-releases"],
       automerge: true,
@@ -49,6 +39,26 @@
       matchUpdateTypes: ["minor", "patch"],
       matchPackageNames: ["/external-dns/", "/gateway-api/", "/prometheus-operator/"],
       ignoreTests: true,
+    },
+    {
+      description: "Auto merge minors and patches",
+      matchDatasources: ["docker"],
+      automerge: true,
+      matchUpdateTypes: ["minor", "patch"],
+      matchPackageNames: [
+        "/kube-prometheus-stack/",
+        "ghcr.io/mogenius/helm-charts/renovate-operator",
+      ],
+    },
+    {
+      description: "Auto-merge high-cadence packages weekly",
+      matchDatasources: ["docker"],
+      automerge: true,
+      matchUpdateTypes: ["minor", "patch"],
+      matchPackageNames: [
+        "ghcr.io/renovatebot/renovate",
+      ],
+      schedule: ["before 6am on Monday"],
     },
   ],
 }
