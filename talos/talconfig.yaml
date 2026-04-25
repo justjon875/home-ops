@@ -1,6 +1,6 @@
 ---
 clusterName: home-cluster
-talosVersion: v1.12.3
+talosVersion: v1.12.7
 kubernetesVersion: v1.35.2
 endpoint: https://cluster.habjam.xyz:6443
 allowSchedulingOnControlPlanes: true
