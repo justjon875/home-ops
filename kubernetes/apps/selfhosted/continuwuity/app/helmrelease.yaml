@@ -10,10 +10,6 @@ spec:
     name: *app
   interval: 1h
   values:
-    defaultPodOptions:
-      securityContext:
-        seccompProfile:
-          type: RuntimeDefault
     controllers:
       continuwuity:
         type: statefulset
