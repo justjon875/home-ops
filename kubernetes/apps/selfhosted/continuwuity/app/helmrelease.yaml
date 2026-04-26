@@ -37,20 +37,9 @@ spec:
             envFrom:
               - secretRef:
                   name: continuwuity-secret
-            probes:
-              liveness: &probe
-                enabled: true
-                custom: true
-                spec:
-                  httpGet:
-                    path: /_matrix/client/versions
-                    port: *port
-                  initialDelaySeconds: 0
-                  periodSeconds: 10
-                  timeoutSeconds: 1
-                  failureThreshold: 3
-              readiness: *probe
             securityContext:
+              readOnlyRootFilesystem: true
+              allowPrivilegeEscalation: false
               capabilities: { drop: ["ALL"] }
     service:
       app:
