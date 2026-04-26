@@ -50,10 +50,6 @@ spec:
                   timeoutSeconds: 1
                   failureThreshold: 3
               readiness: *probe
-            resources:
-              requests:
-                cpu: 15m
-                memory: 110M
             securityContext:
               capabilities: { drop: ["ALL"] }
     service:
