@@ -19,7 +19,7 @@
     "2": {
       "Name": "cluster",
       "Group": "Servers",
-      "Host": "cluster-18.database.svc.cluster.local",
+      "Host": "cluster-18-rw.database.svc.cluster.local",
       "Port": 5432,
       "MaintenanceDB": "postgres",
       "Username": "postgres",
