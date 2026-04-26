@@ -9,6 +9,7 @@ database_path = "/data"
 database_backup_path = "/backups"
 database_backups_to_keep = 1
 
+rocksdb_repair = true
 rocksdb_compression_algo = "zstd"
 rocksdb_compression_level = 32767
 rocksdb_bottommost_compression_level = 32767
