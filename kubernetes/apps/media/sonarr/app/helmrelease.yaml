@@ -17,16 +17,16 @@ spec:
         containers:
           app:
             env:
-              PGID: '1000'
-              PUID: '1000'
-              SONARR__LOG__DBENABLED: 'False'
+              PGID: "1000"
+              PUID: "1000"
+              SONARR__LOG__DBENABLED: "False"
               SONARR__LOG__LEVEL: info
               SONARR__POSTGRES__HOST: ${POSTGRESQL_HOST}
               SONARR__POSTGRES__MAINDB: sonarr_main
               SONARR__POSTGRES__PORT: "5432"
               SONARR__POSTGRES__USER: sonarr
               TZ: ${TIMEZONE}
-            envFrom: &envFrom
+            envFrom:
               - secretRef:
                   name: sonarr-secret
             image:
@@ -48,13 +48,13 @@ spec:
         advancedMounts:
           sonarr:
             app:
-            - path: /sonarr/etc
+              - path: /sonarr/etc
         existingClaim: "{{ .Release.Name }}"
       media:
         advancedMounts:
           sonarr:
             app:
-            - path: /media/qbittorrent/downloads
+              - path: /media/qbittorrent/downloads
         enabled: true
         path: /media/qbittorrent/downloads
         server: ${NFS_HOST}
@@ -63,7 +63,7 @@ spec:
         advancedMounts:
           sonarr:
             app:
-            - path: /mnt/sabdnzb
+              - path: /mnt/sabdnzb
         enabled: true
         path: /media/sabnzbd/downloads
         server: ${NFS_HOST}
@@ -72,7 +72,7 @@ spec:
         advancedMounts:
           sonarr:
             app:
-            - path: /media/tv
+              - path: /media/tv
         enabled: true
         path: /media/qbittorrent/downloads/tv
         server: ${NFS_HOST}
@@ -82,15 +82,18 @@ spec:
         advancedMounts:
           sonarr:
             app:
-            - path: /tmp
-              subPath: tmp
+              - path: /tmp
+                subPath: tmp
     route:
       app:
+        annotations:
+          gatus.home-operations.com/endpoint: |-
+            url: https://sonarr.${ROOT_DOMAIN}/ping
         hostnames:
-        - '{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}'
+          - "{{ .Release.Name }}.${ROOT_DOMAIN}"
         parentRefs:
-        - name: envoy-internal
-          namespace: network
+          - name: envoy-internal
+            namespace: network
     service:
       app:
         controller: sonarr
