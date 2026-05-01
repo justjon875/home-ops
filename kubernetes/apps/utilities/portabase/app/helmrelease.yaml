@@ -59,6 +59,8 @@ spec:
             app:
               - path: /var/cache/nginx/
                 subPath: nginx
+              - path: /var/lib/nginx
+                subPath: body
               - path: /var/log/nginx/
                 subPath: log/nginx
     route:
