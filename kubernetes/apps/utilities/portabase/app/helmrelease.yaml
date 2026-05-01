@@ -22,16 +22,6 @@ spec:
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}-initdb-secret"
-          init-chmod-data:
-            image:
-              repository: busybox
-              tag: 1.37
-            command:
-              [
-                "sh",
-                "-c",
-                "chown -R 1000:1000 /var/log/nginx && chmod -R 755 /var/log/nginx",
-              ]
         containers:
           app:
             env:
@@ -57,6 +47,14 @@ spec:
     persistence:
       data:
         existingClaim: *app
+      nginx-config:
+        type: configMap
+        name: nginx-configmap
+        advancedMounts:
+          portabase:
+            app:
+              - path: /etc/nginx/nginx.conf
+                subPath: nginx.conf
     route:
       app:
         hostnames:
