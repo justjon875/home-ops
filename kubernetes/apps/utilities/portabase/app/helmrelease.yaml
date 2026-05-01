@@ -53,6 +53,15 @@ spec:
     persistence:
       data:
         existingClaim: *app
+      nginx:
+        type: emptyDir
+        advancedMounts:
+          portabase:
+            app:
+              - path: /var/cache/nginx/
+                subPath: nginx
+              - path: /var/log/nginx/
+                subPath: log/nginx
     route:
       app:
         hostnames:
