@@ -53,15 +53,6 @@ spec:
     persistence:
       data:
         existingClaim: *app
-      nginx:
-        type: emptyDir
-        advancedMounts:
-          baikal:
-            nginx:
-              - path: /var/cache/nginx/
-                subPath: nginx
-              - path: /var/log/nginx/
-                subPath: log/nginx
     route:
       app:
         hostnames:
