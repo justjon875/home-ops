@@ -39,7 +39,6 @@ spec:
               tag: 1.13.0@sha256:cdb793ef23fc8abfce753bbabb66d0337f3b1b95a3b2c302b64717cbeb0bd824
             securityContext:
               allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
               capabilities:
                 drop:
                   - ALL
