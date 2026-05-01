@@ -21,6 +21,7 @@ resources:
   - ./kite/ks.yaml
   - ./pgadmin/ks.yaml
   - ./pocket-id/ks.yaml
+  - ./portabase/ks.yaml
   - ./reloader/ks.yaml
   - ./renovate/ks.yaml
   - ./smtp-relay/ks.yaml

@@ -13,13 +13,13 @@ spec:
     affinity:
       nodeAffinity:
         preferredDuringSchedulingIgnoredDuringExecution:
-        - weight: 100          # max weight = 100
-          preference:
-            matchExpressions:
-            - key: cpu
-              operator: In
-              values:
-              - high
+          - weight: 100 # max weight = 100
+            preference:
+              matchExpressions:
+                - key: cpu
+                  operator: In
+                  values:
+                    - high
     controllers:
       *app :
         annotations:
@@ -44,7 +44,7 @@ spec:
               DB_DSN:
                 valueFrom:
                   secretKeyRef:
-                    name: &pg "{{ .Release.Name }}-pguser-secret"
+                    name: "{{ .Release.Name }}-pguser-secret"
                     key: dsn
               DEBUG: true
             envFrom:

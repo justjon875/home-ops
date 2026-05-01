@@ -1,0 +1,54 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/refs/heads/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app portabase
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: *app
+  values:
+    controllers:
+      portabase:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        initContainers:
+          01-init-db:
+            image:
+              repository: ghcr.io/home-operations/postgres-init
+              tag: "18"
+            envFrom:
+              - secretRef:
+                  name: "{{ .Release.Name }}-initdb-secret"
+        containers:
+          app:
+            env:
+              PROJECT_URL: https://{{ .Release.Name }}.${ROOT_DOMAIN}
+              DATABASE_URL:
+                valueFrom:
+                  secretKeyRef:
+                    name: "{{ .Release.Name }}-pguser-secret"
+                    key: uri
+            image:
+              repository: portabase/portabase
+              tag: 1.13.0@sha256:cdb793ef23fc8abfce753bbabb66d0337f3b1b95a3b2c302b64717cbeb0bd824
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities: { drop: ["ALL"] }
+    persistence:
+      data:
+        existingClaim: *app
+    route:
+      app:
+        hostnames:
+          - "{{ .Release.Name }}.${ROOT_DOMAIN}"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+    service:
+      app:
+        ports:
+          http:
+            port: 4005
