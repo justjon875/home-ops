@@ -22,6 +22,16 @@ spec:
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}-initdb-secret"
+          init-chmod-data:
+            image:
+              repository: busybox
+              tag: 1.37
+            command:
+              [
+                "sh",
+                "-c",
+                "chown -R nginx:nginx /var/log/nginx && chmod -R 755 /var/log/nginx",
+              ]
         containers:
           app:
             env:
@@ -37,6 +47,13 @@ spec:
             securityContext:
               allowPrivilegeEscalation: false
               capabilities: { drop: ["ALL"] }
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
     persistence:
       data:
         existingClaim: *app
