@@ -30,7 +30,7 @@ spec:
               [
                 "sh",
                 "-c",
-                "chown -R nginx:nginx /var/log/nginx && chmod -R 755 /var/log/nginx",
+                "chown -R 1000:1000 /var/log/nginx && chmod -R 755 /var/log/nginx",
               ]
         containers:
           app:
