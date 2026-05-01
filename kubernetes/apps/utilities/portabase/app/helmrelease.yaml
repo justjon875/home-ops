@@ -68,4 +68,4 @@ spec:
       app:
         ports:
           http:
-            port: 4005
+            port: 80
