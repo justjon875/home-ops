@@ -25,6 +25,7 @@ spec:
               BASE_URL: "https://{{ .Release.Name }}.${ROOT_DOMAIN}"
               LOG_LEVEL: debug
               TZ: ${TIMEZONE}
+              WEBHOOK_ALLOWED_ORIGINS: https://matrix.${ROOT_DOMAIN}
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}-secret"
