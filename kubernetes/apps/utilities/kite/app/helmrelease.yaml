@@ -36,7 +36,7 @@ spec:
           app:
             image:
               repository: ghcr.io/zxh326/kite
-              tag: v0.10.0@sha256:5fe77d402ef251907aaa9c4bb609c1fa01cde39c40a61414c1e35883f988554a
+              tag: v0.11.0@sha256:528b7f4ba5d340b4851ff991f19c99daae10185a08c4febc7c113387d6b8da61
             env:
               HOST: https://{{ .Release.Name }}.${ROOT_DOMAIN}
               # ENABLE_ANALYTICS: true
