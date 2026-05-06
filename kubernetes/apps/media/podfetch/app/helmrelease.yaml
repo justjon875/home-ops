@@ -35,7 +35,7 @@ spec:
                   name: "{{ .Release.Name }}-secret"
             image:
               repository: ghcr.io/samtv12345/podfetch
-              tag: v5.1.1@sha256:327c683e0466edcf53b55927c04a77557d344b74806dfc451f6e5569de11aae3
+              tag: v5.1.1@sha256:0dea1daf5f4f031171fb140e45c1e181d0830c8b9dcebf8da918bc108396f0b6
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
