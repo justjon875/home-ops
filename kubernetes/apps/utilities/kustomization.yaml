@@ -12,7 +12,7 @@ resources:
   - ./namespace.yaml
   - ./apprise/ks.yaml
   # - ./busybox/ks.yaml
-  - ./databasus/ks.yaml
+  # - ./databasus/ks.yaml
   - ./dozzle/ks.yaml
   - ./forgejo/ks.yaml
   - ./frigate/ks.yaml
