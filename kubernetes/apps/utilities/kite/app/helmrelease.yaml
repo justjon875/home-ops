@@ -97,11 +97,6 @@ spec:
     persistence:
       config:
         type: emptyDir
-      config-files:
-        type: secret
-        name: "{{ .Release.Name }}-config-secret"
-        globalMounts:
-          - path: /kite
     rbac:
       bindings:
         *app :
