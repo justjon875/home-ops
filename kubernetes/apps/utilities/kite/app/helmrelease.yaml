@@ -10,16 +10,6 @@ spec:
     name: *app
   interval: 1h
   values:
-    affinity:
-      nodeAffinity:
-        preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 100 # max weight = 100
-            preference:
-              matchExpressions:
-                - key: cpu
-                  operator: In
-                  values:
-                    - high
     controllers:
       *app :
         annotations:
@@ -28,15 +18,15 @@ spec:
           01-init-db:
             image:
               repository: ghcr.io/home-operations/postgres-init
-              tag: "18"
+              tag: 18.3.0@sha256:6fa1f331cddd2eb0b6afa7b8d3685c864127a81ab01c3d9400bc3ff5263a51cf
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}-initdb-secret"
         containers:
           app:
             image:
-              repository: ghcr.io/zxh326/kite
-              tag: v0.11.0@sha256:528b7f4ba5d340b4851ff991f19c99daae10185a08c4febc7c113387d6b8da61
+              repository: ghcr.io/kite-org/kite
+              tag: v0.11.0@sha256:19495b805a775eb974de247448ce433a4e23a9a5bd56032c17c37d5af6ac703a
             env:
               HOST: https://{{ .Release.Name }}.${ROOT_DOMAIN}
               # ENABLE_ANALYTICS: true
@@ -50,19 +40,19 @@ spec:
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}-secret"
-            # probes:
-            #   liveness: &probes
-            #     enabled: true
-            #     custom: true
-            #     spec:
-            #       httpGet:
-            #         path: ${GATUS_PATH}
-            #         port: &port 8080
-            #       initialDelaySeconds: 0
-            #       periodSeconds: 10
-            #       timeoutSeconds: 1
-            #       failureThreshold: 3
-            #   readiness: *probes
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: ${GATUS_PATH}
+                    port: &port 8080
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
             resources:
               requests:
                 cpu: 100m
@@ -76,12 +66,24 @@ spec:
         serviceAccount:
           identifier: *app
     defaultPodOptions:
+      automountServiceAccountToken: true
       securityContext:
         runAsUser: 1000
         runAsGroup: 1000
         fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
         seccompProfile: { type: RuntimeDefault }
+    service:
+      app:
+        controller: *app
+        ports:
+          http:
+            port: *port
+    serviceMonitor:
+      app:
+        serviceName: *app
+        endpoints:
+          - port: http
     route:
       app:
         hostnames: ["{{ .Release.Name }}.${ROOT_DOMAIN}"]
@@ -91,37 +93,23 @@ spec:
         rules:
           - backendRefs:
               - identifier: app
-                port: &port 8080
+                port: *port
     persistence:
       config:
         type: emptyDir
+      config-files:
+        type: secret
+        name: "{{ .Release.Name }}-config-secret"
+        globalMounts:
+          - path: /kite
     rbac:
-      roles:
-        kite:
-          type: ClusterRole
-          rules:
-            - apiGroups: ["*"]
-              resources: ["*"]
-              verbs: ["*"]
-            - nonResourceURLs: ["*"]
-              verbs: ["*"]
       bindings:
-        kite:
+        *app :
           type: ClusterRoleBinding
           roleRef:
-            identifier: kite
+            kind: ClusterRole
+            name: *app
           subjects:
-            - identifier: kite
-    service:
-      app:
-        controller: *app
-        ports:
-          http:
-            port: *port
-    serviceAccount:
-      *app : {}
-    serviceMonitor:
-      app:
-        serviceName: *app
-        endpoints:
-          - port: http
+            - kind: ServiceAccount
+              name: *app
+              namespace: "{{ .Release.Namespace }}"
