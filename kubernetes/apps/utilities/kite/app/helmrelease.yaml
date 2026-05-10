@@ -45,7 +45,7 @@ spec:
                 custom: true
                 spec:
                   httpGet:
-                    path: ${GATUS_PATH}
+                    path: /healthz
                     port: &port 8080
                   initialDelaySeconds: 0
                   periodSeconds: 10
@@ -104,9 +104,7 @@ spec:
             kind: ClusterRole
             name: *app
           subjects:
-            - kind: ServiceAccount
-              name: *app
-              namespace: "{{ .Release.Namespace }}"
+            - identifier: kite
       roles:
         kite:
           type: ClusterRole
