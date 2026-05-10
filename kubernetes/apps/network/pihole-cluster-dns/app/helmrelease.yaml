@@ -20,7 +20,6 @@ spec:
       - --pihole-api-version=6
       - --pihole-server=https://pihole.${ROOT_DOMAIN}
       - --gateway-name=envoy-internal
-      - --log-level=debug
     interval: 1h
     podAnnotations:
       secret.reloader.stakater.com/reload: pihole-cluster-dns-secret
