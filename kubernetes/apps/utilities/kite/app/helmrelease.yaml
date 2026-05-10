@@ -24,6 +24,7 @@ spec:
                   name: "{{ .Release.Name }}-initdb-secret"
         containers:
           app:
+            args: ["-v", "1"]
             image:
               repository: ghcr.io/kite-org/kite
               tag: v0.11.0@sha256:19495b805a775eb974de247448ce433a4e23a9a5bd56032c17c37d5af6ac703a
@@ -36,7 +37,6 @@ spec:
                   secretKeyRef:
                     name: "{{ .Release.Name }}-pguser-secret"
                     key: dsn
-              DEBUG: true
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}-secret"
