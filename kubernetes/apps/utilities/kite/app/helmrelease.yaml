@@ -107,3 +107,12 @@ spec:
             - kind: ServiceAccount
               name: *app
               namespace: "{{ .Release.Namespace }}"
+      roles:
+        kite:
+          type: ClusterRole
+          rules:
+            - apiGroups: ["*"]
+              resources: ["*"]
+              verbs: ["*"]
+            - nonResourceURLs: ["*"]
+              verbs: ["*"]
