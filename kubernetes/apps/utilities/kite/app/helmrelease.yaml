@@ -28,7 +28,6 @@ spec:
               repository: ghcr.io/kite-org/kite
               tag: v0.11.0@sha256:19495b805a775eb974de247448ce433a4e23a9a5bd56032c17c37d5af6ac703a
             env:
-              HOST: https://{{ .Release.Name }}.${ROOT_DOMAIN}
               # ENABLE_ANALYTICS: true
               DB_TYPE: postgres
               DB_DSN:
@@ -36,6 +35,8 @@ spec:
                   secretKeyRef:
                     name: "{{ .Release.Name }}-pguser-secret"
                     key: dsn
+              HOST: https://{{ .Release.Name }}.${ROOT_DOMAIN}
+              PORT: &port 80
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}-secret"
@@ -46,7 +47,7 @@ spec:
                 spec:
                   httpGet:
                     path: /healthz
-                    port: &port 8080
+                    port: *port
                   initialDelaySeconds: 0
                   periodSeconds: 10
                   timeoutSeconds: 1
