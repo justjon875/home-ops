@@ -52,9 +52,11 @@ spec:
                   name: garage-secret
             resources:
               requests:
-                cpu: 100m
+                cpu: 10m
+                memory: 94M
               limits:
-                memory: 500Mi
+                cpu: 11m
+                memory: 128M
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
@@ -76,9 +78,11 @@ spec:
                   name: garage-secret
             resources:
               requests:
-                cpu: 10m
+                cpu: 11m
+                memory: 50Mi
               limits:
-                memory: 125Mi
+                cpu: 11m
+                memory: 50Mi
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true

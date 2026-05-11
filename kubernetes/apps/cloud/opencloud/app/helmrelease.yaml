@@ -92,10 +92,13 @@ spec:
             envFrom:
               - secretRef:
                   name: opencloud-secret
-            securityContext: &sec
-              allowPrivilegeEscalation: false
-              readOnlyRootFileinternal: true
-              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 15m
+                memory: 204M
+              limits:
+                cpu: 23m
+                memory: 275M
             probes:
               liveness: &probes
                 enabled: true
@@ -105,6 +108,10 @@ spec:
                     port: &port 9200
                     path: /health
               readiness: *probes
+            securityContext: &sec
+              allowPrivilegeEscalation: false
+              readOnlyRootFileinternal: true
+              capabilities: { drop: ["ALL"] }
       wopi:
         strategy: RollingUpdate
         containers:
@@ -131,6 +138,13 @@ spec:
               MICRO_REGISTRY_ADDRESS: opencloud:9233
               MICRO_REGISTRY: nats-js-kv
               OC_URL: *url
+            resources:
+              requests:
+                cpu: 15m
+                memory: 110M
+              limits:
+                cpu: 15m
+                memory: 110M
             securityContext: *sec
       collabora:
         strategy: RollingUpdate
@@ -168,13 +182,6 @@ spec:
                   secretKeyRef:
                     name: opencloud-secret
                     key: COLLABORA_ADMIN_PASS
-            securityContext:
-              <<: *sec
-              capabilities:
-                add:
-                  - MKNOD
-                drop:
-                  - ALL
             probes:
               liveness: &probes
                 enabled: true
@@ -184,6 +191,20 @@ spec:
                     port: 9980
                     path: /hosting/discovery
               readiness: *probes
+            resources:
+              requests:
+                cpu: 15m
+                memory: 588M
+              limits:
+                cpu: 15m
+                memory: 1401M
+            securityContext:
+              <<: *sec
+              capabilities:
+                add:
+                  - MKNOD
+                drop:
+                  - ALL
       tika:
         strategy: RollingUpdate
         pod:
@@ -195,6 +216,13 @@ spec:
               tag: 3.3.0.0-full@sha256:ecdd37e204308266b1f8e28569f8516ebd5b96d7a4518a71d3904710b20c03b3
             env:
               JAVA_OPTS: "-Xmx3g"
+            resources:
+              requests:
+                cpu: 15m
+                memory: 411M
+              limits:
+                cpu: 15m
+                memory: 411M
             securityContext: *sec
     defaultPodOptionsStrategy: merge
     defaultPodOptions:
@@ -251,8 +279,8 @@ spec:
             namespace: network
         rules:
           - backendRefs:
-            - identifier: *app
-              port: *port
+              - identifier: *app
+                port: *port
       wopi:
         annotations:
           gatus.home-operations.com/endpoint: |
@@ -266,8 +294,8 @@ spec:
             namespace: network
         rules:
           - backendRefs:
-            - identifier: wopi
-              port: 9300
+              - identifier: wopi
+                port: 9300
       collabora:
         hostnames:
           - collabora.${ROOT_DOMAIN}
@@ -276,8 +304,8 @@ spec:
             namespace: network
         rules:
           - backendRefs:
-            - identifier: collabora
-              port: 9980
+              - identifier: collabora
+                port: 9980
     persistence:
       config:
         type: configMap
@@ -326,7 +354,7 @@ spec:
           opencloud:
             opencloud:
               - path: /opt/extensions
-    configMaps: 
+    configMaps:
       config:
         data:
           csp.yaml: |
