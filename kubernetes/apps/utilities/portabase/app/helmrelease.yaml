@@ -36,7 +36,7 @@ spec:
                   name: "{{ .Release.Name }}-secret"
             image:
               repository: portabase/portabase
-              tag: 1.13.0@sha256:cdb793ef23fc8abfce753bbabb66d0337f3b1b95a3b2c302b64717cbeb0bd824
+              tag: 1.14.0@sha256:0d1ac3b5dd319b9410f8bce460e41f57ab244a8b70ceaeb57e1fe0c5990e5976
         pod:
           securityContext:
             runAsUser: 0
