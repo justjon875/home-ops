@@ -18,7 +18,7 @@ spec:
               YTP_BROWSER_CONTROL_ENABLED: true
             image:
               repository: ghcr.io/arabcoders/ytptube
-              tag: v2.5.0@sha256:751159ac6369112bcf9ceddefa7a5efe7dbe500f84a8175d8168c34e59af8b61
+              tag: v2.5.2@sha256:150b734d4fa73611fea0b690208147c1971dae0960c2b400a6a673e291b20964
     defaultPodOptions:
       securityContext:
         fsGroup: 1000
