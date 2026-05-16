@@ -11,7 +11,7 @@ spec:
   interval: 1h
   values:
     httpRoute:
-      enabled: false
+      enabled: true
       parentRefs:
         - name: envoy-internal
           namespace: network
