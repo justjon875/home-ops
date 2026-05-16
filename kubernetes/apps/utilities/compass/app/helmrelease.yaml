@@ -1,0 +1,31 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app compass
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: *app
+  interval: 1h
+  values:
+    httpRoute:
+      enabled: true
+      parentRefs:
+        - name: envoy-internal
+          namespace: network
+      hostnames:
+        - compass.${ROOT_DOMAIN}
+    config: |
+      organization:
+        name: Compass
+        description: Services across the cluster.
+
+      services:
+        sources:
+          - type: kubernetes
+            name: cluster
+            kubernetes:
+              namespaces: []
+              auto_discover_all: true
