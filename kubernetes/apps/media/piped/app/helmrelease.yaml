@@ -42,7 +42,7 @@ spec:
     ytproxy:
       image:
         repository: 1337kavin/piped-proxy
-        tag: latest@sha256:c14bdd78ec6991b1cfc58e1898ca42b452058a70182e4b8695f69043f9e140df
+        tag: latest@sha256:5b1bd2b3321291509ead7a3fb086ef4d6d9015157ccd4b2a9334ccd046d19ae7
   valuesFrom:
     - kind: Secret
       name: *app
