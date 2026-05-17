@@ -40,4 +40,4 @@ spec:
       app:
         ports:
           http:
-            port: 4533
+            port: 7288
