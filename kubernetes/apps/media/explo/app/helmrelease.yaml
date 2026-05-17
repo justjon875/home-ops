@@ -1,7 +1,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &app navidrome
+  name: &app explo
 spec:
   chartRef:
     kind: OCIRepository
@@ -9,7 +9,7 @@ spec:
   interval: 1h
   values:
     controllers:
-      navidrome:
+      explo:
         containers:
           app:
             env:
@@ -33,7 +33,7 @@ spec:
           - path: /opt/explo/config
       music:
         enabled: true
-        path: ${NFS_PATH}/navidrome/media
+        path: ${NFS_PATH}/explo/media
         server: ${NFS_HOST}
         type: nfs
     route:
