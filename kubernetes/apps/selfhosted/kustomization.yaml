@@ -25,4 +25,5 @@ resources:
   - ./searxng/ks.yaml
   - ./vaultwarden/ks.yaml
   - ./termix/ks.yaml
+  - ./transmute/ks.yaml
   - ./whoogle/ks.yaml
