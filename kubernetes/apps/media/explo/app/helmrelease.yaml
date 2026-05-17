@@ -14,6 +14,8 @@ spec:
           app:
             env:
               TZ: ${TIMEZONE}
+              UI_USERNAME: admin
+              UI_PASSWORD: admin
             image:
               repository: ghcr.io/lumepart/explo
               tag: v1.0.1@sha256:d4b55bf5c8f2099815e1613a74d9d5ceb1ee6a3fc8f973a19c60cf842bc8d8df
@@ -31,7 +33,7 @@ spec:
           - path: /opt/explo/config
       music:
         enabled: true
-        path: ${NFS_PATH}/navidrome/media/explo
+        path: ${NFS_PATH}/navidrome/media
         server: ${NFS_HOST}
         type: nfs
     route:

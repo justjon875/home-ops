@@ -13,8 +13,8 @@ resources:
   - ./audiobookshelf/ks.yaml
   - ./calibre/ks.yaml
   # - calibre-web-automated
+  - ./explo/ks.yaml
   - ./flaresolverr/ks.yaml
-  # - flood
   - ./invidious/ks.yaml
   - ./jellyfin/ks.yaml
   - ./seerr/ks.yaml
