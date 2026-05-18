@@ -20,8 +20,8 @@ spec:
               REDLIB_DEFAULT_SUBSCRIPTIONS: "ergomechkeyboards+linux+patientgamers+privacy+Piracy+selfhosted+sffpc+olkb+unixporn+singapore"
               REDLIB_ARTI_PATH: /tmp/arti
             image:
-              repository: ghcr.io/silvenga/redlib
-              tag: 0.36@sha256:5b7b92744ca153c75bef1f5b6b5ffb6985a230c91019d722a88ec758b15f502d
+              repository: quay.io/redlib/redlib
+              tag: latest
             probes:
               liveness: &probes
                 enabled: true
