@@ -22,9 +22,6 @@
     major: {
         dependencyDashboardApproval: true,
     },
-    repositories: [
-        'forgejo_admin/home-ops',
-    ],
     flux: {
         managerFilePatterns: [
             '/(^|/)kubernetes/.+\\.ya?ml(\\.j2)?$/',
