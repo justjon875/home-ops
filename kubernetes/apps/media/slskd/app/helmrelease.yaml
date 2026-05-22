@@ -133,6 +133,6 @@ spec:
         server: ${NFS_HOST}
         path: /media/downloads
         globalMounts:
-          - path: /media
+          - path: /media/downloads
       tmp:
         type: emptyDir
