@@ -114,8 +114,6 @@ spec:
       wopi:
         strategy: RollingUpdate
         dependsOn:
-          - opencloud
-        containers:
           wopi:
             image: *img
             command:
@@ -149,8 +147,6 @@ spec:
             securityContext: *sec
       collabora:
         strategy: RollingUpdate
-        dependsOn:
-          - opencloud
         pod:
           hostUsers: false
           securityContext:
@@ -210,8 +206,6 @@ spec:
                   - ALL
       tika:
         strategy: RollingUpdate
-        dependsOn:
-          - opencloud
         pod:
           hostUsers: false
         containers:
