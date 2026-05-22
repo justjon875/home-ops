@@ -27,7 +27,6 @@ spec:
               OC_ADMIN_USER_ID: ""
               OC_ENABLE_OCM: false
               OC_INSECURE: true
-              OC_LOG_LEVEL: debug
               OC_LOG_COLOR: true
               OC_LOG_PRETTY: true
               OC_LOG_TIMEZONE: ${TIMEZONE}
@@ -110,7 +109,7 @@ spec:
               readiness: *probes
             securityContext: &sec
               allowPrivilegeEscalation: false
-              readOnlyRootFileinternal: true
+              readOnlyRootFilesystem: true
               capabilities: { drop: ["ALL"] }
       wopi:
         strategy: RollingUpdate
