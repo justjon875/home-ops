@@ -28,9 +28,6 @@ spec:
               requests:
                 cpu: 15m
                 memory: 1169M
-              limits:
-                cpu: 15m
-                memory: 1169M
       server:
         annotations:
           reloader.stakater.com/auto: "true"
