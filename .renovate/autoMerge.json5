@@ -58,7 +58,6 @@
       matchPackageNames: [
         "ghcr.io/renovatebot/renovate",
       ],
-      schedule: ["Schedule daily before 10 AM"],
     },
   ],
 }
