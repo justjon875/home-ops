@@ -30,5 +30,6 @@ resources:
   - ./radarr/ks.yaml
   - ./sabnzbd/ks.yaml
   - ./shelfmark/ks.yaml
+  - ./slskd/ks.yaml
   - ./sonarr/ks.yaml
   - ./ytptube/ks.yaml
