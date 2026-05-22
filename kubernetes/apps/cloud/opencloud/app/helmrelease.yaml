@@ -21,12 +21,13 @@ spec:
             command:
               - "/bin/sh"
               - "-c"
-              - "opencloud init || true; opencloud server"
+              - "opencloud init --diff || true; opencloud server"
             env:
               IDM_CREATE_DEMO_USERS: false
               OC_ADMIN_USER_ID: ""
               OC_ENABLE_OCM: false
               OC_INSECURE: true
+              OC_LOG_LEVEL: debug
               OC_LOG_COLOR: true
               OC_LOG_PRETTY: true
               OC_LOG_TIMEZONE: ${TIMEZONE}
