@@ -95,9 +95,6 @@ spec:
               requests:
                 cpu: 15m
                 memory: 204M
-              limits:
-                cpu: 23m
-                memory: 275M
             probes:
               liveness: &probes
                 enabled: true
@@ -139,9 +136,6 @@ spec:
               OC_URL: *url
             resources:
               requests:
-                cpu: 15m
-                memory: 110M
-              limits:
                 cpu: 15m
                 memory: 110M
             securityContext: *sec
@@ -194,9 +188,6 @@ spec:
               requests:
                 cpu: 15m
                 memory: 588M
-              limits:
-                cpu: 15m
-                memory: 1401M
             securityContext:
               <<: *sec
               capabilities:
@@ -217,9 +208,6 @@ spec:
               JAVA_OPTS: "-Xmx3g"
             resources:
               requests:
-                cpu: 15m
-                memory: 411M
-              limits:
                 cpu: 15m
                 memory: 411M
             securityContext: *sec
