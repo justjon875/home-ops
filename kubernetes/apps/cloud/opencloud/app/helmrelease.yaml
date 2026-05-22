@@ -113,6 +113,8 @@ spec:
               capabilities: { drop: ["ALL"] }
       wopi:
         strategy: RollingUpdate
+        dependsOn:
+          - opencloud
         containers:
           wopi:
             image: *img
@@ -147,6 +149,8 @@ spec:
             securityContext: *sec
       collabora:
         strategy: RollingUpdate
+        dependsOn:
+          - opencloud
         pod:
           hostUsers: false
           securityContext:
@@ -206,6 +210,8 @@ spec:
                   - ALL
       tika:
         strategy: RollingUpdate
+        dependsOn:
+          - opencloud
         pod:
           hostUsers: false
         containers:
