@@ -33,9 +33,6 @@ spec:
               DARK_MODE: "1"
               WEB_AUDIO: "1"
               WEB_LISTENING_PORT: &port 5800 # Default 5800
-            securityContext:
-              allowPrivilegeEscalation: false
-              capabilities: { drop: ["ALL"] }
             resources:
               requests:
                 cpu: 10m
