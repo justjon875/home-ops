@@ -12,14 +12,6 @@ spec:
   values:
     controllers:
       picard:
-        pod:
-          securityContext:
-            runAsNonRoot: true
-            runAsUser: 1000
-            runAsGroup: 1000
-            fsGroup: 1000
-            fsGroupChangePolicy: OnRootMismatch
-            seccompProfile: { type: RuntimeDefault }
         containers:
           app:
             image:
@@ -37,6 +29,14 @@ spec:
               requests:
                 cpu: 10m
                 memory: 250Mi
+        pod:
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+            fsGroup: 1000
+            fsGroupChangePolicy: "OnRootMismatch"
+            supplementalGroups:
+              - 100
     persistence:
       config:
         existingClaim: "{{ .Release.Name }}"
