@@ -35,7 +35,6 @@ spec:
               WEB_LISTENING_PORT: &port 5800 # Default 5800
             securityContext:
               allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
               capabilities: { drop: ["ALL"] }
             resources:
               requests:
