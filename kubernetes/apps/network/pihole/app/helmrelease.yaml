@@ -85,7 +85,7 @@ spec:
             conditions: ["[STATUS] == 403"]
           gethomepage.dev/enabled: "true"
           gethomepage.dev/group: Utilities
-          gethomepage.dev/icon: *app
+          gethomepage.dev/icon: pi-hole
         forceRename: "{{ .Release.Name }}"
         hostnames:
           - "pihole.${ROOT_DOMAIN}"

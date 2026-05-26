@@ -84,7 +84,7 @@ spec:
         annotations:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/group: Selfhosted
-          gethomepage.dev/icon: *app
+          gethomepage.dev/icon: filebrowser-quantum
           gatus.home-operations.com/endpoint: |
             group: selfhosted
         hostnames:

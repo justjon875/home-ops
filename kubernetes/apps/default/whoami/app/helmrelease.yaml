@@ -59,7 +59,7 @@ spec:
       app:
         annotations:
           gethomepage.dev/enabled: "true"
-          gethomepage.dev/group: Cloud
+          gethomepage.dev/group: Default
           gethomepage.dev/icon: *app
         hostnames: ["{{ .Release.Name }}.${ROOT_DOMAIN}"]
         parentRefs:

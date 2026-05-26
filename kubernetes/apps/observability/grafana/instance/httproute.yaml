@@ -6,6 +6,7 @@ metadata:
   name: &app grafana
   annotations:
     gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: Utilities
     gethomepage.dev/icon: *app
 spec:
   hostnames:

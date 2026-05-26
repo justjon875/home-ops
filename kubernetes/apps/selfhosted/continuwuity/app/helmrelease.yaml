@@ -49,7 +49,7 @@ spec:
         annotations:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/group: Selfhosted
-          gethomepage.dev/icon: *app
+          gethomepage.dev/icon: continuwuity.svg
           gatus.home-operations.com/endpoint: |
             group: selfhosted
         hostnames: ["matrix.${ROOT_DOMAIN}"]
