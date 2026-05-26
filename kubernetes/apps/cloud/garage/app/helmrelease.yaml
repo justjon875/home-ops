@@ -119,6 +119,11 @@ spec:
     route:
       app:
         annotations:
+          dashboard.home/enabled: "true"
+          dashboard.home/name: Garage
+          dashboard.home/description: Garage Webui
+          dashboard.home/icon: *app
+          dashboard.home/group: "{{ .Release.Namespace }}"
           gatus.home-operations.com/endpoint: |-
             conditions: ["[STATUS] == 403"]
         hostnames:
