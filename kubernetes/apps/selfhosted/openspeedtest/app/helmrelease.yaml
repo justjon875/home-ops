@@ -19,27 +19,32 @@ spec:
       app:
         annotations:
           nginx.ingress.kubernetes.io/proxy-body-size: 10240m
-          nginx.ingress.kubernetes.io/ssl-redirect: 'true'
+          nginx.ingress.kubernetes.io/ssl-redirect: "true"
         className: internal
         enabled: true
         hosts:
-        - host: '{{ .Release.Name }}.${ROOT_DOMAIN}'
-          paths:
-          - path: /
-            pathType: Prefix
-            service:
-              identifier: app
-              port: http
+          - host: "{{ .Release.Name }}.${ROOT_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: app
+                  port: http
         tls:
-        - hosts:
-          - '{{ .Release.Name }}.${ROOT_DOMAIN}'
+          - hosts:
+              - "{{ .Release.Name }}.${ROOT_DOMAIN}"
     route:
       app:
+        annotations:
+          gatus.home-operations.com/endpoint: |
+            group: selfhosted
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: *app
         hostnames:
-        - '{{ .Release.Name }}.${ROOT_DOMAIN}'
+          - "{{ .Release.Name }}.${ROOT_DOMAIN}"
         parentRefs:
-        - name: envoy-internal
-          namespace: network
+          - name: envoy-internal
+            namespace: network
     service:
       app:
         ports:

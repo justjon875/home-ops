@@ -135,6 +135,8 @@ spec:
     route:
       app:
         annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: *app
           gatus.home-operations.com/enabled: "false"
         hostnames:
           - "{{ .Release.Name }}.${ROOT_DOMAIN}"

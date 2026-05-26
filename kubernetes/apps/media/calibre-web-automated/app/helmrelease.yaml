@@ -23,6 +23,9 @@ spec:
               allowPrivilegeEscalation: false
     route:
       app:
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: *app
         hostnames:
           - "{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}"
         parentRefs:

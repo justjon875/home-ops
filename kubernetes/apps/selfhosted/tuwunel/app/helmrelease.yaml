@@ -15,29 +15,29 @@ spec:
         containers:
           app:
             env:
-            - name: RUST_LOG
-              value: debug
-            - name: TUWUNEL_ADDRESS
-              value: 0.0.0.0
-            - name: TUWUNEL_ALLOW_FEDERATION
-              value: 'false'
-            - name: TUWUNEL_ALLOW_REGISTRATION
-              value: 'true'
-            - name: TUWUNEL_ALLOW_LEGACY_MEDIA
-              value: 'false'
-            - name: TUWUNEL_DATABASE_PATH
-              value: /data/db
-            - name: TUWUNEL_PORT
-              value: "8080"
-            - name: TUWUNEL_SERVER_NAME
-              value: ${ROOT_DOMAIN}
-            - name: TUWUNEL_WELL_KNOWN__CLIENT
-              value: https://tuwunel.${ROOT_DOMAIN}
-            - name: TUWUNEL_WELL_KNOWN__SERVER
-              value: tuwunel.${ROOT_DOMAIN}:443
+              - name: RUST_LOG
+                value: debug
+              - name: TUWUNEL_ADDRESS
+                value: 0.0.0.0
+              - name: TUWUNEL_ALLOW_FEDERATION
+                value: "false"
+              - name: TUWUNEL_ALLOW_REGISTRATION
+                value: "true"
+              - name: TUWUNEL_ALLOW_LEGACY_MEDIA
+                value: "false"
+              - name: TUWUNEL_DATABASE_PATH
+                value: /data/db
+              - name: TUWUNEL_PORT
+                value: "8080"
+              - name: TUWUNEL_SERVER_NAME
+                value: ${ROOT_DOMAIN}
+              - name: TUWUNEL_WELL_KNOWN__CLIENT
+                value: https://tuwunel.${ROOT_DOMAIN}
+              - name: TUWUNEL_WELL_KNOWN__SERVER
+                value: tuwunel.${ROOT_DOMAIN}:443
             envFrom:
-            - secretRef:
-                name: tuwunel-secret
+              - secretRef:
+                  name: tuwunel-secret
             image:
               repository: ghcr.io/matrix-construct/tuwunel
               tag: v1.7.0@sha256:8acfc755db4956c496e93f3b63693bbea298735835daadf882be791e2317dc0b
@@ -63,7 +63,9 @@ spec:
         annotations:
           gatus.home-operations.com/endpoint: |
             group: selfhosted
-        hostnames: [ "matrix.${ROOT_DOMAIN}" ]
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: *app
+        hostnames: ["matrix.${ROOT_DOMAIN}"]
         forceRename: *app
         parentRefs:
           - name: envoy-internal
@@ -80,7 +82,7 @@ spec:
         annotations:
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
           gatus.home-operations.com/enabled: "false"
-        hostnames: [ "${ROOT_DOMAIN}" ]
+        hostnames: ["${ROOT_DOMAIN}"]
         parentRefs:
           - name: envoy-internal
             namespace: network

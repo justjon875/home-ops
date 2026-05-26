@@ -11,13 +11,13 @@ spec:
     affinity:
       nodeAffinity:
         preferredDuringSchedulingIgnoredDuringExecution:
-        - weight: 100          # max weight = 100
-          preference:
-            matchExpressions:
-            - key: cpu
-              operator: In
-              values:
-              - high
+          - weight: 100 # max weight = 100
+            preference:
+              matchExpressions:
+                - key: cpu
+                  operator: In
+                  values:
+                    - high
     controllers:
       filebrowser:
         containers:
@@ -71,15 +71,15 @@ spec:
             fsGroup: 1000
             fsGroupChangePolicy: OnRootMismatch
             supplementalGroups:
-            - 10000
+              - 10000
     persistence:
       config:
         existingClaim: "{{ .Release.Name }}"
         globalMounts:
-        - path: /config
+          - path: /config
       media:
         globalMounts:
-        - path: /srv/media
+          - path: /srv/media
         path: ${MEDIA_PATH}
         server: ${NFS_HOST}
         type: nfs
@@ -94,11 +94,13 @@ spec:
         annotations:
           gatus.home-operations.com/endpoint: |
             group: selfhosted
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: *app
         hostnames:
-        - '{{ .Release.Name }}.${ROOT_DOMAIN}'
+          - "{{ .Release.Name }}.${ROOT_DOMAIN}"
         parentRefs:
-        - name: envoy-internal
-          namespace: network
+          - name: envoy-internal
+            namespace: network
     service:
       app:
         ports:

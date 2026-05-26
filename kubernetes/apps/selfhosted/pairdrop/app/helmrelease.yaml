@@ -22,21 +22,23 @@ spec:
       cache:
         type: emptyDir
         globalMounts:
-        - path: /root/.npm/_cacache
+          - path: /root/.npm/_cacache
       logs:
         type: emptyDir
         globalMounts:
-        - path: /root/.npm/_logs
+          - path: /root/.npm/_logs
     route:
       app:
         annotations:
           gatus.home-operations.com/endpoint: |
             group: selfhosted
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: *app
         hostnames:
-        - '{{ .Release.Name }}.${ROOT_DOMAIN}'
+          - "{{ .Release.Name }}.${ROOT_DOMAIN}"
         parentRefs:
-        - name: envoy-internal
-          namespace: network
+          - name: envoy-internal
+            namespace: network
     service:
       app:
         ports:

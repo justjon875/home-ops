@@ -87,6 +87,8 @@ spec:
     route:
       app:
         annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: *app
           gatus.home-operations.com/endpoint: |-
             url: https://sonarr.${ROOT_DOMAIN}/ping
         hostnames:

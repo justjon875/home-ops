@@ -74,6 +74,11 @@ spec:
         type: configMap
     route:
       app:
+        annotations:
+          gatus.home-operations.com/endpoint: |
+            group: utilities
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: *app
         hostnames:
         - '{{ .Release.Name }}.${ROOT_DOMAIN}'
         parentRefs:

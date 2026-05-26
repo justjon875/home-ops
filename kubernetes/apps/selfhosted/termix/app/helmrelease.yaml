@@ -44,6 +44,11 @@ spec:
             port: *port
     route:
       app:
+        annotations:
+          gatus.home-operations.com/endpoint: |
+            group: selfhosted
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: *app
         hostnames:
           - "{{ .Release.Name }}.${ROOT_DOMAIN}"
         parentRefs:

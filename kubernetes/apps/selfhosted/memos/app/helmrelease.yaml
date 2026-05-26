@@ -21,17 +21,19 @@ spec:
       memos:
         existingClaim: "{{ .Release.Name }}"
         globalMounts:
-        - path: /var/opt/memos
+          - path: /var/opt/memos
     route:
       app:
         annotations:
           gatus.home-operations.com/endpoint: |
             group: selfhosted
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: *app
         hostnames:
-        - '{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}'
+          - "{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}"
         parentRefs:
-        - name: envoy-internal
-          namespace: network
+          - name: envoy-internal
+            namespace: network
     service:
       app:
         controller: memos

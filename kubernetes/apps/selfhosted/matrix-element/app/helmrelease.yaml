@@ -11,13 +11,13 @@ spec:
     affinity:
       nodeAffinity:
         preferredDuringSchedulingIgnoredDuringExecution:
-        - weight: 100          # max weight = 100
-          preference:
-            matchExpressions:
-            - key: cpu
-              operator: In
-              values:
-              - high
+          - weight: 100 # max weight = 100
+            preference:
+              matchExpressions:
+                - key: cpu
+                  operator: In
+                  values:
+                    - high
     controllers:
       matrix-element:
         containers:
@@ -30,9 +30,9 @@ spec:
     persistence:
       config-file:
         globalMounts:
-        - path: /app/config.json
-          readOnly: true
-          subPath: config.json
+          - path: /app/config.json
+            readOnly: true
+            subPath: config.json
         name: matrix-element
         type: configMap
     podAnnotations:
@@ -42,11 +42,13 @@ spec:
         annotations:
           gatus.home-operations.com/endpoint: |
             group: selfhosted
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: *app
         hostnames:
-        - 'element.${SHORT_ROOT_DOMAIN}'
+          - "element.${SHORT_ROOT_DOMAIN}"
         parentRefs:
-        - name: envoy-internal
-          namespace: network
+          - name: envoy-internal
+            namespace: network
     service:
       app:
         ports:

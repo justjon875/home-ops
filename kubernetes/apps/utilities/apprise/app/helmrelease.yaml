@@ -49,11 +49,16 @@ spec:
                 subPath: tmp
     route:
       app:
+        annotations:
+          gatus.home-operations.com/endpoint: |
+            group: utilities
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: *app
         hostnames:
-        - '{{ .Release.Name }}.${ROOT_DOMAIN}'
+          - "{{ .Release.Name }}.${ROOT_DOMAIN}"
         parentRefs:
-        - name: envoy-internal
-          namespace: network
+          - name: envoy-internal
+            namespace: network
     service:
       app:
         ports:

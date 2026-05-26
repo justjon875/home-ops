@@ -1,5 +1,10 @@
 ---
 httpRoute:
+  annotations:
+    gatus.home-operations.com/endpoint: |
+      group: utilities
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/icon: forgejo
   enabled: true
   hostnames: ["git.${ROOT_DOMAIN}"]
   parentRefs:

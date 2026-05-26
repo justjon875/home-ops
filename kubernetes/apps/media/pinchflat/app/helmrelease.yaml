@@ -11,7 +11,7 @@ spec:
     controllers:
       pinchflat:
         annotations:
-          reloader.stakater.com/auto: 'true'
+          reloader.stakater.com/auto: "true"
         containers:
           app:
             image:
@@ -69,7 +69,7 @@ spec:
       yt-dlp:
         type: emptyDir
         globalMounts:
-        - path: /etc/yt-dlp
+          - path: /etc/yt-dlp
       media:
         type: nfs
         server: ${NFS_HOST}
@@ -77,15 +77,18 @@ spec:
         advancedMounts:
           pinchflat:
             app:
-            - path: /downloads
-              subPath: Library/YouTube
+              - path: /downloads
+                subPath: Library/YouTube
     route:
       app:
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: *app
         hostnames:
-        - '{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}'
+          - "{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}"
         parentRefs:
-        - name: envoy-internal
-          namespace: network
+          - name: envoy-internal
+            namespace: network
     service:
       app:
         controller: pinchflat

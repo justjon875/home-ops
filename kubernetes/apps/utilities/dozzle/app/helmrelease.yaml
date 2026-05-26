@@ -54,6 +54,11 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
     route:
       app:
+        annotations:
+          gatus.home-operations.com/endpoint: |
+            group: utilities
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: *app
         hostnames: ["{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}"]
         parentRefs:
           - name: envoy-internal

@@ -27,8 +27,8 @@ spec:
               PAPERLESS_TIME_ZONE: ${TIMEZONE}
               PAPERLESS_URL: https://paperless-ngx.${ROOT_DOMAIN}
             envFrom:
-            - secretRef:
-                name: paperless-ngx
+              - secretRef:
+                  name: paperless-ngx
             image:
               repository: quay.io/11notes/paperless-ngx
               tag: 2.20.15@sha256:6395ec74785623790089661b80715bec26e0f8d0278e7ec177c03ef2ad905115
@@ -47,11 +47,13 @@ spec:
         annotations:
           gatus.home-operations.com/endpoint: |
             group: selfhosted
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: *app
         hostnames:
-        - '{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}'
+          - "{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}"
         parentRefs:
-        - name: envoy-internal
-          namespace: network
+          - name: envoy-internal
+            namespace: network
     service:
       app:
         ports:

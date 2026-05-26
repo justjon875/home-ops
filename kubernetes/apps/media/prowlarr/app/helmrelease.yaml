@@ -42,15 +42,17 @@ spec:
     route:
       app:
         annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: *app
           gatus.home-operations.com/endpoint: |
             interval: 30s
             alerts:
               - type: matrix
         hostnames:
-        - '{{ .Release.Name }}.${ROOT_DOMAIN}'
+          - "{{ .Release.Name }}.${ROOT_DOMAIN}"
         parentRefs:
-        - name: envoy-internal
-          namespace: network
+          - name: envoy-internal
+            namespace: network
     service:
       app:
         ports:

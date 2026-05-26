@@ -23,8 +23,8 @@ spec:
               TZ: ${TIMEZONE}
               WEBSOCKET_ENABLED: true
             envFrom:
-            - secretRef:
-                name: vaultwarden
+              - secretRef:
+                  name: vaultwarden
             image:
               repository: ghcr.io/dani-garcia/vaultwarden
               tag: 1.36.0@sha256:d626d04934cd1192ad8ced1adb975099fca78cec33ab467d2d3c923cde7f3b0c
@@ -43,11 +43,13 @@ spec:
         annotations:
           gatus.home-operations.com/endpoint: |
             group: selfhosted
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: *app
         hostnames:
-        - '{{ .Release.Name }}.${ROOT_DOMAIN}'
+          - "{{ .Release.Name }}.${ROOT_DOMAIN}"
         parentRefs:
-        - name: envoy-internal
-          namespace: network
+          - name: envoy-internal
+            namespace: network
     service:
       app:
         ports:

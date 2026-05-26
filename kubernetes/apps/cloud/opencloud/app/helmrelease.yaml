@@ -258,6 +258,9 @@ spec:
           - port: debug
     route:
       opencloud:
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: *app
         forceRename: *app
         hostnames:
           - opencloud.${ROOT_DOMAIN}

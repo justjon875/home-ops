@@ -11,7 +11,7 @@ spec:
     controllers:
       linkwarden:
         annotations:
-          reloader.stakater.com/auto: 'true'
+          reloader.stakater.com/auto: "true"
         containers:
           app:
             image:
@@ -21,8 +21,8 @@ spec:
               STORAGE_FOLDER: config
               HOME: /data/config
             envFrom:
-            - secretRef:
-                name: linkwarden-secret
+              - secretRef:
+                  name: linkwarden-secret
             securityContext:
               allowPrivilegeEscalation: false
               capabilities: { drop: ["ALL"] }
@@ -39,11 +39,11 @@ spec:
       config:
         existingClaim: "{{ .Release.Name }}"
         globalMounts:
-        - path: /data/config
+          - path: /data/config
       next-cache:
         type: emptyDir
         globalMounts:
-        - path: /data/.next/cache
+          - path: /data/.next/cache
       tmp:
         type: emptyDir
     route:
@@ -51,11 +51,13 @@ spec:
         annotations:
           gatus.home-operations.com/endpoint: |
             group: selfhosted
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: *app
         hostnames:
-        - '{{ .Release.Name }}.${ROOT_DOMAIN}'
+          - "{{ .Release.Name }}.${ROOT_DOMAIN}"
         parentRefs:
-        - name: envoy-internal
-          namespace: network
+          - name: envoy-internal
+            namespace: network
     service:
       app:
         ports:

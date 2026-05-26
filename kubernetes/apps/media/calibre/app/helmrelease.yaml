@@ -11,13 +11,13 @@ spec:
     affinity:
       nodeAffinity:
         preferredDuringSchedulingIgnoredDuringExecution:
-        - weight: 100          # max weight = 100
-          preference:
-            matchExpressions:
-            - key: cpu
-              operator: In
-              values:
-              - high
+          - weight: 100 # max weight = 100
+            preference:
+              matchExpressions:
+                - key: cpu
+                  operator: In
+                  values:
+                    - high
     controllers:
       calibre:
         containers:
@@ -40,6 +40,9 @@ spec:
         type: nfs
     route:
       app:
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: *app
         hostnames:
           - "{{ .Release.Name }}.${ROOT_DOMAIN}"
         parentRefs:
@@ -50,6 +53,9 @@ spec:
               - identifier: app
                 port: &port 8080
       content-server:
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: *app
         hostnames:
           - calibre-content.${ROOT_DOMAIN}
         parentRefs:

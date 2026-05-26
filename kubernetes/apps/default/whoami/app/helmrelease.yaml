@@ -57,6 +57,9 @@ spec:
             port: *port
     route:
       app:
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: *app
         hostnames: ["{{ .Release.Name }}.${ROOT_DOMAIN}"]
         parentRefs:
           - name: envoy-internal

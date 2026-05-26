@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: slskd
+  name: &app slskd
 spec:
   chartRef:
     kind: OCIRepository
@@ -95,6 +95,9 @@ spec:
             protocol: TCP
     route:
       app:
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: *app
         hostnames:
           - "{{ .Release.Name }}.${ROOT_DOMAIN}"
         parentRefs:

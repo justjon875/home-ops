@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: listenarr
+  name: &app listenarr
 spec:
   chartRef:
     kind: OCIRepository
@@ -21,7 +21,7 @@ spec:
               TZ: Asia/Singapore
             image:
               repository: ghcr.io/therobbiedavis/listenarr
-              tag:  canary-0.2.40@sha256:8df01f5d9801ab2c8c97fa469f229786be0ef63b0c08cf7e49694833a4ef0a93 
+              tag: canary-0.2.40@sha256:8df01f5d9801ab2c8c97fa469f229786be0ef63b0c08cf7e49694833a4ef0a93
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: false
@@ -44,6 +44,9 @@ spec:
         type: nfs
     route:
       app:
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: *app
         hostnames:
           - "{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}"
         parentRefs:

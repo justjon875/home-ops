@@ -17,6 +17,9 @@ spec:
       enabled: true
     route:
       dashboard:
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: rook-ceph
         host:
           name: rook.${SHORT_ROOT_DOMAIN}
           path: /

@@ -68,11 +68,16 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
     route:
       app:
+        annotations:
+          gatus.home-operations.com/endpoint: |
+            group: utilities
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: *app
         hostnames:
-        - 'id.${SHORT_ROOT_DOMAIN}'
+          - "id.${SHORT_ROOT_DOMAIN}"
         parentRefs:
-        - name: envoy-internal
-          namespace: network
+          - name: envoy-internal
+            namespace: network
     persistence:
       data:
         existingClaim: "{{ .Release.Name }}"
@@ -92,4 +97,3 @@ spec:
         ports:
           http:
             port: 1411
-

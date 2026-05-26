@@ -120,10 +120,7 @@ spec:
       app:
         annotations:
           gethomepage.dev/enabled: "true"
-          gethomepage.dev/name: Garage
-          gethomepage.dev/description: Garage Webui
           gethomepage.dev/icon: *app
-          gethomepage.dev/group: "{{ .Release.Namespace }}"
           gatus.home-operations.com/endpoint: |-
             conditions: ["[STATUS] == 403"]
         hostnames:

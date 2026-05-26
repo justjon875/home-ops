@@ -11,6 +11,11 @@ spec:
   interval: 1h
   values:
     httpRoute:
+      annotations:
+        gatus.home-operations.com/endpoint: |
+          group: utilities
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/icon: *app
       enabled: true
       parentRefs:
         - name: envoy-internal

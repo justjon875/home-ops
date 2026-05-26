@@ -44,7 +44,7 @@ spec:
         advancedMounts:
           qbittorrent:
             app:
-            - path: /opt/qBittorrent/downloads
+              - path: /opt/qBittorrent/downloads
         enabled: true
         path: /media/qbittorrent/downloads
         server: ${NFS_HOST}
@@ -53,11 +53,14 @@ spec:
         type: emptyDir
     route:
       app:
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: *app
         hostnames:
-        - '{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}'
+          - "{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}"
         parentRefs:
-        - name: envoy-internal
-          namespace: network
+          - name: envoy-internal
+            namespace: network
         rules:
           - backendRefs:
               - identifier: app

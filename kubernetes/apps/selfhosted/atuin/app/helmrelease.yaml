@@ -55,10 +55,7 @@ spec:
       app:
         annotations:
           gethomepage.dev/enabled: "true"
-          gethomepage.dev/name: Atuin
-          gethomepage.dev/description: Atuin for shell
           gethomepage.dev/icon: *app
-          gethomepage.dev/group: "{{ .Release.Namespace }}"
           gatus.home-operations.com/endpoint: |
             group: selfhosted
         hostnames:

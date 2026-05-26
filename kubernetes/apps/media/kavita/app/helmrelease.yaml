@@ -16,7 +16,7 @@ spec:
     controllers:
       kavita:
         annotations:
-          reloader.stakater.com/auto: 'true'
+          reloader.stakater.com/auto: "true"
         containers:
           app:
             image:
@@ -35,7 +35,7 @@ spec:
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
-              capabilities: { drop: ['ALL'] }
+              capabilities: { drop: ["ALL"] }
     defaultPodOptions:
       securityContext:
         fsGroup: 1000
@@ -50,8 +50,11 @@ spec:
             port: 5000
     route:
       app:
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: *app
         hostnames:
-          - '{{ .Release.Name }}.${ROOT_DOMAIN}'
+          - "{{ .Release.Name }}.${ROOT_DOMAIN}"
         parentRefs:
           - name: envoy-internal
             namespace: network
