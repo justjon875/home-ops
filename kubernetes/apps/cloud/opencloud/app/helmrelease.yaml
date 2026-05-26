@@ -261,7 +261,7 @@ spec:
         annotations:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/group: Cloud
-          gethomepage.dev/icon: *app
+          gethomepage.dev/icon: open-cloud
         forceRename: *app
         hostnames:
           - opencloud.${ROOT_DOMAIN}
