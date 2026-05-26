@@ -54,11 +54,11 @@ spec:
     route:
       app:
         annotations:
-          dashboard.home/enabled: "true"
-          dashboard.home/name: Atuin
-          dashboard.home/description: Atuin for shell
-          dashboard.home/icon: *app
-          dashboard.home/group: "{{ .Release.Namespace }}"
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/name: Atuin
+          gethomepage.dev/description: Atuin for shell
+          gethomepage.dev/icon: *app
+          gethomepage.dev/group: "{{ .Release.Namespace }}"
           gatus.home-operations.com/endpoint: |
             group: selfhosted
         hostnames:
