@@ -43,6 +43,7 @@ spec:
         annotations:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/group: Media
+          gethomepage.dev/href: "https://{{ .Release.Name }}.${ROOT_DOMAIN}"
           gethomepage.dev/icon: *app
         hostnames:
           - "{{ .Release.Name }}.${ROOT_DOMAIN}"
@@ -56,6 +57,7 @@ spec:
       content-server:
         annotations:
           gethomepage.dev/enabled: "true"
+          gethomepage.dev/href: "https://calibre-content.${ROOT_DOMAIN}"
           gethomepage.dev/group: Media
           gethomepage.dev/icon: *app
         hostnames:

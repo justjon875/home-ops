@@ -19,10 +19,11 @@ spec:
       dashboard:
         annotations:
           gethomepage.dev/enabled: "true"
+          gethomepage.dev/href: "https://rook.${ROOT_DOMAIN}"
           gethomepage.dev/group: Utilities
           gethomepage.dev/icon: rook
         host:
-          name: rook.${SHORT_ROOT_DOMAIN}
+          name: rook.${ROOT_DOMAIN}
           path: /
           pathType: PathPrefix
         parentRefs:
