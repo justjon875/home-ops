@@ -53,6 +53,7 @@ spec:
           gatus.home-operations.com/endpoint: |
             group: utilities
           gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: Utilities
           gethomepage.dev/icon: *app
         hostnames:
           - "{{ .Release.Name }}.${ROOT_DOMAIN}"

@@ -120,6 +120,7 @@ spec:
       app:
         annotations:
           gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: Cloud
           gethomepage.dev/icon: *app
           gatus.home-operations.com/endpoint: |-
             conditions: ["[STATUS] == 403"]

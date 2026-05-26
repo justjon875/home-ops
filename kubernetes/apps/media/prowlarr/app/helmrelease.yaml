@@ -43,6 +43,7 @@ spec:
       app:
         annotations:
           gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: Media
           gethomepage.dev/icon: *app
           gatus.home-operations.com/endpoint: |
             interval: 30s

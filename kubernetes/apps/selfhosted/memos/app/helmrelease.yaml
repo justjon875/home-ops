@@ -28,6 +28,7 @@ spec:
           gatus.home-operations.com/endpoint: |
             group: selfhosted
           gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: Selfhosted
           gethomepage.dev/icon: *app
         hostnames:
           - "{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}"

@@ -48,6 +48,7 @@ spec:
           gatus.home-operations.com/endpoint: |
             group: selfhosted
           gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: Selfhosted
           gethomepage.dev/icon: *app
         hostnames:
           - "search.${ROOT_DOMAIN}"

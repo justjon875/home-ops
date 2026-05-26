@@ -260,6 +260,7 @@ spec:
       opencloud:
         annotations:
           gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: Cloud
           gethomepage.dev/icon: *app
         forceRename: *app
         hostnames:
