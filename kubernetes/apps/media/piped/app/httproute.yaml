@@ -6,7 +6,9 @@ metadata:
   name: piped-frontend
   annotations:
     gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: Utilities
     gethomepage.dev/icon: piped
+    gethomepage.dev/name: piped
 spec:
   hostnames: ["piped.${SHORT_ROOT_DOMAIN}"]
   parentRefs:

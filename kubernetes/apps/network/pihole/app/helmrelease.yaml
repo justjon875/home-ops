@@ -81,10 +81,11 @@ spec:
     route:
       app:
         annotations:
-          gethomepage.dev/enabled: "true"
-          gethomepage.dev/icon: *app
           gatus.home-operations.com/endpoint: |-
             conditions: ["[STATUS] == 403"]
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: Utilities
+          gethomepage.dev/icon: *app
         forceRename: "{{ .Release.Name }}"
         hostnames:
           - "pihole.${ROOT_DOMAIN}"
