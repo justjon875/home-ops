@@ -76,13 +76,6 @@
           username: { { HOMEPAGE_VAR_OMV_USERNAME } }
           password: { { HOMEPAGE_VAR_OMV_PASSWORD } }
           method: services.getStatus # required
-- Observability:
-    - Gatus:
-        href: https://gatus.${ROOT_DOMAIN}
-        icon: sh-gatus.svg
-        widget:
-          type: gatus
-          url: https://gatus.${ROOT_DOMAIN}
 - Lithium:
     - Dozzle lithium:
         href: https://dozzle.lithium.${OLD_DOMAIN}
