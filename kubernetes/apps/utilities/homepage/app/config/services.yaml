@@ -36,8 +36,8 @@
         widget:
           type: opnsense
           url: https://oxygen.${OLD_DOMAIN}
-          username: {{HOMEPAGE_VAR_OPNSENSE_USERNAME}}
-          password: {{HOMEPAGE_VAR_OPNSENSE_PASSWORD}}
+          username: { { HOMEPAGE_VAR_OPNSENSE_USERNAME } }
+          password: { { HOMEPAGE_VAR_OPNSENSE_PASSWORD } }
 - Virtualisation:
     - Hydrogen:
         href: https://hydrogen.${ROOT_DOMAIN}
@@ -45,8 +45,8 @@
         widget:
           type: proxmox
           url: https://hydrogen.${ROOT_DOMAIN}
-          username: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
-          password: {{HOMEPAGE_VAR_PROXMOX_HYDROGEN}}
+          username: { { HOMEPAGE_VAR_PROXMOX_USERNAME } }
+          password: { { HOMEPAGE_VAR_PROXMOX_HYDROGEN } }
           node: hydrogen
     - Iron:
         href: https://iron.${ROOT_DOMAIN}
@@ -54,8 +54,8 @@
         widget:
           type: proxmox
           url: https://iron.${ROOT_DOMAIN}
-          username: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
-          password: {{HOMEPAGE_VAR_PROXMOX_IRON}}
+          username: { { HOMEPAGE_VAR_PROXMOX_USERNAME } }
+          password: { { HOMEPAGE_VAR_PROXMOX_IRON } }
           node: iron
     - Neon:
         href: https://neon.${ROOT_DOMAIN}
@@ -63,8 +63,8 @@
         widget:
           type: proxmox
           url: https://neon.${ROOT_DOMAIN}
-          username: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
-          password: {{HOMEPAGE_VAR_PROXMOX_NEON}}
+          username: { { HOMEPAGE_VAR_PROXMOX_USERNAME } }
+          password: { { HOMEPAGE_VAR_PROXMOX_NEON } }
           node: neon
 - Storage:
     - Cobalt:
@@ -73,8 +73,8 @@
         widget:
           type: openmediavault
           url: https://cobalt.${ROOT_DOMAIN}
-          username: {{HOMEPAGE_VAR_OMV_USERNAME}}
-          password: {{HOMEPAGE_VAR_OMV_PASSWORD}}
+          username: { { HOMEPAGE_VAR_OMV_USERNAME } }
+          password: { { HOMEPAGE_VAR_OMV_PASSWORD } }
           method: services.getStatus # required
 - Observability:
     - Gatus:
@@ -103,174 +103,10 @@
           type: pihole
           url: https://pihole.lithium.${OLD_DOMAIN}
           version: 6 # required if running v6 or higher, defaults to 5
-          key: {{HOMEPAGE_VAR_PIHOLE_PASSWORD}}
+          key: { { HOMEPAGE_VAR_PIHOLE_PASSWORD } }
     - Unifi:
         href: https://unifi.lithium.${OLD_DOMAIN}
         icon: sh-ubiquiti-unifi.svg
     - Whoogle lithium:
         href: https://whoogle.lithium.${OLD_DOMAIN}
         icon: sh-whoogle.png
-- Cloud:
-    - Immich:
-        href: https://immich.${ROOT_DOMAIN}
-        icon: sh-immich.svg
-        namespace: cloud
-        app: immich
-        widget:
-          type: immich
-          url: https://immich.${ROOT_DOMAIN}
-          key: {{HOMEPAGE_VAR_IMMICH_KEY}}
-          version: 2
-    - Garage:
-        href: https://garage.${ROOT_DOMAIN}
-        icon: sh-garage.svg
-        namespace: cloud
-    - OpenCloud:
-        href: https://opencloud.${ROOT_DOMAIN}
-        icon: sh-opencloud.svg
-        namespace: cloud
-        app: opencloud
-- Media:
-    - Calibre:
-        href: https://calibre.${ROOT_DOMAIN}
-        icon: sh-calibre.svg
-    - Invidious:
-        href: https://invidious.${ROOT_DOMAIN}
-        icon: sh-invidious.svg
-    - Jellyfin:
-        href: https://jellyfin.${ROOT_DOMAIN}
-        icon: sh-jellyfin.svg
-        widget:
-          type: jellyfin
-          url: https://jellyfin.${ROOT_DOMAIN}
-          key: {{HOMEPAGE_VAR_JELLYFIN_KEY}}
-    - Navidrome:
-        href: https://navidrome.${ROOT_DOMAIN}
-        icon: sh-navidrome.svg
-        widget:
-          type: navidrome
-          url: https://navidrome.${ROOT_DOMAIN}
-          user: ${USERNAME}
-          salt: {{HOMEPAGE_VAR_NAVIDROME_SALT}}
-          token: {{HOMEPAGE_VAR_NAVIDROME_TOKEN}}
-    - Piped:
-        href: https://piped.${ROOT_DOMAIN}
-        icon: sh-piped.svg
-- Media Management:
-    - Seerr:
-        href: https://seerr.${ROOT_DOMAIN}
-        icon: sh-seerr.svg
-        widget:
-          type: seerr
-          url: https://seerr.${ROOT_DOMAIN}
-          key: {{HOMEPAGE_VAR_SEERR_KEY}}
-    - Metube:
-        href: https://metube.${ROOT_DOMAIN}
-        icon: sh-metube.svg
-    - Prowlarr:
-        href: https://prowlarr.${ROOT_DOMAIN}
-        icon: sh-prowlarr.svg
-        widget:
-          type: prowlarr
-          url: https://prowlarr.${ROOT_DOMAIN}
-          key: {{HOMEPAGE_VAR_PROWLARR_API_KEY}}
-    - Radarr:
-        href: https://radarr.${ROOT_DOMAIN}
-        icon: sh-radarr.svg
-        widget:
-          type: radarr
-          url: https://radarr.${ROOT_DOMAIN}
-          key: "{{HOMEPAGE_VAR_RADARR_API_KEY}}"
-    - SABnzbd:
-        href: https://sabnzbd.${ROOT_DOMAIN}
-        icon: sh-sabnzbd.svg
-        widget:
-          type: sabnzbd
-          url: https://sabnzbd.${ROOT_DOMAIN}
-          key: {{HOMEPAGE_VAR_SABNZBD__API_KEY}}
-    - Sonarr:
-        href: https://sonarr.${ROOT_DOMAIN}
-        icon: sh-sonarr.svg
-        widget:
-          type: sonarr
-          url: https://sonarr.${ROOT_DOMAIN}
-          key: "{{HOMEPAGE_VAR_SONARR_API_KEY}}"
-- Selfhosted:
-    - BentoPDF:
-        href: https://bentopdf.${ROOT_DOMAIN}
-        icon: sh-bentopdf.svg
-    - FileBrowser:
-        href: https://filebrowser.${ROOT_DOMAIN}
-        icon: sh-file-browser.svg
-    - FileBrowserQuantum:
-        href: https://fbp.${ROOT_DOMAIN}
-        icon: sh-filebrowser-quatum.svg
-    - Linkwarden:
-        href: https://linkwarden.${ROOT_DOMAIN}
-        icon: sh-linkwarden.svg
-        widget:
-          type: linkwarden
-          url: https://linkwarden.${ROOT_DOMAIN}
-          key: ${SECRET_LINKWARDEN}
-    - Memos:
-        href: https://memos.${ROOT_DOMAIN}
-        icon: memos.png
-    - OpenSpeedTest:
-        href: https://openspeedtest.${ROOT_DOMAIN}
-        icon: sh-openspeedtest.svg
-    - Paperless-ngx:
-        href: https://paperless-ngx.${ROOT_DOMAIN}
-        icon: sh-paperless-ngx.svg
-    - PairDrop:
-        href: https://pairdrop.${ROOT_DOMAIN}
-        icon: sh-pairdrop.svg
-    - Redlib:
-        href: https://redlib.${ROOT_DOMAIN}
-        icon: sh-reddit.svg
-    - SearXNG:
-        href: https://search.${ROOT_DOMAIN}
-        icon: sh-searxng.svg
-    - Vaultwarden:
-        href: https://vaultwarden.${ROOT_DOMAIN}
-        icon: sh-bitwarden.svg
-    - Whoogle:
-        href: https://whoogle.${ROOT_DOMAIN}
-        icon: sh-whoogle.png
-- Utilities:
-    - Dozzle:
-        href: https://dozzle.${ROOT_DOMAIN}
-        icon: sh-dozzle.svg
-    - Element Web:
-        href: https://element.${ROOT_DOMAIN}
-        icon: sh-element.svg
-    - Frigate:
-        href: https://frigate.${ROOT_DOMAIN}
-        icon: sh-frigate.svg
-    - Forgejo:
-        href: https://git.${ROOT_DOMAIN}
-        icon: sh-forgejo.svg
-    - Goldilocks:
-        href: https://goldilocks.${ROOT_DOMAIN}
-        icon: https://raw.githubusercontent.com/FairwindsOps/goldilocks/master/img/goldilocks.svg
-    - Grafana:
-        href: https://grafana.${ROOT_DOMAIN}
-        icon: sh-grafana.svg
-    - Pocket-ID:
-        href: https://id.${ROOT_DOMAIN}
-        icon: sh-pocket-id.svg
-    - Kite:
-        href: https://kite.${ROOT_DOMAIN}
-        icon: sh-kite-kubernetes.svg
-    - Victoria Logs:
-        href: https://victoria-logs.${ROOT_DOMAIN}
-        icon: sh-victoriametrics.svg
-    - Zerobyte:
-        href: https://zerobyte.${ROOT_DOMAIN}
-        icon: sh-zerobyte.svg
-- VolsyncSystem:
-    - Kopia:
-        href: https://kopia.${ROOT_DOMAIN}
-        icon: sh-kopia.svg
-        widget:
-          type: kopia
-          url: https://kopia.${ROOT_DOMAIN}
