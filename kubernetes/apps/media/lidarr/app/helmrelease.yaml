@@ -43,14 +43,14 @@ spec:
     persistence:
       config:
         existingClaim: "{{ .Release.Name }}"
+      downloads:
+        enabled: true
+        path: /media/sabnzbd/downloads
+        server: ${NFS_HOST}
+        type: nfs
       music:
         enabled: true
         path: ${NFS_PATH}/navidrome/media
-        server: ${NFS_HOST}
-        type: nfs
-      sabnzbd:
-        enabled: true
-        path: /media/sabnzbd/downloads
         server: ${NFS_HOST}
         type: nfs
     route:

@@ -70,44 +70,6 @@ spec:
               storageClass: ceph-block
               accessMode: ReadWriteOnce
               size: 5Gi
-    defaultPodOptions:
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
-        fsGroupChangePolicy: OnRootMismatch
-    service:
-      app:
-        forceRename: "{{ .Release.Name }}"
-        primary: true
-        ports:
-          http:
-            port: *port
-      soulseek:
-        type: LoadBalancer
-        annotations:
-          lbipam.cilium.io/ips: 172.16.0.127
-        externalTrafficPolicy: Local
-        ports:
-          soulseek-tcp:
-            port: *soulseekPort
-            protocol: TCP
-    route:
-      app:
-        annotations:
-          gethomepage.dev/enabled: "true"
-          gethomepage.dev/group: Media
-          gethomepage.dev/icon: *app
-        hostnames:
-          - "{{ .Release.Name }}.${ROOT_DOMAIN}"
-        parentRefs:
-          - name: envoy-internal
-            namespace: network
-        rules:
-          - backendRefs:
-              - identifier: app
-                port: *port
     configMaps:
       config:
         data:
@@ -125,6 +87,13 @@ spec:
                 - \.ini$
                 - Thumbs.db$
                 - \.DS_Store$
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
     persistence:
       config-file:
         type: configMap
@@ -133,10 +102,41 @@ spec:
           - path: /config/slskd.yml
             subPath: slskd.yml
       media:
-        type: nfs
-        server: ${NFS_HOST}
-        path: /media/downloads
         globalMounts:
           - path: /media/downloads
+        path: /media/downloads
+        server: ${NFS_HOST}
+        type: nfs
       tmp:
         type: emptyDir
+    route:
+      app:
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: Media
+          gethomepage.dev/icon: *app
+        hostnames:
+          - "{{ .Release.Name }}.${ROOT_DOMAIN}"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: *port
+    service:
+      app:
+        forceRename: "{{ .Release.Name }}"
+        primary: true
+        ports:
+          http:
+            port: *port
+      soulseek:
+        type: LoadBalancer
+        annotations:
+          lbipam.cilium.io/ips: 172.16.0.127
+        externalTrafficPolicy: Local
+        ports:
+          soulseek-tcp:
+            port: *soulseekPort
+            protocol: TCP
