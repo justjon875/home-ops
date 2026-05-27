@@ -19,7 +19,6 @@ spec:
               LIDARR__APP__THEME: dark
               LIDARR__LOG__DBENABLED: "False"
               LIDARR__LOG__LEVEL: info
-              LIDARR__UPDATE__BRANCH: develop
               PGID: "1000"
               PUID: "1000"
               TZ: ${TZ}
@@ -44,7 +43,8 @@ spec:
       config:
         existingClaim: "{{ .Release.Name }}"
       downloads:
-        enabled: true
+        globalMounts:
+          - path: /downloads
         path: /media/sabnzbd/downloads
         server: ${NFS_HOST}
         type: nfs
@@ -53,6 +53,12 @@ spec:
         path: ${NFS_PATH}/navidrome/media
         server: ${NFS_HOST}
         type: nfs
+      logs:
+        type: emptyDir
+        globalMounts:
+          - path: /config/logs
+      tmp:
+        type: emptyDir
     route:
       app:
         annotations:
