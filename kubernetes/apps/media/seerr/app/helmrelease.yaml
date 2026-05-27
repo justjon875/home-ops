@@ -84,6 +84,9 @@ spec:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/group: Media
           gethomepage.dev/icon: *app
+          gethomepage.dev/widget.type: seerr
+          gethomepage.dev/widget.url: https://seerr.${ROOT_DOMAIN}
+          gethomepage.dev/widget.key: "{{ `{{HOMEPAGE_VAR_SEERR_KEY}}` }}"
         hostnames:
           - "{{ .Release.Name }}.${ROOT_DOMAIN}"
         parentRefs:

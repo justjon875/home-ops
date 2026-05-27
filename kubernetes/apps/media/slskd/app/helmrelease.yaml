@@ -70,6 +70,23 @@ spec:
               storageClass: ceph-block
               accessMode: ReadWriteOnce
               size: 5Gi
+    configMaps:
+      config:
+        data:
+          slskd.yml: |-
+            directories:
+              downloads: /media/slskd/complete
+              incomplete: /media/slskd/incomplete
+            permissions:
+              file:
+                mode: 750
+            shares:
+              directories:
+                - /media/slskd/shared
+              filters:
+                - \.ini$
+                - Thumbs.db$
+                - \.DS_Store$
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
@@ -77,6 +94,36 @@ spec:
         runAsGroup: 1000
         fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
+    persistence:
+      config-file:
+        type: configMap
+        identifier: config
+        globalMounts:
+          - path: /config/slskd.yml
+            subPath: slskd.yml
+      media:
+        globalMounts:
+          - path: /media
+        path: /media/downloads
+        server: ${NFS_HOST}
+        type: nfs
+      tmp:
+        type: emptyDir
+    route:
+      app:
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: Media
+          gethomepage.dev/icon: *app
+        hostnames:
+          - "{{ .Release.Name }}.${ROOT_DOMAIN}"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: *port
     service:
       app:
         forceRename: "{{ .Release.Name }}"
@@ -93,50 +140,3 @@ spec:
           soulseek-tcp:
             port: *soulseekPort
             protocol: TCP
-    route:
-      app:
-        annotations:
-          gethomepage.dev/enabled: "true"
-          gethomepage.dev/group: Media
-          gethomepage.dev/icon: *app
-        hostnames:
-          - "{{ .Release.Name }}.${ROOT_DOMAIN}"
-        parentRefs:
-          - name: envoy-internal
-            namespace: network
-        rules:
-          - backendRefs:
-              - identifier: app
-                port: *port
-    configMaps:
-      config:
-        data:
-          slskd.yml: |-
-            directories:
-              downloads: /media/downloads/soulseek/complete
-              incomplete: /media/downloads/soulseek/incomplete
-            permissions:
-              file:
-                mode: 750
-            shares:
-              directories:
-                - /media/downloads/soulseek/shared
-              filters:
-                - \.ini$
-                - Thumbs.db$
-                - \.DS_Store$
-    persistence:
-      config-file:
-        type: configMap
-        identifier: config
-        globalMounts:
-          - path: /config/slskd.yml
-            subPath: slskd.yml
-      media:
-        type: nfs
-        server: ${NFS_HOST}
-        path: /media/downloads
-        globalMounts:
-          - path: /media/downloads
-      tmp:
-        type: emptyDir
