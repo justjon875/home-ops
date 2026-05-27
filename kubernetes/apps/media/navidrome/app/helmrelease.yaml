@@ -40,6 +40,11 @@ spec:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/group: Media
           gethomepage.dev/icon: *app
+          gethomepage.dev/widget.type: navidrome
+          gethomepage.dev/widget.url: https://navidrome.${ROOT_DOMAIN}
+          gethomepage.dev/widget.user: ${USERNAME}
+          gethomepage.dev/widget.salt: "{{ `{{HOMEPAGE_VAR_NAVIDROME_SALT}}` }}"
+          gethomepage.dev/widget.token: "{{ `{{HOMEPAGE_VAR_NAVIDROME_TOKEN}}` }}"
         hostnames:
           - "{{ .Release.Name }}.${ROOT_DOMAIN}"
         parentRefs:

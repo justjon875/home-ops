@@ -42,13 +42,16 @@ spec:
     route:
       app:
         annotations:
-          gethomepage.dev/enabled: "true"
-          gethomepage.dev/group: Media
-          gethomepage.dev/icon: *app
           gatus.home-operations.com/endpoint: |
             interval: 30s
             alerts:
               - type: matrix
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: Media
+          gethomepage.dev/icon: *app
+          gethomepage.dev/widget.type: *app
+          gethomepage.dev/widget.url: https://prowlarr.${ROOT_DOMAIN}
+          gethomepage.dev/widget.key: "{{ `{{HOMEPAGE_VAR_PROWLARR_API_KEY}}` }}"
         hostnames:
           - "{{ .Release.Name }}.${ROOT_DOMAIN}"
         parentRefs:
