@@ -91,7 +91,7 @@
         icon: sh-dockhand.svg
     - PiHole:
         href: https://pihole.lithium.${OLD_DOMAIN}
-        icon: sh-pihole.svg
+        icon: sh-pi-hole.svg
         widget:
           type: pihole
           url: https://pihole.lithium.${OLD_DOMAIN}

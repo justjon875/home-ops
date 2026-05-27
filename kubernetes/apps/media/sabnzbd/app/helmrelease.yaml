@@ -61,6 +61,9 @@ spec:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/group: Media
           gethomepage.dev/icon: *app
+          gethomepage.dev/widget.type: *app
+          gethomepage.dev/widget.url: https://sabnzbd.${ROOT_DOMAIN}
+          gethomepage.dev/widget.key: "{{ `{{HOMEPAGE_VAR_SABNZBD__API_KEY}}` }}"
         hostnames:
           - "{{ .Release.Name }}.${ROOT_DOMAIN}"
         parentRefs:

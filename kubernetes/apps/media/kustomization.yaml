@@ -19,7 +19,7 @@ resources:
   - ./jellyfin/ks.yaml
   - ./seerr/ks.yaml
   - ./kavita/ks.yaml
-  # - ./listenarr/ks.yaml
+  - ./lidarr/ks.yaml
   - ./metube/ks.yaml
   - ./navidrome/ks.yaml
   - ./piped/ks.yaml
