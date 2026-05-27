@@ -87,7 +87,7 @@ spec:
           gethomepage.dev/icon: *app
           gethomepage.dev/widget.type: immich
           gethomepage.dev/widget.url: https://immich.${ROOT_DOMAIN}
-          gethomepage.dev/widget.key: "{{ HOMEPAGE_VAR_IMMICH_KEY }}"
+          gethomepage.dev/widget.key: "{{ `{{HOMEPAGE_VAR_IMMICH_KEY}}` }}"
           gethomepage.dev/widget.version: "2"
         hostnames:
           - "{{ .Release.Name }}.${ROOT_DOMAIN}"
