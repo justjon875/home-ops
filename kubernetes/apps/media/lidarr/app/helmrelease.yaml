@@ -76,7 +76,7 @@ spec:
         type: nfs
       music:
         enabled: true
-        path: ${NFS_PATH}/navidrome/media
+        path: /media/music
         server: ${NFS_HOST}
         type: nfs
       logs:
