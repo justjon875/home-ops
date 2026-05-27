@@ -26,11 +26,8 @@ spec:
               SLSKD_APP_DIR: /config
               SLSKD_HTTP_PORT: &port 80
               SLSKD_NO_AUTH: true
-              SLSKD_DOWNLOADS_DIR: /media/slskd/complete
-              SLSKD_INCOMPLETE_DIR: /media/slskd/incomplete
               SLSKD_NO_HTTPS: true
               SLSKD_NO_VERSION_CHECK: true
-              SLSKD_SHARED_DIR: /media/slskd/shared
               SLSKD_SLSK_LISTEN_PORT: &soulseekPort 50429
             envFrom:
               - secretRef:
@@ -78,14 +75,14 @@ spec:
         data:
           slskd.yml: |-
             directories:
-              downloads: /media/downloads/soulseek/complete
-              incomplete: /media/downloads/soulseek/incomplete
+              downloads: /media/slskd/complete
+              incomplete: /media/slskd/incomplete
             permissions:
               file:
                 mode: 750
             shares:
               directories:
-                - /media/downloads/soulseek/shared
+                - /media/slskd/shared
               filters:
                 - \.ini$
                 - Thumbs.db$
