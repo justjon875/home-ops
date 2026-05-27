@@ -11,6 +11,14 @@ spec:
       lidarr:
         annotations:
           reloader.stakater.com/auto: "true"
+        initContainers:
+          01-init-db:
+            image:
+              repository: ghcr.io/home-operations/postgres-init
+              tag: "18"
+            envFrom:
+              - secretRef:
+                  name: "{{ .Release.Name }}-initdb-secret"
         containers:
           app:
             env:
@@ -19,6 +27,23 @@ spec:
               LIDARR__APP__THEME: dark
               LIDARR__LOG__DBENABLED: "False"
               LIDARR__LOG__LEVEL: info
+              LIDARR__POSTGRES__HOST:
+                valueFrom:
+                  secretKeyRef:
+                    name: "{{ .Release.Name }}-pguser-secret"
+                    key: host
+              LIDARR__POSTGRES__PORT: 5432
+              LIDARR__POSTGRES__USER:
+                valueFrom:
+                  secretKeyRef:
+                    name: "{{ .Release.Name }}-pguser-secret"
+                    key: user
+              LIDARR__POSTGRES__PASSWORD:
+                valueFrom:
+                  secretKeyRef:
+                    name: "{{ .Release.Name }}-pguser-secret"
+                    key: password
+              LIDARR__POSTGRES__MAINDB: *app
               PGID: "1000"
               PUID: "1000"
               TZ: ${TZ}
