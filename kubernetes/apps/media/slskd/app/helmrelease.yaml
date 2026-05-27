@@ -26,8 +26,11 @@ spec:
               SLSKD_APP_DIR: /config
               SLSKD_HTTP_PORT: &port 80
               SLSKD_NO_AUTH: true
+              SLSKD_DOWNLOADS_DIR: /media/slskd/complete
+              SLSKD_INCOMPLETE_DIR: /media/slskd/incomplete
               SLSKD_NO_HTTPS: true
               SLSKD_NO_VERSION_CHECK: true
+              SLSKD_SHARED_DIR: /media/downloads/slskd/shared
               SLSKD_SLSK_LISTEN_PORT: &soulseekPort 50429
             envFrom:
               - secretRef:
@@ -103,7 +106,7 @@ spec:
             subPath: slskd.yml
       media:
         globalMounts:
-          - path: /media/downloads
+          - path: /media
         path: /media/downloads
         server: ${NFS_HOST}
         type: nfs

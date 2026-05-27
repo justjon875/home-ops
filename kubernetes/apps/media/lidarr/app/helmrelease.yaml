@@ -70,8 +70,8 @@ spec:
         existingClaim: "{{ .Release.Name }}"
       downloads:
         globalMounts:
-          - path: /downloads
-        path: /media/sabnzbd/downloads
+          - path: /media
+        path: /media/downloads
         server: ${NFS_HOST}
         type: nfs
       music:
