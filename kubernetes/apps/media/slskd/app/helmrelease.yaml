@@ -30,7 +30,7 @@ spec:
               SLSKD_INCOMPLETE_DIR: /media/slskd/incomplete
               SLSKD_NO_HTTPS: true
               SLSKD_NO_VERSION_CHECK: true
-              SLSKD_SHARED_DIR: /media/downloads/slskd/shared
+              SLSKD_SHARED_DIR: /media/slskd/shared
               SLSKD_SLSK_LISTEN_PORT: &soulseekPort 50429
             envFrom:
               - secretRef:
