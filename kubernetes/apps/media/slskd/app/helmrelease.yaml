@@ -15,7 +15,7 @@ spec:
         type: statefulset
         annotations:
           reloader.stakater.com/auto: "true"
-        containers:
+        initContainers:
           # Configure the gluetun sidecar
           gluetun:
             image:
@@ -35,9 +35,11 @@ spec:
               - secretRef:
                   name: "{{ .Release.Name }}-secret"
             securityContext:
-              capabilities:
-                add:
-                  - NET_ADMIN
+              capabilities: { add: ["NET_ADMIN", "NET_RAW"] }
+              readOnlyRootFilesystem: false
+              runAsNonRoot: false
+              runAsUser: 0
+        containers:
           app:
             image:
               repository: ghcr.io/slskd/slskd
