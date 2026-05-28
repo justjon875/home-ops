@@ -16,6 +16,28 @@ spec:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
+          # Configure the gluetun sidecar
+          gluetun:
+            image:
+              repository: ghcr.io/qdm12/gluetun
+              tag: v3.41.0@sha256:6b54856716d0de56e5bb00a77029b0adea57284cf5a466f23aad5979257d3045
+            env:
+              FIREWALL_DEBUG: "on"
+              FIREWALL_INPUT_PORTS: "8080"
+              SERVER_COUNTRIES: Myanmar
+              VPN_INTERFACE: wg0
+              VPN_SERVICE_PROVIDER: protonvpn
+              VPN_TYPE: wireguard
+              VPN_PORT_FORWARDING: "on"
+              VPN_PORT_FORWARDING_UP_COMMAND: >-
+                /bin/sh -c 'wget -O- --retry-connrefused --method=PATCH application/json' --body-data='{"soulseek": {"listenPort": PORTS }}' -O - http://127.0.0.1/api/v0/options'
+            envFrom:
+              - secretRef:
+                  name: redlib-secret
+            securityContext:
+              capabilities:
+                add:
+                  - NET_ADMIN
           app:
             image:
               repository: ghcr.io/slskd/slskd
@@ -24,11 +46,11 @@ spec:
               DOTNET_BUNDLE_EXTRACT_BASE_DIR: /tmp/.net
               TZ: ${TIMEZONE}
               SLSKD_APP_DIR: /config
+              SLSKD_REMOTE_CONFIGURATION: true
               SLSKD_HTTP_PORT: &port 80
               SLSKD_NO_AUTH: true
               SLSKD_NO_HTTPS: true
               SLSKD_NO_VERSION_CHECK: true
-              SLSKD_SLSK_LISTEN_PORT: &soulseekPort 50429
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}-secret"
@@ -131,12 +153,3 @@ spec:
         ports:
           http:
             port: *port
-      soulseek:
-        type: LoadBalancer
-        annotations:
-          lbipam.cilium.io/ips: 172.16.0.127
-        externalTrafficPolicy: Local
-        ports:
-          soulseek-tcp:
-            port: *soulseekPort
-            protocol: TCP
