@@ -22,7 +22,7 @@ spec:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/href: "https://{{ .Release.Name }}.${ROOT_DOMAIN}"
           gethomepage.dev/group: Observability
-          gethomepage.dev/icon: sh-victoria-metrics
+          gethomepage.dev/icon: victorialogs
         enabled: true
         hostnames:
           - "{{ .Release.Name }}.${ROOT_DOMAIN}"
