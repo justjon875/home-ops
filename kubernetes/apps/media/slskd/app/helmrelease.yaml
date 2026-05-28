@@ -33,7 +33,7 @@ spec:
                 /bin/sh -c 'wget -O- --retry-connrefused --method=PATCH application/json' --body-data='{"soulseek": {"listenPort": PORTS }}' -O - http://127.0.0.1/api/v0/options'
             envFrom:
               - secretRef:
-                  name: redlib-secret
+                  name: "{{ .Release.Name }}-secret"
             securityContext:
               capabilities:
                 add:
