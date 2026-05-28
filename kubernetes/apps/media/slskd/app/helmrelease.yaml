@@ -24,7 +24,7 @@ spec:
             env:
               FIREWALL_DEBUG: "on"
               FIREWALL_INPUT_PORTS: "80"
-              SERVER_COUNTRIES: Netherlands
+              SERVER_COUNTRIES: Myanmar
               VPN_INTERFACE: wg0
               VPN_SERVICE_PROVIDER: protonvpn
               VPN_TYPE: wireguard
