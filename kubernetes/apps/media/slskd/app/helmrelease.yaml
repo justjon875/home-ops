@@ -32,6 +32,7 @@ spec:
             env:
               FIREWALL_DEBUG: "on"
               FIREWALL_INPUT_PORTS: "80"
+              FIREWALL_OUTBOUND_SUBNETS: 10.244.0.0/16
               VPN_INTERFACE: wg0
               VPN_SERVICE_PROVIDER: protonvpn
               VPN_TYPE: wireguard
