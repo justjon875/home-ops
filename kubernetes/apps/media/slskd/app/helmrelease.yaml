@@ -159,7 +159,7 @@ spec:
         type: configMap
         name: slskd-coredns
         advancedMounts:
-          qbittorrent:
+          slskd:
             coredns:
               - path: /etc/coredns/Corefile
                 subPath: Corefile
