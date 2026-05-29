@@ -7,8 +7,8 @@ resources:
   - ./helmrelease.yaml
   - ./ocirepository.yaml
 configMapGenerator:
-  - name: slskd-dnsdist
+  - name: slskd-coredns
     files:
-      - ./config/dnsdist.conf
+      - ./resources/Corefile
 generatorOptions:
   disableNameSuffixHash: true
