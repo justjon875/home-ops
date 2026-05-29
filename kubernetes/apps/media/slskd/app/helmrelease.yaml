@@ -17,34 +17,12 @@ spec:
           reloader.stakater.com/auto: "true"
           # Configure the gluetun sidecar
         containers:
-          coredns:
-            image:
-              repository: coredns/coredns
-              tag: 1.14.3@sha256:b21d26b915e10acb5bc78715c1e8b6047ab2675389b2bcc18b3a6499d90e74c0
-            args: ["-conf", "/etc/coredns/Corefile"]
-            restartPolicy: Always
-            resources:
-              requests:
-                cpu: 5m
-                memory: 24Mi
-              limits:
-                memory: 48Mi
-            securityContext:
-              runAsUser: 65534
-              runAsGroup: 65534
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
           gluetun:
-            dependsOn:
-              - coredns
             image:
               repository: ghcr.io/qdm12/gluetun
               tag: latest@sha256:10b4895fde4499c2d1d9fbd8e681d040ede0efe8c6cfe5d0c51daf0461836ee8
             env:
-              DNS_ADDRESS: "127.0.0.2"
-              FIREWALL_DEBUG: "on"
               FIREWALL_INPUT_PORTS: "80"
-              FIREWALL_OUTBOUND_SUBNETS: 10.244.0.0/16,127.0.0.0/8
               LOG_LEVEL: debug
               VPN_INTERFACE: wg0
               VPN_SERVICE_PROVIDER: protonvpn
@@ -156,14 +134,6 @@ spec:
         globalMounts:
           - path: /config/slskd.yml
             subPath: slskd.yml
-      coredns:
-        type: configMap
-        name: slskd-coredns
-        advancedMounts:
-          slskd:
-            coredns:
-              - path: /etc/coredns/Corefile
-                subPath: Corefile
       media:
         globalMounts:
           - path: /media
