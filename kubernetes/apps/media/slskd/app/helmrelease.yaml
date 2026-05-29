@@ -16,7 +16,7 @@ spec:
         annotations:
           reloader.stakater.com/auto: "true"
           # Configure the gluetun sidecar
-        initContainers:
+        containers:
           dnsdist:
             image:
               repository: docker.io/powerdns/dnsdist-19
@@ -48,7 +48,6 @@ spec:
               readOnlyRootFilesystem: false
               runAsNonRoot: false
               runAsUser: 0
-        containers:
           app:
             image:
               repository: ghcr.io/slskd/slskd
