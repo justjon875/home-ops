@@ -26,7 +26,7 @@ spec:
           - path: /opt/explo/config
       music:
         enabled: true
-        path: ${NFS_PATH}/navidrome/media
+        path: /media/downloads
         server: ${NFS_HOST}
         type: nfs
     route:
