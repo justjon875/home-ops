@@ -22,6 +22,7 @@ spec:
               repository: ghcr.io/qdm12/gluetun
               tag: v3.41.1@sha256:1a5bf4b4820a879cdf8d93d7ef0d2d963af56670c9ebff8981860b6804ebc8ab
             env:
+              DOT: "off"
               DNS_ADDRESS: "172.16.0.53"
               FIREWALL_DEBUG: "on"
               FIREWALL_INPUT_PORTS: "80"
