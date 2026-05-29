@@ -33,7 +33,7 @@ spec:
               VPN_PORT_FORWARDING: "on"
               VPN_PORT_FORWARDING_PROVIDER: protonvpn
               VPN_PORT_FORWARDING_UP_COMMAND: >-
-                /bin/sh -c "wget -O- --retry-connrefused --method=PATCH --header='Content-Type: application/json' --body-data='{\"soulseek\": {\"listenPort\": {{"{{"}}PORT{{"}}"}}}"}}' http://127.0.0.1/api/v0/options"
+                /bin/sh -c 'wget -O- --retry-connrefused --method=PATCH --header="Content-Type: application/json" --body-data="{\"soulseek\": {\"listenPort\": {{"{{"}}PORT{{"}}"}}}"}}' http://127.0.0.1/api/v0/options'
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}-secret"
