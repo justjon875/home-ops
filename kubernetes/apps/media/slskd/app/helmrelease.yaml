@@ -15,8 +15,8 @@ spec:
         type: statefulset
         annotations:
           reloader.stakater.com/auto: "true"
-        initContainers:
           # Configure the gluetun sidecar
+        containers:
           gluetun:
             image:
               repository: ghcr.io/qdm12/gluetun
@@ -40,7 +40,6 @@ spec:
               readOnlyRootFilesystem: false
               runAsNonRoot: false
               runAsUser: 0
-        containers:
           app:
             image:
               repository: ghcr.io/slskd/slskd
