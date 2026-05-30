@@ -15,31 +15,41 @@ spec:
         type: statefulset
         annotations:
           reloader.stakater.com/auto: "true"
-        initContainers:
           # Configure the gluetun sidecar
+        containers:
           gluetun:
             image:
               repository: ghcr.io/qdm12/gluetun
-              tag: v3.41.1@sha256:1a5bf4b4820a879cdf8d93d7ef0d2d963af56670c9ebff8981860b6804ebc8ab
+              tag: latest@sha256:10b4895fde4499c2d1d9fbd8e681d040ede0efe8c6cfe5d0c51daf0461836ee8
             env:
-              FIREWALL_DEBUG: "on"
               FIREWALL_INPUT_PORTS: "80"
-              SERVER_COUNTRIES: Myanmar
+              FIREWALL_OUTBOUND_SUBNETS: 10.244.0.0/16,10.96.0.10/32
+              LOG_LEVEL: debug
               VPN_INTERFACE: wg0
               VPN_SERVICE_PROVIDER: protonvpn
               VPN_TYPE: wireguard
               VPN_PORT_FORWARDING: "on"
+              VPN_PORT_FORWARDING_PROVIDER: protonvpn
               VPN_PORT_FORWARDING_UP_COMMAND: >-
-                /bin/sh -c 'wget -O- --retry-connrefused --method=PATCH application/json' --body-data='{"soulseek": {"listenPort": PORTS }}' -O - http://127.0.0.1/api/v0/options'
+                /bin/sh -c 'wget -O- --retry-connrefused --method=PATCH --header="Content-Type: application/json" --body-data="{\"soulseek\": {\"listenPort\": {{"{{"}}PORT{{"}}"}}}" http://127.0.0.1/api/v0/options'
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}-secret"
+            lifecycle:
+              postStart:
+                exec:
+                  # See: https://github.com/qdm12/gluetun-wiki/blob/main/setup/advanced/kubernetes.md#adding-ipv6-rule--file-exists
+                  command:
+                    [
+                      "/bin/sh",
+                      "-c",
+                      "(ip rule del table 51820; ip -6 rule del table 51820) || true",
+                    ]
             securityContext:
               capabilities: { add: ["NET_ADMIN", "NET_RAW"] }
               readOnlyRootFilesystem: false
               runAsNonRoot: false
               runAsUser: 0
-        containers:
           app:
             image:
               repository: ghcr.io/slskd/slskd
