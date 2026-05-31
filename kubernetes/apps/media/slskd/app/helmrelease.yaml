@@ -15,7 +15,41 @@ spec:
         type: statefulset
         annotations:
           reloader.stakater.com/auto: "true"
+          # Configure the gluetun sidecar
         containers:
+          gluetun:
+            image:
+              repository: ghcr.io/qdm12/gluetun
+              tag: latest@sha256:10b4895fde4499c2d1d9fbd8e681d040ede0efe8c6cfe5d0c51daf0461836ee8
+            env:
+              FIREWALL_INPUT_PORTS: "80"
+              FIREWALL_OUTBOUND_SUBNETS: 10.244.0.0/16,10.96.0.10/32
+              LOG_LEVEL: debug
+              VPN_INTERFACE: wg0
+              VPN_SERVICE_PROVIDER: protonvpn
+              VPN_TYPE: wireguard
+              VPN_PORT_FORWARDING: "on"
+              VPN_PORT_FORWARDING_PROVIDER: protonvpn
+              VPN_PORT_FORWARDING_UP_COMMAND: >-
+                /bin/sh -c 'wget -O- --retry-connrefused --method=PATCH --header="Content-Type: application/json" --body-data="{\"soulseek\": {\"listenPort\": {{"{{"}}PORT{{"}}"}}}" http://127.0.0.1/api/v0/options'
+            envFrom:
+              - secretRef:
+                  name: "{{ .Release.Name }}-secret"
+            lifecycle:
+              postStart:
+                exec:
+                  # See: https://github.com/qdm12/gluetun-wiki/blob/main/setup/advanced/kubernetes.md#adding-ipv6-rule--file-exists
+                  command:
+                    [
+                      "/bin/sh",
+                      "-c",
+                      "(ip rule del table 51820; ip -6 rule del table 51820) || true",
+                    ]
+            securityContext:
+              capabilities: { add: ["NET_ADMIN", "NET_RAW"] }
+              readOnlyRootFilesystem: false
+              runAsNonRoot: false
+              runAsUser: 0
           app:
             image:
               repository: ghcr.io/slskd/slskd
@@ -24,11 +58,11 @@ spec:
               DOTNET_BUNDLE_EXTRACT_BASE_DIR: /tmp/.net
               TZ: ${TIMEZONE}
               SLSKD_APP_DIR: /config
+              SLSKD_REMOTE_CONFIGURATION: true
               SLSKD_HTTP_PORT: &port 80
               SLSKD_NO_AUTH: true
               SLSKD_NO_HTTPS: true
               SLSKD_NO_VERSION_CHECK: true
-              SLSKD_SLSK_LISTEN_PORT: &soulseekPort 50429
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}-secret"
@@ -131,12 +165,3 @@ spec:
         ports:
           http:
             port: *port
-      soulseek:
-        type: LoadBalancer
-        annotations:
-          lbipam.cilium.io/ips: 172.16.0.127
-        externalTrafficPolicy: Local
-        ports:
-          soulseek-tcp:
-            port: *soulseekPort
-            protocol: TCP

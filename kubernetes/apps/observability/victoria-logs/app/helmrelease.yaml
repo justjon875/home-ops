@@ -20,9 +20,10 @@ spec:
       route:
         annotations:
           gethomepage.dev/enabled: "true"
-          gethomepage.dev/href: "https://{{ .Release.Name }}.${ROOT_DOMAIN}"
           gethomepage.dev/group: Observability
-          gethomepage.dev/icon: *app
+          gethomepage.dev/href: "https://{{ .Release.Name }}.${ROOT_DOMAIN}"
+          gethomepage.dev/icon: victorialogs
+          gethomepage.dev/name: Victoria Logs
         enabled: true
         hostnames:
           - "{{ .Release.Name }}.${ROOT_DOMAIN}"
