@@ -135,10 +135,12 @@ spec:
     route:
       app:
         annotations:
+          gatus.home-operations.com/enabled: "false"
           gethomepage.dev/enabled: "true"
           gethomepage.dev/group: Observability
           gethomepage.dev/icon: *app
-          gatus.home-operations.com/enabled: "false"
+          gethomepage.dev/widget.type: gatus
+          gethomepage.dev/widget.url: https://gatus.${ROOT_DOMAIN}
         hostnames:
           - "{{ .Release.Name }}.${ROOT_DOMAIN}"
           - status.${ROOT_DOMAIN}
