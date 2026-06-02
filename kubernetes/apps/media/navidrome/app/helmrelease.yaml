@@ -34,6 +34,12 @@ spec:
         path: ${NFS_PATH}/navidrome/media
         server: ${NFS_HOST}
         type: nfs
+      slskd:
+        globalMounts:
+          - path: /slskd
+        path: /media/music
+        server: ${NFS_HOST}
+        type: nfs
     route:
       app:
         annotations:
