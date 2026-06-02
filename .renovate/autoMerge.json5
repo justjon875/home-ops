@@ -57,6 +57,9 @@
       matchUpdateTypes: ["minor", "patch"],
       matchPackageNames: [
         "ghcr.io/renovatebot/renovate",
+        "1337kavin/piped",
+        "1337kavin/piped-frontend",
+        "1337kavin/piped-backend",
       ],
     },
   ],
