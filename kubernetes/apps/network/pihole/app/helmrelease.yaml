@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &app pihole
+  name: pihole
 spec:
   chartRef:
     kind: OCIRepository
@@ -17,8 +17,8 @@ spec:
         containers:
           pihole:
             image:
-              repository: ghcr.io/pi-hole/pihole
-              tag: 2026.05.0@sha256:70a9c11171ded2eee735d88c127996da209284a329d50f5ae59c06b861d401b3
+              repository: ghcr.io/sujiba/pihole-unbound-hyperlocal
+              tag: 2026.05.0
             env:
               TZ: ${TIMEZONE}
               FTLCONF_dns_listeningMode: all
@@ -38,17 +38,6 @@ spec:
                 cpu: 100m
               limits:
                 # looking at the query log can spike the memory usage very high
-                memory: 512Mi
-          unbound:
-            image:
-              repository: alpinelinux/unbound
-              tag: latest@sha256:49c2f9a99e7951220a01786cbf75dae15d9e96dfd669e78eb04fdd7090671767
-            securityContext:
-              allowPrivilegeEscalation: false
-            resources:
-              requests:
-                cpu: 100m
-              limits:
                 memory: 512Mi
     service:
       app:
@@ -104,21 +93,3 @@ spec:
             app:
               - path: /etc/pihole
                 subPath: pihole
-              - path: /final
-                subPath: init
-      unbound-config:
-        type: configMap
-        name: unbound-configmap
-        advancedMounts:
-          pihole:
-            unbound:
-              - path: "/etc/unbound/unbound.conf"
-                subPath: "unbound.conf"
-      root-hints:
-        type: configMap
-        name: unbound-configmap
-        advancedMounts:
-          pihole:
-            unbound:
-              - path: "/var/lib/unbound/root.hints"
-                subPath: "root.hints"
