@@ -22,8 +22,8 @@ spec:
             env:
               TZ: ${TIMEZONE}
               FTLCONF_dns_listeningMode: all
-              # FTLCONF_dns_upstreams: 127.0.0.1#5335
-              FTLCONF_dns_dnssec: true
+              FTLCONF_dns_upstreams: 9.9.9.9
+              # FTLCONF_dns_dnssec: true
               FTLCONF_misc_dnsmasq_lines: "server=/${OLD_DOMAIN}/#;address=/.lithium.${OLD_DOMAIN}/192.168.1.200"
               FTLCONF_webserver_interface_boxed: false
               FTLCONF_webserver_interface_theme: default-darker
