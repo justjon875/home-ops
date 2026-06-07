@@ -112,8 +112,8 @@ spec:
         advancedMounts:
           pihole:
             unbound:
-              - path: /etc/unbound/unbound.conf.d
-                subPath: pihole.conf
+              - path: "/etc/unbound/unbound.conf"
+                subPath: "unbound.conf"
       root-hints:
         type: configMap
         name: unbound-configmap
