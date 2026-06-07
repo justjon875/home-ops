@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &app pihole
+  name: pihole
 spec:
   chartRef:
     kind: OCIRepository
@@ -25,6 +25,7 @@ spec:
               FTLCONF_dns_upstreams: 127.0.0.1#5335
               FTLCONF_dns_dnssec: true
               FTLCONF_misc_dnsmasq_lines: "server=/${OLD_DOMAIN}/#;address=/.lithium.${OLD_DOMAIN}/192.168.1.200"
+              FTLCONF_resolver_resolveIPv6: false
               FTLCONF_webserver_interface_boxed: false
               FTLCONF_webserver_interface_theme: default-darker
               FTLCONF_webserver_port: &pihole-port 80
@@ -112,8 +113,8 @@ spec:
         advancedMounts:
           pihole:
             unbound:
-              - path: /etc/unbound/unbound.conf.d
-                subPath: pihole.conf
+              - path: "/etc/unbound/unbound.conf"
+                subPath: "unbound.conf"
       root-hints:
         type: configMap
         name: unbound-configmap
