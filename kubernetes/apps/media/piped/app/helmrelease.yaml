@@ -19,6 +19,13 @@ spec:
     remediation:
       retries: 5
   values:
+    ingress:
+      main:
+        enabled: false
+      backend:
+        enabled: false
+      ytproxy:
+        enabled: false
     postgresql:
       enabled: false
     frontend:
@@ -29,8 +36,10 @@ spec:
         tag: latest@sha256:e811716f414b421f222994fbaecb0f6733b6d10b2cb6be8f1db3d0f208980570
     backend:
       config:
-        PORT: 8080
+        API_URL: https://piped-api.${ROOT_DOMAIN}
+        FRONTEND_URL: https://piped.${ROOT_DOMAIN}
         NUM_WORKERS: 2
+        PORT: 8080
         PROXY_PART: https://ytproxy.${ROOT_DOMAIN}
         database:
           connection_url: jdbc:postgresql://${POSTGRESQL_HOST}:5432/piped
@@ -40,6 +49,8 @@ spec:
         repository: 1337kavin/piped
         tag: latest@sha256:7747e19ee501c0a3afa94dd3d6e982dd4247f1babe03fb515b4a0f0b87f82b2e
     ytproxy:
+      env:
+        RUST_BACKTRACE: 1
       image:
         repository: 1337kavin/piped-proxy
         tag: latest@sha256:09b348b654c1dc5fb710c55cb8d224b879763dac2642cd41f660bad42d034165
