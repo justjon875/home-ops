@@ -7,7 +7,7 @@ spec:
   chart:
     spec:
       chart: piped
-      version: 8.0.26
+      version: 8.1.25
       sourceRef:
         kind: HelmRepository
         name: teampiped
@@ -36,9 +36,9 @@ spec:
           connection_url: jdbc:postgresql://${POSTGRESQL_HOST}:5432/piped
           driver_class: org.postgresql.Driver
           dialect: org.hibernate.dialect.PostgreSQLDialect
-        image:
-          repository: 1337kavin/piped
-          tag: latest@sha256:7747e19ee501c0a3afa94dd3d6e982dd4247f1babe03fb515b4a0f0b87f82b2e
+      image:
+        repository: 1337kavin/piped
+        tag: latest@sha256:7747e19ee501c0a3afa94dd3d6e982dd4247f1babe03fb515b4a0f0b87f82b2e
     ytproxy:
       image:
         repository: 1337kavin/piped-proxy
