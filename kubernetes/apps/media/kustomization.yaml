@@ -24,7 +24,7 @@ resources:
   - ./navidrome/ks.yaml
   - ./piped/ks.yaml
   - ./picard/ks.yaml
-  - ./podfetch/ks.yaml
+  # - ./podfetch/ks.yaml
   - ./prowlarr/ks.yaml
   - ./qbittorrent/ks.yaml
   - ./qui/ks.yaml
