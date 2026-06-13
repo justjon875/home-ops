@@ -16,6 +16,9 @@ spec:
               TZ: ${TIMEZONE}
               UI_USERNAME: admin
               UI_PASSWORD: admin
+            envFrom:
+              - secretRef:
+                  name: "{{ .Release.Name }}-secret"
             image:
               repository: ghcr.io/lumepart/explo
               tag: v1.1.0@sha256:31b08b4693b412d08fadbc67dfa3a3e8c723bcf533ae34c7edd0dde2cf3431b9
