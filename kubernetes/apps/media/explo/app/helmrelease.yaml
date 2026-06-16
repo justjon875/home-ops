@@ -10,15 +10,21 @@ spec:
   values:
     controllers:
       explo:
+        annotations:
+          reloader.stakater.com/auto: "true"
         containers:
           app:
             env:
-              TZ: ${TIMEZONE}
+              LISTENBRAINZ_DISCOVERY: playlist
               UI_USERNAME: admin
               UI_PASSWORD: admin
+              TZ: ${TIMEZONE}
+            envFrom:
+              - secretRef:
+                  name: "{{ .Release.Name }}-secret"
             image:
               repository: ghcr.io/lumepart/explo
-              tag: v1.0.1@sha256:d4b55bf5c8f2099815e1613a74d9d5ceb1ee6a3fc8f973a19c60cf842bc8d8df
+              tag: v1.1.1@sha256:cad2acbe3b504b1c12456f86a13869ecc147b358465aa3d06d66243ac614cf2e
     persistence:
       config:
         existingClaim: "{{ .Release.Name }}"

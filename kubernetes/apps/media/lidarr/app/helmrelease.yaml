@@ -76,7 +76,7 @@ spec:
         type: nfs
       music:
         enabled: true
-        path: /media/music
+        path: /media/downloads/slskd/complete
         server: ${NFS_HOST}
         type: nfs
       logs:
