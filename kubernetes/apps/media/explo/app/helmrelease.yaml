@@ -10,12 +10,15 @@ spec:
   values:
     controllers:
       explo:
+        annotations:
+          reloader.stakater.com/auto: "true"
         containers:
           app:
             env:
-              TZ: ${TIMEZONE}
+              LISTENBRAINZ_DISCOVERY: playlist
               UI_USERNAME: admin
               UI_PASSWORD: admin
+              TZ: ${TIMEZONE}
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}-secret"

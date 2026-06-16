@@ -37,7 +37,7 @@ spec:
       slskd:
         globalMounts:
           - path: /slskd
-        path: /media/music
+        path: /media/downloads/slskd/complete
         server: ${NFS_HOST}
         type: nfs
     route:
