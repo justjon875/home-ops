@@ -47,7 +47,7 @@ spec:
         BACKEND_HOSTNAME: piped-api.${ROOT_DOMAIN}
       image:
         repository: 1337kavin/piped-frontend
-        tag: latest@sha256:e811716f414b421f222994fbaecb0f6733b6d10b2cb6be8f1db3d0f208980570
+        tag: latest@sha256:1ce67163448941627a2abc51a1d622120331d8e55ef78b85a83dc2de8811616e
     ytproxy:
       env:
         RUST_BACKTRACE: 1
