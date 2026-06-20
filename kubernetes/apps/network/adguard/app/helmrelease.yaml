@@ -1,0 +1,98 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: adguard
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: adguard
+  interval: 1h
+  values:
+    controllers:
+      adguard:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          adguard:
+            image:
+              repository: adguard/adguardhome
+              tag: v0.107.71@sha256:92929135ced2554aaf94706f766a98ad348f211df61b0704e2db7e8498cc00b7
+            env:
+              TZ: ${TIMEZONE}
+            securityContext:
+              allowPrivilegeEscalation: false
+            resources:
+              requests:
+                cpu: 100m
+          unbound:
+            image:
+              repository: alpinelinux/unbound
+              tag: latest@sha256:0e9ac80b3e315391ae057b047da2058e49971b2c2b1c32603b4d51ad2338cb71
+            securityContext:
+              allowPrivilegeEscalation: false
+            resources:
+              requests:
+                cpu: 100m
+              limits:
+                memory: 512Mi
+    service:
+      app:
+        forceRename: "{{ .Release.Name }}"
+        type: LoadBalancer
+        annotations:
+          lbipam.cilium.io/ips: ${ADGUARD_DNS_HOST}
+        primary: true
+        ports:
+          http:
+            primary: true
+            port: &adguard-port 80
+          dns-udp:
+            port: 53
+            protocol: UDP
+          dns-tcp:
+            port: 53
+            protocol: TCP
+    route:
+      app:
+        annotations:
+          gatus.home-operations.com/endpoint: |-
+            conditions: ["[STATUS] == 403"]
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: Utilities
+          gethomepage.dev/icon: adguard-home
+        forceRename: "{{ .Release.Name }}"
+        hostnames:
+          - "adguard.${ROOT_DOMAIN}"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: *adguard-port
+    persistence:
+      config:
+        existingClaim: "{{ .Release.Name }}"
+        advancedMounts:
+          adguard:
+            app:
+              - path: /opt/adguardhome/conf
+              - path: /opt/adguardhome/work
+      unbound-config:
+        type: configMap
+        name: unbound-configmap
+        advancedMounts:
+          adguard:
+            unbound:
+              - path: "/etc/unbound/unbound.conf"
+                subPath: "unbound.conf"
+      root-hints:
+        type: configMap
+        name: unbound-configmap
+        advancedMounts:
+          adguard:
+            unbound:
+              - path: "/var/lib/unbound/root.hints"
+                subPath: "root.hints"
