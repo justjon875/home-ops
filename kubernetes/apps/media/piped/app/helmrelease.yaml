@@ -53,7 +53,7 @@ spec:
         RUST_BACKTRACE: 1
       image:
         repository: 1337kavin/piped-proxy
-        tag: latest@sha256:9830472b0ef5a5ea52d686b5669d35df8377cb586ee577e1c5bb01ef51196ef7
+        tag: latest@sha256:a7936151bce9a3a6c61ec11577ea645f1c456ea5781ae566ef7ee1eb58e9b3dd
   valuesFrom:
     - kind: Secret
       name: *app
