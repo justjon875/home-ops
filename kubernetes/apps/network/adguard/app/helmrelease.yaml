@@ -43,7 +43,6 @@ spec:
         type: LoadBalancer
         annotations:
           lbipam.cilium.io/ips: ${ADGUARD_DNS_HOST}
-        primary: true
         ports:
           http:
             primary: true
@@ -57,8 +56,6 @@ spec:
     route:
       app:
         annotations:
-          gatus.home-operations.com/endpoint: |-
-            conditions: ["[STATUS] == 403"]
           gethomepage.dev/enabled: "true"
           gethomepage.dev/group: Utilities
           gethomepage.dev/icon: adguard-home
