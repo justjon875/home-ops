@@ -59,6 +59,10 @@ spec:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/group: Utilities
           gethomepage.dev/icon: adguard-home
+          gethomepage.dev/widget.type: adguard
+          gethomepage.dev/widget.password: "{{ `{{HOMEPAGE_VAR_ADGUARD_PASSWORD}}` }}"
+          gethomepage.dev/widget.username: "{{ `{{HOMEPAGE_VAR_ADGUARD_USERNAME}}` }}"
+          gethomepage.dev/widget.url: https://adguard.${ROOT_DOMAIN}
         forceRename: "{{ .Release.Name }}"
         hostnames:
           - "adguard.${ROOT_DOMAIN}"
