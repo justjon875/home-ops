@@ -4,6 +4,7 @@ kind: ConfigMap
 metadata:
   name: cluster-settings
 data:
+  ADGUARD_DNS_HOST: 172.16.0.54
   DNS_HOST: 172.16.0.53
   LOCAL_PATH: /mnt/raid/local
   MEDIA_PATH: /media
