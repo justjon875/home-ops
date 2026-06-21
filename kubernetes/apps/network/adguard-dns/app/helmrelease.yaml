@@ -20,7 +20,7 @@ spec:
           pullPolicy: IfNotPresent
         env:
           - name: ADGUARD_URL
-            value: https://adguard.lithium.${OLD_DOMAIN}
+            value: https://adguard.${ROOT_DOMAIN}
           - name: &name ADGUARD_USER
             valueFrom:
               secretKeyRef:
