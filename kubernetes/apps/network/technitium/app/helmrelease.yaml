@@ -17,7 +17,8 @@ spec:
         containers:
           companion:
             image:
-              repository: ghcr.io/fail-safe/technitium-dns-companion:latest
+              repository: ghcr.io/fail-safe/technitium-dns-companion
+              tag: latest
             env:
               DNS_SERVER_DOMAIN: technitium.${ROOT_DOMAIN}
               TECHNITIUM_NODES: node1
