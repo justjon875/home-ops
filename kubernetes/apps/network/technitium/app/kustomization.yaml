@@ -5,10 +5,3 @@ kind: Kustomization
 resources:
   - ./helmrelease.yaml
   - ./ocirepository.yaml
-configMapGenerator:
-  - name: unbound-configmap
-    files:
-      - unbound.conf=./resources/unbound.conf
-      - root.hints=./resources/root.hints
-generatorOptions:
-  disableNameSuffixHash: true
