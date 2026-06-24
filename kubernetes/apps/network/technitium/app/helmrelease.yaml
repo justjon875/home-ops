@@ -23,7 +23,7 @@ spec:
               DNS_SERVER_DOMAIN: technitium.${ROOT_DOMAIN}
               TECHNITIUM_NODES: node1
               TECHNITIUM_NODE1_NAME: "DNS Primary"
-              TECHNITIUM_NODE1_BASE_URL: https://technitium.${ROOT_DOMAIN}
+              TECHNITIUM_NODE1_BASE_URL: "https://{{ .Release.Name }}.${ROOT_DOMAIN}"
               TIMEZONE: ${TZ}
               TRUST_PROXY: "true"
             securityContext:
@@ -36,26 +36,13 @@ spec:
               DNS_SERVER_DOMAIN: technitium.${ROOT_DOMAIN}
             securityContext:
               allowPrivilegeEscalation: false
-    service:
-      companion:
-        ports:
-          http:
-            port: 3000
-      technitium:
-        forceRename: "{{ .Release.Name }}"
-        type: LoadBalancer
-        annotations:
-          lbipam.cilium.io/ips: ${TECHNITIUM_DNS_HOST}
-        ports:
-          http:
-            primary: true
-            port: 5380
-          dns-udp:
-            port: 53
-            protocol: UDP
-          dns-tcp:
-            port: 53
-            protocol: TCP
+    persistence:
+      config:
+        existingClaim: "{{ .Release.Name }}"
+        advancedMounts:
+          technitium:
+            technitium:
+              - path: /app/config
     route:
       companion:
         annotations:
@@ -94,3 +81,23 @@ spec:
           - backendRefs:
               - identifier: technitium
                 port: 5380
+    service:
+      companion:
+        ports:
+          http:
+            port: 3000
+      technitium:
+        forceRename: "{{ .Release.Name }}"
+        type: LoadBalancer
+        annotations:
+          lbipam.cilium.io/ips: ${TECHNITIUM_DNS_HOST}
+        ports:
+          http:
+            primary: true
+            port: 5380
+          dns-udp:
+            port: 53
+            protocol: UDP
+          dns-tcp:
+            port: 53
+            protocol: TCP
