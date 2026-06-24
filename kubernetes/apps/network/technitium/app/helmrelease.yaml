@@ -26,6 +26,9 @@ spec:
               TECHNITIUM_NODE1_BASE_URL: "https://{{ .Release.Name }}.${ROOT_DOMAIN}"
               TIMEZONE: ${TZ}
               TRUST_PROXY: "true"
+            envFrom:
+              - secretRef:
+                  name: "{{ .Release.Name }}-companion-secret"
             securityContext:
               allowPrivilegeEscalation: false
           technitium:
@@ -48,11 +51,7 @@ spec:
         annotations:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/group: Utilities
-          gethomepage.dev/icon: technitium-home
-          gethomepage.dev/widget.type: technitium
-          gethomepage.dev/widget.password: "{{ `{{HOMEPAGE_VAR_technitium_PASSWORD}}` }}"
-          gethomepage.dev/widget.username: "{{ `{{HOMEPAGE_VAR_technitium_USERNAME}}` }}"
-          gethomepage.dev/widget.url: https://technitium.${ROOT_DOMAIN}
+          gethomepage.dev/icon: technitium-companion
         hostnames:
           - "tc.${ROOT_DOMAIN}"
         parentRefs:
@@ -66,7 +65,7 @@ spec:
         annotations:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/group: Utilities
-          gethomepage.dev/icon: technitium-home
+          gethomepage.dev/icon: technitium
           gethomepage.dev/widget.type: technitium
           gethomepage.dev/widget.password: "{{ `{{HOMEPAGE_VAR_technitium_PASSWORD}}` }}"
           gethomepage.dev/widget.username: "{{ `{{HOMEPAGE_VAR_technitium_USERNAME}}` }}"
