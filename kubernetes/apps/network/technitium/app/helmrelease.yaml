@@ -40,12 +40,12 @@ spec:
             securityContext:
               allowPrivilegeEscalation: false
     persistence:
-      config:
+      dns:
         existingClaim: "{{ .Release.Name }}"
         advancedMounts:
           technitium:
             technitium:
-              - path: /app/config
+              - path: /etc/dns
     route:
       companion:
         annotations:
