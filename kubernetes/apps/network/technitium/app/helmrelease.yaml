@@ -56,7 +56,7 @@ spec:
             port: 53
             protocol: TCP
     route:
-      companion:
+      technitium:
         annotations:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/group: Utilities
@@ -92,5 +92,5 @@ spec:
             namespace: network
         rules:
           - backendRefs:
-              - identifier: app
+              - identifier: technitium
                 port: 5380
