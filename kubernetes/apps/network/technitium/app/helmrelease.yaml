@@ -1,0 +1,61 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: technitium
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: technitium
+  interval: 1h
+  values:
+    controllers:
+      technitium:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          technitium:
+            image:
+              repository: technitium/dns-server
+              tag: 15.2.0@sha256:23d3b63d959e997800b095fe93009b3fae271b5258234ff2ade8535cb33682c8
+            env:
+              DNS_SERVER_DOMAIN: technitium.${ROOT_DOMAIN}
+            securityContext:
+              allowPrivilegeEscalation: false
+    service:
+      app:
+        forceRename: "{{ .Release.Name }}"
+        type: LoadBalancer
+        annotations:
+          lbipam.cilium.io/ips: ${TECHNITIUM_DNS_HOST}
+        ports:
+          http:
+            primary: true
+            port: 5380
+          dns-udp:
+            port: 53
+            protocol: UDP
+          dns-tcp:
+            port: 53
+            protocol: TCP
+    route:
+      app:
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: Utilities
+          gethomepage.dev/icon: technitium-home
+          gethomepage.dev/widget.type: technitium
+          gethomepage.dev/widget.password: "{{ `{{HOMEPAGE_VAR_technitium_PASSWORD}}` }}"
+          gethomepage.dev/widget.username: "{{ `{{HOMEPAGE_VAR_technitium_USERNAME}}` }}"
+          gethomepage.dev/widget.url: https://technitium.${ROOT_DOMAIN}
+        forceRename: "{{ .Release.Name }}"
+        hostnames:
+          - "technitium.${ROOT_DOMAIN}"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: 5380
