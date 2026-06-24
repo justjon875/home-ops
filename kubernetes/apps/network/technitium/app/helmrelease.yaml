@@ -56,7 +56,7 @@ spec:
             port: 53
             protocol: TCP
     route:
-      technitium:
+      companion:
         annotations:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/group: Utilities
