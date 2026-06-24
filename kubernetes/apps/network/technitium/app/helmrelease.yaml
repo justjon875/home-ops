@@ -25,6 +25,7 @@ spec:
               TECHNITIUM_NODE1_NAME: "DNS Primary"
               TECHNITIUM_NODE1_BASE_URL: https://technitium.${ROOT_DOMAIN}
               TIMEZONE: ${TZ}
+              TRUST_PROXY: "true"
             securityContext:
               allowPrivilegeEscalation: false
           technitium:
