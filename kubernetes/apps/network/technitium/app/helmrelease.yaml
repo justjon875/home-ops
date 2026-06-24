@@ -65,7 +65,6 @@ spec:
           gethomepage.dev/widget.password: "{{ `{{HOMEPAGE_VAR_technitium_PASSWORD}}` }}"
           gethomepage.dev/widget.username: "{{ `{{HOMEPAGE_VAR_technitium_USERNAME}}` }}"
           gethomepage.dev/widget.url: https://technitium.${ROOT_DOMAIN}
-        forceRename: "{{ .Release.Name }}"
         hostnames:
           - "tc.${ROOT_DOMAIN}"
         parentRefs:
