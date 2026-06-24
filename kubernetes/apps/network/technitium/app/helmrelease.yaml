@@ -11,6 +11,21 @@ spec:
   interval: 1h
   values:
     controllers:
+      companion:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          companion:
+            image:
+              repository: ghcr.io/fail-safe/technitium-dns-companion:latest
+            env:
+              DNS_SERVER_DOMAIN: technitium.${ROOT_DOMAIN}
+              TECHNITIUM_NODES: node1
+              TECHNITIUM_NODE1_NAME: "DNS Primary"
+              TECHNITIUM_NODE1_BASE_URL: https://technitium.${ROOT_DOMAIN}
+              TIMEZONE: ${TZ}
+            securityContext:
+              allowPrivilegeEscalation: false
       technitium:
         annotations:
           reloader.stakater.com/auto: "true"
@@ -24,7 +39,11 @@ spec:
             securityContext:
               allowPrivilegeEscalation: false
     service:
-      app:
+      companion:
+        ports:
+          http:
+            port: 3000
+      technitium:
         forceRename: "{{ .Release.Name }}"
         type: LoadBalancer
         annotations:
@@ -40,7 +59,26 @@ spec:
             port: 53
             protocol: TCP
     route:
-      app:
+      companion:
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: Utilities
+          gethomepage.dev/icon: technitium-home
+          gethomepage.dev/widget.type: technitium
+          gethomepage.dev/widget.password: "{{ `{{HOMEPAGE_VAR_technitium_PASSWORD}}` }}"
+          gethomepage.dev/widget.username: "{{ `{{HOMEPAGE_VAR_technitium_USERNAME}}` }}"
+          gethomepage.dev/widget.url: https://technitium.${ROOT_DOMAIN}
+        forceRename: "{{ .Release.Name }}"
+        hostnames:
+          - "tc.${ROOT_DOMAIN}"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+        rules:
+          - backendRefs:
+              - identifier: companion
+                port: 3000
+      technitium:
         annotations:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/group: Utilities
