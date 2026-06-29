@@ -44,7 +44,6 @@ nodes:
       - 192.168.1.200
     networkInterfaces:
       - interface: ens18
-        mtu: 1420
         addresses:
           - 192.168.3.206/24
         routes:
@@ -67,7 +66,6 @@ nodes:
       - 192.168.1.200
     networkInterfaces:
       - interface: eth0
-        mtu: 1420
         addresses:
           - 192.168.3.211/24
         routes:
@@ -81,7 +79,6 @@ nodes:
       - 192.168.1.200
     networkInterfaces:
       - interface: eth0
-        mtu: 1420
         addresses:
           - 192.168.3.212/24
         routes:
