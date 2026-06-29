@@ -64,6 +64,7 @@ spec:
           requests:
             cpu: 100m # 500m
         mon:
+          mon_data_avail_warn: "19" # quote
           requests:
             cpu: 200m # 1000m
         osd:
