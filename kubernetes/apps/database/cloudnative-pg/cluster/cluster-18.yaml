@@ -18,7 +18,7 @@ spec:
     name: cloudnative-pg-secret
   storage:
     size: 10Gi
-    storageClass: openebs-hostpath
+    storageClass: ceph-block
   bootstrap:
     # initdb: {}
     recovery:
@@ -29,7 +29,7 @@ spec:
       isWALArchiver: true
       parameters:
         barmanObjectName: &store garage-store
-        serverName: cluster-18-v3
+        serverName: cluster-18-v4
 
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
   externalClusters:
@@ -38,4 +38,4 @@ spec:
         name: barman-cloud.cloudnative-pg.io
         parameters:
           barmanObjectName: *store
-          serverName: cluster-18-v2
+          serverName: cluster-18-v3
