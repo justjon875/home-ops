@@ -94,6 +94,13 @@ spec:
           http:
             port: 80
             primary: true
+      replica:
+        controller: adguard-replicated
+        ports:
+          http:
+            port: 3000
+            targetPort: 80
+            primary: true
       dns:
         controller: adguard-replicated
         type: LoadBalancer
