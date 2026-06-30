@@ -96,7 +96,7 @@ spec:
           http:
             port: 80
             primary: true
-      origin-dns:
+      dns:
         controller: adguard-replicated
         type: LoadBalancer
         annotations:
@@ -137,7 +137,7 @@ spec:
             namespace: network
         rules:
           - backendRefs:
-              - identifier: app
+              - identifier: origin
                 port: 80
       replica:
         parentRefs: *parentRefs
