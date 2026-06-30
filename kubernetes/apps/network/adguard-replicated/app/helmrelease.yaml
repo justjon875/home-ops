@@ -70,11 +70,11 @@ spec:
               pullPolicy: IfNotPresent
             args: [run]
             env:
-              ORIGIN_URL: http://adguard-home-origin:3000
+              ORIGIN_URL: http://adguard-replicated-origin:3000
               ORIGIN_WEB_URL: https://ar.${ROOT_DOMAIN}
               ORIGIN_USERNAME: admin
               ORIGIN_PASSWORD: password
-              REPLICA_URL: http://adguard-home-replica:3000
+              REPLICA_URL: http://adguard-replicated-replica:3000
               REPLICA_WEB_URL: https://r.${ROOT_DOMAIN}
               REPLICA_USERNAME: admin
               REPLICA_PASSWORD: password
