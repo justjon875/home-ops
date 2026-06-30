@@ -20,6 +20,13 @@ patches:
                   - os:admin
               enabled: true
       kubelet:
+        extraConfig:
+          # More aggressive - start at 70%
+          imageGCHighThresholdPercent: 70
+          # Stop at 60%
+          imageGCLowThresholdPercent: 60
+          # Minimum age of 5 minutes
+          imageMinimumGCAge: "5m"
         extraMounts:
           - destination: /var/mnt/local-hostpath
             type: bind
