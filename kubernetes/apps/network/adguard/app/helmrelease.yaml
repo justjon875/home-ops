@@ -12,6 +12,8 @@ spec:
   values:
     controllers:
       adguard:
+        type: statefulset
+        replicas: 3
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
