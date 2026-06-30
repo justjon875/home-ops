@@ -1,7 +1,7 @@
 ---
 clusterName: home-cluster
-talosVersion: v1.12.7
-kubernetesVersion: v1.35.2
+talosVersion: v1.12.9
+kubernetesVersion: v1.35.6
 endpoint: https://cluster.habjam.xyz:6443
 allowSchedulingOnControlPlanes: true
 cniConfig:
@@ -71,6 +71,12 @@ nodes:
         routes:
           - network: 0.0.0.0/0
             gateway: 192.168.3.1
+    schematic:
+      customization:
+        systemExtensions:
+          officialExtensions:
+            - siderolabs/nfsrahead # NFS Performance
+            - siderolabs/hello-world-service
   - hostname: neon2
     ipAddress: 192.168.3.212
     controlPlane: true
@@ -84,6 +90,12 @@ nodes:
         routes:
           - network: 0.0.0.0/0
             gateway: 192.168.3.1
+    schematic:
+      customization:
+        systemExtensions:
+          officialExtensions:
+            - siderolabs/nfsrahead # NFS Performance
+            - siderolabs/hello-world-service
 controlPlane:
   userVolumes:
     - name: EPHEMERAL
