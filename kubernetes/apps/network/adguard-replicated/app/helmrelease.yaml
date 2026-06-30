@@ -132,13 +132,21 @@ spec:
         forceRename: "{{ .Release.Name }}"
         hostnames:
           - "ar.${ROOT_DOMAIN}"
-        parentRefs:
+        parentRefs: &parentRefs
           - name: envoy-internal
             namespace: network
         rules:
           - backendRefs:
               - identifier: app
-                port: *adguard-port
+                port: 80
+      replica:
+        parentRefs: *parentRefs
+        hostnames:
+          - "arr.${ROOT_DOMAIN}"
+        rules:
+          - backendRefs:
+              - identifier: replica
+                port: 80
     # persistence:
     #   unbound-config:
     #     type: configMap
