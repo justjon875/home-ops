@@ -88,10 +88,8 @@ spec:
           securityContext:
             runAsNonRoot: true
     service:
-      origin: &origin-http
+      app:
         controller: adguard-replicated
-        extraSelectorLabels:
-          apps.kubernetes.io/pod-index: "0"
         ports:
           http:
             port: 80
@@ -108,11 +106,6 @@ spec:
           dns-udp:
             port: 53
             protocol: UDP
-
-      replica:
-        <<: *origin-http
-        extraSelectorLabels:
-          apps.kubernetes.io/pod-index: "1"
 
       sync:
         controller: sync
@@ -137,15 +130,15 @@ spec:
             namespace: network
         rules:
           - backendRefs:
-              - identifier: origin
+              - identifier: app
                 port: 80
-      replica:
+      sync:
         parentRefs: *parentRefs
         hostnames:
-          - "arr.${ROOT_DOMAIN}"
+          - "ars.${ROOT_DOMAIN}"
         rules:
           - backendRefs:
-              - identifier: replica
+              - identifier: sync
                 port: 80
     # persistence:
     #   unbound-config:
