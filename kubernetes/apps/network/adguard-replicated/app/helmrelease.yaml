@@ -13,7 +13,7 @@ spec:
     controllers:
       adguard-replicated:
         type: statefulset
-        replicas: 3
+        replicas: 2
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
@@ -88,25 +88,32 @@ spec:
           securityContext:
             runAsNonRoot: true
     service:
-      app:
+      origin: &origin-http
         controller: adguard-replicated
+        extraSelectorLabels:
+          apps.kubernetes.io/pod-index: "0"
         ports:
           http:
+            port: 80
             primary: true
-            port: &adguard-port 80
-      dns:
-        forceRename: "{{ .Release.Name }}"
+      origin-dns:
         controller: adguard-replicated
         type: LoadBalancer
         annotations:
           lbipam.cilium.io/ips: 172.16.0.153
         ports:
-          dns-udp:
-            port: 53
-            protocol: UDP
           dns-tcp:
             port: 53
             protocol: TCP
+          dns-udp:
+            port: 53
+            protocol: UDP
+
+      replica:
+        <<: *origin-http
+        extraSelectorLabels:
+          apps.kubernetes.io/pod-index: "1"
+
       sync:
         controller: sync
         ports:
