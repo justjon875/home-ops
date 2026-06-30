@@ -38,4 +38,4 @@ spec:
         name: barman-cloud.cloudnative-pg.io
         parameters:
           barmanObjectName: *store
-          serverName: cluster-18
+          serverName: cluster-18-v3
