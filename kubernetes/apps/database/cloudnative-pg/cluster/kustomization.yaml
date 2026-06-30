@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - ./backup-helmrelease.yaml
   - ./cluster-18.yaml
+  - ./cluster-18-test.yaml
   - ./objectstore.yaml
   - ./podmonitor.yaml
   - ./ocirepository.yaml
