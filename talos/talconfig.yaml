@@ -104,22 +104,16 @@ nodes:
             - siderolabs/nfsrahead # NFS Performance
             - siderolabs/hello-world-service
 controlPlane:
-  userVolumes:
+  volumes:
     - name: EPHEMERAL
       provisioning:
-        diskSelector:
-          match: system_disk
-        maxSize: 100GiB
+        minSize: 200GB
+        maxSize: 200GB
+        grow: false
+  userVolumes:
     - name: local-hostpath
       provisioning:
         diskSelector:
           match: system_disk
         minSize: 50GiB
         grow: true
-
-    # - name: host-nvme
-    #   provisioning:
-    #     diskSelector:
-    #       match: "!system_disk"
-    #     minSize: 50GiB
-    #     grow: true
