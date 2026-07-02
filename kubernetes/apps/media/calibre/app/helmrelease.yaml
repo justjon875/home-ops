@@ -65,7 +65,7 @@ spec:
           http:
             port: *port
           crosspoint:
-            port: 81
+            port: 8081
       content-server:
         ports:
           http:
