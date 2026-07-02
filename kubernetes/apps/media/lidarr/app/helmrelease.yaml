@@ -47,7 +47,7 @@ spec:
               LIDARR__POSTGRES__MAINDB: *app
               PGID: "1000"
               PUID: "1000"
-              TZ: ${TZ}
+              TZ: ${TIMEZONE}
             envFrom:
               - secretRef:
                   name: lidarr-secret
