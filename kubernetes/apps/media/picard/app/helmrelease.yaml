@@ -18,7 +18,7 @@ spec:
               repository: ghcr.io/jlesage/musicbrainz-picard
               tag: v26.05.2@sha256:130ab9790d6303c2534dbfcc59d136b010c43d021cfdedf37f76935300698996
             env:
-              TZ: "${TZ}"
+              TZ: "${TIMEZONE}"
               LANG: "en_US.UTF-8"
               DARK_MODE: "1"
               WEB_AUDIO: "1"
