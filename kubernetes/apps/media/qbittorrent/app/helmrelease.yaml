@@ -14,17 +14,12 @@ spec:
           app:
             env:
               QBITTORRENT__BT_PORT: 56304
+              QBT_WEBUI_PORT: &port 80
               TZ: ${TIMEZONE}
             image:
               repository: ghcr.io/home-operations/qbittorrent
               tag: 5.2.2@sha256:24f2d793cb7f7a93e755e5d22e533be818e62eadc864f4a82315b901b6ffe807
         replicas: 1
-    configMaps:
-      config:
-        data:
-          .qbt.toml: |-
-            [qbittorrent]
-            addr = "http://localhost:80"
     defaultPodOptions:
       securityContext:
         runAsUser: 1000
@@ -52,14 +47,14 @@ spec:
           gethomepage.dev/group: Media
           gethomepage.dev/icon: *app
         hostnames:
-          - "{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}"
+          - "{{ .Release.Name }}.${ROOT_DOMAIN}"
         parentRefs:
           - name: envoy-internal
             namespace: network
         rules:
           - backendRefs:
               - identifier: app
-                port: &port 8080
+                port: *port
     service:
       app:
         ports:
