@@ -66,6 +66,7 @@ spec:
           gethomepage.dev/widget.key: "{{ `{{HOMEPAGE_VAR_SABNZBD__API_KEY}}` }}"
         hostnames:
           - "{{ .Release.Name }}.${ROOT_DOMAIN}"
+          - "nzb.${ROOT_DOMAIN}"
         parentRefs:
           - name: envoy-internal
             namespace: network
