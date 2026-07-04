@@ -33,7 +33,7 @@ spec:
         advancedMounts:
           qbittorrent:
             app:
-              - path: /opt/qBittorrent/downloads
+              - path: /config/Downloads
         enabled: true
         path: /media/qbittorrent/downloads
         server: ${NFS_HOST}
