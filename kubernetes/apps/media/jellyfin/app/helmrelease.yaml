@@ -72,7 +72,7 @@ spec:
           gethomepage.dev/icon: *app
           gethomepage.dev/widget.type: jellyfin
           gethomepage.dev/widget.url: https://jellyfin.${ROOT_DOMAIN}
-          gethomepage.dev/widget.key: "{{ `{HOMEPAGE_VAR_JELLYFIN_KEY}` }}"
+          gethomepage.dev/widget.key: "{{ `{{HOMEPAGE_VAR_JELLYFIN_KEY}}` }}"
         hostnames:
           - "{{ .Release.Name }}.${SHORT_ROOT_DOMAIN}"
         parentRefs:

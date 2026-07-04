@@ -36,8 +36,8 @@
         widget:
           type: opnsense
           url: https://oxygen.${OLD_DOMAIN}
-          username: { { HOMEPAGE_VAR_OPNSENSE_USERNAME } }
-          password: { { HOMEPAGE_VAR_OPNSENSE_PASSWORD } }
+          username: "{{ HOMEPAGE_VAR_OPNSENSE_USERNAME }}"
+          password: "{{ HOMEPAGE_VAR_OPNSENSE_PASSWORD }}"
 - Virtualisation:
     - Hydrogen:
         href: https://hydrogen.${ROOT_DOMAIN}
@@ -45,8 +45,8 @@
         widget:
           type: proxmox
           url: https://hydrogen.${ROOT_DOMAIN}
-          username: { { HOMEPAGE_VAR_PROXMOX_USERNAME } }
-          password: { { HOMEPAGE_VAR_PROXMOX_HYDROGEN } }
+          username: "{{ HOMEPAGE_VAR_PROXMOX_USERNAME }}"
+          password: "{{ HOMEPAGE_VAR_PROXMOX_HYDROGEN }}"
           node: hydrogen
     - Iron:
         href: https://iron.${ROOT_DOMAIN}
@@ -54,8 +54,8 @@
         widget:
           type: proxmox
           url: https://iron.${ROOT_DOMAIN}
-          username: { { HOMEPAGE_VAR_PROXMOX_USERNAME } }
-          password: { { HOMEPAGE_VAR_PROXMOX_IRON } }
+          username: "{{ HOMEPAGE_VAR_PROXMOX_USERNAME }}"
+          password: "{{ HOMEPAGE_VAR_PROXMOX_IRON }}"
           node: iron
     - Neon:
         href: https://neon.${ROOT_DOMAIN}
@@ -63,8 +63,8 @@
         widget:
           type: proxmox
           url: https://neon.${ROOT_DOMAIN}
-          username: { { HOMEPAGE_VAR_PROXMOX_USERNAME } }
-          password: { { HOMEPAGE_VAR_PROXMOX_NEON } }
+          username: "{{ HOMEPAGE_VAR_PROXMOX_USERNAME }}"
+          password: "{{ HOMEPAGE_VAR_PROXMOX_NEON }}"
           node: neon
 - Storage:
     - Cobalt:
@@ -73,8 +73,8 @@
         widget:
           type: openmediavault
           url: https://cobalt.${ROOT_DOMAIN}
-          username: { { HOMEPAGE_VAR_OMV_USERNAME } }
-          password: { { HOMEPAGE_VAR_OMV_PASSWORD } }
+          username: "{{ HOMEPAGE_VAR_OMV_USERNAME }}"
+          password: "{{ HOMEPAGE_VAR_OMV_PASSWORD }}"
           method: services.getStatus # required
 - Lithium:
     - Dozzle lithium:
