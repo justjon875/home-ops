@@ -34,3 +34,4 @@ resources:
   - ./slskd/ks.yaml
   - ./sonarr/ks.yaml
   - ./ytptube/ks.yaml
+  - ./ytdlpwebplayer/ks.yaml
