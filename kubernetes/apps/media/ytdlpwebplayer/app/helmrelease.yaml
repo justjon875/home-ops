@@ -18,14 +18,7 @@ spec:
             securityContext:
               allowPrivilegeEscalation: false
               capabilities: { drop: ["ALL"] }
-              readOnlyRootFilesystem: true
-        pod:
-          securityContext:
-            fsGroup: 1000
-            fsGroupChangePolicy: OnRootMismatch
-            runAsGroup: 1000
-            runAsNonRoot: true
-            runAsUser: 1000
+              readOnlyRootFilesystem: false
     route:
       app:
         annotations:
@@ -41,4 +34,4 @@ spec:
       app:
         ports:
           http:
-            port: 7288
+            port: 5000
