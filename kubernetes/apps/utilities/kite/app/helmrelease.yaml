@@ -35,8 +35,9 @@ spec:
                   secretKeyRef:
                     name: "{{ .Release.Name }}-pguser-secret"
                     key: dsn
+              DEBUG: true
               HOST: https://{{ .Release.Name }}.${ROOT_DOMAIN}
-              PORT: &port 80
+              PORT: &port 8080
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}-secret"
