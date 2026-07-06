@@ -24,7 +24,7 @@ spec:
               TECHNITIUM_NODES: node1
               TECHNITIUM_NODE1_NAME: "DNS Primary"
               TECHNITIUM_NODE1_BASE_URL: "https://{{ .Release.Name }}.${ROOT_DOMAIN}"
-              TIMEZONE: ${TZ}
+              TIMEZONE: ${TIMEZONE}
               TRUST_PROXY: "true"
             envFrom:
               - secretRef:
