@@ -44,6 +44,9 @@ spec:
                   path:
                     type: ReplacePrefixMatch
                     replacePrefixMatch: /
+            backendRefs:
+              - identifier: app
+                port: 3100
     service:
       app:
         controller: rxresume-server
