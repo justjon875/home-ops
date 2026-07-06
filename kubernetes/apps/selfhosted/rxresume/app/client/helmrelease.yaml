@@ -23,33 +23,16 @@ spec:
             image:
               repository: amruthpillai/reactive-resume
               tag: client-3.7.2@sha256:04b561446fb40852e72ce62fd15340424c73cde86a0df4b6e0b7888bf5e53102
-        replicas: 0
     envFrom:
       - secretRef:
           name: rxresume
-    ingress:
+    route:
       app:
-        annotations:
-          nginx.ingress.kubernetes.io/configuration-snippet: |
-            rewrite /api/(.*) /$1 break;
-        className: nginx
-        enabled: true
-        hosts:
-          - host: &host rxresume.${ROOT_DOMAIN}
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: app
-                  port: http
-              - path: /api
-                pathType: Prefix
-                service:
-                  name: rxresume-server
-                  port: 3100
-        tls:
-          - hosts:
-              - *host
+        hostnames:
+          - "rxresume.${ROOT_DOMAIN}"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
     service:
       app:
         controller: *app
