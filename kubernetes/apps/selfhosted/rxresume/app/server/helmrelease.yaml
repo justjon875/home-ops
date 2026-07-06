@@ -4,15 +4,9 @@ metadata:
   name: rxresume-server
   namespace: selfhosted
 spec:
-  chart:
-    spec:
-      chart: app-template
-      interval: 15m
-      sourceRef:
-        kind: HelmRepository
-        name: bjw-s
-        namespace: flux-system
-      version: 3.1.0
+  chartRef:
+    kind: OCIRepository
+    name: rxresume
   install:
     createNamespace: true
     remediation:
