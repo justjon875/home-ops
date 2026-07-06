@@ -26,6 +26,24 @@ spec:
             image:
               repository: amruthpillai/reactive-resume
               tag: server-3.7.2@sha256:5794bfe8729a6660f321b5c3525c7bcd354cc0e80b2bfbc23b566a7aacf055be
+    route:
+      app:
+        hostnames:
+          - "rxresume.${ROOT_DOMAIN}"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+      rules:
+        - matches:
+            - path:
+                type: PathPrefix
+                value: /api
+          filters:
+            - type: URLRewrite
+              urlRewrite:
+                path:
+                  type: ReplacePrefixMatch
+                  replacePrefixMatch: /
     service:
       app:
         controller: rxresume-server
