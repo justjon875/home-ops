@@ -22,7 +22,6 @@ resources:
   - ./paperless-ngx/ks.yaml
   - ./planka/ks.yaml
   - ./redlib/ks.yaml
-  - ./rxresume/ks.yaml
   - ./searxng/ks.yaml
   - ./vaultwarden/ks.yaml
   - ./termix/ks.yaml
