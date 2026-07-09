@@ -12,6 +12,15 @@ spec:
       droppedneedle:
         annotations:
           reloader.stakater.com/auto: "true"
+        initContainers:
+          copy-config:
+            image:
+              repository: mirror.gcr.io/library/alpine
+              tag: 3.24.1
+            command: ["sh", "-c", "chown -R 1000:1000 /config /cache"]
+            securityContext:
+              runAsUser: 0
+              runAsGroup: 0
         containers:
           app:
             env:
@@ -25,8 +34,14 @@ spec:
               tag: v2.2.0@sha256:1caa4576aed0e167104cc74be013d343619b612bf99ab9a3acae6a5b633c96b5
             securityContext:
               allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
               capabilities: { drop: ["ALL"] }
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+        runAsGroup: 1000
+        runAsNonRoot: true
+        runAsUser: 1000
     persistence:
       config:
         existingClaim: "{{ .Release.Name }}"
