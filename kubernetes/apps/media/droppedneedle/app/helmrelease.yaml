@@ -35,13 +35,11 @@ spec:
             securityContext:
               allowPrivilegeEscalation: false
               capabilities: { drop: ["ALL"] }
-    defaultPodOptions:
-      securityContext:
-        fsGroup: 1000
-        fsGroupChangePolicy: OnRootMismatch
-        runAsGroup: 1000
-        runAsNonRoot: true
-        runAsUser: 1000
+              fsGroup: 1000
+              fsGroupChangePolicy: OnRootMismatch
+              runAsGroup: 1000
+              runAsNonRoot: true
+              runAsUser: 1000
     persistence:
       config:
         existingClaim: "{{ .Release.Name }}"
