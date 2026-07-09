@@ -12,15 +12,15 @@ spec:
       droppedneedle:
         annotations:
           reloader.stakater.com/auto: "true"
-        initContainers:
-          copy-config:
-            image:
-              repository: mirror.gcr.io/library/alpine
-              tag: 3.24.1
-            command: ["sh", "-c", "chown -R 1000:1000 /config /cache"]
-            securityContext:
-              runAsUser: 0
-              runAsGroup: 0
+        # initContainers:
+        #   copy-config:
+        #     image:
+        #       repository: mirror.gcr.io/library/alpine
+        #       tag: 3.24.1
+        #     command: ["sh", "-c", "chown -R 1000:1000 /config /cache"]
+        #     securityContext:
+        #       runAsUser: 0
+        #       runAsGroup: 0
         containers:
           app:
             env:
@@ -35,18 +35,20 @@ spec:
             securityContext:
               allowPrivilegeEscalation: false
               capabilities: { drop: ["ALL"] }
-              # fsGroup: 1000
-              # fsGroupChangePolicy: OnRootMismatch
-              # runAsGroup: 1000
-              # runAsNonRoot: true
-              # runAsUser: 1000
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+        runAsGroup: 1000
+        runAsNonRoot: true
+        runAsUser: 1000
     persistence:
       config:
         existingClaim: "{{ .Release.Name }}"
         globalMounts:
-          - path: /config
+          - path: /app/config
             subPath: config
-          - path: /cache
+          - path: /app/cache
             subPath: cache
       music:
         enabled: true
