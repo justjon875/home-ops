@@ -20,9 +20,6 @@ spec:
               PORT: &port 8688
               SLSKD_DOWNLOADS_PATH: /slskd-downloads
               TZ: ${TIMEZONE}
-            envFrom:
-              - secretRef:
-                  name: "{{ .Release.Name }}-secret"
             image:
               repository: ghcr.io/habirabbu/droppedneedle
               tag: v2.2.0@sha256:1caa4576aed0e167104cc74be013d343619b612bf99ab9a3acae6a5b633c96b5
