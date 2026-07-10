@@ -13,6 +13,7 @@ resources:
   - ./audiobookshelf/ks.yaml
   - ./calibre/ks.yaml
   # - calibre-web-automated
+  - ./droppedneedle/ks.yaml
   - ./explo/ks.yaml
   - ./flaresolverr/ks.yaml
   - ./invidious/ks.yaml
