@@ -1,0 +1,79 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app droppedneedle
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: *app
+  interval: 1h
+  values:
+    controllers:
+      droppedneedle:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        # initContainers:
+        #   copy-config:
+        #     image:
+        #       repository: mirror.gcr.io/library/alpine
+        #       tag: 3.24.1
+        #     command: ["sh", "-c", "chown -R 1000:1000 /config /cache"]
+        #     securityContext:
+        #       runAsUser: 0
+        #       runAsGroup: 0
+        containers:
+          app:
+            env:
+              PUID: 1000
+              PGID: 1000
+              PORT: &port 8688
+              SLSKD_DOWNLOADS_PATH: /slskd-downloads
+              TZ: ${TIMEZONE}
+            image:
+              repository: ghcr.io/habirabbu/droppedneedle
+              tag: v2.2.0@sha256:1caa4576aed0e167104cc74be013d343619b612bf99ab9a3acae6a5b633c96b5
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities: { drop: ["ALL"] }
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+        runAsGroup: 1000
+        runAsNonRoot: true
+        runAsUser: 1000
+    persistence:
+      config:
+        existingClaim: "{{ .Release.Name }}"
+        globalMounts:
+          - path: /app/config
+            subPath: config
+          - path: /app/cache
+            subPath: cache
+      music:
+        enabled: true
+        path: /media/music
+        server: ${NFS_HOST}
+        type: nfs
+      slskd-downloads:
+        enabled: true
+        path: /media/downloads/slskd/complete
+        server: ${NFS_HOST}
+        type: nfs
+    route:
+      app:
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: Media
+          gethomepage.dev/icon: *app
+        hostnames:
+          - "{{ .Release.Name }}.${ROOT_DOMAIN}"
+          - "dn.${ROOT_DOMAIN}"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+    service:
+      app:
+        ports:
+          http:
+            port: *port
