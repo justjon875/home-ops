@@ -18,13 +18,13 @@ spec:
           companion:
             image:
               repository: ghcr.io/fail-safe/technitium-dns-companion
-              tag: latest
+              tag: 1.8.1@sha256:e9ac8ca735c3cca285db419247182980fd53ea624aba19d420ff1734ed86e02e
             env:
               DNS_SERVER_DOMAIN: technitium.${ROOT_DOMAIN}
               TECHNITIUM_NODES: node1
               TECHNITIUM_NODE1_NAME: "DNS Primary"
               TECHNITIUM_NODE1_BASE_URL: "https://{{ .Release.Name }}.${ROOT_DOMAIN}"
-              TIMEZONE: ${TZ}
+              TIMEZONE: ${TIMEZONE}
               TRUST_PROXY: "true"
             envFrom:
               - secretRef:
