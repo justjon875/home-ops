@@ -31,7 +31,7 @@ spec:
               TZ: ${TIMEZONE}
             image:
               repository: ghcr.io/habirabbu/droppedneedle
-              tag: v2.2.0@sha256:1caa4576aed0e167104cc74be013d343619b612bf99ab9a3acae6a5b633c96b5
+              tag: v2.3.0@sha256:2a64f2cad5e531efb4895df08aec08123e5aa7215658a1a57109bd66588941b6
             securityContext:
               allowPrivilegeEscalation: false
               capabilities: { drop: ["ALL"] }
