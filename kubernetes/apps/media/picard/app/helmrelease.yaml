@@ -16,7 +16,7 @@ spec:
           app:
             image:
               repository: ghcr.io/jlesage/musicbrainz-picard
-              tag: v26.05.2@sha256:130ab9790d6303c2534dbfcc59d136b010c43d021cfdedf37f76935300698996
+              tag: v26.07.1@sha256:f481d52d402724325266c79759b495f0796947482fc09011b734028a40c8e4bc
             env:
               TZ: "${TIMEZONE}"
               LANG: "en_US.UTF-8"
