@@ -17,8 +17,6 @@ spec:
     remediation:
       retries: 3
   values:
-    defaultPodOptions:
-      automountServiceAccountToken: true
     controllers:
       dozzle:
         annotations:
@@ -45,7 +43,6 @@ spec:
               capabilities: { drop: ["ALL"] }
         serviceAccount:
           identifier: dozzle
-        type: daemonset
     defaultPodOptions:
       automountServiceAccountToken: true
       securityContext:
@@ -79,23 +76,22 @@ spec:
             port: *port
     serviceAccount:
       dozzle: {}
-
     rbac:
+      bindings:
+        dozzle:
+          type: ClusterRoleBinding
+          roleRef:
+            kind: ClusterRole
+            name: dozzle
+          subjects:
+            - identifier: dozzle
       roles:
         dozzle:
           type: ClusterRole
           rules:
             - apiGroups: [""]
-              resources: ["pods", "pods/log", "nodes", "nodes/proxy"]
+              resources: ["pods", "pods/log", "nodes"]
               verbs: ["get", "list", "watch"]
             - apiGroups: ["metrics.k8s.io"]
               resources: ["pods"]
               verbs: ["get", "list"]
-
-      bindings:
-        dozzle:
-          type: ClusterRoleBinding
-          roleRef:
-            identifier: dozzle
-          subjects:
-            - identifier: dozzle
