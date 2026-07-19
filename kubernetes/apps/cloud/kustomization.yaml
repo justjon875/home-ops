@@ -12,4 +12,5 @@ resources:
   - ./namespace.yaml
   - ./immich/ks.yaml
   - ./garage/ks.yaml
+  - ./nats-opencloud/ks.yaml
   - ./opencloud/ks.yaml
