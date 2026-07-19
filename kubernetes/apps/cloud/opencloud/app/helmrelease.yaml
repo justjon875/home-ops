@@ -62,15 +62,13 @@ spec:
               # For collaboration to connect
               COLLABORA_DOMAIN: collabora.${ROOT_DOMAIN}
               GATEWAY_GRPC_ADDR: 0.0.0.0:9142
-              NATS_NATS_HOST: nats-opencloud.cloud.svc.cluster.local
-              NATS_NATS_PORT: 4222
+              NATS_NATS_HOST: 0.0.0.0
+              NATS_NATS_PORT: 9233
 
               OC_CACHE_STORE: nats-js-kv
-              MICRO_REGISTRY_ADDRESS: 127.0.0.1:9233
-              MICRO_REGISTRY: nats-js-kv
-              OC_CACHE_STORE_NODES: 127.0.0.1:9233
-              OC_PERSISTENT_STORE_NODES: 127.0.0.1:9233
-              OC_EVENTS_ENDPOINT: 127.0.0.1:9233
+              OC_CACHE_STORE_NODES: &nats nats-opencloud.cloud.svc.cluster.local:4222
+              OC_PERSISTENT_STORE_NODES: *nats
+              OC_EVENTS_ENDPOINT: *nats
 
               SETTINGS_SETUP_DEFAULT_ASSIGNMENTS: false
 
@@ -134,7 +132,7 @@ spec:
               COLLABORATION_LOG_COLOR: true
               COLLABORATION_LOG_PRETTY: true
               COLLABORATION_WOPI_SRC: &wopi https://wopi.${ROOT_DOMAIN}
-              MICRO_REGISTRY_ADDRESS: nats-opencloud.cloud.svc.cluster.local:4222
+              MICRO_REGISTRY_ADDRESS: *nats
               MICRO_REGISTRY: nats-js-kv
               OC_URL: *url
             resources:
