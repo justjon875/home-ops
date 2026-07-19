@@ -33,7 +33,7 @@ spec:
               OC_URL: &url https://opencloud.${ROOT_DOMAIN}
               OC_OIDC_ISSUER: https://id.${ROOT_DOMAIN}
               OC_EXCLUDE_RUN_SERVICES: idp,ocm
-              OC_ADD_RUN_SERVICES: notifications
+              OC_ADD_RUN_SERVICES: notifications,collaboration
               OC_OIDC_CLIENT_ID: opencloud-web
               WEB_OIDC_CLIENT_ID: opencloud-web
               WEB_OIDC_METADATA_URL: https://id.${ROOT_DOMAIN}/.well-known/openid-configuration
@@ -92,6 +92,18 @@ spec:
               SEARCH_EXTRACTOR_TYPE: tika
               SEARCH_EXTRACTOR_TIKA_TIKA_URL: http://opencloud-tika:9998
               FRONTEND_FULL_TEXT_SEARCH_ENABLED: "true"
+
+              COLLABORATION_APP_NAME: CollaboraOnline
+              COLLABORATION_APP_PRODUCT: Collabora
+              COLLABORATION_APP_INSECURE: true
+              COLLABORATION_APP_ADDR: https://collabora.${ROOT_DOMAIN}
+              COLLABORATION_APP_ICON: https://collabora.${ROOT_DOMAIN}/favicon.ico
+              COLLABORATION_APP_PROOF_DISABLE: true
+              COLLABORATION_CS3API_DATAGATEWAY_INSECURE: true
+              COLLABORATION_LOG_LEVEL: debug
+              COLLABORATION_LOG_COLOR: true
+              COLLABORATION_LOG_PRETTY: true
+              COLLABORATION_WOPI_SRC: *url
             envFrom:
               - secretRef:
                   name: opencloud-secret
@@ -112,37 +124,6 @@ spec:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
               capabilities: { drop: ["ALL"] }
-      wopi:
-        strategy: RollingUpdate
-        containers:
-          wopi:
-            image: *img
-            command:
-              - "/bin/sh"
-              - "-c"
-              - "opencloud collaboration server"
-            env:
-              COLLABORATION_APP_NAME: CollaboraOnline
-              COLLABORATION_APP_PRODUCT: Collabora
-              COLLABORATION_APP_INSECURE: true
-              COLLABORATION_APP_ADDR: https://collabora.${ROOT_DOMAIN}
-              COLLABORATION_APP_ICON: https://collabora.${ROOT_DOMAIN}/favicon.ico
-              COLLABORATION_APP_PROOF_DISABLE: true
-              COLLABORATION_CS3API_DATAGATEWAY_INSECURE: true
-              COLLABORATION_GRPC_ADDR: 0.0.0.0:9301
-              COLLABORATION_HTTP_ADDR: 0.0.0.0:9300
-              COLLABORATION_LOG_LEVEL: debug
-              COLLABORATION_LOG_COLOR: true
-              COLLABORATION_LOG_PRETTY: true
-              COLLABORATION_WOPI_SRC: &wopi https://wopi.${ROOT_DOMAIN}
-              MICRO_REGISTRY_ADDRESS: opencloud:9233
-              MICRO_REGISTRY: nats-js-kv
-              OC_URL: *url
-            resources:
-              requests:
-                cpu: 15m
-                memory: 110M
-            securityContext: *sec
       collabora:
         strategy: RollingUpdate
         pod:
@@ -159,7 +140,7 @@ spec:
               repository: docker.io/collabora/code
               tag: 26.04.2.1.1@sha256:fece3a479b4ca57e7186d0c715155526170e337deef55bbbbbc79ee93b0e72e1
             env:
-              aliasgroup1: *wopi
+              aliasgroup1: *url
               DONT_GEN_SSL_CERT: "YES"
               extra_params: |
                 --o:ssl.enable=false \
