@@ -15,7 +15,7 @@ spec:
         forceRename: *app
         containers:
           opencloud:
-            image: &img
+            image:
               repository: docker.io/opencloudeu/opencloud-rolling
               tag: 7.3.0@sha256:f988f14779cbfe26dec78ea3fc2492ae063fe14a069857dd2d5a397a927fc361
             command:
@@ -33,12 +33,13 @@ spec:
               OC_URL: &url https://opencloud.${ROOT_DOMAIN}
               OC_OIDC_ISSUER: https://id.${ROOT_DOMAIN}
               OC_EXCLUDE_RUN_SERVICES: idp,ocm
-              OC_ADD_RUN_SERVICES: notifications
+              OC_ADD_RUN_SERVICES: notifications,collaboration
               OC_OIDC_CLIENT_ID: opencloud-web
               WEB_OIDC_CLIENT_ID: opencloud-web
               WEB_OIDC_METADATA_URL: https://id.${ROOT_DOMAIN}/.well-known/openid-configuration
 
               FRONTEND_APP_HANDLER_SECURE_VIEW_APP_ADDR: eu.opencloud.api.collaboration
+              FRONTEND_ARCHIVER_MAX_SIZE: "10000000000"
               GRAPH_AVAILABLE_ROLES: "b1e2218d-eef8-4d4c-b82d-0f1a1b48f3b5,a8d5fe5e-96e3-418d-825b-534dbdf22b99,fb6c3e19-e378-47e5-b277-9732f9de6e21,58c63c02-1d89-4572-916a-870abc5a1b7d,2d00ce52-1fc2-4dbc-8b95-a73b73395f5a,1c996275-f1c9-4e71-abdf-a42f6495e960,312c0871-5ef7-4b3a-85b6-0e4074c64049,aa97fe03-7980-45ac-9e50-b325749fd7e6"
 
               PROXY_TLS: false
@@ -91,6 +92,18 @@ spec:
               SEARCH_EXTRACTOR_TYPE: tika
               SEARCH_EXTRACTOR_TIKA_TIKA_URL: http://opencloud-tika:9998
               FRONTEND_FULL_TEXT_SEARCH_ENABLED: "true"
+
+              COLLABORATION_APP_NAME: CollaboraOnline
+              COLLABORATION_APP_PRODUCT: Collabora
+              COLLABORATION_APP_INSECURE: true
+              COLLABORATION_APP_ADDR: https://collabora.${ROOT_DOMAIN}
+              COLLABORATION_APP_ICON: https://collabora.${ROOT_DOMAIN}/favicon.ico
+              COLLABORATION_APP_PROOF_DISABLE: true
+              COLLABORATION_CS3API_DATAGATEWAY_INSECURE: true
+              COLLABORATION_LOG_LEVEL: debug
+              COLLABORATION_LOG_COLOR: true
+              COLLABORATION_LOG_PRETTY: true
+              COLLABORATION_WOPI_SRC: *url
             envFrom:
               - secretRef:
                   name: opencloud-secret
@@ -111,37 +124,6 @@ spec:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
               capabilities: { drop: ["ALL"] }
-      wopi:
-        strategy: RollingUpdate
-        containers:
-          wopi:
-            image: *img
-            command:
-              - "/bin/sh"
-              - "-c"
-              - "opencloud collaboration server"
-            env:
-              COLLABORATION_APP_NAME: CollaboraOnline
-              COLLABORATION_APP_PRODUCT: Collabora
-              COLLABORATION_APP_INSECURE: true
-              COLLABORATION_APP_ADDR: https://collabora.${ROOT_DOMAIN}
-              COLLABORATION_APP_ICON: https://collabora.${ROOT_DOMAIN}/favicon.ico
-              COLLABORATION_APP_PROOF_DISABLE: true
-              COLLABORATION_CS3API_DATAGATEWAY_INSECURE: true
-              COLLABORATION_GRPC_ADDR: 0.0.0.0:9301
-              COLLABORATION_HTTP_ADDR: 0.0.0.0:9300
-              COLLABORATION_LOG_LEVEL: debug
-              COLLABORATION_LOG_COLOR: true
-              COLLABORATION_LOG_PRETTY: true
-              COLLABORATION_WOPI_SRC: &wopi https://wopi.${ROOT_DOMAIN}
-              MICRO_REGISTRY_ADDRESS: opencloud:9233
-              MICRO_REGISTRY: nats-js-kv
-              OC_URL: *url
-            resources:
-              requests:
-                cpu: 15m
-                memory: 110M
-            securityContext: *sec
       collabora:
         strategy: RollingUpdate
         pod:
@@ -158,7 +140,7 @@ spec:
               repository: docker.io/collabora/code
               tag: 26.04.2.2.1@sha256:f8a308bcd12ad09babcd635662b512776b0749fc04c9a63db568865bd195b4d9
             env:
-              aliasgroup1: *wopi
+              aliasgroup1: *url
               DONT_GEN_SSL_CERT: "YES"
               extra_params: |
                 --o:ssl.enable=false \
@@ -241,14 +223,6 @@ spec:
         ports:
           http:
             port: 9998
-      wopi:
-        controller: wopi
-        ports:
-          http:
-            appProtocol: kubernetes.io/ws
-            port: 9300
-          grpc:
-            port: 9301
       collabora:
         controller: collabora
         ports:
@@ -275,21 +249,6 @@ spec:
           - backendRefs:
               - identifier: *app
                 port: *port
-      wopi:
-        annotations:
-          gatus.home-operations.com/endpoint: |
-            url: "https://wopi.${ROOT_DOMAIN}/wopi"
-            conditions:
-              - "[STATUS] == 418"
-        hostnames:
-          - wopi.${ROOT_DOMAIN}
-        parentRefs:
-          - name: envoy-internal
-            namespace: network
-        rules:
-          - backendRefs:
-              - identifier: wopi
-                port: 9300
       collabora:
         hostnames:
           - collabora.${ROOT_DOMAIN}
@@ -317,10 +276,6 @@ spec:
             opencloud:
               - path: /var/lib/opencloud
                 subPath: data
-              - path: /etc/opencloud
-                subPath: config
-          wopi:
-            wopi:
               - path: /etc/opencloud
                 subPath: config
         path: ${NFS_PATH}/opencloud
@@ -358,8 +313,6 @@ spec:
               connect-src:
                 - '''self'''
                 - 'blob:'
-                - 'https://wopi.${ROOT_DOMAIN}/'
-                - 'wss://wopi.${ROOT_DOMAIN}/'
                 - 'https://raw.githubusercontent.com/opencloud-eu/awesome-apps/'
                 - 'https://id.${ROOT_DOMAIN}/'
                 - 'wss://id.${ROOT_DOMAIN}'
