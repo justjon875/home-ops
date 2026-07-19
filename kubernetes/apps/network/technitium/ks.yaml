@@ -17,9 +17,10 @@ spec:
   path: ./kubernetes/apps/network/technitium/app
   postBuild:
     substitute:
-      APP: technitium-filesystem
+      APP: *app
       VOLSYNC_ACCESSMODES: ReadWriteMany
       VOLSYNC_CAPACITY: 1Gi
+      VOLSYNC_SNAPSHOTCLASS: csi-ceph-filesystem
       VOLSYNC_STORAGECLASS: ceph-filesystem
     substituteFrom:
       - name: cluster-secrets
