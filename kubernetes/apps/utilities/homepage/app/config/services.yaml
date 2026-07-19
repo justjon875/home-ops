@@ -89,7 +89,7 @@
         icon: sh-pocket-id.svg
     - Dockhand:
         href: https://dockhand.lithium.${OLD_DOMAIN}
-        icon: sh-dockhand.svg
+        icon: dockhand
     - PiHole:
         href: https://pihole.lithium.${OLD_DOMAIN}
         icon: sh-pi-hole.svg
