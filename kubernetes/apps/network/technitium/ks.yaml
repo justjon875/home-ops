@@ -17,7 +17,7 @@ spec:
   path: ./kubernetes/apps/network/technitium/app
   postBuild:
     substitute:
-      APP: *app
+      APP: technitium-filesystem
       VOLSYNC_CAPACITY: 1Gi
       VOLSYNC_STORAGECLASS: ceph-filesystem
     substituteFrom:
