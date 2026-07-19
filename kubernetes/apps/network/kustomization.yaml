@@ -19,5 +19,6 @@ resources:
   - ./pihole-cluster-dns/ks.yaml
   - ./pihole-dns/ks.yaml
   - ./technitium/ks.yaml
+  - ./technitium-dns/ks.yaml
   # - ./bind-dns/ks.yaml
   # - ./k8s-gateway/ks.yaml
