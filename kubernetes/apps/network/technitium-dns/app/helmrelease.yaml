@@ -30,6 +30,7 @@ spec:
       - --rfc2136-tsig-axfr
     policy: upsert-only
     sources:
+      - crd
       - service
       - gateway-httproute
       - gateway-grpcroute
