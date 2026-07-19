@@ -18,6 +18,7 @@ spec:
   postBuild:
     substitute:
       APP: technitium-filesystem
+      VOLSYNC_ACCESSMODES: ReadWriteMany
       VOLSYNC_CAPACITY: 1Gi
       VOLSYNC_STORAGECLASS: ceph-filesystem
     substituteFrom:
