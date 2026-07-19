@@ -67,8 +67,8 @@ spec:
           gethomepage.dev/group: Utilities
           gethomepage.dev/icon: technitium
           gethomepage.dev/widget.type: technitium
-          gethomepage.dev/widget.password: "{{ `{{HOMEPAGE_VAR_technitium_PASSWORD}}` }}"
-          gethomepage.dev/widget.username: "{{ `{{HOMEPAGE_VAR_technitium_USERNAME}}` }}"
+          gethomepage.dev/widget.password: "{{ `{{HOMEPAGE_VAR_TECHNITIUM_PASSWORD}}` }}"
+          gethomepage.dev/widget.username: "{{ `{{HOMEPAGE_VAR_TECHNITIUM_USERNAME}}` }}"
           gethomepage.dev/widget.url: https://technitium.${ROOT_DOMAIN}
         forceRename: "{{ .Release.Name }}"
         hostnames:
