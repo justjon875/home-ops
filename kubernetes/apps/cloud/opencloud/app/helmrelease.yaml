@@ -21,7 +21,7 @@ spec:
             command:
               - "/bin/sh"
               - "-c"
-              - "opencloud init --diff || true; opencloud server"
+              - "opencloud init || true; opencloud server"
             env:
               IDM_CREATE_DEMO_USERS: false
               OC_ADMIN_USER_ID: ""
