@@ -11,7 +11,7 @@ spec:
   interval: 1h
   values:
     controllers:
-      technitium:
+      companion:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
@@ -21,7 +21,7 @@ spec:
               tag: 1.8.2@sha256:b92788cdfec0f4ff9aa09895478ee008ba21d5b31342eae0af4b686e9744644b
             env:
               DNS_SERVER_DOMAIN: technitium.${ROOT_DOMAIN}
-              TECHNITIUM_NODES: node1
+              TECHNITIUM_NODES: technitium-1
               TECHNITIUM_NODE1_NAME: "DNS Primary"
               TECHNITIUM_NODE1_BASE_URL: "https://{{ .Release.Name }}.${ROOT_DOMAIN}"
               TIMEZONE: ${TIMEZONE}
@@ -31,6 +31,10 @@ spec:
                   name: "{{ .Release.Name }}-companion-secret"
             securityContext:
               allowPrivilegeEscalation: false
+      technitium:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
           technitium:
             image:
               repository: technitium/dns-server
@@ -39,6 +43,8 @@ spec:
               DNS_SERVER_DOMAIN: technitium.${ROOT_DOMAIN}
             securityContext:
               allowPrivilegeEscalation: false
+        replicas: 3
+        type: statefulset
     persistence:
       dns:
         existingClaim: "{{ .Release.Name }}"
