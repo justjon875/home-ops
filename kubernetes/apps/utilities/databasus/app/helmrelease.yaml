@@ -14,33 +14,31 @@ spec:
       databasus:
         annotations:
           reloader.stakater.com/auto: "true"
-        initContainers:
-          init-chmod-data:
-            image:
-              repository: busybox
-              tag: 1.37
-            command: ["sh", "-c", "chmod -R 700 /databasus-data"]
         containers:
           app:
             image:
-              repository: databasus/databasus
-              tag: v3.36.0@sha256:bece7f71a174cceda518c07e86b0be82c6318e5af56715ed701a85b796e62a70
+              repository: docker.io/databasus/databasus
+              tag: v3.48.0@sha256:a5382545e92514bc9b0ef21570b3257ef91b2781067160295113d793b91d6a28
             securityContext:
               readOnlyRootFilesystem: false
               capabilities:
                 add:
                   - CHOWN
-        type: statefulset
     persistence:
       databasus-data:
         existingClaim: *app
     route:
       app:
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: Database
+          gethomepage.dev/name: Databasus
+          gethomepage.dev/icon: https://raw.githubusercontent.com/databasus/databasus/main/assets/logo.svg
         hostnames:
-        - '{{ .Release.Name }}.${ROOT_DOMAIN}'
+          - "{{ .Release.Name }}.${ROOT_DOMAIN}"
         parentRefs:
-        - name: envoy-internal
-          namespace: network
+          - name: envoy-internal
+            namespace: network
     service:
       app:
         ports:
