@@ -19,7 +19,7 @@ spec:
           adguard:
             image:
               repository: adguard/adguardhome
-              tag: v0.107.77@sha256:e6f2b8bcda06064ab055b44933a4f0e983c35558b9cdb8d2e7ab1efcee36d890
+              tag: v0.107.78@sha256:1ea34eafe5dc691007946e8eaab7bf46b0de9412f39213d8c06e48b53bf9a6c5
             env:
               TZ: ${TIMEZONE}
             securityContext:
@@ -30,7 +30,7 @@ spec:
           unbound:
             image:
               repository: alpinelinux/unbound
-              tag: latest@sha256:be4f836be211a721fd5d5d3cd6938a1ec4e836fed3644a45e909b88bdfde9333
+              tag: latest@sha256:bf16f7a662f9b4d34b72f7d1522e82fcf2804edfce10107bfa9d0adff72d58b2
             securityContext:
               allowPrivilegeEscalation: false
             resources:

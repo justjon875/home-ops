@@ -11,7 +11,7 @@ spec:
     - name: RENOVATE_ALLOWED_COMMANDS
       value: |-
         ["pnpm run bundle"]
-  image: ghcr.io/renovatebot/renovate:43.249.5
+  image: ghcr.io/renovatebot/renovate:43.260.3
   parallelism: 5
   provider:
     name: forgejo
@@ -29,14 +29,3 @@ spec:
       secretRef:
         name: renovate-secret
         key: RENOVATE_TOKEN
-    forgejo:
-      sync:
-        enabled: true
-        webhookURL: https://git.${ROOT_DOMAIN}/webhook/v1/forgejo
-        topic: renovate
-        tokenSecretRef:
-          name: renovate-secret
-          key: RENOVATE_TOKEN
-        authTokenSecretRef:
-          name: renovate-secret
-          key: RENOVATE_TOKEN

@@ -18,7 +18,7 @@ spec:
           companion:
             image:
               repository: ghcr.io/fail-safe/technitium-dns-companion
-              tag: 1.8.1@sha256:e9ac8ca735c3cca285db419247182980fd53ea624aba19d420ff1734ed86e02e
+              tag: 1.9.0@sha256:f828922d7627e2c1944b1f386feaa68f1888520361c10f45a301d3345a435e76
             env:
               DNS_SERVER_DOMAIN: technitium.${ROOT_DOMAIN}
               TECHNITIUM_NODES: node1
@@ -34,7 +34,7 @@ spec:
           technitium:
             image:
               repository: technitium/dns-server
-              tag: 15.2.0@sha256:23d3b63d959e997800b095fe93009b3fae271b5258234ff2ade8535cb33682c8
+              tag: 15.4.0@sha256:df7d90ef0f7b6fff6916d291a7022cd902290cc31c3141d4158b6c375a641b41
             env:
               DNS_SERVER_DOMAIN: technitium.${ROOT_DOMAIN}
             securityContext:
@@ -67,9 +67,9 @@ spec:
           gethomepage.dev/group: Utilities
           gethomepage.dev/icon: technitium
           gethomepage.dev/widget.type: technitium
-          gethomepage.dev/widget.password: "{{ `{{HOMEPAGE_VAR_technitium_PASSWORD}}` }}"
-          gethomepage.dev/widget.username: "{{ `{{HOMEPAGE_VAR_technitium_USERNAME}}` }}"
           gethomepage.dev/widget.url: https://technitium.${ROOT_DOMAIN}
+          gethomepage.dev/widget.key: "{{ `{{HOMEPAGE_VAR_TECHNITIUM_KEY}}` }}"
+          gethomepage.dev/widget.range: LastDay
         forceRename: "{{ .Release.Name }}"
         hostnames:
           - "technitium.${ROOT_DOMAIN}"
