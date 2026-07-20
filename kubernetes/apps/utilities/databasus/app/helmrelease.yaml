@@ -19,7 +19,7 @@ spec:
             image:
               repository: busybox
               tag: 1.37
-            command: ["sleep", "3600"]
+            command: ["sh", "-c", "chmod -R 700 /databasus-data"]
         containers:
           app:
             env:
