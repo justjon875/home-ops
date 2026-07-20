@@ -14,12 +14,13 @@ spec:
       databasus:
         annotations:
           reloader.stakater.com/auto: "true"
-        containers:
+        initContainers:
           init-chmod-data:
             image:
               repository: busybox
               tag: 1.37
             command: ["sleep", "3600"]
+        containers:
           app:
             image:
               repository: docker.io/databasus/databasus
@@ -29,6 +30,13 @@ spec:
               capabilities:
                 add:
                   - CHOWN
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
     persistence:
       databasus-data:
         existingClaim: *app
