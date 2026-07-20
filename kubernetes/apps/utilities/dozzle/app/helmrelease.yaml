@@ -56,7 +56,7 @@ spec:
       data:
         existingClaim: *app
     route:
-      app:
+      dozzle:
         annotations:
           gatus.home-operations.com/endpoint: |
             group: utilities
