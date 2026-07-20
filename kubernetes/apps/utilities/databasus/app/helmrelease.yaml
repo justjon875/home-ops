@@ -24,16 +24,7 @@ spec:
               tag: v3.48.0@sha256:a5382545e92514bc9b0ef21570b3257ef91b2781067160295113d793b91d6a28
             securityContext:
               readOnlyRootFilesystem: false
-              capabilities:
-                add:
-                  - CHOWN
-    defaultPodOptions:
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
-        fsGroupChangePolicy: OnRootMismatch
+              capabilities: { drop: ["ALL"] }
     persistence:
       databasus-data:
         existingClaim: *app
