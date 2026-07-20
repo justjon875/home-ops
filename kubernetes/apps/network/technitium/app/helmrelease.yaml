@@ -18,7 +18,7 @@ spec:
           companion:
             image:
               repository: ghcr.io/fail-safe/technitium-dns-companion
-              tag: 1.8.2@sha256:b92788cdfec0f4ff9aa09895478ee008ba21d5b31342eae0af4b686e9744644b
+              tag: 1.9.0@sha256:f828922d7627e2c1944b1f386feaa68f1888520361c10f45a301d3345a435e76
             env:
               DNS_SERVER_DOMAIN: technitium.${ROOT_DOMAIN}
               TECHNITIUM_NODES: node1
