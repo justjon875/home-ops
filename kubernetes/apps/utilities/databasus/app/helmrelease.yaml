@@ -22,6 +22,9 @@ spec:
             command: ["sleep", "3600"]
         containers:
           app:
+            env:
+              PUID: 1000
+              PGID: 1000
             image:
               repository: docker.io/databasus/databasus
               tag: v3.48.0@sha256:a5382545e92514bc9b0ef21570b3257ef91b2781067160295113d793b91d6a28
