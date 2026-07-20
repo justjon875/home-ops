@@ -15,6 +15,11 @@ spec:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
+          init-chmod-data:
+            image:
+              repository: busybox
+              tag: 1.37
+            command: ["sleep", "3600"]
           app:
             image:
               repository: docker.io/databasus/databasus
