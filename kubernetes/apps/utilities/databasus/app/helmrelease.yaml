@@ -1,0 +1,48 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/refs/heads/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app databasus
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: *app
+  values:
+    controllers:
+      databasus:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        initContainers:
+          init-chmod-data:
+            image:
+              repository: busybox
+              tag: 1.37
+            command: ["sh", "-c", "chmod -R 700 /databasus-data"]
+        containers:
+          app:
+            image:
+              repository: databasus/databasus
+              tag: v3.36.0@sha256:bece7f71a174cceda518c07e86b0be82c6318e5af56715ed701a85b796e62a70
+            securityContext:
+              readOnlyRootFilesystem: false
+              capabilities:
+                add:
+                  - CHOWN
+        type: statefulset
+    persistence:
+      databasus-data:
+        existingClaim: *app
+    route:
+      app:
+        hostnames:
+        - '{{ .Release.Name }}.${ROOT_DOMAIN}'
+        parentRefs:
+        - name: envoy-internal
+          namespace: network
+    service:
+      app:
+        ports:
+          http:
+            port: 4005
