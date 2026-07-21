@@ -17,8 +17,6 @@ spec:
         containers:
           app:
             env:
-              PGID: "1000"
-              PUID: "1000"
               SONARR__AUTH__METHOD: External
               SONARR__AUTH__REQUIRED: DisabledForLocalAddresses
               SONARR__LOG__DBENABLED: "False"
@@ -32,8 +30,8 @@ spec:
               - secretRef:
                   name: sonarr-secret
             image:
-              repository: quay.io/11notes/sonarr
-              tag: 4.0.19@sha256:b379600ed9ed2c1e7d3039fc31acb6668fbe5755c771f6527a7a408b0a82cc44
+              repository: ghcr.io/home-operations/sonarr
+              tag: 4.0.18.2978@sha256:2cd77fb3d81909a734d61bb8f71462044cb9d2f187e626a28a05a5c4e4be8fd2
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
@@ -47,10 +45,6 @@ spec:
         runAsUser: 1000
     persistence:
       config:
-        advancedMounts:
-          sonarr:
-            app:
-              - path: /sonarr/etc
         existingClaim: "{{ .Release.Name }}"
       media:
         advancedMounts:
@@ -79,13 +73,8 @@ spec:
         path: /media/qbittorrent/downloads/tv
         server: ${NFS_HOST}
         type: nfs
-      tmpfs:
+      tmp:
         type: emptyDir
-        advancedMounts:
-          sonarr:
-            app:
-              - path: /tmp
-                subPath: tmp
     route:
       app:
         annotations:
