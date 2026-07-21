@@ -16,15 +16,9 @@ spec:
           reloader.stakater.com/auto: "true"
         containers:
           app:
-            env:
-              PUID: 1000
-              PGID: 1000
             image:
               repository: docker.io/databasus/databasus
               tag: v3.49.0@sha256:18fd2e22f6a2ccb04e30ff0dd4805f518b1d1ef2157490c9e3841f083ef67197
-            securityContext:
-              readOnlyRootFilesystem: false
-              capabilities: { drop: ["ALL"] }
     persistence:
       databasus-data:
         existingClaim: *app
