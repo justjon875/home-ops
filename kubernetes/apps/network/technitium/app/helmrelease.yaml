@@ -47,6 +47,7 @@ spec:
               DNS_SERVER_DOMAIN: technitium.${ROOT_DOMAIN}
             securityContext:
               allowPrivilegeEscalation: false
+        type: statefulset
       secondary:
         annotations:
           reloader.stakater.com/auto: "true"
@@ -60,6 +61,7 @@ spec:
             securityContext:
               allowPrivilegeEscalation: false
         replicas: 2
+        type: statefulset
     persistence:
       dns:
         existingClaim: "{{ .Release.Name }}"
