@@ -39,7 +39,7 @@ spec:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
-          technitium-primary:
+          technitium:
             image:
               repository: technitium/dns-server
               tag: 15.4.0@sha256:df7d90ef0f7b6fff6916d291a7022cd902290cc31c3141d4158b6c375a641b41
@@ -51,7 +51,7 @@ spec:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
-          technitium-secondary:
+          technitium:
             image:
               repository: technitium/dns-server
               tag: 15.4.0@sha256:df7d90ef0f7b6fff6916d291a7022cd902290cc31c3141d4158b6c375a641b41
