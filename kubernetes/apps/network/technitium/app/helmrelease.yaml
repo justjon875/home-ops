@@ -106,6 +106,7 @@ spec:
                 port: 5380
     service:
       companion:
+        controller: companion
         ports:
           http:
             port: 3000
