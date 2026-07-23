@@ -14,7 +14,7 @@ spec:
           app:
             image:
               repository: matszwe02/ytdlp_web_player
-              tag: v1.0.1@sha256:d273e32612c848e38b044306d72b9496bde2cf52003cf6fbed35f40a1c1ccebc
+              tag: v1.1.0@sha256:f327ed4979487de4b2171c2aac20b47ad24928e672da093ec1159b6b2baa850b
             securityContext:
               allowPrivilegeEscalation: false
               capabilities: { drop: ["ALL"] }
