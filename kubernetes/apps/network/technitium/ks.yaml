@@ -21,6 +21,7 @@ spec:
       VOLSYNC_CAPACITY: 1Gi
       VOLSYNC_SNAPSHOTCLASS: csi-ceph-filesystem
       VOLSYNC_STORAGECLASS: ceph-filesystem
+      VOLSYNC_ACCESSMODES: ReadWriteMany
     substituteFrom:
       - name: cluster-secrets
         kind: Secret
