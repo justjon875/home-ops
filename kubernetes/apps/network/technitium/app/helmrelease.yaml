@@ -109,9 +109,11 @@ spec:
         ports:
           http:
             port: 3000
-      http:
+      primary:
         controller: primary
-        port: 5380
+        ports:
+          http:
+            port: 5380
       technitium:
         controller: primary
         extraSelectorLabels:
