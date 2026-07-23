@@ -104,7 +104,7 @@ spec:
             namespace: network
         rules:
           - backendRefs:
-              - identifier: technitium
+              - identifier: primary
                 port: 5380
     service:
       companion:
