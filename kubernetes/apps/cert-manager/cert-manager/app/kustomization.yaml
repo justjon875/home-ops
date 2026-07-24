@@ -7,6 +7,6 @@ resources:
   - ./grafanadashboard.yaml
   - ./helmrelease.yaml
   - ./letsencrypt-staging-clusterissuer.yaml
-  - ./letsencrypt-prod-clusterissuer.yaml
   - ./ocirepository.yaml
   - ./secret.sops.yaml
+  - ./selfsigned.yaml
