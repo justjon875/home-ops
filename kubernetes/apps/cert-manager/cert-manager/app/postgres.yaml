@@ -9,9 +9,9 @@ spec:
   commonName: Postgres Authentication Certificate Authority
   subject:
     countries:
-      - PL
+      - SG
     organizations:
-      - homelab-cluster
+      - home-ops
   usages:
     - cert sign
     - crl sign

@@ -6,6 +6,6 @@ resources:
   - ca.yaml
   - certificate.yaml
   - cluster.yaml
-  # - objectstore.yaml
+  - objectstore.yaml
   - pooler.yaml
   - scheduledbackup.yaml
