@@ -33,7 +33,7 @@ spec:
     encoding: PKCS8
     rotationPolicy: Always
   issuerRef:
-    name: cluster-ca
+    name: letsencrypt-staging-clusterissuer
     kind: ClusterIssuer
     group: cert-manager.io
   secretName: *name
