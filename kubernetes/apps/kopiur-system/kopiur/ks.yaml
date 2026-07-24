@@ -12,12 +12,6 @@ spec:
       namespace: kopiur-system
   interval: 1h
   path: ./kubernetes/apps/kopiur-system/kopiur/app
-  postBuild:
-    substituteFrom:
-      - name: cluster-secrets
-        kind: Secret
-      - name: cluster-settings
-        kind: ConfigMap
   prune: true
   sourceRef:
     kind: GitRepository
@@ -36,10 +30,6 @@ spec:
     - name: kopiur
   interval: 1h
   path: ./kubernetes/apps/kopiur-system/kopiur/repository
-  postBuild:
-    substituteFrom:
-      - name: cluster-settings
-        kind: ConfigMap
   prune: true
   sourceRef:
     kind: GitRepository
