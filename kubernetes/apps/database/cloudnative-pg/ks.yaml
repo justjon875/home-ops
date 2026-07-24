@@ -57,7 +57,7 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app cnpg-cluster
+  name: &app cloudnative-pg-cluster
 spec:
   commonMetadata:
     labels:
@@ -66,13 +66,8 @@ spec:
     - name: cloudnative-pg-barman-cloud
     - name: openebs
       namespace: openebs-system
-  healthChecks:
-    - apiVersion: postgresql.cnpg.io/v1
-      kind: Cluster
-      name: postgres
-      namespace: database
   interval: 30m
-  path: ./kubernetes/apps/database/cloudnative-pg/postgres
+  path: ./kubernetes/apps/database/cloudnative-pg/cluster
   postBuild:
     substituteFrom:
       - name: cluster-secrets
@@ -93,7 +88,7 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app cloudnative-pg-cluster
+  name: &app cnpg-cluster
 spec:
   commonMetadata:
     labels:
@@ -102,8 +97,13 @@ spec:
     - name: cloudnative-pg-barman-cloud
     - name: openebs
       namespace: openebs-system
+  healthChecks:
+    - apiVersion: postgresql.cnpg.io/v1
+      kind: Cluster
+      name: postgres
+      namespace: database
   interval: 30m
-  path: ./kubernetes/apps/database/cloudnative-pg/cluster
+  path: ./kubernetes/apps/database/cloudnative-pg/postgres
   postBuild:
     substituteFrom:
       - name: cluster-secrets
