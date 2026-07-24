@@ -1,0 +1,90 @@
+---
+# yaml-language-server: $schema=https://k8s-schemas.m00nlit.dev/postgresql.cnpg.io/cluster_v1.json
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: &name postgres
+  annotations:
+    cnpg.io/skipEmptyWalArchiveCheck: enabled
+    kustomize.toolkit.fluxcd.io/prune: disabled
+spec:
+  instances: 1
+
+  imageName: ghcr.io/cloudnative-pg/postgresql:18.4-standard-trixie@sha256:802cb43a4d482acf1037b418e421c865b16959ba22e07f16fc003e06cb21084c
+
+  certificates:
+    serverCASecret: postgres-server-cert
+    serverTLSSecret: postgres-server-cert
+    clientCASecret: postgres-client-ca
+    replicationTLSSecret: postgres-client-cert
+
+  storage:
+    size: 10Gi
+
+  bootstrap:
+    recovery:
+      source: &src source
+      recoveryTarget:
+        targetTLI: "1"
+
+  plugins:
+    - name: &plugin barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: &store garage-store
+
+  externalClusters:
+    - name: *src
+      plugin:
+        name: *plugin
+        parameters:
+          barmanObjectName: *store
+          serverName: postgres
+
+  monitoring:
+    enablePodMonitor: true
+
+  postgresql:
+    pg_hba:
+      - hostssl all all all cert clientcert=verify-full map=pooler-map
+    pg_ident:
+      - pooler-map pooler-rw all
+
+    shared_preload_libraries:
+      - vchord.so
+      - timescaledb
+      - pg_search # ParadeDB
+    parameters:
+      timescaledb.telemetry_level: "off"
+      max_locks_per_transaction: "128"
+
+    extensions:
+      - name: postgis
+        ld_library_path:
+          - system
+        image:
+          reference: ghcr.io/cloudnative-pg/postgis-extension:3.6.2-18-trixie@sha256:f68b1f6ad6a72ff042d36cd32fdbc31e5fcdab0fe55e9d4c9226c1c8edf12c9a
+
+      - name: vchord
+        image:
+          reference: ghcr.io/tensorchord/vchord-scratch:pg18-v0.5.3@sha256:c310ede47f7f82bd257c3e53806d60680d5899c318ca946fb313efad9a90a78e
+        dynamic_library_path:
+          - /usr/lib/postgresql/18/lib
+        extension_control_path:
+          - /usr/share/postgresql/18/
+
+      - name: timescaledb
+        image:
+          reference: ghcr.io/m00nwtchr/timescaledb:2.27.0@sha256:b9f684aa3c25756dbffa2e0c3c70da6a449e25138ca1a793a8bd607fdaa99ef1
+
+      - name: paradedb
+        image:
+          reference: paradedb/paradedb-extension:0.0.0-18-trixie@sha256:6811e9495041cb50b2907fc53eac300aa8ff303affb0e1fd3e3ef0fdc6874d63
+
+  managed:
+    roles:
+      - name: pooler-rw
+        ensure: present
+        login: true
+        superuser: false
+        disablePassword: true
