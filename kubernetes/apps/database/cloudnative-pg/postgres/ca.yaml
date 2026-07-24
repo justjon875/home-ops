@@ -6,6 +6,9 @@ metadata:
   name: &name postgres-server-ca
 spec:
   isCA: true
+  commonName: postgres-ca
+  dnsNames:
+    - postgres-ca
   subject:
     countries:
       - SG
