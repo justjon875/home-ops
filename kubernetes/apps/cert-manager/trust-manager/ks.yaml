@@ -17,10 +17,6 @@ spec:
       namespace: *namespace
   interval: 1h
   path: ./kubernetes/apps/cert-manager/trust-manager/app
-  postBuild:
-    substituteFrom:
-      - name: cluster-secrets
-        kind: Secret
   prune: true
   retryInterval: 2m
   sourceRef:
@@ -46,10 +42,6 @@ spec:
       namespace: *namespace
   interval: 1h
   path: ./kubernetes/apps/cert-manager/trust-manager/config
-  postBuild:
-    substituteFrom:
-      - name: cluster-secrets
-        kind: Secret
   prune: true
   retryInterval: 2m
   sourceRef:
