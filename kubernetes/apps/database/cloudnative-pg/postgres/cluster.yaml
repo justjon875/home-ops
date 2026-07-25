@@ -34,7 +34,7 @@ spec:
         barmanObjectName: &store postgres-store
 
   externalClusters:
-    - name: *src
+    - name: source
       plugin:
         name: *plugin
         parameters:
