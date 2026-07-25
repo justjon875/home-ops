@@ -62,7 +62,7 @@ patches:
                     csi.cert-manager.io/key-encoding: PKCS8
                     csi.cert-manager.io/key-usages: client auth
                     csi.cert-manager.io/common-name: ${DATABASE_OWNER:=${APP}}
-                    csi.cert-manager.io/dns-names: blocky.network.svc.cluster.local
+                    csi.cert-manager.io/dns-names: $${POD_NAME}.$${POD_NAMESPACE}.svc.cluster.local
             root-ca:
               type: configMap
               name: root-ca
