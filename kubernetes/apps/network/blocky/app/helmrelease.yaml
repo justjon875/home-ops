@@ -130,14 +130,14 @@ spec:
             path: /metrics
             interval: 1m
             scrapeTimeout: 10s
-    # route:
-    #   frontend:
-    #     hostnames:
-    #       - "{{ .Release.Name }}.${ROOT_DOMAIN}"
-    #     parentRefs:
-    #       - name: envoy-internal
-    #         namespace: network
-    #     rules:
-    #       - backendRefs:
-    #           - identifier: http
-    #             port: *fe-port
+    route:
+      frontend:
+        hostnames:
+          - "{{ .Release.Name }}.${ROOT_DOMAIN}"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+        rules:
+          - backendRefs:
+              - identifier: http
+                port: *fe-port
