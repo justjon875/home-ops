@@ -55,5 +55,5 @@ spec:
       sslKeyFile: /var/run/secrets/postgresql/tls.key
       sslmode: verify-full
       sslRootCertFile: /var/run/secrets/root-ca/ca.crt
-    url: pooler-rw.postgres.svc:5432
+    url: pooler-rw.database.svc:5432
     user: grafana-read

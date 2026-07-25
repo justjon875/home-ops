@@ -55,28 +55,28 @@ spec:
                 drop:
                   - ALL
               readOnlyRootFilesystem: true
-      frontend:
-        strategy: RollingUpdate
-        pod:
-          hostUsers: false
-        containers:
-          main:
-            image:
-              repository: ghcr.io/gabeduartem/blocky-ui
-              tag: 1.9.1@sha256:43de7e9c84ae01e00c674ea7aefaa2a0a5801ce4ab6bc29e961c0aee0d6cfce1
-            env:
-              BLOCKY_API_URL: "http://{{ .Release.Name }}-app:4000"
-            probes:
-              liveness:
-                enabled: true
-                type: HTTP
-              readiness:
-                enabled: true
-                type: HTTP
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
+      # frontend:
+      #   strategy: RollingUpdate
+      #   pod:
+      #     hostUsers: false
+      #   containers:
+      #     main:
+      #       image:
+      #         repository: ghcr.io/gabeduartem/blocky-ui
+      #         tag: 1.9.1@sha256:43de7e9c84ae01e00c674ea7aefaa2a0a5801ce4ab6bc29e961c0aee0d6cfce1
+      #       env:
+      #         BLOCKY_API_URL: "http://{{ .Release.Name }}-app:4000"
+      #       probes:
+      #         liveness:
+      #           enabled: true
+      #           type: HTTP
+      #         readiness:
+      #           enabled: true
+      #           type: HTTP
+      #       securityContext:
+      #         allowPrivilegeEscalation: false
+      #         readOnlyRootFilesystem: true
+      #         capabilities: { drop: ["ALL"] }
     defaultPodOptions:
       securityContext:
         fsGroup: 1000
@@ -115,11 +115,11 @@ spec:
             port: 53
             targetPort: 5353
             protocol: UDP
-      frontend:
-        controller: frontend
-        ports:
-          http:
-            port: &fe-port 3000
+      # frontend:
+      #   controller: frontend
+      #   ports:
+      #     http:
+      #       port: &fe-port 3000
 
     serviceMonitor:
       app:
@@ -130,14 +130,14 @@ spec:
             path: /metrics
             interval: 1m
             scrapeTimeout: 10s
-    route:
-      frontend:
-        hostnames:
-          - "{{ .Release.Name }}.${ROOT_DOMAIN}"
-        parentRefs:
-          - name: envoy-internal
-            namespace: network
-        rules:
-          - backendRefs:
-              - identifier: http
-                port: *fe-port
+    # route:
+    #   frontend:
+    #     hostnames:
+    #       - "{{ .Release.Name }}.${ROOT_DOMAIN}"
+    #     parentRefs:
+    #       - name: envoy-internal
+    #         namespace: network
+    #     rules:
+    #       - backendRefs:
+    #           - identifier: http
+    #             port: *fe-port
