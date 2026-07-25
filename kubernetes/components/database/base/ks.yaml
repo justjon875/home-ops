@@ -10,8 +10,8 @@ spec:
     labels:
       app.kubernetes.io/name: &app ${APP}
   dependsOn:
-    - name: cnpg
-      namespace: cnpg-system
+    - name: cloudnative-pg
+      namespace: database
   interval: 1h
   path: ./kubernetes/components/database/base/postgres
   postBuild:
