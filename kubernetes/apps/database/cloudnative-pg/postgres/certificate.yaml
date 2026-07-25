@@ -55,6 +55,10 @@ spec:
     name: postgres-client-ca
     kind: ClusterIssuer
     group: cert-manager.io
+  privateKey:
+    algorithm: ECDSA
+    size: 384
+
 ---
 # yaml-language-server: $schema=https://k8s-schemas.m00nlit.dev/cert-manager.io/certificate_v1.json
 apiVersion: cert-manager.io/v1
