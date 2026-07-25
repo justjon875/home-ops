@@ -12,7 +12,7 @@ spec:
   components:
     - ../../../../components/database
   interval: 1h
-  path: ./kubernetes/apps/dns/blocky/app
+  path: ./kubernetes/apps/network/blocky/app
   postBuild:
     substitute:
       APP: *app
