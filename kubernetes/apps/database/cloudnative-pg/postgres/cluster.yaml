@@ -14,7 +14,7 @@ spec:
 
   certificates:
     clientCASecret: postgres-client-ca
-    replicationTLSSecret: postgres-client-cert
+    replicationTLSSecret: postgres-server-cert
     serverCASecret: postgres-server-ca
     serverTLSSecret: postgres-server-cert
 
