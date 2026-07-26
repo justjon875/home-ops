@@ -7,7 +7,7 @@ metadata:
 spec:
   sources:
     - secret:
-        name: "postgres-server-ca"
+        name: "cluster-ca-cert"
         key: "tls.crt"
   target:
     configMap:
