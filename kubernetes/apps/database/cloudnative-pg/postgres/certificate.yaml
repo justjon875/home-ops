@@ -16,14 +16,11 @@ spec:
     - postgres-rw.database.svc.cluster.local
     - postgres-ro.database.svc.cluster.local
     - postgres-r.database.svc.cluster.local
-  subject:
-    countries:
-      - SG
-    organizations:
-      - home-ops
-  usages:
-    - server auth
   duration: 720h # 1 month
+  issuerRef:
+    name: postgres-server-ca
+    kind: Issuer
+    group: cert-manager.io
   privateKey:
     algorithm: ECDSA
     size: 384
@@ -32,11 +29,14 @@ spec:
   secretTemplate:
     labels:
       cnpg.io/reload: ""
-  issuerRef:
-    name: postgres-server-ca
-    kind: Issuer
-    group: cert-manager.io
   secretName: *name
+  subject:
+    countries:
+      - SG
+    organizations:
+      - home-ops
+  usages:
+    - server auth
 ---
 # yaml-language-server: $schema=https://k8s-schemas.m00nlit.dev/cert-manager.io/certificate_v1.json
 apiVersion: cert-manager.io/v1
@@ -44,12 +44,6 @@ kind: Certificate
 metadata:
   name: &name postgres-client-cert
 spec:
-  secretName: *name
-  secretTemplate:
-    labels:
-      cnpg.io/reload: ""
-  usages:
-    - client auth
   commonName: streaming_replica
   issuerRef:
     name: postgres-client-ca
@@ -58,7 +52,12 @@ spec:
   privateKey:
     algorithm: ECDSA
     size: 384
-
+  secretName: *name
+  secretTemplate:
+    labels:
+      cnpg.io/reload: ""
+  usages:
+    - client auth
 ---
 # yaml-language-server: $schema=https://k8s-schemas.m00nlit.dev/cert-manager.io/certificate_v1.json
 apiVersion: cert-manager.io/v1
@@ -72,14 +71,11 @@ spec:
     - pooler-rw.database.svc.cluster.local
     - pooler-rw-se.database.svc
     - pooler-rw-se.database.svc.cluster.local
-  subject:
-    countries:
-      - SG
-    organizations:
-      - home-ops
-  usages:
-    - server auth
   duration: 720h # 1 month
+  issuerRef:
+    name: postgres-server-ca
+    kind: Issuer
+    group: cert-manager.io
   privateKey:
     algorithm: ECDSA
     size: 384
@@ -88,11 +84,14 @@ spec:
   secretTemplate:
     labels:
       cnpg.io/reload: ""
-  issuerRef:
-    name: postgres-server-ca
-    kind: Issuer
-    group: cert-manager.io
   secretName: *name
+  subject:
+    countries:
+      - SG
+    organizations:
+      - home-ops
+  usages:
+    - server auth
 ---
 # yaml-language-server: $schema=https://k8s-schemas.m00nlit.dev/cert-manager.io/certificate_v1.json
 apiVersion: cert-manager.io/v1
@@ -100,14 +99,14 @@ kind: Certificate
 metadata:
   name: &name pooler-client-cert
 spec:
+  commonName: pooler-rw
+  issuerRef:
+    name: postgres-client-ca
+    kind: ClusterIssuer
+    group: cert-manager.io
   secretName: *name
   secretTemplate:
     labels:
       cnpg.io/reload: ""
   usages:
     - client auth
-  commonName: pooler-rw
-  issuerRef:
-    name: postgres-client-ca
-    kind: ClusterIssuer
-    group: cert-manager.io

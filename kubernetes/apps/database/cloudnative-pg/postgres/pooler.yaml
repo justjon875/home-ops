@@ -11,18 +11,11 @@ spec:
   instances: 1
   type: rw
   pgbouncer:
-    poolMode: transaction
-
     authQuery: "SELECT $1, NULL"
-    serverCASecret:
-      name: root-ca
-    serverTLSSecret:
-      name: pooler-client-cert
     clientCASecret:
       name: pooler-client-cert
     clientTLSSecret:
       name: pooler-server-cert
-
     parameters:
       auth_type: cert
       server_tls_sslmode: verify-full
@@ -41,6 +34,13 @@ spec:
       query_wait_timeout: "30" # drop queued client if no server in 30s
 
       application_name_add_host: "1" # helps tracing through the pool
+    poolMode: transaction
+
+    serverCASecret:
+      name: root-ca
+    serverTLSSecret:
+      name: pooler-client-cert
+
 ---
 # yaml-language-server: $schema=https://k8s-schemas.m00nlit.dev/postgresql.cnpg.io/pooler_v1.json
 apiVersion: postgresql.cnpg.io/v1
