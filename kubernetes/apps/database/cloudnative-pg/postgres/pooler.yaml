@@ -13,7 +13,7 @@ spec:
   pgbouncer:
     authQuery: "SELECT $1, NULL"
     clientCASecret:
-      name: pooler-client-cert
+      name: postgres-client-ca
     clientTLSSecret:
       name: pooler-server-cert
     parameters:
@@ -54,15 +54,9 @@ spec:
   instances: 1
   type: rw
   pgbouncer:
-    poolMode: session
-
     authQuery: "SELECT $1, NULL"
-    serverCASecret:
-      name: root-ca
-    serverTLSSecret:
-      name: pooler-client-cert
     clientCASecret:
-      name: pooler-client-cert
+      name: postgres-server-ca
     clientTLSSecret:
       name: pooler-server-cert
 
@@ -85,6 +79,11 @@ spec:
       query_wait_timeout: "30" # drop queued client if no server in 30s
 
       application_name_add_host: "1" # helps tracing through the pool
+    poolMode: session
+    serverCASecret:
+      name: root-ca
+    serverTLSSecret:
+      name: pooler-client-cert
 ---
 # yaml-language-server: $schema=https://k8s-schemas.m00nlit.dev/monitoring.coreos.com/podmonitor_v1.json
 apiVersion: monitoring.coreos.com/v1
