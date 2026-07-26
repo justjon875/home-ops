@@ -11,10 +11,8 @@ spec:
   duration: 87600h # 10 years
   renewBefore: 8760h # 1 year before expiry
   privateKey:
-    algorithm: ECDSA
-    size: 384
-    encoding: PKCS8
-    rotationPolicy: Never
+    algorithm: RSA
+    size: 4096
   issuerRef:
     name: selfsigned-issuer
     kind: ClusterIssuer
