@@ -13,7 +13,7 @@ spec:
   pgbouncer:
     authQuery: "SELECT $1, NULL"
     clientCASecret:
-      name: postgres-client-ca
+      name: pooler-client-cert
     clientTLSSecret:
       name: pooler-server-cert
     parameters:
@@ -56,7 +56,7 @@ spec:
   pgbouncer:
     authQuery: "SELECT $1, NULL"
     clientCASecret:
-      name: postgres-client-ca
+      name: pooler-client-cert
     clientTLSSecret:
       name: pooler-server-cert
 
