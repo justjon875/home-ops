@@ -25,3 +25,8 @@ spec:
       servicemonitor:
         enabled: true
         prometheusInstance: monitoring
+    config:
+      enableGatewayAPI: true
+      enableGatewayAPIListenerSet: true
+      featureGates:
+        ListenerSets: true
