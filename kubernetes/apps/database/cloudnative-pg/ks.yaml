@@ -94,8 +94,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    - name: cnpg
-      namespace: cnpg-system
+    - name: cloudnative-pg
     - name: cloudnative-pg-barman-cloud
     - name: openebs
       namespace: openebs-system
