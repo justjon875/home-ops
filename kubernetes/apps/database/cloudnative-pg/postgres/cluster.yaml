@@ -21,11 +21,11 @@ spec:
   storage:
     size: 10Gi
 
-  bootstrap:
-    recovery:
-      source: &src source
-      recoveryTarget:
-        targetTLI: "1"
+  # bootstrap:
+  #   recovery:
+  #     source: &src source
+  #     recoveryTarget:
+  #       targetTLI: "1"
 
   plugins:
     - name: &plugin barman-cloud.cloudnative-pg.io
@@ -34,7 +34,7 @@ spec:
         barmanObjectName: &store postgres-store
 
   externalClusters:
-    - name: *src
+    - name: source
       plugin:
         name: *plugin
         parameters:
