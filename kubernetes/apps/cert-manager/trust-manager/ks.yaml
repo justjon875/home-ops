@@ -12,7 +12,7 @@ spec:
   path: ./kubernetes/apps/cert-manager/trust-manager/app
   prune: true
   sourceRef:
-    kind: OCIRepository
+    kind: GitRepository
     name: flux-system
     namespace: flux-system
   interval: 1h
@@ -30,7 +30,7 @@ spec:
   path: ./kubernetes/apps/cert-manager/trust-manager/config
   prune: true
   sourceRef:
-    kind: OCIRepository
+    kind: GitRepository
     name: flux-system
     namespace: flux-system
   interval: 1h

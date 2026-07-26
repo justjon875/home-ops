@@ -6,13 +6,15 @@ metadata:
   name: internal-ca-root
 spec:
   isCA: true
-  commonName: Artemis-Cluster Internal CA
+  commonName: Home Ops Internal CA
   secretName: internal-ca-root-secret
   duration: 87600h # 10 years
   renewBefore: 8760h # 1 year before expiry
   privateKey:
-    algorithm: RSA
-    size: 4096
+    algorithm: ECDSA
+    size: 384
+    encoding: PKCS8
+    rotationPolicy: Never
   issuerRef:
     name: selfsigned-issuer
     kind: ClusterIssuer
