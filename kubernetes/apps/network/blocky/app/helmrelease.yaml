@@ -1,0 +1,143 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app blocky
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: *app
+  values:
+    controllers:
+      *app :
+        replicas: 3
+
+        strategy: RollingUpdate
+        rollingUpdate:
+          unavailable: 0
+          surge: 1
+
+        containers:
+          app:
+            image:
+              # repository: ghcr.io/0xerr0r/blocky # https://github.com/0xERR0R/blocky/issues/1461
+              repository: ghcr.io/m00nwtchr/blocky # custom built image to allow running without caps
+              tag: 0.33.0@sha256:d264410a702d55e75869128d2a19a796de34ad6cbad7c8e0bbf940712489eb40
+            probes:
+              liveness: &probe
+                enabled: true
+                custom: true
+                spec: &pSpec
+                  exec:
+                    command:
+                      - /app/blocky
+                      - healthcheck
+                      - -p
+                      - "5353"
+              startup:
+                <<: *probe
+                spec:
+                  <<: *pSpec
+                  failureThreshold: 10
+              readiness: *probe
+            resources:
+              limits:
+                cpu: 1
+                memory: 474Mi
+              requests:
+                cpu: 10m
+                memory: 474Mi
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop:
+                  - ALL
+              readOnlyRootFilesystem: true
+      # frontend:
+      #   strategy: RollingUpdate
+      #   pod:
+      #     hostUsers: false
+      #   containers:
+      #     main:
+      #       image:
+      #         repository: ghcr.io/gabeduartem/blocky-ui
+      #         tag: 1.9.1@sha256:43de7e9c84ae01e00c674ea7aefaa2a0a5801ce4ab6bc29e961c0aee0d6cfce1
+      #       env:
+      #         BLOCKY_API_URL: "http://{{ .Release.Name }}-app:4000"
+      #       probes:
+      #         liveness:
+      #           enabled: true
+      #           type: HTTP
+      #         readiness:
+      #           enabled: true
+      #           type: HTTP
+      #       securityContext:
+      #         allowPrivilegeEscalation: false
+      #         readOnlyRootFilesystem: true
+      #         capabilities: { drop: ["ALL"] }
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 1000
+        runAsGroup: 1000
+        runAsNonRoot: true
+        runAsUser: 1000
+        seccompProfile:
+          type: RuntimeDefault
+      shareProcessNamespace: true
+
+    persistence:
+      config:
+        type: configMap
+        name: blocky-configmap
+        globalMounts:
+          - path: /app/config.yml
+            subPath: config.yaml
+
+    service:
+      app:
+        forceRename: *app
+        controller: *app
+        type: LoadBalancer
+        annotations:
+          lbipam.cilium.io/ips: "172.16.0.56"
+        ports:
+          http:
+            primary: true
+            port: 80
+            targetPort: 4000
+          dns-tcp:
+            port: 53
+            targetPort: 5353
+            protocol: TCP
+          dns-udp:
+            port: 53
+            targetPort: 5353
+            protocol: UDP
+      # frontend:
+      #   controller: frontend
+      #   ports:
+      #     http:
+      #       port: &fe-port 3000
+
+    serviceMonitor:
+      app:
+        serviceName: *app
+        endpoints:
+          - port: http
+            scheme: http
+            path: /metrics
+            interval: 1m
+            scrapeTimeout: 10s
+    # route:
+    #   frontend:
+    #     hostnames:
+    #       - "{{ .Release.Name }}.${ROOT_DOMAIN}"
+    #     parentRefs:
+    #       - name: envoy-internal
+    #         namespace: network
+    #     rules:
+    #       - backendRefs:
+    #           - identifier: http
+    #             port: *fe-port
