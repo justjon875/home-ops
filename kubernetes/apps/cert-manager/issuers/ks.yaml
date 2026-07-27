@@ -1,0 +1,34 @@
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: &app issuers
+spec:
+  targetNamespace: cert-manager
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
+  path: ./kubernetes/apps/cert-manager/issuers/app
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  interval: 1h
+  dependsOn:
+    - name: cert-manager
+  # postBuild:
+  #   substituteFrom:
+  #     - kind: Secret
+  #       name: cloudflare-bootstrap
+  wait: true
+  # healthCheckExprs:
+  #   - apiVersion: cert-manager.io/v1
+  #     kind: ClusterIssuer
+  #     current: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'True')
+  #     failed: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'False')
+  # healthChecks:
+  #   - apiVersion: cert-manager.io/v1
+  #     kind: ClusterIssuer
+  #     name: letsencrypt-production
