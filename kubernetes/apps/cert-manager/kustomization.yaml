@@ -7,3 +7,6 @@ components:
   - ../../components/common
 resources:
   - ./cert-manager/ks.yaml
+  - ./issuers/ks.yaml
+  - ./postgres-ca/ks.yaml
+  - ./trust-manager/ks.yaml
