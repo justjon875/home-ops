@@ -7,7 +7,9 @@ components:
 resources:
   - ./cilium/ks.yaml
   - ./coredns/ks.yaml
+  - ./ksgate/ks.yaml
   - metrics-server
   - ./node-feature-discovery/ks.yaml
+  - ./reflector/ks.yaml
   - ./snapshot-controller/ks.yaml
   - ./spegel/ks.yaml

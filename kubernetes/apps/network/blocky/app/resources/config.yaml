@@ -1,0 +1,56 @@
+upstreams:
+  groups:
+    default:
+      - https://dns.quad9.net/dns-query
+      - https://base.dns.mullvad.net/dns-query
+
+blocking:
+  denylists:
+    hagezi:
+      - https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/pro.txt
+      - https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/tif.txt
+      - https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/doh.txt
+  clientGroupsBlock:
+    default:
+      - hagezi
+    10.42.0.0/16:
+    2001:cafe:42::/56:
+  loading:
+    downloads:
+      timeout: "5m"
+
+caching:
+  #  maxItemsCount: 10_000
+  prefetching: true
+  minTime: 60s
+#  prefetchMaxItemsCount: 1_000
+#  cacheTimeNegative: 10s
+
+clientLookup:
+  upstream: 192.168.3.1
+
+prometheus:
+  enable: true
+
+queryLog:
+  type: timescale
+  target: postgresql://blocky@pooler-rw.database.svc:5432/blocky?sslmode=verify-full&sslcert=/var/run/secrets/postgresql/tls.crt&sslkey=/var/run/secrets/postgresql/tls.key&sslrootcert=/var/run/secrets/postgres-server-ca/ca.crt"
+
+redis:
+  address: valkey.default.svc.cluster.local:6379
+  connectionAttempts: 10
+  connectionCooldown: 3s
+
+bootstrapDns:
+  - upstream: https://dns.quad9.net/dns-query
+    ips:
+      - 2620:fe::fe
+      - 2620:fe::9
+  - upstream: https://base.dns.mullvad.net/dns-query
+    ips:
+      - 194.242.2.4
+      - 2a07:e340::4
+
+ports:
+  dns: 5353
+  http: 4000
