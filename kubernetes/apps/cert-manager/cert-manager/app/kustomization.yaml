@@ -8,6 +8,4 @@ resources:
   - ./helmrelease.yaml
   - ./letsencrypt-prod-clusterissuer.yaml
   - ./ocirepository.yaml
-  - ./postgres.yaml
   - ./secret.sops.yaml
-  - ./selfsigned.yaml

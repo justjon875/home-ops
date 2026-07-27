@@ -63,9 +63,9 @@ patches:
                     csi.cert-manager.io/key-usages: client auth
                     csi.cert-manager.io/common-name: ${DATABASE_OWNER:=${APP}}
                     csi.cert-manager.io/dns-names: $${POD_NAME}.$${POD_NAMESPACE}.svc.cluster.local
-            root-ca:
-              type: configMap
-              name: root-ca
+            postgres-server-ca:
+              type: secret
+              name: "postgres-server-ca"
               defaultMode: 0440
               globalMounts:
-                - path: /var/run/secrets/root-ca
+                - path: /var/run/secrets/postgres-server-ca

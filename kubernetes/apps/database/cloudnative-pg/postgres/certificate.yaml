@@ -1,113 +1,98 @@
 ---
-# yaml-language-server: $schema=https://k8s-schemas.m00nlit.dev/cert-manager.io/certificate_v1.json
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/cert-manager.io/certificate_v1.json
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: &name postgres-server-cert
+  name: postgres-server-cert
 spec:
-  commonName: postgres
-  dnsNames:
-    - postgres-rw
-    - postgres-ro
-    - postgres-r
-    - postgres-rw.database.svc
-    - postgres-ro.database.svc
-    - postgres-r.database.svc
-    - postgres-rw.database.svc.cluster.local
-    - postgres-ro.database.svc.cluster.local
-    - postgres-r.database.svc.cluster.local
-  subject:
-    countries:
-      - SG
-    organizations:
-      - home-ops
-  usages:
-    - server auth
+  commonName: postgres-rw
   duration: 720h # 1 month
+  dnsNames:
+    - postgres-r
+    - postgres-r.database.svc
+    - postgres-r.database.svc.cluster.local
+    - postgres-ro
+    - postgres-ro.database.svc
+    - postgres-ro.database.svc.cluster.local
+    - postgres-rw
+    - postgres-rw.database.svc
+    - postgres-rw.database.svc.cluster.local
+  issuerRef:
+    group: cert-manager.io
+    kind: ClusterIssuer
+    name: postgres-server-ca
   privateKey:
     algorithm: ECDSA
     size: 384
     encoding: PKCS8
     rotationPolicy: Always
-  secretTemplate:
-    labels:
-      cnpg.io/reload: ""
-  issuerRef:
-    name: postgres-server-ca
-    kind: Issuer
-    group: cert-manager.io
-  secretName: *name
----
-# yaml-language-server: $schema=https://k8s-schemas.m00nlit.dev/cert-manager.io/certificate_v1.json
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: &name postgres-client-cert
-spec:
-  secretName: *name
+  secretName: postgres-server-cert
   secretTemplate:
     labels:
       cnpg.io/reload: ""
   usages:
-    - client auth
+    - server auth
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/cert-manager.io/certificate_v1.json
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: postgres-replication-cert
+spec:
   commonName: streaming_replica
   issuerRef:
-    name: postgres-client-ca
+    group: cert-manager.io
     kind: ClusterIssuer
-    group: cert-manager.io
-  privateKey:
-    algorithm: ECDSA
-    size: 384
-
----
-# yaml-language-server: $schema=https://k8s-schemas.m00nlit.dev/cert-manager.io/certificate_v1.json
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: &name pooler-server-cert
-spec:
-  commonName: pooler
-  dnsNames:
-    - pooler-rw.database.svc
-    - pooler-rw.database.svc.cluster.local
-    - pooler-rw-se.database.svc
-    - pooler-rw-se.database.svc.cluster.local
-  subject:
-    countries:
-      - SG
-    organizations:
-      - home-ops
-  usages:
-    - server auth
-  duration: 720h # 1 month
-  privateKey:
-    algorithm: ECDSA
-    size: 384
-    encoding: PKCS8
-    rotationPolicy: Always
-  secretTemplate:
-    labels:
-      cnpg.io/reload: ""
-  issuerRef:
-    name: postgres-server-ca
-    kind: Issuer
-    group: cert-manager.io
-  secretName: *name
----
-# yaml-language-server: $schema=https://k8s-schemas.m00nlit.dev/cert-manager.io/certificate_v1.json
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: &name pooler-client-cert
-spec:
-  secretName: *name
+    name: postgres-client-ca
+  secretName: postgres-replication-cert
   secretTemplate:
     labels:
       cnpg.io/reload: ""
   usages:
     - client auth
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/cert-manager.io/certificate_v1.json
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: pooler-server-cert
+spec:
+  commonName: pooler-rw
+  duration: 720h # 1 month
+  dnsNames:
+    - pooler-rw
+    - pooler-rw.database.svc
+    - pooler-rw.database.svc.cluster.local
+  issuerRef:
+    group: cert-manager.io
+    kind: ClusterIssuer
+    name: postgres-client-ca
+  privateKey:
+    algorithm: ECDSA
+    size: 384
+    encoding: PKCS8
+    rotationPolicy: Always
+  secretName: pooler-server-cert
+  secretTemplate:
+    labels:
+      cnpg.io/reload: ""
+  usages:
+    - server auth
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/cert-manager.io/certificate_v1.json
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: pooler-client-cert
+spec:
   commonName: pooler-rw
   issuerRef:
-    name: postgres-client-ca
-    kind: ClusterIssuer
     group: cert-manager.io
+    kind: ClusterIssuer
+    name: postgres-server-ca
+  secretName: pooler-client-cert
+  secretTemplate:
+    labels:
+      cnpg.io/reload: ""
+  usages:
+    - client auth
